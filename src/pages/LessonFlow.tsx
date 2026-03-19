@@ -46,7 +46,7 @@ const lessonConfigs: Record<string, LessonConfig> = {
       emoji: '💵',
       title: 'Cash is king — but what exactly is cash?',
       mainText: 'Cash is everything you can spend immediately — banknotes in your pocket, money in your account, or in a savings book. It\'s the most liquid form of money: always available, always safe.',
-      secondaryText: 'Cash equivalents are nearly as safe — short-term investments you can quickly convert to cash, like a call money account.',
+      secondaryText: 'Some things look like cash but aren\'t quite — like a fixed deposit. Your money is there, but locked away for a while. That\'s a cash equivalent.',
     },
     interactionType: 'cashSort',
     quiz1: {
