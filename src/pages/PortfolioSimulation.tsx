@@ -479,35 +479,68 @@ const PortfolioSimulation = () => {
   );
 
   // ── Challenge evaluation ──
-  // Chapter 1: Liquidity planning specific evaluation
+  // Festgeld breakdowns
   const shortTermFestgeld = festgeldProducts
     .filter(fp => fp.durationYears <= 1)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
   const within2YearsFestgeld = festgeldProducts
     .filter(fp => fp.durationYears <= 2)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+  const within3YearsFestgeld = festgeldProducts
+    .filter(fp => fp.durationYears <= 3)
+    .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
   const longTermFestgeld = festgeldProducts
     .filter(fp => fp.durationYears >= 5)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+  const fiveYearFestgeld = festgeldProducts
+    .filter(fp => fp.durationYears === 5)
+    .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+
+  // ── Chapter 3: Complex scenario conditions ──
+  const ch3_notgroschenOk = tagesgeldAmount >= 10000; // Bedingung A
+  // Bedingung B: Tagesgeld + Festgeld(<=3J) >= 40.000 (10k Notgroschen + 30k Immobilie)
+  const ch3_safeShortMedium = tagesgeldAmount + within3YearsFestgeld;
+  const ch3_immobilieOk = ch3_safeShortMedium >= 40000;
+  // Bedingung C: Rest (~60k) in Aktien/ETFs AND good diversification
+  const ch3_riskyTotal = riskyInvested;
+  const ch3_riskyEnough = ch3_riskyTotal >= 50000; // at least ~50k in risky assets
+  const ch3_divGood = divResult.rating === 'Sehr gut' || divResult.rating === 'Gut';
+  const ch3_renditeOk = ch3_riskyEnough && ch3_divGood;
 
   // Chapter 1 conditions
-  const ch1_notgroschenOk = tagesgeldAmount >= 2000; // Bedingung A
-  const ch1_weiterbildungAvailable = tagesgeldAmount + within2YearsFestgeld >= 5000; // 2000 Notgroschen + 3000 Weiterbildung
-  const ch1_restInLongTerm = longTermFestgeld >= 4500; // ~5000CHF in 5-year (allow small rounding)
+  const ch1_notgroschenOk = tagesgeldAmount >= 2000;
+  const ch1_weiterbildungAvailable = tagesgeldAmount + within2YearsFestgeld >= 5000;
+  const ch1_restInLongTerm = longTermFestgeld >= 4500;
 
-  // Default evaluation (for non-chapter-1)
+  // Default evaluation (for non-chapter-1, non-chapter-3)
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
-  const liquidityPassed = isChapter1 ? ch1_notgroschenOk : safeAmount >= 1000;
+  const liquidityPassed = isChapter1 ? ch1_notgroschenOk : isChapter3 ? ch3_notgroschenOk : safeAmount >= 1000;
   const riskPassed = divResult.riskPassed;
   const opportunityCostPenalty = isChapter1
-    ? !ch1_restInLongTerm // For ch1: penalty if rest is NOT in long-term
+    ? !ch1_restInLongTerm
+    : isChapter3
+    ? !ch3_renditeOk
     : safePct > 60;
 
   let challengeStars: number;
   let challengeLabel: string;
   let challengeFeedback: string;
 
-  if (isChapter1) {
+  if (isChapter3) {
+    if (ch3_notgroschenOk && ch3_immobilieOk && ch3_renditeOk) {
+      challengeStars = 3;
+      challengeLabel = 'Investment-Profi!';
+      challengeFeedback = 'Meisterhaft! Dein Notgroschen steht bereit, die 30.000 für die Immobilie sind sicher geparkt und dein restliches Vermögen arbeitet breit gestreut für deinen Ruhestand. So geht Vermögensaufbau!';
+    } else if (ch3_notgroschenOk && ch3_immobilieOk) {
+      challengeStars = 2;
+      challengeLabel = 'Ziele erreicht, aber Rendite/Risiko nicht optimal!';
+      challengeFeedback = 'Deine kurz- und mittelfristigen Ziele sind abgesichert. Aber bei deinem langfristigen Vermögen hast du entweder zu viel Rendite verschenkt (zu viel Cash) oder ein zu hohes Risiko (schlechte Diversifikation) gewählt.';
+    } else {
+      challengeStars = 1;
+      challengeLabel = 'Finanzplanung gescheitert!';
+      challengeFeedback = 'Gefährlich! Du hast deine zeitlichen Verpflichtungen ignoriert. Wenn dein Auto morgen kaputtgeht oder die Immobilien-Anzahlung fällig wird, musst du deine Aktien vielleicht mit hohem Verlust verkaufen.';
+    }
+  } else if (isChapter1) {
     if (ch1_notgroschenOk && ch1_weiterbildungAvailable && ch1_restInLongTerm) {
       challengeStars = 3;
       challengeLabel = 'Perfekt!';
