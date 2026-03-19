@@ -124,6 +124,7 @@ export const levels: Level[] = [
     subLevels: [
       { id: 'k1', title: 'What is Bitcoin?', description: 'The first digital currency', status: 'locked', duration: '4 Min' },
       { id: 'k2', title: 'Blockchain explained simply', description: 'The technology behind it', status: 'locked', duration: '3 Min' },
+      { id: 'k3', title: 'Crypto as an Investment', description: 'Opportunity, risk & how it differs from stocks', status: 'locked', duration: '4 Min' },
     ],
   },
   {
