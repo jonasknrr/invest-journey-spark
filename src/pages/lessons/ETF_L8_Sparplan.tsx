@@ -191,9 +191,9 @@ const ETF_L8_Sparplan = () => {
                       <div className="p-4 flex flex-col items-center text-center" style={{ backgroundColor: '#EFF6FF' }}>
                         <span className="text-3xl mb-2">📈</span>
                         <p className="font-display text-sm font-bold text-foreground mb-1">CHF 120/month ETF savings plan</p>
-                        <p className="font-body text-[10px] text-muted-foreground">= CHF {fmt(coffeeDeposited)} eingezahlt</p>
-                        <p className="font-body text-[10px] text-foreground font-semibold">= CHF {fmt(coffeeEndValue)} nach 30 Jahren</p>
-                        <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[9px] font-semibold">CHF {fmt(coffeeGain)} geschenkt vom Zinseszins</span>
+                        <p className="font-body text-[10px] text-muted-foreground">= CHF {fmt(coffeeDeposited)} deposited</p>
+                        <p className="font-body text-[10px] text-foreground font-semibold">= CHF {fmt(coffeeEndValue)} after 30 years</p>
+                        <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[9px] font-semibold">CHF {fmt(coffeeGain)} saved from compound interest</span>
                       </div>
                     </div>
                   </div>
