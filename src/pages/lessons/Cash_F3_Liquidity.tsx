@@ -507,27 +507,7 @@ const Cash_F3_Liquidity = () => {
             <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">
               Du weisst jetzt was Liquidität bedeutet und warum ein Teil deines Geldes immer sofort verfügbar sein sollte — egal wie gut andere Anlagen klingen.
             </p>
-            <motion.div
-              className="inline-flex flex-col items-center gap-0.5 px-6 py-3 rounded-2xl bg-green-500/10 border border-green-500/20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
-            >
-              <motion.span
-                className="font-display text-xl font-bold text-green-600 dark:text-green-400"
-                animate={{
-                  textShadow: [
-                    '0 0 0px hsl(142,71%,45%)',
-                    '0 0 16px hsl(142,71%,45%)',
-                    '0 0 0px hsl(142,71%,45%)',
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                +50 XP
-              </motion.span>
-              <span className="font-body text-xs text-green-600/70 dark:text-green-400/70">verdient</span>
-            </motion.div>
+            <CompletionXP result={completionResult} hearts={hearts} />
           </motion.div>
         )}
       </AnimatePresence>
