@@ -819,7 +819,7 @@ const ETF_L4_ETFUniverse = () => {
               onClick={() => setShowDeepDive(true)}
               className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-muted transition-colors"
             >
-              Tiefer eintauchen 📖
+              Deeper Dive 📖
             </button>
           </motion.div>
         )}
