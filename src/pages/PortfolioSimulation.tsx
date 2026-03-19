@@ -362,6 +362,7 @@ const PortfolioSimulation = () => {
   const { getProductAmount, getAssetTotal, allocations, totalBudget } = useBudget();
   const chapterConfig = levelId ? getChapterConfig(levelId) : undefined;
   const isChapter1 = levelId === 'chapter-1';
+  const isChapter3 = levelId === 'chapter-3';
   const currency = chapterConfig?.scenario?.currency ?? 'CHF';
   const [animProgress, setAnimProgress] = useState(0);
   const [animDone, setAnimDone] = useState(false);
@@ -478,35 +479,68 @@ const PortfolioSimulation = () => {
   );
 
   // ── Challenge evaluation ──
-  // Chapter 1: Liquidity planning specific evaluation
+  // Festgeld breakdowns
   const shortTermFestgeld = festgeldProducts
     .filter(fp => fp.durationYears <= 1)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
   const within2YearsFestgeld = festgeldProducts
     .filter(fp => fp.durationYears <= 2)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+  const within3YearsFestgeld = festgeldProducts
+    .filter(fp => fp.durationYears <= 3)
+    .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
   const longTermFestgeld = festgeldProducts
     .filter(fp => fp.durationYears >= 5)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+  const fiveYearFestgeld = festgeldProducts
+    .filter(fp => fp.durationYears === 5)
+    .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+
+  // ── Chapter 3: Complex scenario conditions ──
+  const ch3_notgroschenOk = tagesgeldAmount >= 10000; // Bedingung A
+  // Bedingung B: Tagesgeld + Festgeld(<=3J) >= 40.000 (10k Notgroschen + 30k Immobilie)
+  const ch3_safeShortMedium = tagesgeldAmount + within3YearsFestgeld;
+  const ch3_immobilieOk = ch3_safeShortMedium >= 40000;
+  // Bedingung C: Rest (~60k) in Aktien/ETFs AND good diversification
+  const ch3_riskyTotal = riskyInvested;
+  const ch3_riskyEnough = ch3_riskyTotal >= 50000; // at least ~50k in risky assets
+  const ch3_divGood = divResult.rating === 'Sehr gut' || divResult.rating === 'Gut';
+  const ch3_renditeOk = ch3_riskyEnough && ch3_divGood;
 
   // Chapter 1 conditions
-  const ch1_notgroschenOk = tagesgeldAmount >= 2000; // Bedingung A
-  const ch1_weiterbildungAvailable = tagesgeldAmount + within2YearsFestgeld >= 5000; // 2000 Notgroschen + 3000 Weiterbildung
-  const ch1_restInLongTerm = longTermFestgeld >= 4500; // ~5000CHF in 5-year (allow small rounding)
+  const ch1_notgroschenOk = tagesgeldAmount >= 2000;
+  const ch1_weiterbildungAvailable = tagesgeldAmount + within2YearsFestgeld >= 5000;
+  const ch1_restInLongTerm = longTermFestgeld >= 4500;
 
-  // Default evaluation (for non-chapter-1)
+  // Default evaluation (for non-chapter-1, non-chapter-3)
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
-  const liquidityPassed = isChapter1 ? ch1_notgroschenOk : safeAmount >= 1000;
+  const liquidityPassed = isChapter1 ? ch1_notgroschenOk : isChapter3 ? ch3_notgroschenOk : safeAmount >= 1000;
   const riskPassed = divResult.riskPassed;
   const opportunityCostPenalty = isChapter1
-    ? !ch1_restInLongTerm // For ch1: penalty if rest is NOT in long-term
+    ? !ch1_restInLongTerm
+    : isChapter3
+    ? !ch3_renditeOk
     : safePct > 60;
 
   let challengeStars: number;
   let challengeLabel: string;
   let challengeFeedback: string;
 
-  if (isChapter1) {
+  if (isChapter3) {
+    if (ch3_notgroschenOk && ch3_immobilieOk && ch3_renditeOk) {
+      challengeStars = 3;
+      challengeLabel = 'Investment-Profi!';
+      challengeFeedback = 'Meisterhaft! Dein Notgroschen steht bereit, die 30.000 für die Immobilie sind sicher geparkt und dein restliches Vermögen arbeitet breit gestreut für deinen Ruhestand. So geht Vermögensaufbau!';
+    } else if (ch3_notgroschenOk && ch3_immobilieOk) {
+      challengeStars = 2;
+      challengeLabel = 'Ziele erreicht, aber Rendite/Risiko nicht optimal!';
+      challengeFeedback = 'Deine kurz- und mittelfristigen Ziele sind abgesichert. Aber bei deinem langfristigen Vermögen hast du entweder zu viel Rendite verschenkt (zu viel Cash) oder ein zu hohes Risiko (schlechte Diversifikation) gewählt.';
+    } else {
+      challengeStars = 1;
+      challengeLabel = 'Finanzplanung gescheitert!';
+      challengeFeedback = 'Gefährlich! Du hast deine zeitlichen Verpflichtungen ignoriert. Wenn dein Auto morgen kaputtgeht oder die Immobilien-Anzahlung fällig wird, musst du deine Aktien vielleicht mit hohem Verlust verkaufen.';
+    }
+  } else if (isChapter1) {
     if (ch1_notgroschenOk && ch1_weiterbildungAvailable && ch1_restInLongTerm) {
       challengeStars = 3;
       challengeLabel = 'Perfekt!';
@@ -779,6 +813,24 @@ const PortfolioSimulation = () => {
                         ch1_restInLongTerm ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
                       }`}>
                         {ch1_restInLongTerm ? '✓' : '△'} Max. Rendite: {longTermFestgeld.toLocaleString('de-CH')} {currency} langfristig
+                      </span>
+                    </>
+                  ) : isChapter3 ? (
+                    <>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch3_notgroschenOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {ch3_notgroschenOk ? '✓' : '✗'} Notgroschen: {tagesgeldAmount.toLocaleString('de-CH')} / 10.000 {currency}
+                      </span>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch3_immobilieOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {ch3_immobilieOk ? '✓' : '✗'} Immobilie: {ch3_safeShortMedium.toLocaleString('de-CH')} / 40.000 {currency}
+                      </span>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch3_renditeOk ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
+                      }`}>
+                        {ch3_renditeOk ? '✓' : '△'} Rendite & Streuung: {ch3_riskyTotal.toLocaleString('de-CH')} {currency} / {divResult.rating}
                       </span>
                     </>
                   ) : (
@@ -1058,35 +1110,76 @@ const PortfolioSimulation = () => {
               // Build weakness bullets
               const weaknesses: { icon: string; text: string }[] = [];
 
-              if (aktienPct > 0 && !divResult.riskPassed) {
-                weaknesses.push({
-                  icon: '⚠️',
-                  text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}).`,
-                });
-              }
-              if (Math.abs(maxDrawdown) * 100 > 25) {
-                weaknesses.push({
-                  icon: '📉',
-                  text: `Hohe Schwankung: Dein Portfolio hat in Krisenzeiten starke Verluste erlitten (Max. Drawdown: ${(maxDrawdown * 100).toFixed(1)}%).`,
-                });
-              }
-              if (safePct > 40) {
-                weaknesses.push({
-                  icon: '💸',
-                  text: `Rendite verschenkt: ${Math.round(safePct)}% deines Budgets liegen in risikoarmen Anlagen. Du verzichtest auf Renditepotenzial (Opportunitätskosten).`,
-                });
-              }
-              if (!liquidityPassed) {
-                weaknesses.push({
-                  icon: '🔓',
-                  text: 'Keine Liquiditätsreserve: Du hast keine 1.000 CHF kurzfristig verfügbar geparkt.',
-                });
-              }
-              if (sharpeApprox < 0.5 && profitPct > 0 && aktienPct > 20) {
-                weaknesses.push({
-                  icon: '⚖️',
-                  text: 'Ineffizientes Risiko: Deine Rendite steht in keinem guten Verhältnis zum eingegangenen Risiko.',
-                });
+              // ── Chapter 3 specific feedback ──
+              if (isChapter3) {
+                if (!ch3_notgroschenOk) {
+                  weaknesses.push({
+                    icon: '🚨',
+                    text: `Kein ausreichender Notgroschen: Du hast nur ${tagesgeldAmount.toLocaleString('de-CH')} ${currency} auf dem Tagesgeld, brauchst aber mindestens 10.000 ${currency} als sofort verfügbare Reserve.`,
+                  });
+                }
+                if (!ch3_immobilieOk) {
+                  weaknesses.push({
+                    icon: '🏠',
+                    text: `Immobilien-Anzahlung gefährdet: Nur ${ch3_safeShortMedium.toLocaleString('de-CH')} ${currency} sind in maximal 3 Jahren sicher verfügbar — du brauchst aber 40.000 ${currency} (inkl. Notgroschen).`,
+                  });
+                }
+                if (fiveYearFestgeld > 0 && !ch3_immobilieOk) {
+                  weaknesses.push({
+                    icon: '⏰',
+                    text: `Falsche Laufzeit: Du hast ${fiveYearFestgeld.toLocaleString('de-CH')} ${currency} für 5 Jahre gebunden, obwohl du in 3 Jahren 30.000 ${currency} brauchst.`,
+                  });
+                }
+                if (ch3_riskyTotal >= 50000 && etfInvested === 0) {
+                  weaknesses.push({
+                    icon: '📊',
+                    text: `Tipp zur Streuung: Bei einer Summe von ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} in Aktien solltest du dringend Welt-ETFs als Basis-Investment nutzen, anstatt nur auf wenige Einzelwerte zu wetten.`,
+                  });
+                }
+                if (ch3_riskyTotal > 0 && !ch3_divGood) {
+                  weaknesses.push({
+                    icon: '⚠️',
+                    text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}). Streue breiter!`,
+                  });
+                }
+                if (ch3_riskyTotal < 50000 && ch3_notgroschenOk && ch3_immobilieOk) {
+                  weaknesses.push({
+                    icon: '💸',
+                    text: `Rendite verschenkt: Nur ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} arbeiten langfristig für dich. Du könntest ca. 60.000 ${currency} renditeorientiert anlegen.`,
+                  });
+                }
+              } else {
+                // Default weaknesses for other chapters
+                if (aktienPct > 0 && !divResult.riskPassed) {
+                  weaknesses.push({
+                    icon: '⚠️',
+                    text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}).`,
+                  });
+                }
+                if (Math.abs(maxDrawdown) * 100 > 25) {
+                  weaknesses.push({
+                    icon: '📉',
+                    text: `Hohe Schwankung: Dein Portfolio hat in Krisenzeiten starke Verluste erlitten (Max. Drawdown: ${(maxDrawdown * 100).toFixed(1)}%).`,
+                  });
+                }
+                if (safePct > 40) {
+                  weaknesses.push({
+                    icon: '💸',
+                    text: `Rendite verschenkt: ${Math.round(safePct)}% deines Budgets liegen in risikoarmen Anlagen. Du verzichtest auf Renditepotenzial (Opportunitätskosten).`,
+                  });
+                }
+                if (!liquidityPassed) {
+                  weaknesses.push({
+                    icon: '🔓',
+                    text: 'Keine Liquiditätsreserve: Du hast keine 1.000 CHF kurzfristig verfügbar geparkt.',
+                  });
+                }
+                if (sharpeApprox < 0.5 && profitPct > 0 && aktienPct > 20) {
+                  weaknesses.push({
+                    icon: '⚖️',
+                    text: 'Ineffizientes Risiko: Deine Rendite steht in keinem guten Verhältnis zum eingegangenen Risiko.',
+                  });
+                }
               }
 
               const isPerfect = weaknesses.length === 0;
