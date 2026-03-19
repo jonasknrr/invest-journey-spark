@@ -1,69 +1,66 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Heart } from "lucide-react";
+import { Star } from "@phosphor-icons/react";
+import CashSortGame from "@/components/lessons/CashSortGame";
+import { useProgressStore } from "@/hooks/useProgressStore";
+import NoHeartsOverlay from "@/components/lessons/NoHeartsOverlay";
+import CompletionXP from "@/components/lessons/CompletionXP";
 
-import CashSortGame from '@/components/lessons/CashSortGame';
-import { useProgressStore } from '@/hooks/useProgressStore';
-import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
-import CompletionXP from '@/components/lessons/CompletionXP';
-
-const BLUE = '#1A56DB';
+const BLUE = "#1A56DB";
 const TOTAL_STEPS = 6;
-const LESSON_ID = 'festgeld-f1';
+const LESSON_ID = "festgeld-f1";
 
 /* ── Quiz data ── */
 const QUIZ_1 = {
-  label: 'Question 1 of 3',
-  question:
-    'You need CHF 500 tomorrow morning for an urgent repair. Which option helps you the fastest?',
+  label: "Question 1 of 3",
+  question: "You need CHF 500 tomorrow morning for an urgent repair. Which option helps you the fastest?",
   answers: [
-    { id: 'a', text: 'Sell your stocks' },
-    { id: 'b', text: 'Sell your property' },
-    { id: 'c', text: 'Withdraw money from your checking account' },
-    { id: 'd', text: 'Break your fixed deposit early' },
+    { id: "a", text: "Sell your stocks" },
+    { id: "b", text: "Sell your property" },
+    { id: "c", text: "Withdraw money from your checking account" },
+    { id: "d", text: "Break your fixed deposit early" },
   ],
-  correctId: 'c',
-  correctFeedback:
-    'Correct! Your checking account is instantly available — no waiting, no fees, no risk.',
+  correctId: "c",
+  correctFeedback: "Correct! Your checking account is instantly available — no waiting, no fees, no risk.",
   wrongFeedback:
-    'Close! Stocks, property, and fixed deposits take time or incur costs. Cash in your account is available immediately.',
+    "Close! Stocks, property, and fixed deposits take time or incur costs. Cash in your account is available immediately.",
 };
 
 const QUIZ_2 = {
-  label: 'Question 2 of 3',
-  question: 'What distinguishes cash from a stock?',
+  label: "Question 2 of 3",
+  question: "What distinguishes cash from a stock?",
   answers: [
-    { id: 'a', text: 'Cash earns higher returns than stocks' },
+    { id: "a", text: "Cash earns higher returns than stocks" },
     {
-      id: 'b',
-      text: 'Cash is always instantly available and doesn\'t suddenly lose significant value',
+      id: "b",
+      text: "Cash is always instantly available and doesn't suddenly lose significant value",
     },
-    { id: 'c', text: 'Stocks are safer than cash' },
-    { id: 'd', text: 'There is no significant difference' },
+    { id: "c", text: "Stocks are safer than cash" },
+    { id: "d", text: "There is no significant difference" },
   ],
-  correctId: 'b',
+  correctId: "b",
   correctFeedback:
-    'Exactly! Cash is stable and instantly available — stocks can fluctuate heavily and take time to sell.',
+    "Exactly! Cash is stable and instantly available, on the other side stocks can fluctuate and take some time to sell.",
   wrongFeedback:
-    'Not quite — cash doesn\'t shine through returns, but through safety and instant availability. That\'s its greatest advantage.',
+    "Not quite — cash doesn't shine through returns, but through safety and instant availability. That's its greatest advantage.",
 };
 
 const QUIZ_3 = {
-  label: 'Question 3 of 3',
+  label: "Question 3 of 3",
   question:
-    'Besides physical banknotes and coins, which of the following is also considered a highly liquid \'cash equivalent\'?',
+    "Besides physical banknotes and coins, which of the following is also considered a highly liquid 'cash equivalent'?",
   answers: [
-    { id: 'a', text: 'A long-term real estate investment' },
-    { id: 'b', text: 'A volatile cryptocurrency' },
-    { id: 'c', text: 'A call money account (savings account)' },
-    { id: 'd', text: 'A 10-year government bond' },
+    { id: "a", text: "A long-term real estate investment" },
+    { id: "b", text: "A volatile cryptocurrency" },
+    { id: "c", text: "A call money account (savings account)" },
+    { id: "d", text: "A 10-year government bond" },
   ],
-  correctId: 'c',
-  correctFeedback:
-    'Correct! A call money account is highly liquid and safe — making it a classic cash equivalent.',
+  correctId: "c",
+  correctFeedback: "Correct! A call money account is highly liquid and safe — making it a classic cash equivalent.",
   wrongFeedback:
-    'Not quite — real estate, crypto, and long-term bonds are not easily or quickly convertible to cash without risk. A call money account is the closest to cash.',
+    "Not quite — real estate, crypto, and long-term bonds are not easily or quickly convertible to cash without risk. A call money account is the closest to cash.",
 };
 
 /* ── Quiz slide component ── */
@@ -98,9 +95,7 @@ const QuizSlide = ({
       <span className="font-body text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
         {quiz.label}
       </span>
-      <h2 className="font-display text-lg font-bold text-foreground mb-5 leading-snug">
-        {quiz.question}
-      </h2>
+      <h2 className="font-display text-lg font-bold text-foreground mb-5 leading-snug">{quiz.question}</h2>
 
       <div className="flex flex-col gap-2.5 max-w-sm mx-auto w-full mb-5">
         {quiz.answers.map((a) => {
@@ -117,18 +112,18 @@ const QuizSlide = ({
                 w-full text-left px-4 py-3.5 rounded-xl border-2 font-body text-sm transition-all
                 ${
                   showResult && correct
-                    ? 'border-green-500 bg-green-50 text-green-900'
+                    ? "border-green-500 bg-green-50 text-green-900"
                     : showResult && wasChosen && !correct
-                      ? 'border-red-400 bg-red-50 text-red-900'
+                      ? "border-red-400 bg-red-50 text-red-900"
                       : showResult
-                        ? 'border-border bg-muted/30 text-muted-foreground'
-                        : 'border-border bg-card text-foreground hover:border-primary/40'
+                        ? "border-border bg-muted/30 text-muted-foreground"
+                        : "border-border bg-card text-foreground hover:border-primary/40"
                 }
               `}
             >
               {a.text}
-              {showResult && correct && ' ✅'}
-              {showResult && wasChosen && !correct && ' ❌'}
+              {showResult && correct && " ✅"}
+              {showResult && wasChosen && !correct && " ❌"}
             </button>
           );
         })}
@@ -141,16 +136,10 @@ const QuizSlide = ({
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             className={`rounded-xl border-l-4 px-4 py-3 max-w-sm mx-auto w-full mb-5 ${
-              isCorrect
-                ? 'border-l-green-500 bg-green-50'
-                : 'border-l-orange-400 bg-orange-50'
+              isCorrect ? "border-l-green-500 bg-green-50" : "border-l-orange-400 bg-orange-50"
             }`}
           >
-            <p
-              className={`font-body text-sm leading-relaxed ${
-                isCorrect ? 'text-green-800' : 'text-orange-800'
-              }`}
-            >
+            <p className={`font-body text-sm leading-relaxed ${isCorrect ? "text-green-800" : "text-orange-800"}`}>
               {isCorrect ? quiz.correctFeedback : quiz.wrongFeedback}
             </p>
           </motion.div>
@@ -180,7 +169,7 @@ const Cash_F1_WhatIsCash = () => {
   const { updateLessonProgress, completeLesson } = useProgressStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts, setHearts] = useState(3);
-  const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
+  const [noHeartsScreen, setNoHeartsScreen] = useState<"none" | "showing">("none");
   const [completionResult, setCompletionResult] = useState<{
     xpEarned: number;
     streakBonus: number;
@@ -198,8 +187,10 @@ const Cash_F1_WhatIsCash = () => {
   // No hearts
   useEffect(() => {
     if (hearts === 0) {
-      setNoHeartsScreen('showing');
-      try { navigator.vibrate?.([300, 100, 300]); } catch {}
+      setNoHeartsScreen("showing");
+      try {
+        navigator.vibrate?.([300, 100, 300]);
+      } catch {}
     }
   }, [hearts]);
 
@@ -217,7 +208,7 @@ const Cash_F1_WhatIsCash = () => {
 
   const handleNext = () => {
     if (currentStep >= TOTAL_STEPS - 1) {
-      navigate('/category/festgeld');
+      navigate("/category/festgeld");
       return;
     }
     setCurrentStep((s) => s + 1);
@@ -226,20 +217,20 @@ const Cash_F1_WhatIsCash = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* No hearts overlay */}
-      {noHeartsScreen === 'showing' && (
+      {noHeartsScreen === "showing" && (
         <NoHeartsOverlay
           onRestart={() => {
             setHearts(3);
             setCurrentStep(0);
-            setNoHeartsScreen('none');
+            setNoHeartsScreen("none");
           }}
           onQuizOnly={() => {
             setHearts(3);
             setCurrentStep(2);
-            setNoHeartsScreen('none');
+            setNoHeartsScreen("none");
           }}
           onContinue={() => {
-            setNoHeartsScreen('none');
+            setNoHeartsScreen("none");
           }}
         />
       )}
@@ -247,7 +238,7 @@ const Cash_F1_WhatIsCash = () => {
       {/* Top bar */}
       <div className="px-4 pt-4 flex items-center gap-3">
         <button
-          onClick={() => navigate('/category/festgeld')}
+          onClick={() => navigate("/category/festgeld")}
           className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0"
         >
           <X className="w-5 h-5 text-foreground" />
@@ -258,7 +249,7 @@ const Cash_F1_WhatIsCash = () => {
             style={{ backgroundColor: BLUE }}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           />
         </div>
         <div className="flex items-center gap-0.5 flex-shrink-0">
@@ -266,9 +257,7 @@ const Cash_F1_WhatIsCash = () => {
             <Heart
               key={i}
               className={`w-5 h-5 transition-all ${
-                i < hearts
-                  ? 'text-red-500 fill-red-500'
-                  : 'text-muted-foreground/30'
+                i < hearts ? "text-red-500 fill-red-500" : "text-muted-foreground/30"
               }`}
             />
           ))}
@@ -296,14 +285,12 @@ const Cash_F1_WhatIsCash = () => {
 
             <div className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full">
               <p className="font-body text-[15px] leading-relaxed text-foreground mb-5">
-                Cash is everything you can spend immediately — banknotes in your
-                pocket, money in your account, or in a savings book. It is
-                the most liquid form of money: always available, always safe.
+                Cash is everything you can spend immediately — banknotes in your pocket, money in your account, or in a
+                savings book. It is the most liquid form of money: always available, always safe.
               </p>
               <p className="font-body text-sm leading-relaxed text-muted-foreground">
-                Cash equivalents are almost as safe — short-term investments
-                you can quickly convert into cash, like a call money
-                account.
+                Cash equivalents are almost as safe — short-term investments you can quickly convert into cash, like a
+                call money account.
               </p>
             </div>
 
@@ -351,35 +338,57 @@ const Cash_F1_WhatIsCash = () => {
         {/* ── Slide 6: Completion ── */}
         {currentStep === 5 && (
           <motion.div
-            key="s5"
-            className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
+            key="s4"
+            className="flex-1 flex flex-col items-center justify-center px-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
           >
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-              Lesson complete! 🎉
-            </h2>
-            <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">
-              You now know what cash and cash equivalents are — and why
-              the difference to stocks or real estate matters in everyday life.
-            </p>
-            <CompletionXP result={completionResult} hearts={hearts} />
+            <div className="flex items-center gap-4 mb-6">
+              {[0, 1, 2].map((i) => (
+                <motion.div
+                  key={i}
+                  initial={{ scale: 0, rotate: -30 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{
+                    delay: 0.2 + i * 0.25,
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15,
+                  }}
+                >
+                  <Star
+                    size={i === 1 ? 64 : 48}
+                    weight="fill"
+                    className="text-[hsl(45,100%,50%)]"
+                    style={{
+                      filter: "drop-shadow(0 0 12px hsl(45 100% 50% / 0.5))",
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </div>
 
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="mt-8"
+              className="text-center flex flex-col items-center"
             >
+              <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
+              <p className="font-body text-sm text-muted-foreground max-w-xs mx-auto mb-4 leading-relaxed">
+                You now know what cash and cash equivalents are — and why the difference to stocks or real estate
+                matters in everyday life.
+              </p>
+              <CompletionXP result={completionResult} hearts={hearts} />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="mt-10">
               <motion.button
                 onClick={handleNext}
                 whileTap={{ scale: 0.96 }}
-                className="h-14 w-full max-w-xs rounded-full font-display text-lg font-bold text-white shadow-sm"
-                style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}
+                className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm"
               >
-                Next lesson →
+                Continue learning
               </motion.button>
             </motion.div>
           </motion.div>
