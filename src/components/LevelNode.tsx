@@ -24,15 +24,15 @@ const colorMap: Record<string, string> = {
 };
 
 const shadowMap: Record<string, string> = {
-  festgeld: '0 10px 25px -5px hsla(150,60%,45%,0.35)',
+  festgeld: '0 10px 25px -5px hsla(158,55%,40%,0.35)',
   tagesgeld: '0 10px 25px -5px hsla(140,70%,75%,0.35)',
-  aktien: '0 10px 25px -5px hsla(215,90%,60%,0.35)',
-  anleihen: '0 10px 25px -5px hsla(185,80%,45%,0.35)',
-  etfs: '0 10px 25px -5px hsla(225,85%,55%,0.35)',
-  currencies: '0 10px 25px -5px hsla(35,95%,55%,0.35)',
-  crypto: '0 10px 25px -5px hsla(265,85%,65%,0.35)',
-  metals: '0 10px 25px -5px hsla(45,100%,50%,0.35)',
-  realestate: '0 10px 25px -5px hsla(15,70%,55%,0.35)',
+  aktien: '0 10px 25px -5px hsla(217,91%,60%,0.35)',
+  anleihen: '0 10px 25px -5px hsla(199,89%,48%,0.35)',
+  etfs: '0 10px 25px -5px hsla(239,84%,67%,0.35)',
+  currencies: '0 10px 25px -5px hsla(38,92%,50%,0.35)',
+  crypto: '0 10px 25px -5px hsla(258,84%,65%,0.35)',
+  metals: '0 10px 25px -5px hsla(45,93%,47%,0.35)',
+  realestate: '0 10px 25px -5px hsla(25,95%,53%,0.35)',
 };
 
 /** High-contrast ring colors against each level's background */
