@@ -23,6 +23,13 @@ export interface TopicConfig {
     correctFeedback: string;
     wrongFeedback: string;
   };
+  quizzes?: {
+    question: string;
+    answers: QuizAnswer[];
+    correctId: string;
+    correctFeedback: string;
+    wrongFeedback: string;
+  }[];
 }
 
 const aktienTopics: TopicConfig[] = [
