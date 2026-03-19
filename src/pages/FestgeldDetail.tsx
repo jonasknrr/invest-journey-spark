@@ -85,7 +85,7 @@ const FestgeldDetail = () => {
           </div>
           {isOverBudget && (
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-destructive text-sm font-body mt-2">
-              Budget überschritten
+              Budget exceeded
             </motion.p>
           )}
         </div>
