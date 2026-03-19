@@ -191,7 +191,7 @@ const LearningPath = () => {
                   progress={percent}
                 />
                 {stars && (
-                  <div className={`flex gap-1 mt-1.5 ${isLeft ? 'ml-5' : 'mr-5'}`}>
+                  <div className={`flex gap-1 mt-1.5 justify-center`} style={{ width: 88, marginLeft: isLeft ? 0 : undefined, marginRight: isLeft ? undefined : 0, alignSelf: isLeft ? 'flex-start' : 'flex-end' }}>
                     {[1, 2, 3].map(i => (
                       <span
                         key={i}
