@@ -465,10 +465,16 @@ const PortfolioSimulation = () => {
   // Aktien percentage
   const aktienPct = invested > 0 ? ((getAssetTotal('aktien') + etfInvested) / invested) * 100 : 0;
 
+  // Ch1 context for coach analysis
+  const tagesgeldPct = invested > 0 ? (tagesgeldAmount / invested) * 100 : 0;
+  const ch1CoachContext = isChapter1
+    ? { tagesgeldPct, notgroschenOk: tagesgeldAmount >= 2000 }
+    : undefined;
+
   // Coach analysis
   const coachAnalysis = useMemo(
-    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox, safePct, levelId),
-    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox, safePct, levelId],
+    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox, safePct, levelId, ch1CoachContext),
+    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox, safePct, levelId, tagesgeldPct, isChapter1],
   );
 
   // ── Challenge evaluation ──
