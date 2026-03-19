@@ -93,7 +93,7 @@ const LearningPath = () => {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-background/90 backdrop-blur-md border-b border-border px-6 pt-5 pb-4">
+      <div className="sticky top-0 z-50 bg-background border-b border-border px-6 pt-5 pb-4">
         <div className="flex items-center justify-between max-w-sm mx-auto mb-3">
           <div className="flex items-center gap-2.5">
             <div className="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden border-2 border-blue-200 shrink-0">
