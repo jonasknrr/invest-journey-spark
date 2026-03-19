@@ -712,55 +712,35 @@ const PortfolioSimulation = () => {
               </div>
             </div>
 
-            {/* ── 2. Ziel-Check & Performance ── */}
-            <div className={`rounded-3xl p-5 border shadow-card ${
-              goalMet
-                ? 'bg-primary/5 border-primary/20'
-                : 'bg-[hsl(30,90%,55%)]/5 border-[hsl(30,90%,55%)]/20'
-            }`}>
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
-                  goalMet ? 'bg-primary/15' : 'bg-[hsl(30,90%,55%)]/15'
-                }`}>
-                  <Trophy size={24} weight="fill" className={goalMet ? 'text-primary' : 'text-[hsl(30,90%,55%)]'} />
-                </div>
+            {/* ── 2. Performance ── */}
+            <div className="rounded-3xl bg-card border border-border shadow-card p-5">
+              <p className="font-display font-bold text-foreground text-[15px] mb-4">Performance</p>
+
+              {/* Endwert + Investiert */}
+              <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className={`font-display font-bold text-base ${goalMet ? 'text-primary' : 'text-[hsl(30,90%,55%)]'}`}>
-                    {goalMet ? 'Ziel erreicht! 🎉' : 'Ziel nicht erreicht'}
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Endwert</p>
+                  <p className="font-display text-2xl font-bold text-foreground tabular-nums">
+                    {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
                   </p>
-                  <p className="font-body text-xs text-muted-foreground">
-                    Ziel: {GOAL.toLocaleString('de-CH')} $ Rendite in {SIM_YEARS} Jahren
+                </div>
+                <div className="text-right">
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Investiert</p>
+                  <p className="font-display text-lg text-muted-foreground tabular-nums">
+                    {invested.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
                   </p>
                 </div>
               </div>
 
-              {/* Endwert */}
-              <div className="bg-card rounded-2xl p-4 mb-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Endwert</p>
-                    <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-                      {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Investiert</p>
-                    <p className="font-display text-lg text-muted-foreground tabular-nums">
-                      {invested.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Performance */}
+              {/* Rendite row */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-card rounded-2xl p-3 text-center">
+                <div className="bg-muted/50 rounded-2xl p-3 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Rendite</p>
                   <p className={`font-display text-xl font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
                     {profit >= 0 ? '+' : ''}{profit.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
                   </p>
                 </div>
-                <div className="bg-card rounded-2xl p-3 text-center">
+                <div className="bg-muted/50 rounded-2xl p-3 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Rendite %</p>
                   <p className={`font-display text-xl font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
                     {profit >= 0 ? '+' : ''}{profitPct.toFixed(1)}%
@@ -929,65 +909,85 @@ const PortfolioSimulation = () => {
               </div>
             )}
 
-            {/* ── 6. Portfolio-Coach ── */}
-            {invested > 0 && values.length > 1 && (
-              <motion.div
-                className="rounded-3xl border border-[hsl(210,60%,90%)] dark:border-[hsl(210,40%,25%)] shadow-card p-5"
-                style={{ background: 'hsl(210, 60%, 97%)' }}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-              >
-                <div className="dark:opacity-95">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-11 h-11 rounded-2xl bg-[hsl(210,70%,55%)]/15 flex items-center justify-center">
-                      <Brain size={24} weight="fill" className="text-[hsl(210,70%,55%)]" />
-                    </div>
-                    <div>
-                      <p className="font-display font-bold text-foreground text-[15px]">KI-Analyse: Dein Feedback</p>
-                      <p className="text-xs text-muted-foreground font-body">Dein Portfolio-Coach</p>
-                    </div>
-                  </div>
+            {/* ── 6. KI-Analyse: Schwachstellen ── */}
+            {invested > 0 && values.length > 1 && (() => {
+              // Build weakness bullets
+              const weaknesses: { icon: string; text: string }[] = [];
 
-                  <div className="space-y-4 font-body text-sm leading-relaxed text-foreground/90">
-                    {coachAnalysis.praise.length > 0 && (
+              if (aktienPct > 0 && divScore < 7) {
+                weaknesses.push({
+                  icon: '⚠️',
+                  text: 'Klumpenrisiko: Dein Kapital ist auf zu wenige Anlageklassen oder Positionen verteilt.',
+                });
+              }
+              if (Math.abs(maxDrawdown) * 100 > 25) {
+                weaknesses.push({
+                  icon: '📉',
+                  text: `Hohe Schwankung: Dein Portfolio hat in Krisenzeiten starke Verluste erlitten (Max. Drawdown: ${(maxDrawdown * 100).toFixed(1)}%).`,
+                });
+              }
+              if (safePct > 40) {
+                weaknesses.push({
+                  icon: '💸',
+                  text: `Rendite verschenkt: ${Math.round(safePct)}% deines Budgets liegen in risikoarmen Anlagen. Du verzichtest auf Renditepotenzial (Opportunitätskosten).`,
+                });
+              }
+              if (!liquidityPassed) {
+                weaknesses.push({
+                  icon: '🔓',
+                  text: 'Keine Liquiditätsreserve: Du hast keine 1.000 $ kurzfristig verfügbar geparkt.',
+                });
+              }
+              if (sharpeApprox < 0.5 && profitPct > 0 && aktienPct > 20) {
+                weaknesses.push({
+                  icon: '⚖️',
+                  text: 'Ineffizientes Risiko: Deine Rendite steht in keinem guten Verhältnis zum eingegangenen Risiko.',
+                });
+              }
+
+              const isPerfect = weaknesses.length === 0;
+
+              return (
+                <motion.div
+                  className="rounded-3xl border border-[hsl(210,60%,90%)] dark:border-[hsl(210,40%,25%)] shadow-card p-5"
+                  style={{ background: isPerfect ? 'hsl(142, 50%, 97%)' : 'hsl(210, 60%, 97%)' }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                >
+                  <div className="dark:opacity-95">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
+                        isPerfect ? 'bg-primary/15' : 'bg-[hsl(210,70%,55%)]/15'
+                      }`}>
+                        <Brain size={24} weight="fill" className={isPerfect ? 'text-primary' : 'text-[hsl(210,70%,55%)]'} />
+                      </div>
                       <div>
-                        <p className="font-display text-xs font-bold uppercase tracking-wider text-primary mb-1.5">
-                          ✅ Was gut lief
+                        <p className="font-display font-bold text-foreground text-[15px]">KI-Analyse</p>
+                        <p className="text-xs text-muted-foreground font-body">{isPerfect ? 'Keine Schwachstellen' : 'Verbesserungspotenzial'}</p>
+                      </div>
+                    </div>
+
+                    {isPerfect ? (
+                      <div className="rounded-2xl bg-primary/8 border border-primary/15 p-4">
+                        <p className="font-body text-sm text-foreground leading-relaxed">
+                          ✅ Dein Portfolio ist hervorragend aufgestellt. Es gibt aktuell keine grossen Schwachstellen!
                         </p>
-                        {coachAnalysis.praise.map((text, i) => (
-                          <p key={i} className={i > 0 ? 'mt-2' : ''}>{text}</p>
+                      </div>
+                    ) : (
+                      <div className="space-y-2.5">
+                        {weaknesses.map((w, i) => (
+                          <div key={i} className="flex items-start gap-3 rounded-2xl bg-card/80 dark:bg-card border border-border p-3.5">
+                            <span className="text-lg flex-shrink-0 mt-0.5">{w.icon}</span>
+                            <p className="font-body text-sm text-foreground/90 leading-relaxed">{w.text}</p>
+                          </div>
                         ))}
                       </div>
                     )}
-
-                    {coachAnalysis.critique.length > 0 && (
-                      <div>
-                        <p className="font-display text-xs font-bold uppercase tracking-wider text-destructive mb-1.5">
-                          ⚠️ Was du verbessern kannst
-                        </p>
-                        {coachAnalysis.critique.map((text, i) => (
-                          <p key={i} className={i > 0 ? 'mt-2' : ''}>{text}</p>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="rounded-2xl bg-card/80 dark:bg-card p-4 border border-border">
-                      <p className="font-display text-xs font-bold uppercase tracking-wider text-[hsl(210,70%,55%)] mb-1.5">
-                        💡 Coach-Empfehlung
-                      </p>
-                      <p>{coachAnalysis.suggestion}</p>
-                    </div>
-
-                    {coachAnalysis.praise.length === 0 && coachAnalysis.critique.length === 0 && (
-                      <p className="text-muted-foreground">
-                        Dein Portfolio ist solide — weiter so! Achte darauf, breit zu streuen und dein Risiko im Griff zu behalten.
-                      </p>
-                    )}
                   </div>
-                </div>
-              </motion.div>
-            )}
+                </motion.div>
+              );
+            })()}
 
             {/* Empty state */}
             {invested === 0 && (
