@@ -878,7 +878,7 @@ const PortfolioSimulation = () => {
                         </div>
                         <span className="font-display text-lg font-bold text-foreground tabular-nums w-12 text-right">{divScore.toFixed(1)}</span>
                       </div>
-                      <p className="font-body text-[11px] text-muted-foreground">{numPositions} Position{numPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} $</p>
+                      <p className="font-body text-[11px] text-muted-foreground">{numRiskyPositions} risikobehaftete Position{numRiskyPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} $</p>
                     </div>
 
                     {/* Max Drawdown */}
