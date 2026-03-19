@@ -109,7 +109,7 @@ const EtfOverview = () => {
                         allocated > 0 ? 'text-[hsl(var(--level-etfs))]' : 'text-muted-foreground'
                       }`}
                     >
-                      {allocated > 0 ? `${allocated.toLocaleString('de-CH')} $` : '—'}
+                      {allocated > 0 ? `${allocated.toLocaleString('de-CH')} CHF` : '—'}
                     </p>
                   </div>
                   <ArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />

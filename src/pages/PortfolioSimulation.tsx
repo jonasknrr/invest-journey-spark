@@ -804,7 +804,7 @@ const PortfolioSimulation = () => {
                 <div className="bg-muted/50 rounded-2xl p-3 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Rendite</p>
                   <p className={`font-display text-xl font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
-                    {profit >= 0 ? '+' : ''}{profit.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                    {profit >= 0 ? '+' : ''}{profit.toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                   </p>
                 </div>
                 <div className="bg-muted/50 rounded-2xl p-3 text-center">

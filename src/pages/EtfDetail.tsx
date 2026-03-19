@@ -110,7 +110,7 @@ const EtfDetail = () => {
                 onClick={() => handleQuickAmount(amt)}
                 className="h-10 px-5 rounded-2xl bg-muted text-muted-foreground font-display font-bold text-sm hover:bg-muted/80 transition-colors"
               >
-                {amt.toLocaleString('de-CH')} $
+                {amt.toLocaleString('de-CH')} CHF
               </button>
             ))}
             <button
