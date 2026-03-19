@@ -20,7 +20,7 @@ const colorMap: Record<string, string> = {
   currencies: 'bg-level-currencies',
   crypto: 'bg-level-crypto',
   metals: 'bg-level-metals',
-  immobilien: 'bg-level-immobilien',
+  realestate: 'bg-level-realestate',
 };
 
 const shadowMap: Record<string, string> = {
@@ -32,7 +32,7 @@ const shadowMap: Record<string, string> = {
   currencies: '0 10px 25px -5px hsla(35,95%,55%,0.35)',
   crypto: '0 10px 25px -5px hsla(265,85%,65%,0.35)',
   metals: '0 10px 25px -5px hsla(45,100%,50%,0.35)',
-  immobilien: '0 10px 25px -5px hsla(15,70%,55%,0.35)',
+  realestate: '0 10px 25px -5px hsla(15,70%,55%,0.35)',
 };
 
 /** High-contrast ring colors against each level's background */
@@ -45,7 +45,7 @@ const ringColorMap: Record<string, string> = {
   currencies: '#92400E', // dark amber vs amber bg
   crypto: '#4C1D95',     // dark violet vs purple bg
   metals: '#78350F',     // dark amber vs metals bg
-  immobilien: '#7C2D12', // dark orange vs warm bg
+  realestate: '#7C2D12', // dark orange vs warm bg
 };
 
 const RING_SIZE = 88; // outer ring diameter

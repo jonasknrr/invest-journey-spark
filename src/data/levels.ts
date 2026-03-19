@@ -143,17 +143,18 @@ export const levels: Level[] = [
     ],
   },
   {
-    id: 'immobilien',
+    id: 'realestate',
     title: 'Real Estate',
     subtitle: 'Understanding property',
     iconName: 'House',
-    colorKey: 'immobilien',
-    colorVar: '--level-immobilien',
+    colorKey: 'realestate',
+    colorVar: '--level-realestate',
     status: 'locked',
     progress: 0,
     subLevels: [
       { id: 'i1', title: 'Renting vs Buying', description: 'What really pays off?', status: 'locked', duration: '4 Min' },
       { id: 'i2', title: 'Discovering REITs', description: 'Real estate without a house', status: 'locked', duration: '3 Min' },
+      { id: 'i3', title: 'Real Estate as an Investment', description: 'Cashflow, value growth & portfolio role', status: 'locked', duration: '4 Min' },
     ],
   },
 ];

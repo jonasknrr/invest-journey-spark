@@ -60,7 +60,7 @@ export default {
           currencies: "hsl(var(--level-currencies))",
           crypto: "hsl(var(--level-crypto))",
           metals: "hsl(var(--level-metals))",
-          immobilien: "hsl(var(--level-immobilien))",
+          realestate: "hsl(var(--level-realestate))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
