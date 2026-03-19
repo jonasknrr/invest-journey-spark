@@ -35,6 +35,7 @@ import AktienOverview from "./pages/AktienOverview";
 import AktienDetail from "./pages/AktienDetail";
 import PortfolioSimulation from "./pages/PortfolioSimulation";
 import NotFound from "./pages/NotFound";
+import Leaderboard from "./pages/Leaderboard";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +48,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/learn" element={<LearningPath />} />
             <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/lesson/:categoryId/:lessonId" element={<LessonStart />} />
