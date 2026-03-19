@@ -105,7 +105,7 @@ const lessonConfigs: Record<string, LessonConfig> = {
         { id: 'd', text: 'Die Aktie verschwindet' },
       ],
       correctId: 'b',
-      correctFeedback: 'Genau! Wenn die Firma gewinnt, gewinnt dein Stück — du profitierst direkt als Miteigentümer.',
+      correctFeedback: 'Genau! Die Bewertung der Firma steigt, dadurch steigt auch dein Anteil — du profitierst direkt als Miteigentümer.',
       wrongFeedback: 'Fast! Du bist Miteigentümer — ihr Gewinn ist auch dein Gewinn. Der Kurs steigt wenn die Firma gut läuft.',
     },
     completionSubtitle: 'Du weisst jetzt was eine Aktie ist und warum du damit Miteigentümer einer Firma wirst.',
