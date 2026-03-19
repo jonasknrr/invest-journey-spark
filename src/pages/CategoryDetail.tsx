@@ -153,7 +153,7 @@ const CategoryDetail = () => {
                   </p>
                   {progress > 0 && !isCompleted && (
                     <span className="text-xs text-muted-foreground mt-1 block">
-                      {Math.round(progress * 100)}% abgeschlossen
+                      {Math.round(progress * 100)}% completed
                     </span>
                   )}
                   <span className={`inline-block mt-2 text-xs font-medium px-2.5 py-1 rounded-full
