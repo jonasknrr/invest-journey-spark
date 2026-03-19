@@ -20,7 +20,7 @@ const ASSET_CLASSES = [
   { key: 'aktien', label: 'Stocks', color: 'hsl(var(--level-aktien))', icon: TrendUp },
   { key: 'etfs', label: 'ETFs', color: 'hsl(var(--level-etfs))', icon: ChartPie },
   { key: 'festgeld', label: 'Fixed Deposit', color: 'hsl(var(--level-festgeld))', icon: Vault },
-  { key: 'krypto', label: 'Crypto', color: 'hsl(var(--level-krypto))', icon: Lightning },
+  { key: 'crypto', label: 'Crypto', color: 'hsl(var(--level-crypto))', icon: Lightning },
   { key: 'tagesgeld', label: 'Cash', color: 'hsl(var(--level-tagesgeld))', icon: CoinVertical },
 ] as const;
 

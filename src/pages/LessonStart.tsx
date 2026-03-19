@@ -10,7 +10,7 @@ const bgMap: Record<string, string> = {
   aktien: 'bg-level-aktien',
   anleihen: 'bg-level-anleihen',
   currencies: 'bg-level-currencies',
-  krypto: 'bg-level-krypto',
+  crypto: 'bg-level-crypto',
   gold: 'bg-level-gold',
   immobilien: 'bg-level-immobilien',
   etfs: 'bg-level-etfs',

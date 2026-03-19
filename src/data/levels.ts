@@ -113,12 +113,12 @@ export const levels: Level[] = [
     ],
   },
   {
-    id: 'krypto',
+    id: 'crypto',
     title: 'Cryptocurrencies',
     subtitle: 'Digital frontier',
     iconName: 'Globe',
-    colorKey: 'krypto',
-    colorVar: '--level-krypto',
+    colorKey: 'crypto',
+    colorVar: '--level-crypto',
     status: 'locked',
     progress: 0,
     subLevels: [

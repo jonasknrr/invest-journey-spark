@@ -65,7 +65,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Clock,
         label: 'Terms',
         text: 'Fixed deposits with longer terms yield more interest — but you can\'t access the money.',
-        color: 'hsl(var(--level-krypto))',
+        color: 'hsl(var(--level-crypto))',
       },
     ],
     introTip:
@@ -101,7 +101,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Clock,
         label: 'Flexibility',
         text: 'During the term, you generally cannot access your money.',
-        color: 'hsl(var(--level-krypto))',
+        color: 'hsl(var(--level-crypto))',
       },
     ],
     introTip:
@@ -137,7 +137,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Lightbulb,
         label: 'Ideal for',
         text: 'Your emergency fund or money you might need soon.',
-        color: 'hsl(var(--level-krypto))',
+        color: 'hsl(var(--level-crypto))',
       },
     ],
     introTip:
@@ -173,7 +173,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Clock,
         label: 'Time horizon',
         text: 'Best for money you won\'t need for 5+ years.',
-        color: 'hsl(var(--level-krypto))',
+        color: 'hsl(var(--level-crypto))',
       },
     ],
     introTip:
@@ -251,19 +251,19 @@ export const levelIntros: Record<string, LevelIntro> = {
     introTip:
       'You don\'t need to become a currency trader — but understanding how currencies work makes you a better investor.',
   },
-  krypto: {
+  crypto: {
     introTitle: 'What are Cryptocurrencies?',
     introSubtitle: 'Exploring the digital frontier',
     introText:
       'Cryptocurrencies like Bitcoin are digital means of payment based on blockchain technology. They are decentralised, volatile and fascinating.',
     heroIcon: Stack,
-    accentColor: 'var(--level-krypto)',
+    accentColor: 'var(--level-crypto)',
     introFacts: [
       {
         icon: ChartLineUp,
         label: 'Opportunity',
         text: 'High return potential — but also extreme fluctuations.',
-        color: 'hsl(var(--level-krypto))',
+        color: 'hsl(var(--level-crypto))',
       },
       {
         icon: Warning,

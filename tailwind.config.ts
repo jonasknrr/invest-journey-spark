@@ -58,7 +58,7 @@ export default {
           etfs: "hsl(var(--level-etfs))",
           anleihen: "hsl(var(--level-anleihen))",
           currencies: "hsl(var(--level-currencies))",
-          krypto: "hsl(var(--level-krypto))",
+          crypto: "hsl(var(--level-crypto))",
           gold: "hsl(var(--level-gold))",
           immobilien: "hsl(var(--level-immobilien))",
         },
