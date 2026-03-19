@@ -783,7 +783,7 @@ const PortfolioSimulation = () => {
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         ch3_notgroschenOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
                       }`}>
-                        {ch3_notgroschenOk ? '✓' : '✗'} Emergency: {tagesgeldAmount.toLocaleString('de-CH')} / 10,000 {currency}
+                        {ch3_notgroschenOk ? '✓' : '✗'} Emergency: {tagesgeldAmount.toLocaleString('de-CH')} / 1,000 {currency}
                       </span>
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         ch3_carOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
