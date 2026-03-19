@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Star } from '@phosphor-icons/react';
+import { FiStar } from 'react-icons/fi';
 
 /* ─── Shared page transition variants ─── */
 export const pageVariants = {
