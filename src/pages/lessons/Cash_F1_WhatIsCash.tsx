@@ -14,7 +14,7 @@ const LESSON_ID = 'festgeld-f1';
 
 /* ── Quiz data ── */
 const QUIZ_1 = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question:
     'You need CHF 500 tomorrow morning for an urgent repair. Which option helps you the fastest?',
   answers: [
