@@ -788,7 +788,7 @@ const PortfolioSimulation = () => {
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         ch3_carOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
                       }`}>
-                        {ch3_carOk ? '✓' : '✗'} Car fund: {Math.max(0, ch3_carFundAvailable - 10000).toLocaleString('de-CH')} / 20,000 {currency}
+                        {ch3_carOk ? '✓' : '✗'} Purchase fund: {Math.max(0, ch3_carFundAvailable - 1000).toLocaleString('de-CH')} / 2,000 {currency}
                       </span>
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         ch3_renditeOk ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
