@@ -55,7 +55,7 @@ const FestgeldDetail = () => {
           <div>
             <h1 className="font-display text-xl font-bold text-foreground">{product.title}</h1>
             <p className="text-muted-foreground text-sm font-body">
-              {product.interestRate.toFixed(1)} % p.a. · {product.durationYears} {product.durationYears === 1 ? 'Jahr' : 'Jahre'} Laufzeit
+              {product.interestRate.toFixed(1)} % p.a. · {product.durationYears} {product.durationYears === 1 ? 'year' : 'years'} term
             </p>
           </div>
         </div>
