@@ -79,16 +79,6 @@ const LevelNode = ({ level, index, onClick, align = 'left' }: LevelNodeProps) =>
         <p className={`text-sm mt-0.5 ${isLocked ? 'text-muted-foreground/60' : 'text-muted-foreground'}`}>
           {level.subtitle}
         </p>
-        {!isLocked && (
-          <div className="mt-2 h-2 rounded-full bg-muted overflow-hidden w-full">
-            <motion.div
-              className={`h-full rounded-full ${colorMap[level.colorKey]}`}
-              initial={{ width: 0 }}
-              animate={{ width: `${level.progress}%` }}
-              transition={{ delay: 0.3 + index * 0.08, duration: 0.6, ease: 'easeOut' }}
-            />
-          </div>
-        )}
         {isLocked && (
           <p className="text-xs mt-1 text-muted-foreground/50 font-medium">🔒 Wird freigeschaltet</p>
         )}
