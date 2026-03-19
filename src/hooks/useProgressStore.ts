@@ -157,6 +157,35 @@ export function useProgressStore() {
     [store, persist],
   );
 
+  const updateLessonProgress = useCallback(
+    (lessonId: string, progress: number) => {
+      const clamped = Math.max(0, Math.min(1, progress));
+      const existing = store.lessonResults[lessonId];
+      // Don't overwrite a completed lesson's progress
+      if (existing?.completed) return;
+
+      const next: ProgressStore = {
+        ...store,
+        lessonResults: {
+          ...store.lessonResults,
+          [lessonId]: {
+            lessonId,
+            completed: false,
+            heartsRemaining: existing?.heartsRemaining ?? 3,
+            xpEarned: existing?.xpEarned ?? 0,
+            perfect: false,
+            completedAt: existing?.completedAt ?? 0,
+            progress: clamped,
+            ...existing,
+            progress: clamped,
+          },
+        },
+      };
+      persist(next);
+    },
+    [store, persist],
+  );
+
   return {
     store,
     getLessonResult,
@@ -164,5 +193,6 @@ export function useProgressStore() {
     resetLesson,
     isCompleted,
     isPerfect,
+    updateLessonProgress,
   };
 }
