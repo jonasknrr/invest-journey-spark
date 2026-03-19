@@ -7,7 +7,7 @@ import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
 import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 const pillars = [
   { emoji: '🏦', label: 'Checking account', rate: 0.0001, tagColor: 'text-red-600 dark:text-red-400 bg-red-500/10', tag: 'Barely grows' },
@@ -31,7 +31,7 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question: 'What distinguishes call money from a fixed deposit?',
   answers: [
     { id: 'a', text: 'Call money always earns more interest than fixed deposits' },
@@ -45,7 +45,7 @@ const quiz1: QuizConfig = {
 };
 
 const quiz2: QuizConfig = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question: 'You have CHF 8\'000 as an emergency reserve. You don\'t know when you\'ll need it — maybe tomorrow, maybe never. Where do you park it?',
   answers: [
     { id: 'a', text: 'Checking account — it\'s safest there' },
@@ -56,6 +56,20 @@ const quiz2: QuizConfig = {
   correctId: 'c',
   correctFeedback: 'Perfect! An emergency reserve must always be instantly available — call money is ideal for that. More interest than a checking account and still accessible daily.',
   wrongFeedback: 'Careful! An emergency reserve must be instantly available. Fixed deposits are locked, stocks can be in the red at the wrong moment. Call money is the right choice.',
+};
+
+const quiz3: QuizConfig = {
+  label: 'Question 3 of 3',
+  question: 'What is a major advantage of the interest rate on a fixed deposit compared to a call money account?',
+  answers: [
+    { id: 'a', text: 'It automatically adjusts to beat inflation every single month.' },
+    { id: 'b', text: 'It is locked in and guaranteed for the entire duration of the term.' },
+    { id: 'c', text: 'It increases every time you make a withdrawal.' },
+    { id: 'd', text: 'It is determined by the stock market at the end of the year.' },
+  ],
+  correctId: 'b',
+  correctFeedback: 'Correct! A fixed deposit locks in the interest rate for the full term — unlike call money where the bank can change it anytime. That\'s the reward for giving up flexibility.',
+  wrongFeedback: 'Not quite. The key advantage of fixed deposits is rate certainty — the interest rate is guaranteed and doesn\'t change for the entire term, unlike call money.',
 };
 
 const Cash_F5_Tagesgeld = () => {
@@ -75,7 +89,10 @@ const Cash_F5_Tagesgeld = () => {
   const [q1Answer, setQ1Answer] = useState<string | null>(null);
   const [q2Answer, setQ2Answer] = useState<string | null>(null);
 
-  // Step 4 — stars
+  // Step 4 — quiz 3
+  const [q3Answer, setQ3Answer] = useState<string | null>(null);
+
+  // Step 5 — stars
   const [starsShown, setStarsShown] = useState(0);
 
   const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
@@ -106,7 +123,8 @@ const Cash_F5_Tagesgeld = () => {
     if (currentStep === 1) return tappedDurations.size >= 3;
     if (currentStep === 2) return !!q1Answer;
     if (currentStep === 3) return !!q2Answer;
-    if (currentStep === 4) return true;
+    if (currentStep === 4) return !!q3Answer;
+    if (currentStep === 5) return true;
     return false;
   };
 
@@ -116,7 +134,7 @@ const Cash_F5_Tagesgeld = () => {
       return;
     }
     setCurrentStep(s => s + 1);
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
@@ -402,10 +420,69 @@ const Cash_F5_Tagesgeld = () => {
           </motion.div>
         )}
 
-        {/* STEP 4 — Completion */}
+        {/* STEP 4 — Quiz 3 */}
         {currentStep === 4 && (
           <motion.div
             key="s4"
+            className="flex-1 flex flex-col px-6 py-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 self-start mb-4">
+              <span className="font-body text-xs font-semibold text-primary">{quiz3.label}</span>
+            </div>
+            <h2 className="font-display text-xl font-bold text-foreground mb-5 leading-snug">
+              {quiz3.question}
+            </h2>
+            <div className="flex flex-col gap-3 flex-1">
+              {quiz3.answers.map(a => {
+                let cls = 'border-border bg-card';
+                let suffix = '';
+                if (q3Answer) {
+                  if (a.id === quiz3.correctId) { cls = 'border-green-500 bg-green-500/10'; suffix = ' ✅'; }
+                  else if (a.id === q3Answer) { cls = 'border-red-500 bg-red-500/10'; suffix = ' ✗'; }
+                }
+                return (
+                  <motion.button
+                    key={a.id}
+                    onClick={() => handleQuizAnswer(quiz3, a.id, q3Answer, setQ3Answer)}
+                    disabled={!!q3Answer}
+                    whileTap={!q3Answer ? { scale: 0.97 } : undefined}
+                    className={`w-full text-left p-4 rounded-2xl border-2 transition-colors ${cls}`}
+                  >
+                    <span className="font-body text-[15px] text-foreground">{a.text}{suffix}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+            <AnimatePresence>
+              {q3Answer && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-4 p-4 rounded-2xl ${
+                    q3Answer === quiz3.correctId
+                      ? 'bg-green-500/10 border border-green-500/30'
+                      : 'bg-amber-500/10 border border-amber-500/30'
+                  }`}
+                >
+                  <p className={`font-body text-sm leading-relaxed ${
+                    q3Answer === quiz3.correctId ? 'text-green-700 dark:text-green-300' : 'text-amber-700 dark:text-amber-300'
+                  }`}>
+                    {q3Answer === quiz3.correctId ? quiz3.correctFeedback : quiz3.wrongFeedback}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* STEP 5 — Completion */}
+        {currentStep === 5 && (
+          <motion.div
+            key="s5"
             className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -453,9 +530,9 @@ const Cash_F5_Tagesgeld = () => {
               onClick={handleNext}
               whileTap={{ scale: 0.96 }}
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
-              style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
+              style={{ backgroundColor: currentStep === 5 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Back to overview →' : 'Continue →'}
+              {currentStep === 5 ? 'Back to overview →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}
@@ -464,8 +541,8 @@ const Cash_F5_Tagesgeld = () => {
       {/* No Hearts Overlay */}
       {noHeartsScreen === 'showing' && (
         <NoHeartsOverlay
-          onRestart={() => { setCurrentStep(0); setHearts(3); setDurIdx(0); setTappedDurations(new Set([0])); setShowTagesgeldHint(false); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
-          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onRestart={() => { setCurrentStep(0); setHearts(3); setDurIdx(0); setTappedDurations(new Set([0])); setShowTagesgeldHint(false); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
           onContinue={() => setNoHeartsScreen('none')}
         />
       )}
