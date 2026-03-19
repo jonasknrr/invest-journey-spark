@@ -97,7 +97,7 @@ const lessonConfigs: Record<string, LessonConfig> = {
     },
     quiz2: {
       label: 'Frage 2 von 2',
-      question: 'Die AlphaFirma AG macht dieses Jahr einen Riesengewinn. Was passiert mit deiner Aktie?',
+      question: 'Die Bewertung der AlphaFirma AG steigt dieses Jahr. Was passiert mit deiner Aktie?',
       answers: [
         { id: 'a', text: 'Nichts — das betrifft mich nicht' },
         { id: 'b', text: 'Sie wird wahrscheinlich mehr wert' },
