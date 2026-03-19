@@ -144,7 +144,7 @@ const EtfDetail = () => {
           }`}
         >
           <Check size={20} weight="bold" />
-          {isReset ? 'Investment entfernen' : currentAmount > 0 ? 'Betrag anpassen' : 'Investieren'}
+          {isReset ? 'Remove investment' : currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>
     </div>

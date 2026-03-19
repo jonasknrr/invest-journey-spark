@@ -111,7 +111,7 @@ const FestgeldOverview = () => {
         {festgeldTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Dein Festgeld ist sicher angelegt — du erhältst garantierte Zinsen am Ende der Laufzeit.
+              💡 Your fixed deposit is safely invested — you'll receive guaranteed interest at the end of the term.
             </p>
           </motion.div>
         )}

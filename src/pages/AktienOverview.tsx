@@ -139,7 +139,7 @@ const AktienOverview = () => {
         {aktienTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Du hast insgesamt {aktienTotal.toLocaleString('de-CH')} CHF in Aktien investiert.
+              💡 You have invested a total of {aktienTotal.toLocaleString('de-CH')} CHF in stocks.
             </p>
           </motion.div>
         )}
