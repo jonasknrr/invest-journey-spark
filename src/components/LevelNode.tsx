@@ -115,7 +115,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
         {/* Inner icon circle */}
         <div
           className={`absolute rounded-full flex items-center justify-center text-3xl
-            ${isLocked ? 'opacity-50 grayscale bg-muted' : ''}
+            ${isLocked ? 'grayscale' : ''}
             ${isCurrent ? 'animate-pulse-soft' : ''}
             ${!isLocked ? colorMap[level.colorKey] : ''}
           `}
