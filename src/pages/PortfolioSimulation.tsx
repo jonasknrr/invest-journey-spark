@@ -421,17 +421,62 @@ const PortfolioSimulation = () => {
     [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox, safePct],
   );
 
-  // ── Challenge evaluation (Liquidity + Risk) ──
+  // ── Challenge evaluation ──
+  // Chapter 1: Liquidity planning specific evaluation
   const shortTermFestgeld = festgeldProducts
     .filter(fp => fp.durationYears <= 1)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+  const within2YearsFestgeld = festgeldProducts
+    .filter(fp => fp.durationYears <= 2)
+    .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+  const longTermFestgeld = festgeldProducts
+    .filter(fp => fp.durationYears >= 5)
+    .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
+
+  // Chapter 1 conditions
+  const ch1_notgroschenOk = tagesgeldAmount >= 2000; // Bedingung A
+  const ch1_weiterbildungAvailable = tagesgeldAmount + within2YearsFestgeld >= 5000; // 2000 Notgroschen + 3000 Weiterbildung
+  const ch1_restInLongTerm = longTermFestgeld >= 4500; // ~5000€ in 5-year (allow small rounding)
+
+  // Default evaluation (for non-chapter-1)
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
-  const liquidityPassed = safeAmount >= 1000;
+  const liquidityPassed = isChapter1 ? ch1_notgroschenOk : safeAmount >= 1000;
   const riskPassed = divScore >= 7;
-  const opportunityCostPenalty = safePct > 60;
-  const challengeStars = liquidityPassed
-    ? (riskPassed && !opportunityCostPenalty ? 3 : 2)
-    : 1;
+  const opportunityCostPenalty = isChapter1
+    ? !ch1_restInLongTerm // For ch1: penalty if rest is NOT in long-term
+    : safePct > 60;
+
+  let challengeStars: number;
+  let challengeLabel: string;
+  let challengeFeedback: string;
+
+  if (isChapter1) {
+    if (ch1_notgroschenOk && ch1_weiterbildungAvailable && ch1_restInLongTerm) {
+      challengeStars = 3;
+      challengeLabel = 'Perfekt!';
+      challengeFeedback = 'Hervorragend! Dein Notgroschen ist flexibel, die Weiterbildung in 2 Jahren ist gesichert und für den Rest hast du dir den maximalen Zins gesichert.';
+    } else if (ch1_notgroschenOk && ch1_weiterbildungAvailable) {
+      challengeStars = 2;
+      challengeLabel = 'Sicher, aber Rendite verschenkt!';
+      challengeFeedback = 'Deine Ziele sind gesichert, aber du hast viel Rendite verschenkt. Geld, das du 5 Jahre nicht brauchst, solltest du nicht auf dem niedrig verzinsten Tagesgeld liegen lassen.';
+    } else {
+      challengeStars = 1;
+      challengeLabel = 'Liquiditätsfalle!';
+      challengeFeedback = 'Achtung! Du hast das wichtigste Ziel ignoriert. Geld, das du in 2 Jahren brauchst, darf nicht für 5 Jahre gebunden werden. Im echten Leben müsstest du jetzt teure Kredite aufnehmen.';
+    }
+  } else {
+    challengeStars = liquidityPassed
+      ? (riskPassed && !opportunityCostPenalty ? 3 : 2)
+      : 1;
+    challengeLabel = challengeStars === 3 ? 'Perfekt gemeistert!' : challengeStars === 2 ? (opportunityCostPenalty ? 'Rendite verschenkt!' : 'Ziel erreicht, aber riskant!') : 'Ziel verfehlt!';
+    challengeFeedback = challengeStars === 3
+      ? 'Perfekt! Du hast die benötigten 1.000 $ für das nächste Jahr sicher geparkt und den Rest deines Kapitals intelligent und breit gestreut investiert.'
+      : challengeStars === 2
+      ? (opportunityCostPenalty
+          ? 'Du hast zwar die 1.000 $ sicher, aber zu viel Kapital liegt in risikoarmen Anlagen. Durch die Inflation verlierst du real an Kaufkraft — das sind Opportunitätskosten.'
+          : 'Du hast zwar die 1.000 $ sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.')
+      : 'Du hast das wichtigste Ziel ignoriert: Du hast keine 1.000 $ sicher für das nächste Jahr zurückgelegt. Aktien schwanken und langfristiges Festgeld ist blockiert — wenn du das Geld jetzt brauchst, hast du ein Problem.';
+  }
 
   const assetAmounts = ASSET_CLASSES.map(ac => ({
     ...ac,
