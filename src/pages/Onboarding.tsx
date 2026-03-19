@@ -28,12 +28,12 @@ const Onboarding = () => {
         <div className="flex flex-col items-center text-center max-w-sm w-full">
           {/* Emoji icon */}
           <motion.div
-            className="text-8xl mb-6"
+            className="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center mb-6"
             initial={{ scale: 0.6, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.15, duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
           >
-            🌱
+            <FiTrendingUp size={40} className="text-primary" />
           </motion.div>
 
           {/* Title */}
