@@ -19,9 +19,9 @@ const bgMap: Record<string, string> = {
 const lessonContent: Record<string, { bullets: { icon: typeof BookOpen; text: string }[] }> = {
   a3: {
     bullets: [
-      { icon: Target, text: 'Verstehe, warum Kurse schwanken' },
-      { icon: BookOpen, text: 'Lerne, warum Volatilität kein Feind ist' },
-      { icon: Clock, text: 'Entdecke, wie Zeit Risiko reduziert' },
+      { icon: Target, text: 'Understand why prices fluctuate' },
+      { icon: BookOpen, text: 'Learn why volatility is not the enemy' },
+      { icon: Clock, text: 'Discover how time reduces risk' },
     ],
   },
 };
