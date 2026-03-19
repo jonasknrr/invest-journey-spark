@@ -31,7 +31,7 @@ export const chapterConfigs: ChapterConfig[] = [
       currency: 'CHF',
       title: 'Liquiditätsplanung',
       description:
-        'Du hast 10.000 CHF gespart. Du brauchst einen Notgroschen von 2.000 CHF, an den du jederzeit sofort herankommst. Außerdem planst du in genau 2 Jahren eine Weiterbildung, die 3.000 CHF kosten wird. Den Rest deines Geldes brauchst du vorerst nicht. Verteile das Geld so, dass deine Ziele sicher gedeckt sind und du gleichzeitig die maximale Rendite herausholst.',
+        'Du hast 10.000 CHF gespart. Du brauchst einen Notgroschen von 2.000 CHF, an den du jederzeit sofort herankommst. Außerdem planst du in genau 2 Jahren eine Weiterbildung, die 3.000 CHF kosten wird. Den Rest deines Geldes brauchst du vorerst nicht.',
     },
   },
   {
