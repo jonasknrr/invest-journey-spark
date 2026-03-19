@@ -210,7 +210,7 @@ const LearningPath = () => {
 
         {/* End flag */}
         <motion.div
-          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
+          className="absolute flex flex-col items-center justify-center w-full"
           style={{ top: NODE_VERTICAL_OFFSET + (levels.length - 1) * NODE_SPACING + 40 }}
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
