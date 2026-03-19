@@ -84,7 +84,7 @@ const CashSortGame = ({ onComplete }: Props) => {
   return (
     <div className="flex-1 flex flex-col px-5 py-4 overflow-y-auto">
       <h2 className="font-display text-lg font-bold text-foreground text-center mb-4">
-        Sortiere die Karten in die richtigen Töpfe
+        Sort the cards into the correct buckets
       </h2>
 
       {/* Unsorted cards */}
