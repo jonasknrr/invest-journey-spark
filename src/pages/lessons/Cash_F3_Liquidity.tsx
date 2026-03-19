@@ -19,17 +19,17 @@ interface DragItem {
 }
 
 const dragItems: DragItem[] = [
-  { id: 'bargeld', icon: '💵', label: 'Bargeld', correctTier: 0, explanation: 'Immer sofort in der Tasche' },
-  { id: 'tagesgeld', icon: '💰', label: 'Tagesgeldkonto', correctTier: 1, explanation: 'Meist am nächsten Werktag verfügbar' },
-  { id: 'festgeld', icon: '📅', label: 'Festgeld (1 Jahr)', correctTier: 2, explanation: 'Gebunden bis Laufzeitende — sonst Strafzins' },
-  { id: 'immobilie', icon: '🏠', label: 'Immobilie', correctTier: 3, explanation: 'Verkauf dauert oft 6–12 Monate' },
+  { id: 'bargeld', icon: '💵', label: 'Cash', correctTier: 0, explanation: 'Always instantly in your pocket' },
+  { id: 'tagesgeld', icon: '💰', label: 'Call money account', correctTier: 1, explanation: 'Usually available next business day' },
+  { id: 'festgeld', icon: '📅', label: 'Fixed deposit (1 year)', correctTier: 2, explanation: 'Locked until maturity — otherwise penalty' },
+  { id: 'immobilie', icon: '🏠', label: 'Real estate', correctTier: 3, explanation: 'Sale often takes 6–12 months' },
 ];
 
 const tiers = [
-  { label: 'Sofort verfügbar', icon: '⚡' },
-  { label: 'Innerhalb von Tagen', icon: '📅' },
-  { label: 'Wochen bis Monate', icon: '⏳' },
-  { label: 'Monate bis Jahre', icon: '🐢' },
+  { label: 'Instantly available', icon: '⚡' },
+  { label: 'Within days', icon: '📅' },
+  { label: 'Weeks to months', icon: '⏳' },
+  { label: 'Months to years', icon: '🐢' },
 ];
 
 /* ── Quiz config ── */
@@ -43,36 +43,36 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Frage 1 von 2',
+  label: 'Question 1 of 2',
   question:
-    "Dein Auto geht kaputt und du brauchst sofort CHF 2'000. Du hast dein Geld auf einem Festgeldkonto mit noch 8 Monaten Laufzeit. Was passiert?",
+    "Your car breaks down and you need CHF 2'000 immediately. Your money is in a fixed deposit with 8 months remaining. What happens?",
   answers: [
-    { id: 'a', text: 'Ich hebe einfach ab — kein Problem' },
-    { id: 'b', text: 'Ich muss warten bis die Laufzeit endet oder zahle eine Strafe' },
-    { id: 'c', text: 'Die Bank gibt mir das Geld automatisch als Kredit' },
-    { id: 'd', text: 'Festgeld ist genauso liquide wie ein Girokonto' },
+    { id: 'a', text: 'I simply withdraw it — no problem' },
+    { id: 'b', text: 'I have to wait until maturity or pay a penalty' },
+    { id: 'c', text: 'The bank automatically gives me the money as a loan' },
+    { id: 'd', text: 'Fixed deposit is just as liquid as a checking account' },
   ],
   correctId: 'b',
   correctFeedback:
-    'Richtig! Festgeld ist gebunden — das ist der Preis für den höheren Zins. Deshalb sollte man nie sein gesamtes Geld in illiquide Anlagen stecken.',
+    'Correct! Fixed deposit is locked — that\'s the price for the higher interest. That\'s why you should never put all your money in illiquid investments.',
   wrongFeedback:
-    'Nicht ganz — Festgeld ist bis zum Laufzeitende gesperrt. Wer früher raus will zahlt meist eine Vorfälligkeitsentschädigung. Liquidität hat ihren Wert!',
+    'Not quite — fixed deposit is locked until maturity. Getting out early usually means paying an early withdrawal penalty. Liquidity has its value!',
 };
 
 const quiz2: QuizConfig = {
-  label: 'Frage 2 von 2',
-  question: 'Warum sollte man immer einen Teil seines Geldes in liquiden Anlagen halten?',
+  label: 'Question 2 of 2',
+  question: 'Why should you always keep part of your money in liquid investments?',
   answers: [
-    { id: 'a', text: 'Weil liquide Anlagen immer die höchste Rendite bringen' },
-    { id: 'b', text: 'Weil man sonst keine Steuern zahlen muss' },
-    { id: 'c', text: 'Um bei unerwarteten Ausgaben oder Notfällen sofort reagieren zu können' },
-    { id: 'd', text: 'Liquidität spielt im Alltag keine Rolle' },
+    { id: 'a', text: 'Because liquid investments always offer the highest returns' },
+    { id: 'b', text: 'Because otherwise you don\'t have to pay taxes' },
+    { id: 'c', text: 'To be able to react immediately to unexpected expenses or emergencies' },
+    { id: 'd', text: 'Liquidity plays no role in everyday life' },
   ],
   correctId: 'c',
   correctFeedback:
-    'Genau! Ein Notfallpuffer in liquiden Anlagen ist die Basis jeder soliden Finanzplanung — bevor man überhaupt ans Investieren denkt.',
+    'Exactly! An emergency buffer in liquid investments is the foundation of any solid financial plan — before you even think about investing.',
   wrongFeedback:
-    'Fast! Liquide Anlagen bringen weniger Rendite — aber ihr wahrer Wert zeigt sich im Notfall. Wer kein liquides Geld hat ist schnell in der Bredouille.',
+    'Close! Liquid investments earn less return — but their true value shows in emergencies. Without liquid money, you can quickly end up in trouble.',
 };
 
 /* ── Component ── */
@@ -230,16 +230,16 @@ const Cash_F3_Liquidity = () => {
             <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
               <span className="mb-4" style={{ fontSize: 64 }}>💧</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
-                Wie schnell kommst du an dein Geld?
+                How quickly can you access your money?
               </h2>
               <p className="font-body text-base text-foreground leading-relaxed mb-4">
-                Liquidität beschreibt wie schnell und einfach du eine Anlage in verfügbares Geld umwandeln kannst. Bargeld ist sofort da — eine Immobilie kann Monate dauern bis du sie verkauft hast.
+                Liquidity describes how quickly and easily you can convert an investment into available cash. Cash is instant — selling real estate can take months.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                Je liquider eine Anlage, desto schneller kannst du reagieren wenn du das Geld plötzlich brauchst — zum Beispiel bei einem Notfall oder einer unerwarteten Chance.
+                The more liquid an investment, the faster you can react when you suddenly need the money — for example in an emergency or an unexpected opportunity.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Der Nachteil: liquidere Anlagen bringen meist weniger Rendite. Das ist der klassische Trade-off.
+                The downside: more liquid investments usually earn lower returns. That's the classic trade-off.
               </p>
             </div>
           </motion.div>
@@ -256,7 +256,7 @@ const Cash_F3_Liquidity = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-lg font-bold text-foreground text-center mb-4">
-              Ziehe jede Anlage an die richtige Stelle
+              Drag each investment to the right spot
             </h2>
 
             {/* Tiers */}
@@ -305,7 +305,7 @@ const Cash_F3_Liquidity = () => {
                         </span>
                       </motion.div>
                     ) : (
-                      <p className="font-body text-xs text-muted-foreground/50">Hierher ziehen…</p>
+                      <p className="font-body text-xs text-muted-foreground/50">Drag here…</p>
                     )}
                   </div>
                 );
@@ -344,7 +344,7 @@ const Cash_F3_Liquidity = () => {
                   className="rounded-xl bg-green-500/10 border border-green-500/30 px-4 py-3 max-w-sm mx-auto w-full text-center"
                 >
                   <p className="font-body text-sm text-green-700 dark:text-green-300 font-semibold">
-                    Perfekt! Du kennst jetzt die Liquiditäts-Leiter. ✅
+                    Perfect! You now know the liquidity ladder. ✅
                   </p>
                 </motion.div>
               )}
@@ -502,10 +502,10 @@ const Cash_F3_Liquidity = () => {
               ))}
             </div>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-              Lektion abgeschlossen! 🎉
+              Lesson complete! 🎉
             </h2>
             <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">
-              Du weisst jetzt was Liquidität bedeutet und warum ein Teil deines Geldes immer sofort verfügbar sein sollte — egal wie gut andere Anlagen klingen.
+              You now know what liquidity means and why part of your money should always be instantly available — no matter how good other investments sound.
             </p>
             <CompletionXP result={completionResult} hearts={hearts} />
           </motion.div>
@@ -527,7 +527,7 @@ const Cash_F3_Liquidity = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Zur nächsten Lektion →' : 'Weiter →'}
+              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

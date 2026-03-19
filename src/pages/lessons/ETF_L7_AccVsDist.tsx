@@ -486,7 +486,7 @@ const ETF_L7_AccVsDist = () => {
                 <motion.span key={i} className="text-5xl" initial={{ scale: 0, rotate: -30 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.3 + i * 0.3, type: 'spring', stiffness: 300, damping: 15 }} style={{ filter: 'drop-shadow(0 0 8px hsl(45, 100%, 50%, 0.5))' }}>⭐</motion.span>
               ))}
             </div>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lektion abgeschlossen! 🎉</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
             <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">Du kennst den Unterschied der über Jahrzehnte zehntausende Euro ausmacht.</p>
 
             <div className="w-full max-w-sm rounded-2xl bg-green-500/10 border border-green-500/20 p-4 mb-4 space-y-2">
@@ -510,7 +510,7 @@ const ETF_L7_AccVsDist = () => {
         {showCTA() && (
           <motion.div className="px-6 pb-8 max-w-sm mx-auto w-full" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
             <motion.button onClick={handleNext} whileTap={{ scale: 0.96 }} className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm" style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}>
-              {currentStep === 4 ? 'Zur nächsten Lektion →' : 'Weiter →'}
+              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

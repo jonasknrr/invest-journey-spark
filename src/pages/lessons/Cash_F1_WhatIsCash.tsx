@@ -14,39 +14,39 @@ const LESSON_ID = 'festgeld-f1';
 
 /* ── Quiz data ── */
 const QUIZ_1 = {
-  label: 'Frage 1 von 2',
+  label: 'Question 1 of 2',
   question:
-    'Du brauchst morgen früh CHF 500 für eine dringende Reparatur. Welche Option hilft dir am schnellsten?',
+    'You need CHF 500 tomorrow morning for an urgent repair. Which option helps you the fastest?',
   answers: [
-    { id: 'a', text: 'Deine Aktien verkaufen' },
-    { id: 'b', text: 'Deine Immobilie verkaufen' },
-    { id: 'c', text: 'Geld vom Girokonto abheben' },
-    { id: 'd', text: 'Festgeld vorzeitig auflösen' },
+    { id: 'a', text: 'Sell your stocks' },
+    { id: 'b', text: 'Sell your property' },
+    { id: 'c', text: 'Withdraw money from your checking account' },
+    { id: 'd', text: 'Break your fixed deposit early' },
   ],
   correctId: 'c',
   correctFeedback:
-    'Richtig! Das Girokonto ist sofort verfügbar — kein Warten, keine Gebühren, kein Risiko.',
+    'Correct! Your checking account is instantly available — no waiting, no fees, no risk.',
   wrongFeedback:
-    'Fast! Aktien, Immobilien und Festgeld brauchen Zeit oder haben Kosten. Cash auf dem Konto ist sofort da.',
+    'Close! Stocks, property, and fixed deposits take time or incur costs. Cash in your account is available immediately.',
 };
 
 const QUIZ_2 = {
-  label: 'Frage 2 von 2',
-  question: 'Was unterscheidet Cash von einer Aktie?',
+  label: 'Question 2 of 2',
+  question: 'What distinguishes cash from a stock?',
   answers: [
-    { id: 'a', text: 'Cash bringt mehr Rendite als Aktien' },
+    { id: 'a', text: 'Cash earns higher returns than stocks' },
     {
       id: 'b',
-      text: 'Cash ist immer sofort verfügbar und verliert nicht plötzlich stark an Wert',
+      text: 'Cash is always instantly available and doesn\'t suddenly lose significant value',
     },
-    { id: 'c', text: 'Aktien sind sicherer als Cash' },
-    { id: 'd', text: 'Es gibt keinen wesentlichen Unterschied' },
+    { id: 'c', text: 'Stocks are safer than cash' },
+    { id: 'd', text: 'There is no significant difference' },
   ],
   correctId: 'b',
   correctFeedback:
-    'Genau! Cash ist stabil und sofort verfügbar — Aktien können stark schwanken und brauchen Zeit zum Verkaufen.',
+    'Exactly! Cash is stable and instantly available — stocks can fluctuate heavily and take time to sell.',
   wrongFeedback:
-    'Nicht ganz — Cash glänzt nicht durch Rendite, sondern durch Sicherheit und sofortige Verfügbarkeit. Das ist sein grösster Vorteil.',
+    'Not quite — cash doesn\'t shine through returns, but through safety and instant availability. That\'s its greatest advantage.',
 };
 
 /* ── Quiz slide component ── */
@@ -149,7 +149,7 @@ const QuizSlide = ({
             whileTap={{ scale: 0.96 }}
             className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors"
           >
-            Weiter →
+            Next →
           </motion.button>
         </div>
       )}
@@ -260,7 +260,7 @@ const Cash_F1_WhatIsCash = () => {
 
       {/* Slides */}
       <AnimatePresence mode="wait">
-        {/* ── Slide 1: Erklärung ── */}
+        {/* ── Slide 1: Explanation ── */}
         {currentStep === 0 && (
           <motion.div
             key="s0"
@@ -273,20 +273,20 @@ const Cash_F1_WhatIsCash = () => {
             <div className="flex flex-col items-center text-center mb-6">
               <span className="text-6xl mb-4">💵</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight max-w-xs">
-                Cash ist König — aber was genau ist Cash?
+                Cash is king — but what exactly is cash?
               </h2>
             </div>
 
             <div className="flex-1 flex flex-col justify-center max-w-sm mx-auto w-full">
               <p className="font-body text-[15px] leading-relaxed text-foreground mb-5">
-                Cash ist alles was du sofort ausgeben kannst — Bargeld in deiner
-                Tasche, Geld auf deinem Konto, oder auf einem Sparbuch. Es ist
-                die liquideste Form von Geld: immer verfügbar, immer sicher.
+                Cash is everything you can spend immediately — banknotes in your
+                pocket, money in your account, or in a savings book. It is
+                the most liquid form of money: always available, always safe.
               </p>
               <p className="font-body text-sm leading-relaxed text-muted-foreground">
-                Cash Equivalents sind fast genauso sicher — kurzfristige Anlagen
-                die du schnell in Cash umwandeln kannst, wie ein
-                Tagesgeldkonto.
+                Cash equivalents are almost as safe — short-term investments
+                you can quickly convert into cash, like a call money
+                account.
               </p>
             </div>
 
@@ -296,7 +296,7 @@ const Cash_F1_WhatIsCash = () => {
                 whileTap={{ scale: 0.96 }}
                 className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base"
               >
-                Weiter
+                Continue
               </motion.button>
             </div>
           </motion.div>
@@ -366,11 +366,11 @@ const Cash_F1_WhatIsCash = () => {
               className="text-center flex flex-col items-center"
             >
               <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-                Lektion abgeschlossen! 🎉
+                Lesson complete! 🎉
               </h2>
               <p className="font-body text-sm text-muted-foreground max-w-xs mx-auto mb-4 leading-relaxed">
-                Du weisst jetzt was Cash und Cash Equivalents sind — und warum
-                der Unterschied zu Aktien oder Immobilien im Alltag wichtig ist.
+                You now know what cash and cash equivalents are — and why
+                the difference to stocks or real estate matters in everyday life.
               </p>
               <CompletionXP result={completionResult} hearts={hearts} />
             </motion.div>
@@ -386,7 +386,7 @@ const Cash_F1_WhatIsCash = () => {
                 whileTap={{ scale: 0.96 }}
                 className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm"
               >
-                Weiter lernen
+                Continue learning
               </motion.button>
             </motion.div>
           </motion.div>

@@ -42,7 +42,7 @@ const FestgeldDetail = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}/festgeld`)} className="text-muted-foreground text-sm font-body flex items-center gap-1">
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -55,7 +55,7 @@ const FestgeldDetail = () => {
           <div>
             <h1 className="font-display text-xl font-bold text-foreground">{product.title}</h1>
             <p className="text-muted-foreground text-sm font-body">
-              {product.interestRate.toFixed(1)} % p.a. · {product.durationYears} {product.durationYears === 1 ? 'Jahr' : 'Jahre'} Laufzeit
+              {product.interestRate.toFixed(1)} % p.a. · {product.durationYears} {product.durationYears === 1 ? 'year' : 'years'} term
             </p>
           </div>
         </div>
@@ -66,7 +66,7 @@ const FestgeldDetail = () => {
         {/* Available budget */}
         <div className="bg-muted/50 rounded-2xl px-5 py-2.5 mb-6">
           <p className="text-xs text-muted-foreground font-body text-center">
-            Verfügbar: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} CHF</span>
+            Available: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} CHF</span>
           </p>
         </div>
 
@@ -85,7 +85,7 @@ const FestgeldDetail = () => {
           </div>
           {isOverBudget && (
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-destructive text-sm font-body mt-2">
-              Budget überschritten
+              Budget exceeded
             </motion.p>
           )}
         </div>
@@ -98,7 +98,7 @@ const FestgeldDetail = () => {
             className="bg-primary/8 border border-primary/15 rounded-2xl px-5 py-3 mt-4 text-center"
           >
             <p className="text-xs text-muted-foreground font-body">
-              Erwartete Zinsen nach {product.durationYears} {product.durationYears === 1 ? 'Jahr' : 'Jahren'}
+              Expected interest after {product.durationYears} {product.durationYears === 1 ? 'year' : 'years'}
             </p>
             <p className="font-display text-xl font-bold text-primary tabular-nums mt-0.5">
               +{projectedReturn.toFixed(0)} CHF
@@ -133,7 +133,7 @@ const FestgeldDetail = () => {
           inputMode="numeric"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Betrag eingeben"
+          placeholder="Enter amount"
           className="mt-6 w-full max-w-xs h-14 rounded-2xl border-2 border-border bg-card text-center font-display text-lg font-bold text-foreground focus:border-[hsl(var(--level-festgeld))] focus:outline-none transition-colors tabular-nums"
         />
       </div>
@@ -151,7 +151,7 @@ const FestgeldDetail = () => {
           }`}
         >
           <Check size={20} weight="bold" />
-          {currentAmount > 0 ? 'Betrag anpassen' : 'Investieren'}
+          {currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>
     </div>

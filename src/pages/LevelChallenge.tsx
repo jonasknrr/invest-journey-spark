@@ -38,14 +38,14 @@ interface AssetClass {
 }
 
 const assetClasses: AssetClass[] = [
-  { name: 'Tagesgeld', slug: 'tagesgeld', icon: Coins, color: 'hsl(var(--level-tagesgeld))', bgColor: 'hsl(var(--level-tagesgeld) / 0.12)', hasDetail: true },
-  { name: 'Festgeld', slug: 'festgeld', icon: Vault, color: 'hsl(var(--level-festgeld))', bgColor: 'hsl(var(--level-festgeld) / 0.12)', hasDetail: true },
-  { name: 'Aktien', slug: 'aktien', icon: TrendUp, color: 'hsl(var(--level-aktien))', bgColor: 'hsl(var(--level-aktien) / 0.12)', hasDetail: true },
+  { name: 'Call Money', slug: 'tagesgeld', icon: Coins, color: 'hsl(var(--level-tagesgeld))', bgColor: 'hsl(var(--level-tagesgeld) / 0.12)', hasDetail: true },
+  { name: 'Fixed Deposit', slug: 'festgeld', icon: Vault, color: 'hsl(var(--level-festgeld))', bgColor: 'hsl(var(--level-festgeld) / 0.12)', hasDetail: true },
+  { name: 'Stocks', slug: 'aktien', icon: TrendUp, color: 'hsl(var(--level-aktien))', bgColor: 'hsl(var(--level-aktien) / 0.12)', hasDetail: true },
   { name: 'ETFs', slug: 'etfs', icon: Stack, color: 'hsl(var(--level-etfs))', bgColor: 'hsl(var(--level-etfs) / 0.12)', hasDetail: true },
-  { name: 'Fonds', slug: 'indizes', icon: ChartBar, color: 'hsl(var(--level-waehrungen))', bgColor: 'hsl(var(--level-waehrungen) / 0.12)' },
-  { name: 'Anleihen', slug: 'anleihen', icon: Certificate, color: 'hsl(var(--level-anleihen))', bgColor: 'hsl(var(--level-anleihen) / 0.12)' },
-  { name: 'Rohstoffe', slug: 'rohstoffe', icon: DiamondsFour, color: 'hsl(var(--level-gold))', bgColor: 'hsl(var(--level-gold) / 0.12)' },
-  { name: 'Kryptowährungen', slug: 'krypto', icon: CurrencyBtc, color: 'hsl(var(--level-krypto))', bgColor: 'hsl(var(--level-krypto) / 0.12)' },
+  { name: 'Funds', slug: 'indizes', icon: ChartBar, color: 'hsl(var(--level-waehrungen))', bgColor: 'hsl(var(--level-waehrungen) / 0.12)' },
+  { name: 'Bonds', slug: 'anleihen', icon: Certificate, color: 'hsl(var(--level-anleihen))', bgColor: 'hsl(var(--level-anleihen) / 0.12)' },
+  { name: 'Commodities', slug: 'rohstoffe', icon: DiamondsFour, color: 'hsl(var(--level-gold))', bgColor: 'hsl(var(--level-gold) / 0.12)' },
+  { name: 'Cryptocurrencies', slug: 'krypto', icon: CurrencyBtc, color: 'hsl(var(--level-krypto))', bgColor: 'hsl(var(--level-krypto) / 0.12)' },
 ];
 
 const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
@@ -96,7 +96,7 @@ const LevelChallenge = () => {
     <div className="min-h-screen bg-background pb-10">
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate('/learn')} className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1">
-          ← Zurück
+          ← Back
         </button>
       </div>
 
@@ -113,28 +113,28 @@ const LevelChallenge = () => {
               </div>
             </div>
             <h1 className="font-display text-xl font-bold leading-snug mb-3">
-              {scenario ? scenario.title : 'Verteile dein Budget und erziele maximale Rendite!'}
+              {scenario ? scenario.title : 'Distribute your budget and maximise your return!'}
             </h1>
             <p className="text-sm leading-relaxed opacity-90 font-body">
               {scenario
                 ? scenario.description
-                : <>Du hast <span className="font-bold">{totalBudget.toLocaleString('de-CH')} {currency}</span> und brauchst in einem Jahr <span className="font-bold">1.000 {currency}</span>. Versuche so viel Rendite zu erzielen wie möglich.</>
+                : <>You have <span className="font-bold">{totalBudget.toLocaleString('de-CH')} {currency}</span> and need <span className="font-bold">1,000 {currency}</span> in one year. Try to earn as much return as possible.</>
               }
             </p>
             <div className="mt-5 flex items-center gap-3">
               <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3 flex-1">
-                <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Dein Budget</p>
+                <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Your Budget</p>
                 <p className="font-display text-2xl font-bold tabular-nums">{totalBudget.toLocaleString('de-CH')} {currency}</p>
               </div>
               {scenario ? (
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
-                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Notgroschen</p>
-                  <p className="font-display text-2xl font-bold tabular-nums">{levelId === 'chapter-3' ? '10.000' : '2.000'} {currency}</p>
+                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Emergency Fund</p>
+                  <p className="font-display text-2xl font-bold tabular-nums">{levelId === 'chapter-3' ? '10,000' : '2,000'} {currency}</p>
                 </div>
               ) : (
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
-                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Ziel</p>
-                  <p className="font-display text-2xl font-bold tabular-nums">1.000 {currency}</p>
+                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Goal</p>
+                  <p className="font-display text-2xl font-bold tabular-nums">1,000 {currency}</p>
                 </div>
               )}
             </div>
@@ -149,7 +149,7 @@ const LevelChallenge = () => {
                 <Lightning size={22} weight="fill" className="text-primary" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-body font-medium">Verfügbares Budget</p>
+                <p className="text-xs text-muted-foreground font-body font-medium">Available budget</p>
                 <p className="font-display text-xl font-bold text-foreground tabular-nums">{remaining.toLocaleString('de-CH')} {currency}</p>
               </div>
             </div>
@@ -169,8 +169,8 @@ const LevelChallenge = () => {
 
         {/* Asset Classes */}
         <motion.div variants={itemVariants} className="flex items-center justify-between pt-1">
-          <h2 className="font-display text-lg font-bold text-foreground">Anlageklassen</h2>
-          <span className="text-xs text-muted-foreground font-body">{unlockedCount} von {assetClasses.length} verfügbar</span>
+          <h2 className="font-display text-lg font-bold text-foreground">Asset classes</h2>
+          <span className="text-xs text-muted-foreground font-body">{unlockedCount} of {assetClasses.length} available</span>
         </motion.div>
 
         <motion.div variants={containerVariants} className="space-y-3">
@@ -195,14 +195,14 @@ const LevelChallenge = () => {
                         <p className="font-display font-bold text-muted-foreground text-[15px]">{asset.name}</p>
                         <p className="text-xs text-muted-foreground/60 font-body mt-0.5 flex items-center gap-1">
                           <Lock size={12} weight="bold" />
-                          Wird in einem späteren Kapitel freigeschaltet
+                          Unlocks in a later chapter
                         </p>
                       </div>
                       <Lock size={18} className="text-muted-foreground/40 flex-shrink-0" />
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Diese Anlageklasse wird in einem späteren Kapitel freigeschaltet.</p>
+                    <p>This asset class unlocks in a later chapter.</p>
                   </TooltipContent>
                 </Tooltip>
               );
@@ -241,7 +241,7 @@ const LevelChallenge = () => {
             onClick={() => navigate(`/challenge/${levelId}/simulation`, { state: { fromSubPage: true } })}
           >
             <Lightning size={20} weight="fill" />
-            Simulation starten
+            Start simulation
           </Button>
         </motion.div>
       </motion.div>

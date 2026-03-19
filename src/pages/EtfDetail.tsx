@@ -60,7 +60,7 @@ const EtfDetail = () => {
           onClick={() => navigate(`/challenge/${levelId}/etfs`)}
           className="text-muted-foreground text-sm font-body flex items-center gap-1"
         >
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -79,7 +79,7 @@ const EtfDetail = () => {
       <div className="flex-1 flex flex-col items-center justify-center px-6">
         <div className="bg-muted/50 rounded-2xl px-5 py-2.5 mb-6">
           <p className="text-xs text-muted-foreground font-body text-center">
-            Verfügbar: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} CHF</span>
+            Available: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} CHF</span>
           </p>
         </div>
 
@@ -97,7 +97,7 @@ const EtfDetail = () => {
           </div>
           {isOverBudget && (
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-destructive text-sm font-body mt-2">
-              Budget überschritten
+              Budget exceeded
             </motion.p>
           )}
         </div>
@@ -127,7 +127,7 @@ const EtfDetail = () => {
           inputMode="numeric"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Betrag eingeben"
+          placeholder="Enter amount"
           className="mt-6 w-full max-w-xs h-14 rounded-2xl border-2 border-border bg-card text-center font-display text-lg font-bold text-foreground focus:border-[hsl(var(--level-etfs))] focus:outline-none transition-colors tabular-nums"
         />
       </div>
@@ -144,7 +144,7 @@ const EtfDetail = () => {
           }`}
         >
           <Check size={20} weight="bold" />
-          {isReset ? 'Investment entfernen' : currentAmount > 0 ? 'Betrag anpassen' : 'Investieren'}
+          {isReset ? 'Remove investment' : currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>
     </div>

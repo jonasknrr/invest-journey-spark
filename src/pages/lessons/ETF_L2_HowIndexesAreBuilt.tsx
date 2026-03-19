@@ -407,7 +407,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
               <div className="flex justify-center">
                 <button onClick={() => { setAppleMove([0]); setTeslaMove([0]); }}
                   className="font-body text-xs text-muted-foreground hover:text-foreground transition-colors">
-                  ↺ Zurücksetzen
+                  ↺ Reset
                 </button>
               </div>
             </div>
@@ -450,7 +450,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                       )}
                     </div>
                     {answered && (
-                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Richtig! → Gleichgewichtung ✓</p>
+                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Gleichgewichtung ✓</p>
                     )}
                     {!answered && (
                       <div className="flex gap-2 mt-3">
@@ -496,7 +496,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                       )}
                     </div>
                     {answered && (
-                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Richtig! → Preis ✓</p>
+                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Preis ✓</p>
                     )}
                     {!answered && (
                       <div className="flex gap-2 mt-3">
@@ -542,7 +542,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                       )}
                     </div>
                     {answered && (
-                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Richtig! → Marktkapitalisierung ✓</p>
+                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Marktkapitalisierung ✓</p>
                     )}
                     {!answered && (
                       <div className="flex gap-2 mt-3">
@@ -592,7 +592,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
           <motion.div key="s5" className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
             <span className="text-5xl mb-4">🎉</span>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lektion abgeschlossen!</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
             <p className="font-body text-sm text-muted-foreground mb-5">Du verstehst jetzt wie Indizes gebaut werden.</p>
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left space-y-1">
               <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Marktkapitalisierung = Grösse des Unternehmens</p>
@@ -617,7 +617,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
             <motion.button onClick={handleNext} whileTap={{ scale: 0.96 }}
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 5 ? 'hsl(142, 71%, 45%)' : BLUE }}>
-              {currentStep === 5 ? 'Zur nächsten Lektion →' : 'Weiter →'}
+              {currentStep === 5 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

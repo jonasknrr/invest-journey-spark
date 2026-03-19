@@ -40,7 +40,7 @@ const quiz1: QuizConfig = {
   ],
   correctId: 'b',
   correctFeedback: 'Genau! Ein Index ist ein reines Messinstrument — wie ein Thermometer. Du kannst nicht den S&P 500 direkt kaufen.',
-  wrongFeedback: 'Nicht ganz. Ein Index ist nur eine Zahl die einen Aktienkorb misst. Dafür gibt es ETFs — kommt in Lektion 3!',
+  wrongFeedback: 'Not quite. Ein Index ist nur eine Zahl die einen Aktienkorb misst. Dafür gibt es ETFs — kommt in Lektion 3!',
 };
 
 const quiz2: QuizConfig = {
@@ -416,7 +416,7 @@ const ETF_L1_WhatIsAnIndex = () => {
           <motion.div key="completion" className="flex-1 flex flex-col items-center justify-center px-6 text-center"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
             <span className="text-5xl mb-4">🎉</span>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lektion abgeschlossen!</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
             <p className="font-body text-sm text-muted-foreground mb-5">Du weisst jetzt was ein Index ist.</p>
 
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left">
@@ -452,7 +452,7 @@ const ETF_L1_WhatIsAnIndex = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Zur nächsten Lektion →' : 'Weiter →'}
+              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

@@ -10,15 +10,15 @@ const BLUE = '#1A56DB';
 const TOTAL_STEPS = 5;
 
 const pillars = [
-  { emoji: '🏦', label: 'Girokonto', rate: 0.0001, tagColor: 'text-red-600 dark:text-red-400 bg-red-500/10', tag: 'Kaum Wachstum' },
-  { emoji: '💰', label: 'Tagesgeld', rate: 0.01, tagColor: 'text-green-600 dark:text-green-400 bg-green-500/10', tag: 'Solide Rendite + flexibel' },
-  { emoji: '🔒', label: 'Festgeld', rate: 0.02, tagColor: 'text-green-600 dark:text-green-400 bg-green-500/10', tag: 'Mehr Rendite — aber gebunden' },
+  { emoji: '🏦', label: 'Checking account', rate: 0.0001, tagColor: 'text-red-600 dark:text-red-400 bg-red-500/10', tag: 'Barely grows' },
+  { emoji: '💰', label: 'Call money', rate: 0.01, tagColor: 'text-green-600 dark:text-green-400 bg-green-500/10', tag: 'Solid return + flexible' },
+  { emoji: '🔒', label: 'Fixed deposit', rate: 0.02, tagColor: 'text-green-600 dark:text-green-400 bg-green-500/10', tag: 'Higher return — but locked' },
 ];
 
 const durations = [
-  { label: '1 Jahr', years: 1, values: [10001, 10100, 10200] },
-  { label: '3 Jahre', years: 3, values: [10003, 10303, 10612] },
-  { label: '5 Jahre', years: 5, values: [10005, 10510, 11041] },
+  { label: '1 Year', years: 1, values: [10001, 10100, 10200] },
+  { label: '3 Years', years: 3, values: [10003, 10303, 10612] },
+  { label: '5 Years', years: 5, values: [10005, 10510, 11041] },
 ];
 
 interface QuizConfig {
@@ -31,31 +31,31 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Frage 1 von 2',
-  question: 'Was unterscheidet Tagesgeld von Festgeld?',
+  label: 'Question 1 of 2',
+  question: 'What distinguishes call money from a fixed deposit?',
   answers: [
-    { id: 'a', text: 'Tagesgeld bringt immer mehr Zinsen als Festgeld' },
-    { id: 'b', text: 'Tagesgeld ist täglich verfügbar — Festgeld ist für eine feste Laufzeit gebunden' },
-    { id: 'c', text: 'Festgeld kann täglich abgehoben werden' },
-    { id: 'd', text: 'Es gibt keinen Unterschied — beide sind gleich flexibel' },
+    { id: 'a', text: 'Call money always earns more interest than fixed deposits' },
+    { id: 'b', text: 'Call money is available daily — fixed deposits are locked for a set term' },
+    { id: 'c', text: 'Fixed deposits can be withdrawn daily' },
+    { id: 'd', text: 'There is no difference — both are equally flexible' },
   ],
   correctId: 'b',
-  correctFeedback: 'Richtig! Tagesgeld ist flexibel aber der Zins kann sich ändern. Festgeld hat einen fixen Zins aber du kommst nicht ran. Jedes hat seinen Platz.',
-  wrongFeedback: 'Fast! Der Hauptunterschied ist die Flexibilität — Tagesgeld ist täglich verfügbar, Festgeld ist gebunden. Dafür ist der Festgeldzins meist höher und garantiert.',
+  correctFeedback: 'Correct! Call money is flexible but the rate can change. Fixed deposits have a guaranteed rate but you can\'t access the funds. Each has its place.',
+  wrongFeedback: 'Close! The main difference is flexibility — call money is available daily, fixed deposits are locked. In return, fixed deposit rates are usually higher and guaranteed.',
 };
 
 const quiz2: QuizConfig = {
-  label: 'Frage 2 von 2',
-  question: 'Du hast CHF 8\'000 als Notfallreserve. Du weisst nicht wann du es brauchst — vielleicht morgen, vielleicht nie. Wo parkst du es am sinnvollsten?',
+  label: 'Question 2 of 2',
+  question: 'You have CHF 8\'000 as an emergency reserve. You don\'t know when you\'ll need it — maybe tomorrow, maybe never. Where do you park it?',
   answers: [
-    { id: 'a', text: 'Girokonto — da ist es am sichersten' },
-    { id: 'b', text: 'Festgeld für 3 Jahre — maximale Zinsen' },
-    { id: 'c', text: 'Tagesgeld — verfügbar wenn nötig, trotzdem Zinsen' },
-    { id: 'd', text: 'In Aktien investieren — mehr Rendite' },
+    { id: 'a', text: 'Checking account — it\'s safest there' },
+    { id: 'b', text: 'Fixed deposit for 3 years — maximum interest' },
+    { id: 'c', text: 'Call money — available when needed, still earns interest' },
+    { id: 'd', text: 'Invest in stocks — higher returns' },
   ],
   correctId: 'c',
-  correctFeedback: 'Perfekt! Eine Notfallreserve muss immer sofort verfügbar sein — Tagesgeld ist dafür ideal. Mehr Zins als das Girokonto und trotzdem täglich abrufbar.',
-  wrongFeedback: 'Vorsicht! Eine Notfallreserve muss sofort verfügbar sein. Festgeld ist gebunden, Aktien können im falschen Moment im Minus sein. Tagesgeld ist die richtige Wahl.',
+  correctFeedback: 'Perfect! An emergency reserve must always be instantly available — call money is ideal for that. More interest than a checking account and still accessible daily.',
+  wrongFeedback: 'Careful! An emergency reserve must be instantly available. Fixed deposits are locked, stocks can be in the red at the wrong moment. Call money is the right choice.',
 };
 
 const Cash_F5_Tagesgeld = () => {
@@ -182,16 +182,16 @@ const Cash_F5_Tagesgeld = () => {
             <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
               <span className="mb-4" style={{ fontSize: 64 }}>💰</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
-                Flexibel sparen — mit mehr Zins als das Girokonto
+                Save flexibly — with more interest than a checking account
               </h2>
               <p className="font-body text-base text-foreground leading-relaxed mb-4">
-                Tagesgeld ist das Beste aus beiden Welten — du bekommst mehr Zinsen als auf dem Girokonto, kannst aber trotzdem jeden Tag auf dein Geld zugreifen. Kein Warten, keine Strafe, keine feste Laufzeit.
+                Call money is the best of both worlds — you earn more interest than a checking account, but can still access your money any day. No waiting, no penalty, no fixed term.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                Der Zinssatz beim Tagesgeld kann sich täglich ändern — die Bank kann ihn jederzeit anpassen. Das ist der Unterschied zu Festgeld wo der Zins für die gesamte Laufzeit fix ist.
+                The interest rate on call money can change daily — the bank can adjust it at any time. That's the difference to fixed deposits where the rate is locked for the entire term.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Tagesgeld eignet sich perfekt als Notfallreserve oder für Geld das du mittelfristig brauchst aber trotzdem arbeiten lassen willst.
+                Call money is perfect as an emergency reserve or for money you need in the medium term but still want to put to work.
               </p>
             </div>
           </motion.div>
@@ -208,7 +208,7 @@ const Cash_F5_Tagesgeld = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">
-              Vergleiche wie dein Geld wächst
+              Compare how your money grows
             </h2>
 
             {/* Duration buttons */}
@@ -276,7 +276,7 @@ const Cash_F5_Tagesgeld = () => {
                   className="rounded-xl bg-green-50 dark:bg-green-950/30 border border-green-300/40 px-4 py-3 max-w-sm mx-auto w-full"
                 >
                   <p className="font-body text-sm text-green-800 dark:text-green-200 leading-relaxed">
-                    💰 Tagesgeld: mehr als Girokonto — und trotzdem jeden Tag verfügbar. Der ideale Mittelweg.
+                    💰 Call money: more than a checking account — and still available every day. The ideal middle ground.
                   </p>
                 </motion.div>
               )}
@@ -430,10 +430,10 @@ const Cash_F5_Tagesgeld = () => {
               ))}
             </div>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-              Lektion abgeschlossen! 🎉
+              Lesson complete! 🎉
             </h2>
             <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">
-              Du weisst jetzt was Tagesgeld ist, wie es sich von Festgeld und Girokonto unterscheidet — und warum es die perfekte Heimat für deine Notfallreserve ist.
+              You now know what call money is, how it differs from fixed deposits and checking accounts — and why it's the perfect home for your emergency reserve.
             </p>
             <CompletionXP result={completionResult} hearts={hearts} />
           </motion.div>
@@ -455,7 +455,7 @@ const Cash_F5_Tagesgeld = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Zurück zur Übersicht →' : 'Weiter →'}
+              {currentStep === 4 ? 'Back to overview →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

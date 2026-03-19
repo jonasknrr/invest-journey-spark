@@ -36,7 +36,7 @@ const EtfOverview = () => {
           onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })}
           className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1"
         >
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -47,14 +47,14 @@ const EtfOverview = () => {
           </div>
           <div>
             <h1 className="font-display text-2xl font-bold text-foreground">ETFs</h1>
-            <p className="text-muted-foreground text-sm font-body">Index-ETFs kaufen</p>
+            <p className="text-muted-foreground text-sm font-body">Buy index ETFs</p>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="flex gap-3">
           <div className="flex-1 rounded-3xl bg-card border border-border shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">
-              Verfügbares Kapital
+              Available capital
             </p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
               {remaining.toLocaleString('de-CH')} CHF
@@ -62,7 +62,7 @@ const EtfOverview = () => {
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-etfs)/0.08)] border border-[hsl(var(--level-etfs)/0.15)] shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">
-              Bereits investiert (ETFs)
+              Already invested (ETFs)
             </p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-etfs))] tabular-nums">
               {etfTotal.toLocaleString('de-CH')} CHF
@@ -122,7 +122,7 @@ const EtfOverview = () => {
         {etfTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Du hast insgesamt {etfTotal.toLocaleString('de-CH')} CHF in ETFs investiert.
+              💡 You have invested a total of {etfTotal.toLocaleString('de-CH')} CHF in ETFs.
             </p>
           </motion.div>
         )}

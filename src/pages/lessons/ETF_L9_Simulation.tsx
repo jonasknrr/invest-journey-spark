@@ -406,7 +406,7 @@ const ETF_L9_Simulation = () => {
                         else setPhase(3);
                       }}
                       className="w-full h-14 rounded-full font-display text-base font-bold text-white" style={{ backgroundColor: BLUE }}>
-                      {currentShock < 2 ? 'Nächster Schock →' : 'Zum ETF-Vergleich →'}
+                      {currentShock < 2 ? 'Next shock →' : 'To the ETF comparison →'}
                     </motion.button>
                   </div>
                 </motion.div>
@@ -559,7 +559,7 @@ const ETF_L9_Simulation = () => {
 
             <motion.button whileTap={{ scale: 0.96 }} onClick={() => navigate('/category/etfs')}
               className="w-full h-14 rounded-full font-display text-base font-bold text-white mb-4" style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}>
-              Kapitel abgeschlossen! 🎉
+              Chapter complete! 🎉
             </motion.button>
           </motion.div>
         )}

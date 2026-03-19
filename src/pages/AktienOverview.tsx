@@ -40,7 +40,7 @@ const AktienOverview = () => {
           onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })}
           className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1"
         >
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -50,15 +50,15 @@ const AktienOverview = () => {
             <TrendUp size={30} weight="fill" className="text-[hsl(var(--level-aktien))]" />
           </div>
           <div>
-            <h1 className="font-display text-2xl font-bold text-foreground">Aktien</h1>
-            <p className="text-muted-foreground text-sm font-body">Einzelaktien kaufen</p>
+             <h1 className="font-display text-2xl font-bold text-foreground">Stocks</h1>
+            <p className="text-muted-foreground text-sm font-body">Buy individual stocks</p>
           </div>
         </motion.div>
 
         <motion.div variants={itemVariants} className="flex gap-3">
           <div className="flex-1 rounded-3xl bg-card border border-border shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">
-              Verfügbares Kapital
+              Available capital
             </p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
               {remaining.toLocaleString('de-CH')} CHF
@@ -66,7 +66,7 @@ const AktienOverview = () => {
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-aktien)/0.08)] border border-[hsl(var(--level-aktien)/0.15)] shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">
-              Bereits investiert (Aktien)
+              Already invested (Stocks)
             </p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-aktien))] tabular-nums">
               {aktienTotal.toLocaleString('de-CH')} CHF
@@ -86,7 +86,7 @@ const AktienOverview = () => {
                   : 'bg-muted text-muted-foreground'
               }`}
             >
-              {m === 'all' ? 'Alle' : m}
+              {m === 'all' ? 'All' : m}
             </button>
           ))}
         </motion.div>
@@ -139,7 +139,7 @@ const AktienOverview = () => {
         {aktienTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Du hast insgesamt {aktienTotal.toLocaleString('de-CH')} CHF in Aktien investiert.
+              💡 You have invested a total of {aktienTotal.toLocaleString('de-CH')} CHF in stocks.
             </p>
           </motion.div>
         )}

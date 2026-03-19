@@ -23,7 +23,7 @@ const FestgeldOverview = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })} className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1">
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -34,21 +34,21 @@ const FestgeldOverview = () => {
             <Vault size={30} weight="fill" className="text-[hsl(var(--level-festgeld))]" />
           </div>
           <div>
-            <h1 className="font-display text-2xl font-bold text-foreground">Festgeld</h1>
-            <p className="text-muted-foreground text-sm font-body">Sichere Zinsen, feste Laufzeit</p>
+             <h1 className="font-display text-2xl font-bold text-foreground">Fixed Deposit</h1>
+            <p className="text-muted-foreground text-sm font-body">Secure interest, fixed term</p>
           </div>
         </motion.div>
 
         {/* Budget cards */}
         <motion.div variants={itemVariants} className="flex gap-3">
           <div className="flex-1 rounded-3xl bg-card border border-border shadow-card p-4">
-            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Verfügbar</p>
+            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Available</p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
               {remaining.toLocaleString('de-CH')} CHF
             </p>
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-festgeld)/0.08)] border border-[hsl(var(--level-festgeld)/0.15)] shadow-card p-4">
-            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">In Festgeld</p>
+            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">In Fixed Deposit</p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-festgeld))] tabular-nums">
               {festgeldTotal.toLocaleString('de-CH')} CHF
             </p>
@@ -57,7 +57,7 @@ const FestgeldOverview = () => {
 
         {/* Product list */}
         <motion.div variants={itemVariants}>
-          <h2 className="font-display text-lg font-bold text-foreground mb-3">Festgeldkonten</h2>
+          <h2 className="font-display text-lg font-bold text-foreground mb-3">Fixed deposit accounts</h2>
         </motion.div>
 
         <motion.div variants={containerVariants} className="space-y-3">
@@ -74,7 +74,7 @@ const FestgeldOverview = () => {
                 {/* Duration badge */}
                 <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-festgeld)/0.12)] flex items-center justify-center flex-shrink-0">
                   <span className="font-display font-bold text-[hsl(var(--level-festgeld))] text-sm">
-                    {product.durationYears}J
+                    {product.durationYears}Y
                   </span>
                 </div>
 
@@ -96,7 +96,7 @@ const FestgeldOverview = () => {
                   </p>
                   {allocated > 0 && (
                     <p className="text-xs text-muted-foreground font-body tabular-nums mt-0.5">
-                      +{(allocated * product.interestRate / 100 * product.durationYears).toFixed(0)} CHF Zinsen
+                      +{(allocated * product.interestRate / 100 * product.durationYears).toFixed(0)} CHF interest
                     </p>
                   )}
                 </div>
@@ -111,7 +111,7 @@ const FestgeldOverview = () => {
         {festgeldTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Dein Festgeld ist sicher angelegt — du erhältst garantierte Zinsen am Ende der Laufzeit.
+              💡 Your fixed deposit is safely invested — you'll receive guaranteed interest at the end of the term.
             </p>
           </motion.div>
         )}

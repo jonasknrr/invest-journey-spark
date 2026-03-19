@@ -318,7 +318,7 @@ const ETF_L8_Simulation = () => {
                       ));
                     })()}
                     <motion.button onClick={handleNextShock} whileTap={{ scale: 0.96 }} className="w-full h-12 rounded-full font-display text-sm font-bold text-white mt-2" style={{ backgroundColor: currentShock < 2 ? BLUE : 'hsl(142, 71%, 45%)' }}>
-                      {currentShock < 2 ? 'Nächster Schock →' : 'Zur Auflösung →'}
+                      {currentShock < 2 ? 'Next shock →' : 'To the result →'}
                     </motion.button>
                   </motion.div>
                 )}
@@ -342,7 +342,7 @@ const ETF_L8_Simulation = () => {
               <div className="rounded-2xl border-2 border-border bg-card p-4 space-y-2">
                 <p className="font-display text-sm font-bold text-foreground">Dein Portfolio</p>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Endwert nach Schocks</span>
+                  <span className="font-body text-xs text-muted-foreground">Final value nach Schocks</span>
                   <span className="font-display text-sm font-bold text-foreground">CHF {fmt(portfolioValue)}</span>
                 </div>
                 <div className="flex justify-between">
@@ -405,7 +405,7 @@ const ETF_L8_Simulation = () => {
 
               {/* Final CTA */}
               <motion.button onClick={() => navigate('/category/etfs')} whileTap={{ scale: 0.96 }} className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm" style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}>
-                Kapitel abgeschlossen! 🎉
+                Chapter complete! 🎉
               </motion.button>
             </div>
           </motion.div>

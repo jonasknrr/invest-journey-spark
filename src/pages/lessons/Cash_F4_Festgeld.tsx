@@ -11,9 +11,9 @@ const TOTAL_STEPS = 5;
 
 /* ── Interest rates by duration ── */
 const durations = [
-  { label: '3 Monate', months: 3, rate: 0.75 },
-  { label: '1 Jahr', months: 12, rate: 1.5 },
-  { label: '3 Jahre', months: 36, rate: 2.25 },
+  { label: '3 Months', months: 3, rate: 0.75 },
+  { label: '1 Year', months: 12, rate: 1.5 },
+  { label: '3 Years', months: 36, rate: 2.25 },
 ];
 
 /* ── Quiz config ── */
@@ -27,36 +27,36 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Frage 1 von 2',
-  question: 'Warum zahlt Festgeld mehr Zinsen als ein normales Girokonto?',
+  label: 'Question 1 of 2',
+  question: 'Why does a fixed deposit pay more interest than a regular checking account?',
   answers: [
-    { id: 'a', text: 'Weil Festgeld risikoreicher ist als ein Girokonto' },
-    { id: 'b', text: 'Weil die Bank mehr Zeit hat mit deinem Geld zu planen da es fest angelegt ist' },
-    { id: 'c', text: 'Weil der Staat Festgeld subventioniert' },
-    { id: 'd', text: 'Weil Festgeld nur für reiche Leute ist' },
+    { id: 'a', text: 'Because fixed deposits are riskier than a checking account' },
+    { id: 'b', text: 'Because the bank has more time to plan with your money since it\'s locked in' },
+    { id: 'c', text: 'Because the government subsidises fixed deposits' },
+    { id: 'd', text: 'Because fixed deposits are only for wealthy people' },
   ],
   correctId: 'b',
   correctFeedback:
-    'Richtig! Die Bank weiss genau wie lange sie dein Geld nutzen kann — das ist ihr mehr wert und dafür belohnt sie dich mit höheren Zinsen.',
+    'Correct! The bank knows exactly how long it can use your money — that\'s worth more to them and they reward you with higher interest.',
   wrongFeedback:
-    'Fast! Festgeld ist nicht riskanter — die Bank bekommt einfach Planungssicherheit weil sie weiss wie lange sie dein Geld nutzen kann. Dafür zahlt sie mehr.',
+    'Close! Fixed deposits aren\'t riskier — the bank simply gets planning certainty because it knows how long it can use your money. That\'s why it pays more.',
 };
 
 const quiz2: QuizConfig = {
-  label: 'Frage 2 von 2',
+  label: 'Question 2 of 2',
   question:
-    "Du weisst dass du in 6 Monaten CHF 5'000 für eine Reise brauchst. Ist ein 2-Jahres-Festgeld sinnvoll?",
+    "You know you'll need CHF 5'000 for a trip in 6 months. Is a 2-year fixed deposit a good idea?",
   answers: [
-    { id: 'a', text: 'Ja — mehr Zinsen ist immer besser' },
-    { id: 'b', text: 'Ja — die Bank macht eine Ausnahme wenn ich es erkläre' },
-    { id: 'c', text: 'Nein — das Geld ist 2 Jahre gebunden und ich brauche es in 6 Monaten' },
-    { id: 'd', text: 'Egal — Festgeld und Girokonto sind gleich flexibel' },
+    { id: 'a', text: 'Yes — more interest is always better' },
+    { id: 'b', text: 'Yes — the bank will make an exception if I explain' },
+    { id: 'c', text: 'No — the money is locked for 2 years and I need it in 6 months' },
+    { id: 'd', text: 'Doesn\'t matter — fixed deposit and checking account are equally flexible' },
   ],
   correctId: 'c',
   correctFeedback:
-    'Perfekt! Festgeld immer nur für Geld das du in der Laufzeit sicher nicht brauchst. Für die Reise wäre ein 3-Monats-Festgeld oder Tagesgeld die richtige Wahl.',
+    'Perfect! Only use fixed deposits for money you definitely won\'t need during the term. For the trip, a 3-month deposit or call money would be the right choice.',
   wrongFeedback:
-    'Vorsicht! Banken machen keine Ausnahmen — Festgeld ist bis zum Ende gebunden. Wer früher raus will zahlt eine Strafe oder verliert die Zinsen komplett.',
+    'Careful! Banks don\'t make exceptions — fixed deposits are locked until maturity. Getting out early means paying a penalty or losing all interest.',
 };
 
 /* ── Component ── */
@@ -146,7 +146,7 @@ const Cash_F4_Festgeld = () => {
   const endValue = amount + interest;
   const availableDate = new Date();
   availableDate.setMonth(availableDate.getMonth() + dur.months);
-  const dateStr = availableDate.toLocaleDateString('de-CH', {
+  const dateStr = availableDate.toLocaleDateString('en-GB', {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric',
@@ -198,22 +198,22 @@ const Cash_F4_Festgeld = () => {
             <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
               <span className="mb-4" style={{ fontSize: 64 }}>🔒</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
-                Mehr Zins — aber dein Geld ist gebunden
+                More interest — but your money is locked
               </h2>
               <p className="font-body text-base text-foreground leading-relaxed mb-4">
-                Festgeld ist wie ein Versprechen an die Bank — du gibst ihr dein Geld für eine feste Zeit, und sie zahlt dir dafür mehr Zinsen als auf dem normalen Konto. Je länger du wartest, desto mehr bekommst du.
+                A fixed deposit is like a promise to the bank — you give them your money for a set time, and they pay you more interest than a regular account. The longer you wait, the more you get.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                Der Haken: während der Laufzeit kommst du nicht an dein Geld. Wer früher raus will zahlt eine Strafe — oder bekommt gar nichts.
+                The catch: you can't access your money during the term. Getting out early means paying a penalty — or getting nothing at all.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Festgeld eignet sich deshalb nur für Geld das du in der nächsten Zeit sicher nicht brauchst.
+                Fixed deposits are therefore only suitable for money you definitely won't need in the near future.
               </p>
             </div>
           </motion.div>
         )}
 
-        {/* STEP 1 — Zins-Rechner */}
+        {/* STEP 1 — Interest calculator */}
         {currentStep === 1 && (
           <motion.div
             key="s1"
@@ -224,14 +224,14 @@ const Cash_F4_Festgeld = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-lg font-bold text-foreground text-center mb-5">
-              Sieh wie Laufzeit und Betrag deinen Gewinn beeinflussen
+              See how term and amount affect your earnings
             </h2>
 
             <div className="max-w-sm mx-auto w-full space-y-5">
               {/* Amount slider */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-body text-sm text-muted-foreground">Dein Betrag</span>
+                  <span className="font-body text-sm text-muted-foreground">Your amount</span>
                   <motion.span
                     key={amount}
                     className="font-display text-lg font-bold text-foreground tabular-nums"
@@ -262,7 +262,7 @@ const Cash_F4_Festgeld = () => {
 
               {/* Duration buttons */}
               <div>
-                <p className="font-body text-sm text-muted-foreground mb-2">Laufzeit</p>
+                <p className="font-body text-sm text-muted-foreground mb-2">Term</p>
                 <div className="flex gap-2">
                   {durations.map((d, i) => (
                     <button
@@ -291,26 +291,26 @@ const Cash_F4_Festgeld = () => {
                 className="rounded-2xl border border-border bg-card p-5 space-y-3"
               >
                 <div className="flex items-center justify-between">
-                  <span className="font-body text-sm text-muted-foreground">Zinssatz</span>
+                  <span className="font-body text-sm text-muted-foreground">Interest rate</span>
                   <span className="font-display text-base font-bold text-foreground">{dur.rate}% p.a.</span>
                 </div>
                 <div className="h-px bg-border" />
                 <div className="flex items-center justify-between">
-                  <span className="font-body text-sm text-muted-foreground">Zinsgewinn</span>
+                  <span className="font-body text-sm text-muted-foreground">Interest earned</span>
                   <span className="font-display text-base font-bold text-green-600 dark:text-green-400">
                     CHF {interest.toFixed(2)}
                   </span>
                 </div>
                 <div className="h-px bg-border" />
                 <div className="flex items-center justify-between">
-                  <span className="font-body text-sm text-muted-foreground">Endwert</span>
+                  <span className="font-body text-sm text-muted-foreground">Final value</span>
                   <span className="font-display text-lg font-bold text-foreground">
                     CHF {endValue.toLocaleString('de-CH', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </span>
                 </div>
                 <div className="h-px bg-border" />
                 <div className="flex items-center justify-between">
-                  <span className="font-body text-sm text-muted-foreground">Verfügbar ab</span>
+                  <span className="font-body text-sm text-muted-foreground">Available from</span>
                   <span className="font-display text-sm font-bold text-foreground">{dateStr}</span>
                 </div>
               </motion.div>
@@ -318,7 +318,7 @@ const Cash_F4_Festgeld = () => {
               {/* Warning */}
               <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300/40 px-4 py-2.5">
                 <p className="font-body text-sm text-amber-800 dark:text-amber-200">
-                  ⚠️ Während dieser Zeit ist dein Geld gesperrt
+                  ⚠️ Your money is locked during this period
                 </p>
               </div>
 
@@ -331,7 +331,7 @@ const Cash_F4_Festgeld = () => {
                     className="rounded-xl border-l-4 border-blue-400 bg-blue-50 dark:bg-blue-950/30 px-4 py-3"
                   >
                     <p className="font-body text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
-                      Längere Laufzeit = mehr Zinsen — aber auch weniger Flexibilität. Das ist der klassische Trade-off.
+                      Longer term = more interest — but also less flexibility. That's the classic trade-off.
                     </p>
                   </motion.div>
                 )}
@@ -490,10 +490,10 @@ const Cash_F4_Festgeld = () => {
               ))}
             </div>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-              Lektion abgeschlossen! 🎉
+              Lesson complete! 🎉
             </h2>
             <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">
-              Du weisst jetzt was Festgeld ist, warum es mehr Zinsen bringt als ein Girokonto — und wann es sinnvoll ist und wann nicht.
+              You now know what a fixed deposit is, why it pays more interest than a checking account — and when it makes sense and when it doesn't.
             </p>
             <CompletionXP result={completionResult} hearts={hearts} />
           </motion.div>
@@ -515,7 +515,7 @@ const Cash_F4_Festgeld = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Zur nächsten Lektion →' : 'Weiter →'}
+              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

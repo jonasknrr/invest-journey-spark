@@ -11,10 +11,10 @@ const TOTAL_STEPS = 5;
 
 /* ── Price data for the basket slide ── */
 const products = [
-  { icon: '☕', name: 'Kaffee', start: 3.5, end: 5.2 },
-  { icon: '🍞', name: 'Brot', start: 2.8, end: 3.9 },
-  { icon: '🚌', name: 'Busticket', start: 2.2, end: 3.2 },
-  { icon: '💇', name: 'Haarschnitt', start: 35.0, end: 55.0 },
+  { icon: '☕', name: 'Coffee', start: 3.5, end: 5.2 },
+  { icon: '🍞', name: 'Bread', start: 2.8, end: 3.9 },
+  { icon: '🚌', name: 'Bus ticket', start: 2.2, end: 3.2 },
+  { icon: '💇', name: 'Haircut', start: 35.0, end: 55.0 },
 ];
 
 function lerp(a: number, b: number, t: number) {
@@ -32,36 +32,36 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Frage 1 von 2',
+  label: 'Question 1 of 2',
   question:
-    'Du hast CHF 10\'000 auf einem Konto ohne Zinsen. Die Inflation beträgt 2% pro Jahr. Was passiert nach 10 Jahren?',
+    'You have CHF 10\'000 in an account with no interest. Inflation is 2% per year. What happens after 10 years?',
   answers: [
-    { id: 'a', text: 'Ich habe immer noch dieselbe Kaufkraft' },
-    { id: 'b', text: 'Ich habe mehr Kaufkraft weil das Geld sicher ist' },
-    { id: 'c', text: 'Ich kann mir weniger kaufen als heute' },
-    { id: 'd', text: 'Das Geld verschwindet komplett vom Konto' },
+    { id: 'a', text: 'I still have the same purchasing power' },
+    { id: 'b', text: 'I have more purchasing power because the money is safe' },
+    { id: 'c', text: 'I can buy less than today' },
+    { id: 'd', text: 'The money completely disappears from the account' },
   ],
   correctId: 'c',
   correctFeedback:
-    'Richtig! Die Zahl CHF 10\'000 bleibt gleich — aber 2% Inflation pro Jahr bedeuten nach 10 Jahren rund 18% weniger Kaufkraft.',
+    'Correct! The number CHF 10\'000 stays the same — but 2% inflation per year means about 18% less purchasing power after 10 years.',
   wrongFeedback:
-    'Fast! Das Geld ist noch da — aber Inflation frisst still und leise die Kaufkraft. Nach 10 Jahren bei 2% Inflation kannst du dir etwa 18% weniger kaufen.',
+    'Close! The money is still there — but inflation silently eats away at purchasing power. After 10 years at 2% inflation, you can buy about 18% less.',
 };
 
 const quiz2: QuizConfig = {
-  label: 'Frage 2 von 2',
-  question: 'Was ist die beste Strategie um Kaufkraftverlust zu bekämpfen?',
+  label: 'Question 2 of 2',
+  question: 'What is the best strategy to fight loss of purchasing power?',
   answers: [
-    { id: 'a', text: 'Geld unter die Matratze legen — da ist es sicher' },
-    { id: 'b', text: 'Alles sofort ausgeben bevor es weniger wert wird' },
-    { id: 'c', text: 'Geld so anlegen dass die Rendite die Inflation schlägt' },
-    { id: 'd', text: 'Einfach in einer anderen Währung sparen' },
+    { id: 'a', text: 'Put money under the mattress — it\'s safe there' },
+    { id: 'b', text: 'Spend everything immediately before it loses value' },
+    { id: 'c', text: 'Invest money so that returns beat inflation' },
+    { id: 'd', text: 'Simply save in a different currency' },
   ],
   correctId: 'c',
   correctFeedback:
-    'Genau! Wer sein Geld klug anlegt und mehr Rendite erzielt als die Inflationsrate, behält seine Kaufkraft — oder steigert sie sogar.',
+    'Exactly! Those who invest wisely and earn returns higher than the inflation rate keep their purchasing power — or even increase it.',
   wrongFeedback:
-    'Fast! Ausgeben oder verstecken löst das Problem nicht. Die einzige echte Lösung ist eine Rendite die höher ist als die Inflation.',
+    'Close! Spending or hiding doesn\'t solve the problem. The only real solution is a return that\'s higher than inflation.',
 };
 
 /* ── Component ── */
@@ -199,19 +199,19 @@ const Cash_F2_Inflation = () => {
             <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
               <span className="mb-4" style={{ fontSize: 64 }}>📉</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
-                Dein Geld wird weniger — ohne dass du es siehst
+                Your money loses value — without you even noticing
               </h2>
               <p className="font-body text-base text-foreground leading-relaxed mb-4">
-                Stell dir vor du legst CHF 10'000 unters Kopfkissen. 10 Jahre später nimmst du es raus — die Zahl ist noch gleich, aber du kannst dir weniger dafür kaufen. Das ist Inflation.
+                Imagine you put CHF 10'000 under your pillow. 10 years later you take it out — the number is still the same, but you can buy less with it. That's inflation.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Inflation bedeutet dass Preise steigen — und dein Geld deshalb jedes Jahr etwas weniger wert wird, auch wenn du nichts ausgibst.
+                Inflation means prices rise — and your money becomes worth a little less each year, even if you don't spend anything.
               </p>
             </div>
           </motion.div>
         )}
 
-        {/* STEP 1 — Warenkorb slider */}
+        {/* STEP 1 — Basket slider */}
         {currentStep === 1 && (
           <motion.div
             key="s1"
@@ -222,7 +222,7 @@ const Cash_F2_Inflation = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">
-              Sieh wie Preise über Zeit steigen
+              See how prices rise over time
             </h2>
 
             {/* Product cards */}
@@ -251,7 +251,7 @@ const Cash_F2_Inflation = () => {
             {/* Basket total */}
             <div className="text-center mb-4">
               <p className="font-body text-sm text-muted-foreground">
-                Warenkorb gesamt:{' '}
+                Basket total:{' '}
                 <span className="font-display font-bold text-foreground tabular-nums">
                   CHF {basketTotal.toFixed(2)}
                 </span>
@@ -285,7 +285,7 @@ const Cash_F2_Inflation = () => {
                   className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300/40 px-4 py-3 max-w-sm mx-auto w-full"
                 >
                   <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
-                    Derselbe Warenkorb kostet heute 55% mehr als 2004 — dein Geld hat Kaufkraft verloren.
+                    The same basket costs 55% more today than in 2004 — your money has lost purchasing power.
                   </p>
                 </motion.div>
               )}
@@ -459,10 +459,10 @@ const Cash_F2_Inflation = () => {
             </div>
 
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-              Lektion abgeschlossen! 🎉
+              Lesson complete! 🎉
             </h2>
             <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">
-              Du verstehst jetzt was Inflation ist und warum Geld das einfach nur liegt jedes Jahr an Wert verliert.
+              You now understand what inflation is and why money that just sits there loses value every year.
             </p>
 
             <CompletionXP result={completionResult} hearts={hearts} />
@@ -485,7 +485,7 @@ const Cash_F2_Inflation = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Zur nächsten Lektion →' : 'Weiter →'}
+              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

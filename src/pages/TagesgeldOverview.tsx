@@ -24,7 +24,7 @@ const TagesgeldOverview = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })} className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1">
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -35,21 +35,21 @@ const TagesgeldOverview = () => {
             <PiggyBank size={30} className="text-[hsl(var(--level-tagesgeld))]" />
           </div>
           <div>
-            <h1 className="font-display text-2xl font-bold text-foreground">Tagesgeld</h1>
-            <p className="text-muted-foreground text-sm font-body">Flexibel & jederzeit verfügbar</p>
+            <h1 className="font-display text-2xl font-bold text-foreground">Call Money</h1>
+            <p className="text-muted-foreground text-sm font-body">Flexible & available anytime</p>
           </div>
         </motion.div>
 
         {/* Budget cards */}
         <motion.div variants={itemVariants} className="flex gap-3">
           <div className="flex-1 rounded-3xl bg-card border border-border shadow-card p-4">
-            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Verfügbar</p>
+            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Available</p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
               {remaining.toLocaleString('de-CH')} CHF
             </p>
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-tagesgeld)/0.08)] border border-[hsl(var(--level-tagesgeld)/0.15)] shadow-card p-4">
-            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">In Tagesgeld</p>
+            <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">In Call Money</p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-tagesgeld))] tabular-nums">
               {tagesgeldTotal.toLocaleString('de-CH')} CHF
             </p>
@@ -58,7 +58,7 @@ const TagesgeldOverview = () => {
 
         {/* Product list */}
         <motion.div variants={itemVariants}>
-          <h2 className="font-display text-lg font-bold text-foreground mb-3">Tagesgeldkonto</h2>
+          <h2 className="font-display text-lg font-bold text-foreground mb-3">Call money account</h2>
         </motion.div>
 
         <motion.div variants={containerVariants} className="space-y-3">
@@ -105,7 +105,7 @@ const TagesgeldOverview = () => {
         {tagesgeldTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Dein Tagesgeld ist flexibel — du kannst es jederzeit anpassen oder abrufen.
+              💡 Your call money is flexible — you can adjust or withdraw it at any time.
             </p>
           </motion.div>
         )}
