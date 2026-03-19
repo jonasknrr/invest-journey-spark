@@ -7,7 +7,7 @@ import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
 import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 /* ── Interest rates by duration ── */
 const durations = [
@@ -27,7 +27,7 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question: 'Why does a fixed deposit pay more interest than a regular checking account?',
   answers: [
     { id: 'a', text: 'Because fixed deposits are riskier than a checking account' },
@@ -43,7 +43,7 @@ const quiz1: QuizConfig = {
 };
 
 const quiz2: QuizConfig = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question:
     "You know you'll need CHF 5'000 for a trip in 6 months. Is a 2-year fixed deposit a good idea?",
   answers: [
@@ -57,6 +57,20 @@ const quiz2: QuizConfig = {
     'Perfect! Only use fixed deposits for money you definitely won\'t need during the term. For the trip, a 3-month deposit or call money would be the right choice.',
   wrongFeedback:
     'Careful! Banks don\'t make exceptions — fixed deposits are locked until maturity. Getting out early means paying a penalty or losing all interest.',
+};
+
+const quiz3: QuizConfig = {
+  label: 'Question 3 of 3',
+  question: 'What is an important characteristic of the interest rate on a typical call money account?',
+  answers: [
+    { id: 'a', text: 'It is guaranteed to stay the exact same for 10 years.' },
+    { id: 'b', text: 'It is variable and can be changed by the bank depending on market conditions.' },
+    { id: 'c', text: 'It is legally required to always be higher than the inflation rate.' },
+    { id: 'd', text: 'It is only paid out if you do not withdraw any money for a full year.' },
+  ],
+  correctId: 'b',
+  correctFeedback: 'Correct! Call money rates are variable — the bank can adjust them anytime based on market conditions. That\'s the trade-off for flexibility.',
+  wrongFeedback: 'Not quite. Call money interest rates are variable — the bank can change them at any time depending on the market. That\'s the price of staying flexible.',
 };
 
 /* ── Component ── */
@@ -80,7 +94,10 @@ const Cash_F4_Festgeld = () => {
   // Step 3 — quiz 2
   const [q2Answer, setQ2Answer] = useState<string | null>(null);
 
-  // Step 4 — stars
+  // Step 4 — quiz 3
+  const [q3Answer, setQ3Answer] = useState<string | null>(null);
+
+  // Step 5 — stars
   const [starsShown, setStarsShown] = useState(0);
 
   const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
@@ -112,7 +129,8 @@ const Cash_F4_Festgeld = () => {
     if (currentStep === 1) return bothTouched;
     if (currentStep === 2) return !!q1Answer;
     if (currentStep === 3) return !!q2Answer;
-    if (currentStep === 4) return true;
+    if (currentStep === 4) return !!q3Answer;
+    if (currentStep === 5) return true;
     return false;
   };
 
@@ -122,7 +140,7 @@ const Cash_F4_Festgeld = () => {
       return;
     }
     setCurrentStep(s => s + 1);
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
@@ -462,10 +480,71 @@ const Cash_F4_Festgeld = () => {
           </motion.div>
         )}
 
-        {/* STEP 4 — Completion */}
+        {/* STEP 4 — Quiz 3 */}
         {currentStep === 4 && (
           <motion.div
             key="s4"
+            className="flex-1 flex flex-col px-6 py-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 self-start mb-4">
+              <span className="font-body text-xs font-semibold text-primary">{quiz3.label}</span>
+            </div>
+            <h2 className="font-display text-xl font-bold text-foreground mb-5 leading-snug">
+              {quiz3.question}
+            </h2>
+            <div className="flex flex-col gap-3 flex-1">
+              {quiz3.answers.map(a => {
+                let cls = 'border-border bg-card';
+                let suffix = '';
+                if (q3Answer) {
+                  if (a.id === quiz3.correctId) { cls = 'border-green-500 bg-green-500/10'; suffix = ' ✅'; }
+                  else if (a.id === q3Answer) { cls = 'border-red-500 bg-red-500/10'; suffix = ' ✗'; }
+                }
+                return (
+                  <motion.button
+                    key={a.id}
+                    onClick={() => handleQuizAnswer(quiz3, a.id, q3Answer, setQ3Answer)}
+                    disabled={!!q3Answer}
+                    whileTap={!q3Answer ? { scale: 0.97 } : undefined}
+                    className={`w-full text-left p-4 rounded-2xl border-2 transition-colors ${cls}`}
+                  >
+                    <span className="font-body text-[15px] text-foreground">{a.text}{suffix}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+            <AnimatePresence>
+              {q3Answer && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-4 p-4 rounded-2xl ${
+                    q3Answer === quiz3.correctId
+                      ? 'bg-green-500/10 border border-green-500/30'
+                      : 'bg-amber-500/10 border border-amber-500/30'
+                  }`}
+                >
+                  <p className={`font-body text-sm leading-relaxed ${
+                    q3Answer === quiz3.correctId
+                      ? 'text-green-700 dark:text-green-300'
+                      : 'text-amber-700 dark:text-amber-300'
+                  }`}>
+                    {q3Answer === quiz3.correctId ? quiz3.correctFeedback : quiz3.wrongFeedback}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* STEP 5 — Completion */}
+        {currentStep === 5 && (
+          <motion.div
+            key="s5"
             className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -513,9 +592,9 @@ const Cash_F4_Festgeld = () => {
               onClick={handleNext}
               whileTap={{ scale: 0.96 }}
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
-              style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
+              style={{ backgroundColor: currentStep === 5 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
+              {currentStep === 5 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}
@@ -524,8 +603,8 @@ const Cash_F4_Festgeld = () => {
       {/* No Hearts Overlay */}
       {noHeartsScreen === 'showing' && (
         <NoHeartsOverlay
-          onRestart={() => { setCurrentStep(0); setHearts(3); setAmount(10000); setDurationIdx(1); setAmountTouched(false); setDurationTouched(false); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
-          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onRestart={() => { setCurrentStep(0); setHearts(3); setAmount(10000); setDurationIdx(1); setAmountTouched(false); setDurationTouched(false); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
           onContinue={() => setNoHeartsScreen('none')}
         />
       )}
