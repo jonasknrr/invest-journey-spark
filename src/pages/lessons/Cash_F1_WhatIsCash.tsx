@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Heart } from "lucide-react";
-import { Star } from "@phosphor-icons/react";
+import { FiX, FiHeart, FiStar } from 'react-icons/fi';
 import CashSortGame from "@/components/lessons/CashSortGame";
 import { useProgressStore } from "@/hooks/useProgressStore";
 import NoHeartsOverlay from "@/components/lessons/NoHeartsOverlay";

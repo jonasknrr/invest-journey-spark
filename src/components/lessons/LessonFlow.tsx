@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { ArrowLeft } from '@phosphor-icons/react';
+import { FiArrowLeft } from 'react-icons/fi';
 import type { TopicConfig } from '@/data/topicConfig';
 import { StepDots, CompletionOverlay } from './LessonShared';
 import ExplanationStep from './ExplanationStep';

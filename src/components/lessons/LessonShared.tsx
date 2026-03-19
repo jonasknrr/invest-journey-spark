@@ -45,9 +45,8 @@ export const CompletionOverlay = ({ onDone }: { onDone: () => void }) => (
           animate={{ scale: 1, rotate: 0 }}
           transition={{ delay: 0.2 + i * 0.25, type: 'spring', stiffness: 300, damping: 15 }}
         >
-          <Star
+          <FiStar
             size={i === 1 ? 64 : 48}
-            weight="fill"
             className="text-[hsl(45,100%,50%)]"
             style={{ filter: 'drop-shadow(0 0 12px hsl(45 100% 50% / 0.5))' }}
           />
