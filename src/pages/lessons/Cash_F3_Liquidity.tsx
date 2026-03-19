@@ -76,9 +76,11 @@ const quiz2: QuizConfig = {
 /* ── Component ── */
 const Cash_F3_Liquidity = () => {
   const navigate = useNavigate();
-  const { updateLessonProgress } = useProgressStore();
+  const { updateLessonProgress, completeLesson } = useProgressStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts, setHearts] = useState(3);
+  const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
 
   // Step 1 — drag & drop
   const [placed, setPlaced] = useState<Record<number, string>>({});
