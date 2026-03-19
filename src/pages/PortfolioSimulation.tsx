@@ -559,7 +559,7 @@ const PortfolioSimulation = () => {
             <div>
               <p className="text-xs text-muted-foreground font-body font-medium">Portfoliowert</p>
               <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-                {currentValue.toLocaleString('de-CH', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} $
+                {currentValue.toLocaleString('de-CH', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} {currency}
               </p>
             </div>
             {animDone && (
