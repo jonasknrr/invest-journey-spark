@@ -75,6 +75,22 @@ const quiz2: QuizConfig = {
     'Close! Liquid investments earn less return — but their true value shows in emergencies. Without liquid money, you can quickly end up in trouble.',
 };
 
+const quiz3: QuizConfig = {
+  label: 'Question 3 of 3',
+  question: 'What is the typical trade-off you must accept when keeping your money in highly liquid accounts?',
+  answers: [
+    { id: 'a', text: 'You face a very high risk of losing your initial deposit' },
+    { id: 'b', text: 'You generally earn lower interest rates compared to long-term investments' },
+    { id: 'c', text: 'You must pay expensive fees every time you withdraw cash' },
+    { id: 'd', text: 'Your bank will frequently freeze the account without warning' },
+  ],
+  correctId: 'b',
+  correctFeedback:
+    'Correct! High liquidity means easy access — but banks pay you less for money they can\'t plan with long-term. That\'s the classic liquidity-return trade-off.',
+  wrongFeedback:
+    'Not quite — liquid accounts are safe and fee-free, but they pay less interest. That\'s the price of flexibility.',
+};
+
 /* ── Component ── */
 const Cash_F3_Liquidity = () => {
   const navigate = useNavigate();
