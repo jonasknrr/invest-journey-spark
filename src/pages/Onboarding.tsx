@@ -52,7 +52,7 @@ const Onboarding = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            Maximize your portfolio's returns! ✨
+            Maximize your portfolio's returns!
           </motion.p>
 
           {/* Name input */}
