@@ -1020,7 +1020,7 @@ const PortfolioSimulation = () => {
               if (!liquidityPassed) {
                 weaknesses.push({
                   icon: '🔓',
-                  text: 'Keine Liquiditätsreserve: Du hast keine 1.000 $ kurzfristig verfügbar geparkt.',
+                  text: 'Keine Liquiditätsreserve: Du hast keine 1.000 CHF kurzfristig verfügbar geparkt.',
                 });
               }
               if (sharpeApprox < 0.5 && profitPct > 0 && aktienPct > 20) {
