@@ -105,33 +105,66 @@ const aktienTopics: TopicConfig[] = [
   {
     slug: 'a2',
     levelId: 'aktien',
-    title: 'How do Returns Arise?',
+    title: 'How is the stock price determined?',
     subtitle: 'Why stocks grow long-term',
     iconName: 'TrendUp',
     iconColor: 'hsl(215, 90%, 60%)',
     iconBgColor: 'hsl(var(--level-aktien) / 0.12)',
     explanation: {
-      mainText:
-        'A return is the profit you make from your investment. With stocks, it comes in two ways: the stock price rises — or the company regularly pays you a share of its profits, called a dividend.',
-      secondaryText:
-        'Historically, stocks have almost always gained value over the long term — because companies grow.',
+      mainText: 'A stock price is simply what buyers and sellers agree on at any given moment. If more people want to buy a stock than sell it, the price rises. If more want to sell, it falls. Every trade is a negotiation between supply and demand.',
+      secondaryText: 'News, company results, and even emotions move stock prices daily — but long-term, it\'s the company\'s actual growth that drives the direction.',
     },
     visualKey: 'scale',
     quiz: {
-      question:
-        'A well-known company announces a revolutionary new product. What likely happens to the stock price?',
+      question: 'A company announces record profits. What most likely happens to the stock price?',
       answers: [
-        { id: 'a', text: 'It falls — the company spent money on development' },
-        { id: 'b', text: 'It stays the same — products don\'t change anything' },
-        { id: 'c', text: 'It rises — more people want to buy the stock' },
-        { id: 'd', text: 'The exchange closes temporarily' },
+        { id: 'a', text: 'It falls — the company has less money now' },
+        { id: 'b', text: 'Nothing — profits don\'t affect the price' },
+        { id: 'c', text: 'It rises — more people want to own a profitable company' },
+        { id: 'd', text: 'The stock is suspended from trading' },
       ],
       correctId: 'c',
-      correctFeedback:
-        'Exactly! Good news creates more demand — and more demand drives the price up.',
-      wrongFeedback:
-        'Almost! Good news means more buyers. More buyers = higher price. That\'s how the market reacts every day.',
+      correctFeedback: 'Exactly! Good news = more buyers. More buyers = higher price. The market reacts to new information almost instantly.',
+      wrongFeedback: 'Record profits mean the company is doing well — more investors want a piece of it. More demand pushes the price up.',
     },
+    quizzes: [
+      {
+        question: 'SpaceX goes public and everyone wants a piece. There are 10x more buyers than sellers. What happens to the price?',
+        answers: [
+          { id: 'a', text: 'It stays the same — supply and demand don\'t affect stocks' },
+          { id: 'b', text: 'It rises — too many buyers push the price up' },
+          { id: 'c', text: 'It falls — too many people buying scares the market' },
+          { id: 'd', text: 'Trading gets suspended until it balances out' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Correct! When demand exceeds supply, sellers can charge more. That\'s the entire mechanism behind rising stock prices.',
+        wrongFeedback: 'Stock prices are set by supply and demand. More buyers than sellers = sellers can ask for more = price rises. Simple as that.',
+      },
+      {
+        question: 'A news headline says: "CEO of MegaCorp resigns unexpectedly." What would you expect the stock to do immediately?',
+        answers: [
+          { id: 'a', text: 'Rise — the old CEO was probably holding it back' },
+          { id: 'b', text: 'Fall — uncertainty makes investors nervous and they sell' },
+          { id: 'c', text: 'Nothing — leadership changes don\'t affect stock prices' },
+          { id: 'd', text: 'Rise — the company gets a fresh start' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Right! Unexpected leadership changes create uncertainty. Nervous investors sell, which pushes the price down — at least until the situation becomes clearer.',
+        wrongFeedback: 'Unexpected events create uncertainty, and markets hate uncertainty. Investors sell first and ask questions later — that\'s why sudden news usually drops a stock initially.',
+      },
+      {
+        question: 'CleanEnergy AG has great technology but no profits yet. RealEstate AG earns stable profits every year but grows slowly. Which likely has a more volatile stock price?',
+        answers: [
+          { id: 'a', text: 'RealEstate AG — stable earnings cause more trading' },
+          { id: 'b', text: 'CleanEnergy AG — no profits means the price depends entirely on future hopes' },
+          { id: 'c', text: 'Both are equally volatile' },
+          { id: 'd', text: 'Neither — volatility only comes from bad management' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Spot on! Companies without profits are priced on hope and expectations. Any change in sentiment can swing the price dramatically. Profitable companies have an anchor — their actual earnings.',
+        wrongFeedback: 'Without real profits, a stock\'s price is based purely on expectations about the future. That makes it extremely sensitive to news, mood, and speculation — far more volatile than a steady profit-maker.',
+      },
+    ],
   },
   {
     slug: 'a3',
@@ -163,6 +196,70 @@ const aktienTopics: TopicConfig[] = [
       wrongFeedback:
         'Careful — RocketStartup could be at -60% in a year. High risk also means high loss potential, especially short-term.',
     },
+  },
+  {
+    slug: 'a4',
+    levelId: 'aktien',
+    title: 'Dividends',
+    subtitle: 'Earn money just by holding',
+    iconName: 'Money',
+    iconColor: 'hsl(215, 90%, 60%)',
+    iconBgColor: 'hsl(var(--level-aktien) / 0.12)',
+    explanation: {
+      mainText: 'Some companies regularly share part of their profits with shareholders — that\'s called a dividend. You don\'t need to sell anything, do nothing — just hold the stock and you automatically receive payouts.',
+      secondaryText: 'Not all companies pay dividends — large established companies do it more often than young growth companies.',
+    },
+    visualKey: 'pizza',
+    quiz: {
+      question: 'You hold 50 shares of StableBank AG. They announce a dividend of €2 per share. What do you receive?',
+      answers: [
+        { id: 'a', text: 'Nothing — you have to sell first' },
+        { id: 'b', text: '€100 — paid directly to you just for holding' },
+        { id: 'c', text: '€2 total — shared between all shareholders' },
+        { id: 'd', text: '50 additional shares' },
+      ],
+      correctId: 'b',
+      correctFeedback: 'Correct! 50 shares × €2 per share = €100 paid to you automatically. No selling, no action required — just hold.',
+      wrongFeedback: 'Dividends are paid per share. 50 shares × €2 = €100 goes straight to your account — just for being a shareholder.',
+    },
+    quizzes: [
+      {
+        question: 'Why do some companies pay dividends while others don\'t?',
+        answers: [
+          { id: 'a', text: 'All profitable companies are required to pay dividends by law' },
+          { id: 'b', text: 'Mature companies with stable profits share them; young growth companies reinvest to grow faster' },
+          { id: 'c', text: 'Only companies with more than 1,000 employees pay dividends' },
+          { id: 'd', text: 'Companies pay dividends when their stock price is falling' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Exactly right! A startup reinvesting every cent grows faster. An established company that already dominates its market rewards shareholders with regular cash instead.',
+        wrongFeedback: 'Dividends are a choice. Young companies reinvest profits to grow. Mature companies with steady earnings often share profits with shareholders as dividends — it\'s a sign of financial stability.',
+      },
+      {
+        question: 'You hold 100 shares of DividendKing AG worth €50 each. They pay a €1.50 dividend per share today. What happens to your total wealth?',
+        answers: [
+          { id: 'a', text: 'It increases by €150 — you now have the same shares plus €150 cash' },
+          { id: 'b', text: 'It stays the same — the stock price usually drops by roughly the dividend amount on payout day' },
+          { id: 'c', text: 'It doubles — dividends always double your money' },
+          { id: 'd', text: 'It decreases — the company is giving away its value' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'This is the nuance! On dividend day, the stock price typically drops by roughly the dividend amount — the company\'s cash just moved to you. Total wealth stays similar, it just shifted form.',
+        wrongFeedback: 'On dividend payout day, the stock price typically falls by roughly the dividend amount — because that cash has left the company. Your total wealth doesn\'t magically increase, it just shifts from stock value to cash.',
+      },
+      {
+        question: 'Maria holds dividend stocks and reinvests every payout back into more shares. Tom takes the cash and spends it. After 20 years, who likely has more wealth from the same starting investment?',
+        answers: [
+          { id: 'a', text: 'Tom — having cash is always better than more shares' },
+          { id: 'b', text: 'Maria — reinvesting dividends compounds growth dramatically over time' },
+          { id: 'c', text: 'Both the same — dividends are just moving money around' },
+          { id: 'd', text: 'Tom, if he invests the cash elsewhere' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Maria wins by a wide margin! Reinvested dividends buy more shares, which earn more dividends, which buy even more shares. That\'s compounding — and 20 years of it creates a massive difference.',
+        wrongFeedback: 'Reinvesting dividends is one of the most powerful wealth-building strategies. Each reinvested dividend buys more shares, which generates more dividends — a compounding cycle that grows dramatically over decades.',
+      },
+    ],
   },
   {
     slug: 'a5',
@@ -225,6 +322,70 @@ const aktienTopics: TopicConfig[] = [
       wrongFeedback:
         'That\'s the most expensive mistake investors make — panic selling locks in the loss. With a 15-year horizon, the market has almost always had time to recover.',
     },
+  },
+  {
+    slug: 'a7',
+    levelId: 'aktien',
+    title: 'Common Beginner Mistakes',
+    subtitle: 'Learn from others\' mistakes',
+    iconName: 'Warning',
+    iconColor: 'hsl(35, 95%, 50%)',
+    iconBgColor: 'hsl(35, 95%, 55% / 0.12)',
+    explanation: {
+      mainText: 'Most investing mistakes come from emotions, not logic. Panic-selling when markets drop, chasing stocks that already went up, or putting everything into one "sure thing" — these patterns cost beginners dearly.',
+      secondaryText: 'The good news: knowing the mistakes in advance is half the battle. The best investors aren\'t the smartest — they\'re the most disciplined.',
+    },
+    visualKey: 'riskCharts',
+    quiz: {
+      question: 'The market drops 25% in a week. Your portfolio is down €800. What is the classic beginner mistake?',
+      answers: [
+        { id: 'a', text: 'Staying invested and waiting for recovery' },
+        { id: 'b', text: 'Panic selling everything to stop further losses' },
+        { id: 'c', text: 'Investing a little more at the lower price' },
+        { id: 'd', text: 'Checking the portfolio less often' },
+      ],
+      correctId: 'b',
+      correctFeedback: 'Panic selling is the classic mistake. You lock in the loss permanently and then often miss the recovery. Markets have recovered from every crash in history.',
+      wrongFeedback: 'Panic selling turns a temporary paper loss into a real permanent one — and you often miss the recovery. It feels right emotionally but almost always costs money.',
+    },
+    quizzes: [
+      {
+        question: 'CryptoMoon AG went up 400% last month. Everyone is talking about it. Tom puts his entire savings in it. What mistake is Tom making?',
+        answers: [
+          { id: 'a', text: 'None — past gains predict future gains' },
+          { id: 'b', text: 'Chasing performance — buying after a huge run-up often means buying at the top' },
+          { id: 'c', text: 'Being too cautious — he should have invested sooner' },
+          { id: 'd', text: 'Diversifying too much by buying one stock' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Classic FOMO mistake! By the time everyone is talking about a stock, the big gains are often already gone. Buying at the peak means you\'re the last one in — and often the first to lose.',
+        wrongFeedback: 'This is called "chasing performance." Past gains don\'t guarantee future ones. When everyone is already excited about a stock, the price often already reflects that excitement — leaving little room for more gains.',
+      },
+      {
+        question: 'Anna checks her portfolio every hour and sells whenever a stock drops more than 2%. What is likely happening to her returns?',
+        answers: [
+          { id: 'a', text: 'They improve — she\'s protecting herself from losses' },
+          { id: 'b', text: 'They suffer — frequent trading racks up fees and causes emotional decisions' },
+          { id: 'c', text: 'They stay the same — checking more often has no effect' },
+          { id: 'd', text: 'They improve — she\'s always in the best stocks' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Over-trading is a very common beginner mistake. Every trade costs fees, and emotional decisions based on short-term moves almost always hurt long-term returns. Less is usually more.',
+        wrongFeedback: 'Checking your portfolio constantly leads to emotional decisions. Short-term drops are normal noise — reacting to them racks up transaction costs and causes selling at exactly the wrong moments.',
+      },
+      {
+        question: 'Which of these is NOT a common beginner mistake?',
+        answers: [
+          { id: 'a', text: 'Investing all savings in one "hot" stock tip from a friend' },
+          { id: 'b', text: 'Selling everything in a panic during a market crash' },
+          { id: 'c', text: 'Spreading investments across different sectors and holding long-term' },
+          { id: 'd', text: 'Waiting for the "perfect moment" to invest and never starting' },
+        ],
+        correctId: 'c',
+        correctFeedback: 'Exactly! Diversifying and holding long-term is the opposite of a mistake — it\'s the foundation of sensible investing. The other three are all classic errors.',
+        wrongFeedback: 'Spreading across sectors and holding long-term is actually the right approach. The mistakes are: concentrating in one tip, panic selling, and waiting forever for the perfect moment that never comes.',
+      },
+    ],
   },
 ];
 
