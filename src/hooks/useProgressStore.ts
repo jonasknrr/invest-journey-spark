@@ -7,6 +7,7 @@ export interface LessonResult {
   xpEarned: number;
   perfect: boolean;
   completedAt: number;
+  progress: number; // 0–1
 }
 
 export interface ProgressStore {
