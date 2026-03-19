@@ -134,6 +134,13 @@ const LearningPath = () => {
               <FiStar className="w-4 h-4 text-primary" fill="currentColor" />
               <span className="text-sm font-bold text-primary tabular-nums">{store.totalXP} XP</span>
             </div>
+            <button
+              onClick={() => navigate('/leaderboard')}
+              className="flex items-center justify-center w-9 h-9 rounded-full border border-border bg-background hover:bg-accent transition-colors"
+              aria-label="Leaderboard"
+            >
+              <span style={{ fontSize: 16 }}>🏆</span>
+            </button>
           </div>
         </div>
 
