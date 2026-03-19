@@ -47,7 +47,7 @@ const EtfOverview = () => {
           </div>
           <div>
             <h1 className="font-display text-2xl font-bold text-foreground">ETFs</h1>
-            <p className="text-muted-foreground text-sm font-body">Index-ETFs kaufen</p>
+            <p className="text-muted-foreground text-sm font-body">Buy index ETFs</p>
           </div>
         </motion.div>
 
