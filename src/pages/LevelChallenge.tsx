@@ -130,7 +130,7 @@ const LevelChallenge = () => {
               {scenario ? (
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
                   <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Notgroschen</p>
-                  <p className="font-display text-2xl font-bold tabular-nums">2.000 {currency}</p>
+                  <p className="font-display text-2xl font-bold tabular-nums">{levelId === 'chapter-3' ? '10.000' : '2.000'} {currency}</p>
                 </div>
               ) : (
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
