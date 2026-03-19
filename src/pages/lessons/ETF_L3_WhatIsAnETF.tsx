@@ -832,9 +832,9 @@ const ETF_L3_WhatIsAnETF = () => {
               onClick={e => e.stopPropagation()}
             >
               <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4" />
-              <h3 className="font-display text-lg font-bold text-foreground mb-3">Was ist ein ETF? 📖</h3>
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">What is an ETF? 📖</h3>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Ein ETF ist ein gepooltes Anlageinstrument das als offener Fonds oder Unit Investment Trust registriert ist und an einer regulierten Börse gehandelt wird. Der NAV (Net Asset Value) wird kontinuierlich als iNAV berechnet. Der AP-Mechanismus (Authorised Participants) hält den ETF-Preis durch Arbitrage nah am iNAV: Bei Aufschlag kaufen APs die Aktien, liefern sie an den ETF-Anbieter, erhalten neue ETF-Anteile und verkaufen sie — das schliesst die Lücke.
+                An ETF is a pooled investment vehicle registered as an open-end fund or unit investment trust, traded on a regulated exchange. The NAV (Net Asset Value) is continuously calculated as iNAV. The AP mechanism (Authorised Participants) keeps the ETF price close to the iNAV through arbitrage: when there's a premium, APs buy the underlying stocks, deliver them to the ETF provider, receive new ETF shares, and sell them — closing the gap.
               </p>
               <button
                 onClick={() => setShowDeepDive(false)}

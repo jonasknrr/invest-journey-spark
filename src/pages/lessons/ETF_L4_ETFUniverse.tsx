@@ -865,9 +865,9 @@ const ETF_L4_ETFUniverse = () => {
               onClick={e => e.stopPropagation()}
             >
               <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4" />
-              <h3 className="font-display text-lg font-bold text-foreground mb-3">Factor Investing & Thematische ETFs 📖</h3>
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">Factor Investing & Thematic ETFs 📖</h3>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Factor Investing basiert auf akademischer Forschung: Fama-French (1992) identifizierte Size (SMB) und Value (HML) Faktoren. Carhart (1997) ergänzte Momentum. Diese &ldquo;Risk Premia&rdquo; liefern historisch Überrenditen — aber mit Perioden starker Underperformance (z.B. Value 2007-2020). Thematische ETFs werden typischerweise auf dem Höhepunkt eines Hypes lanciert und underperformen danach im Schnitt den Gesamtmarkt.
+                Factor Investing is based on academic research: Fama-French (1992) identified Size (SMB) and Value (HML) factors. Carhart (1997) added Momentum. These "Risk Premia" have historically delivered excess returns — but with periods of strong underperformance (e.g. Value 2007–2020). Thematic ETFs are typically launched at the peak of a hype cycle and on average underperform the broad market afterward.
               </p>
               <button
                 onClick={() => setShowDeepDive(false)}
