@@ -424,7 +424,10 @@ const PortfolioSimulation = () => {
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
   const liquidityPassed = safeAmount >= 1000;
   const riskPassed = divScore >= 7;
-  const challengeStars = liquidityPassed ? (riskPassed ? 3 : 2) : 1;
+  const opportunityCostPenalty = safePct > 60;
+  const challengeStars = liquidityPassed
+    ? (riskPassed && !opportunityCostPenalty ? 3 : 2)
+    : 1;
 
   const assetAmounts = ASSET_CLASSES.map(ac => ({
     ...ac,
