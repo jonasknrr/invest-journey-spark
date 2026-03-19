@@ -80,6 +80,11 @@ const ETF_L1_WhatIsAnIndex = () => {
     }
   }, [hearts]);
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e1', Math.min(currentStep / 4, 1));
+  }, [currentStep]);
+
   // Completion effect
   useEffect(() => {
     if (currentStep === 4 && !completionResult) {
