@@ -50,8 +50,8 @@ const AktienOverview = () => {
             <TrendUp size={30} weight="fill" className="text-[hsl(var(--level-aktien))]" />
           </div>
           <div>
-            <h1 className="font-display text-2xl font-bold text-foreground">Aktien</h1>
-            <p className="text-muted-foreground text-sm font-body">Einzelaktien kaufen</p>
+             <h1 className="font-display text-2xl font-bold text-foreground">Stocks</h1>
+            <p className="text-muted-foreground text-sm font-body">Buy individual stocks</p>
           </div>
         </motion.div>
 
