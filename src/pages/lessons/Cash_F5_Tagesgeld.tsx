@@ -45,7 +45,7 @@ const quiz1: QuizConfig = {
 };
 
 const quiz2: QuizConfig = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question: 'You have CHF 8\'000 as an emergency reserve. You don\'t know when you\'ll need it — maybe tomorrow, maybe never. Where do you park it?',
   answers: [
     { id: 'a', text: 'Checking account — it\'s safest there' },
