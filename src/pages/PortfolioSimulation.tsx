@@ -504,7 +504,7 @@ const PortfolioSimulation = () => {
   // Bedingung C: Rest (~60k) in Aktien/ETFs AND good diversification
   const ch3_riskyTotal = riskyInvested;
   const ch3_riskyEnough = ch3_riskyTotal >= 50000; // at least ~50k in risky assets
-  const ch3_divGood = divResult.rating === 'Sehr gut' || divResult.rating === 'Gut';
+  const ch3_divGood = divResult.rating === 'Very Good' || divResult.rating === 'Good';
   const ch3_renditeOk = ch3_riskyEnough && ch3_divGood;
 
   // Chapter 1 conditions
