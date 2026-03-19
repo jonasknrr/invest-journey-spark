@@ -30,7 +30,7 @@ const chapterShortNames: Record<string, string> = {
   currencies: 'Currencies',
   crypto: 'Crypto',
   metals: 'Metals',
-  immobilien: 'RE',
+  realestate: 'RE',
 };
 
 /** Vertical spacing per node in the zigzag path (px) */

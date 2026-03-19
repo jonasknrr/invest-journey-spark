@@ -45,7 +45,7 @@ const ringColorMap: Record<string, string> = {
   currencies: '#92400E', // dark amber vs amber bg
   crypto: '#4C1D95',     // dark violet vs purple bg
   metals: '#78350F',     // dark amber vs metals bg
-  immobilien: '#7C2D12', // dark orange vs warm bg
+  realestate: '#7C2D12', // dark orange vs warm bg
 };
 
 const RING_SIZE = 88; // outer ring diameter
