@@ -462,14 +462,14 @@ const PortfolioSimulation = () => {
     .filter(fp => fp.durationYears === 5)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
 
-  // ── Chapter 3: New conditions (emergency 10k, car 20k in 3y, 70k long-term with ETFs) ──
-  const ch3_notgroschenOk = tagesgeldAmount >= 10000;
-  // Car fund: 20k in cash + fixed deposits ≤ 3 years
+  // ── Chapter 3: New conditions (emergency 1k, purchase 2k in 3y, 7k long-term with ETFs) ──
+  const ch3_notgroschenOk = tagesgeldAmount >= 1000;
+  // Purchase fund: 2k in cash + fixed deposits ≤ 3 years
   const ch3_carFundAvailable = tagesgeldAmount + within3YearsFestgeld;
-  // Must have emergency (10k in cash) AND car fund (20k in cash or FD ≤ 3y, separate from emergency)
-  const ch3_carOk = (ch3_carFundAvailable - 10000) >= 20000; // after setting aside 10k emergency
+  // Must have emergency (1k in cash) AND purchase fund (2k in cash or FD ≤ 3y, separate from emergency)
+  const ch3_carOk = (ch3_carFundAvailable - 1000) >= 2000; // after setting aside 1k emergency
   const ch3_riskyTotal = riskyInvested;
-  const ch3_riskyEnough = ch3_riskyTotal >= 60000; // at least ~60k in risky assets
+  const ch3_riskyEnough = ch3_riskyTotal >= 6000; // at least ~6k in risky assets
   const ch3_divGood = divResult.rating === 'Very Good' || divResult.rating === 'Good';
   const ch3_renditeOk = ch3_riskyEnough && ch3_divGood;
 
