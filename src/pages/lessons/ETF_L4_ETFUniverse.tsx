@@ -803,7 +803,7 @@ const ETF_L4_ETFUniverse = () => {
             <span className="text-5xl mb-4">🎉</span>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
             <p className="font-body text-sm text-muted-foreground mb-5">
-              Du kennst jetzt den ETF-Kosmos.
+              You now know the ETF universe.
             </p>
 
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left space-y-1">
