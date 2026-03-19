@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Vault, ArrowRight, Percent } from '@phosphor-icons/react';
+import { FiArrowLeft, FiLock, FiArrowRight, FiPercent } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { festgeldProducts } from '@/data/festgeldProducts';
 
@@ -23,7 +23,7 @@ const FestgeldOverview = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })} className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1">
-          <ArrowLeft size={16} /> Back
+          <FiArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -31,7 +31,7 @@ const FestgeldOverview = () => {
         {/* Title card */}
         <motion.div variants={itemVariants} className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-3xl bg-[hsl(var(--level-festgeld)/0.12)] flex items-center justify-center">
-            <Vault size={30} weight="fill" className="text-[hsl(var(--level-festgeld))]" />
+            <FiLock size={30} className="text-[hsl(var(--level-festgeld))]" />
           </div>
           <div>
              <h1 className="font-display text-2xl font-bold text-foreground">Fixed Deposit</h1>
@@ -82,7 +82,7 @@ const FestgeldOverview = () => {
                 <div className="flex-1 min-w-0">
                   <p className="font-display font-bold text-foreground text-[15px]">{product.title}</p>
                   <div className="flex items-center gap-1.5 mt-1">
-                    <Percent size={12} className="text-[hsl(var(--level-festgeld))]" />
+                    <FiPercent size={12} className="text-[hsl(var(--level-festgeld))]" />
                     <span className="text-xs text-muted-foreground font-body">
                       {product.interestRate.toFixed(1)} % p.a.
                     </span>
@@ -101,7 +101,7 @@ const FestgeldOverview = () => {
                   )}
                 </div>
 
-                <ArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
+                <FiArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
               </motion.button>
             );
           })}

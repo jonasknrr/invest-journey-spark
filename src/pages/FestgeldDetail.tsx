@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Vault, Check } from '@phosphor-icons/react';
+import { FiArrowLeft, FiLock, FiCheck } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getFestgeldProduct } from '@/data/festgeldProducts';
 
@@ -42,7 +42,7 @@ const FestgeldDetail = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}/festgeld`)} className="text-muted-foreground text-sm font-body flex items-center gap-1">
-          <ArrowLeft size={16} /> Back
+          <FiArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -50,7 +50,7 @@ const FestgeldDetail = () => {
       <div className="px-5 pt-2 pb-4">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-festgeld)/0.12)] flex items-center justify-center">
-            <Vault size={24} weight="fill" className="text-[hsl(var(--level-festgeld))]" />
+            <FiLock size={24} className="text-[hsl(var(--level-festgeld))]" />
           </div>
           <div>
             <h1 className="font-display text-xl font-bold text-foreground">{product.title}</h1>
@@ -150,7 +150,7 @@ const FestgeldDetail = () => {
               : 'bg-muted text-muted-foreground cursor-not-allowed'
           }`}
         >
-          <Check size={20} weight="bold" />
+          <FiCheck size={20} />
           {currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>

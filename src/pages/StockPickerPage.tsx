@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Lock, CheckCircle, Trophy, ArrowClockwise, X } from '@phosphor-icons/react';
+import { FiArrowLeft, FiLock, FiCheckCircle, FiAward, FiRefreshCw, FiX } from 'react-icons/fi';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { getStocksForGame, type StockSummary } from '@/services/marketData';
 
@@ -133,7 +133,7 @@ const StockPickerPage = () => {
               <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
                 goalMet ? 'bg-primary/15' : 'bg-destructive/15'
               }`}>
-                <Trophy size={24} weight="fill" className={goalMet ? 'text-primary' : 'text-destructive'} />
+                <FiAward size={24} className={goalMet ? 'text-primary' : 'text-destructive'} />
               </div>
               <div>
                 <p className="font-display font-bold text-foreground">{selectedStock.name}</p>
@@ -189,12 +189,12 @@ const StockPickerPage = () => {
           >
             {goalMet ? (
               <>
-                <CheckCircle size={20} weight="bold" />
+                <FiCheckCircle size={20} />
                 Continue
               </>
             ) : (
               <>
-                <ArrowClockwise size={20} weight="bold" />
+                <FiRefreshCw size={20} />
                 Try again
               </>
             )}
@@ -212,7 +212,7 @@ const StockPickerPage = () => {
           onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })}
           className="w-10 h-10 rounded-full bg-muted flex items-center justify-center mb-4"
         >
-          <ArrowLeft size={20} className="text-foreground" />
+          <FiArrowLeft size={20} className="text-foreground" />
         </button>
         <h1 className="font-display text-2xl font-bold text-foreground">Pick a stock</h1>
         <p className="font-body text-sm text-muted-foreground mt-1">
@@ -263,7 +263,7 @@ const StockPickerPage = () => {
                   <p className="text-xs text-muted-foreground font-body mt-0.5">{stock.ticker}</p>
                 </div>
                 <div className="flex items-center gap-1.5 bg-muted rounded-full px-3 py-1.5">
-                  <Lock size={12} className="text-muted-foreground" />
+                  <FiLock size={12} className="text-muted-foreground" />
                   <span className="text-[11px] text-muted-foreground font-body">Return hidden</span>
                 </div>
               </div>
@@ -293,7 +293,7 @@ const StockPickerPage = () => {
                 onClick={() => setModalStock(null)}
                 className="absolute top-4 right-4 w-8 h-8 rounded-full bg-muted flex items-center justify-center"
               >
-                <X size={16} className="text-muted-foreground" />
+                <FiX size={16} className="text-muted-foreground" />
               </button>
 
               <h2 className="font-display text-xl font-bold text-foreground mb-1">{modalStock.name}</h2>

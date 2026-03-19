@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Stack } from '@phosphor-icons/react';
+import { FiArrowLeft, FiArrowRight, FiLayers } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getAllEtfs, type EtfListItem } from '@/services/etfList';
 
@@ -36,14 +36,14 @@ const EtfOverview = () => {
           onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })}
           className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1"
         >
-          <ArrowLeft size={16} /> Back
+          <FiArrowLeft size={16} /> Back
         </button>
       </div>
 
       <motion.div className="px-5 space-y-5" variants={containerVariants} initial="hidden" animate="visible">
         <motion.div variants={itemVariants} className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-3xl bg-[hsl(var(--level-etfs)/0.12)] flex items-center justify-center">
-            <Stack size={30} weight="fill" className="text-[hsl(var(--level-etfs))]" />
+            <FiLayers size={30} className="text-[hsl(var(--level-etfs))]" />
           </div>
           <div>
             <h1 className="font-display text-2xl font-bold text-foreground">ETFs</h1>
@@ -97,7 +97,7 @@ const EtfOverview = () => {
                   className="w-full rounded-3xl bg-card border border-border shadow-card p-5 flex items-center gap-4 text-left active:bg-muted/50 transition-colors"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-etfs)/0.12)] flex items-center justify-center flex-shrink-0">
-                    <Stack size={22} weight="fill" className="text-[hsl(var(--level-etfs))]" />
+                    <FiLayers size={22} className="text-[hsl(var(--level-etfs))]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-display font-bold text-foreground text-[15px] truncate">{etf.name}</p>
@@ -112,7 +112,7 @@ const EtfOverview = () => {
                       {allocated > 0 ? `${allocated.toLocaleString('de-CH')} CHF` : '—'}
                     </p>
                   </div>
-                  <ArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
+                  <FiArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
                 </motion.button>
               );
             })}

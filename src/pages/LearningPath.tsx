@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { levels } from '@/data/levels';
 import LevelNode from '@/components/LevelNode';
-import { Sparkles } from 'lucide-react';
+import { FiStar } from 'react-icons/fi';
 import { useProgressStore } from '@/hooks/useProgressStore';
 
 const categoryLessonIds: Record<string, string[]> = {
@@ -131,7 +131,7 @@ const LearningPath = () => {
               <span className="text-orange-400 text-xs">Days</span>
             </div>
             <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full">
-              <Sparkles className="w-4 h-4 text-primary" fill="currentColor" />
+              <FiStar className="w-4 h-4 text-primary" fill="currentColor" />
               <span className="text-sm font-bold text-primary tabular-nums">{store.totalXP} XP</span>
             </div>
           </div>

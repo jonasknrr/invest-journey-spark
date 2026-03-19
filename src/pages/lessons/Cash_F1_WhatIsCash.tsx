@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Heart } from "lucide-react";
-import { Star } from "@phosphor-icons/react";
+import { FiX, FiHeart, FiStar } from 'react-icons/fi';
 import CashSortGame from "@/components/lessons/CashSortGame";
 import { useProgressStore } from "@/hooks/useProgressStore";
 import NoHeartsOverlay from "@/components/lessons/NoHeartsOverlay";
@@ -241,7 +240,7 @@ const Cash_F1_WhatIsCash = () => {
           onClick={() => navigate("/category/festgeld")}
           className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0"
         >
-          <X className="w-5 h-5 text-foreground" />
+          <FiX className="w-5 h-5 text-foreground" />
         </button>
         <div className="flex-1 h-2.5 bg-muted rounded-full overflow-hidden">
           <motion.div
@@ -254,7 +253,7 @@ const Cash_F1_WhatIsCash = () => {
         </div>
         <div className="flex items-center gap-0.5 flex-shrink-0">
           {[0, 1, 2].map((i) => (
-            <Heart
+            <FiHeart
               key={i}
               className={`w-5 h-5 transition-all ${
                 i < hearts ? "text-red-500 fill-red-500" : "text-muted-foreground/30"
@@ -356,9 +355,9 @@ const Cash_F1_WhatIsCash = () => {
                     damping: 15,
                   }}
                 >
-                  <Star
+                  <FiStar
                     size={i === 1 ? 64 : 48}
-                    weight="fill"
+                   
                     className="text-[hsl(45,100%,50%)]"
                     style={{
                       filter: "drop-shadow(0 0 12px hsl(45 100% 50% / 0.5))",

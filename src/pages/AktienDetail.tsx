@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, TrendUp, Check } from '@phosphor-icons/react';
+import { FiArrowLeft, FiTrendingUp, FiCheck } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getAllStocks, type StockListItem } from '@/services/stockList';
 
@@ -60,14 +60,14 @@ const AktienDetail = () => {
           onClick={() => navigate(`/challenge/${levelId}/aktien`)}
           className="text-muted-foreground text-sm font-body flex items-center gap-1"
         >
-          <ArrowLeft size={16} /> Back
+          <FiArrowLeft size={16} /> Back
         </button>
       </div>
 
       <div className="px-5 pt-2 pb-4">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-aktien)/0.12)] flex items-center justify-center">
-            <TrendUp size={24} weight="fill" className="text-[hsl(var(--level-aktien))]" />
+            <FiTrendingUp size={24} className="text-[hsl(var(--level-aktien))]" />
           </div>
           <div>
             <h1 className="font-display text-xl font-bold text-foreground">{stock.name}</h1>
@@ -143,7 +143,7 @@ const AktienDetail = () => {
               : 'bg-muted text-muted-foreground cursor-not-allowed'
           }`}
         >
-          <Check size={20} weight="bold" />
+          <FiCheck size={20} />
           {isReset ? 'Remove investment' : currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>

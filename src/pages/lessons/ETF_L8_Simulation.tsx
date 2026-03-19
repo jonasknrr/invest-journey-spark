@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart } from 'lucide-react';
+import { FiX, FiHeart } from 'react-icons/fi';
 
 const BLUE = '#1A56DB';
 
@@ -196,14 +196,14 @@ const ETF_L8_Simulation = () => {
       {/* Top bar */}
       <div className="px-4 pt-4 flex items-center gap-3">
         <button onClick={() => navigate('/category/etfs')} className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
-          <X className="w-5 h-5 text-foreground" />
+          <FiX className="w-5 h-5 text-foreground" />
         </button>
         <div className="flex-1 h-2.5 bg-muted rounded-full overflow-hidden">
           <motion.div className="h-full rounded-full" style={{ backgroundColor: BLUE }} initial={{ width: 0 }} animate={{ width: `${progress}%` }} transition={{ duration: 0.4, ease: 'easeOut' }} />
         </div>
         <div className="flex items-center gap-0.5 flex-shrink-0">
           {[0, 1, 2].map(i => (
-            <Heart key={i} className={`w-5 h-5 transition-all ${i < hearts ? 'text-red-500 fill-red-500' : 'text-muted-foreground/30'}`} />
+            <FiHeart key={i} className={`w-5 h-5 transition-all ${i < hearts ? 'text-red-500 fill-red-500' : 'text-muted-foreground/30'}`} />
           ))}
         </div>
       </div>

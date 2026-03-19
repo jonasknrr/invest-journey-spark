@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check, Lock, Play, Rocket } from 'lucide-react';
+import { FiArrowLeft, FiCheck, FiLock, FiPlay, FiZap } from 'react-icons/fi';
 import { levels } from '@/data/levels';
 import LevelIcon from '@/components/LevelIcon';
 import { useProgressStore } from '@/hooks/useProgressStore';
@@ -54,7 +54,7 @@ const CategoryDetail = () => {
           onClick={() => navigate('/learn')}
           className="absolute top-6 left-5 w-10 h-10 rounded-full bg-card/20 backdrop-blur flex items-center justify-center"
         >
-          <ArrowLeft className="w-5 h-5 text-primary-foreground" />
+          <FiArrowLeft className="w-5 h-5 text-primary-foreground" />
         </button>
 
         <div className="text-center max-w-sm mx-auto">
@@ -166,7 +166,7 @@ const CategoryDetail = () => {
                   {isCompleted && (
                     <>
                       <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                        <Check className="w-5 h-5 text-primary-foreground" strokeWidth={3} />
+                        <FiCheck className="w-5 h-5 text-primary-foreground" strokeWidth={3} />
                       </div>
                       {result && (
                         <div className="flex gap-0.5">
@@ -206,14 +206,14 @@ const CategoryDetail = () => {
                   {isCurrent && !isCompleted && progress === 0 && (
                     <>
                       <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                        <Play className="w-5 h-5 text-primary-foreground" fill="currentColor" />
+                        <FiPlay className="w-5 h-5 text-primary-foreground" fill="currentColor" />
                       </div>
                       <span className="text-[10px] font-medium text-muted-foreground">Start</span>
                     </>
                   )}
                   {isLocked && (
                     <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-                      <Lock className="w-4 h-4 text-muted-foreground/50" />
+                      <FiLock className="w-4 h-4 text-muted-foreground/50" />
                     </div>
                   )}
                 </div>
@@ -234,7 +234,7 @@ const CategoryDetail = () => {
           >
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-primary-foreground/20 flex items-center justify-center flex-shrink-0">
-                <Rocket className="w-6 h-6 text-primary-foreground" />
+                <FiZap className="w-6 h-6 text-primary-foreground" />
               </div>
               <div className="flex-1 min-w-0 text-left">
                 <h4 className="font-display text-base font-bold text-primary-foreground">

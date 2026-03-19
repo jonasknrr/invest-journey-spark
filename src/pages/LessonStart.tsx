@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen, Clock, Target } from 'lucide-react';
+import { FiArrowLeft, FiBookOpen, FiClock, FiTarget } from 'react-icons/fi';
 import { levels } from '@/data/levels';
 import LevelIcon from '@/components/LevelIcon';
 
@@ -16,20 +16,20 @@ const bgMap: Record<string, string> = {
   etfs: 'bg-level-etfs',
 };
 
-const lessonContent: Record<string, { bullets: { icon: typeof BookOpen; text: string }[] }> = {
+const lessonContent: Record<string, { bullets: { icon: typeof FiBookOpen; text: string }[] }> = {
   a3: {
     bullets: [
-      { icon: Target, text: 'Understand why prices fluctuate' },
-      { icon: BookOpen, text: 'Learn why volatility is not the enemy' },
-      { icon: Clock, text: 'Discover how time reduces risk' },
+      { icon: FiTarget, text: 'Understand why prices fluctuate' },
+      { icon: FiBookOpen, text: 'Learn why volatility is not the enemy' },
+      { icon: FiClock, text: 'Discover how time reduces risk' },
     ],
   },
 };
 
 const defaultBullets = [
-  { icon: Target, text: 'Clear learning goals for each lesson' },
-  { icon: BookOpen, text: 'Simple explanations, no jargon' },
-  { icon: Clock, text: 'Completed in just a few minutes' },
+  { icon: FiTarget, text: 'Clear learning goals for each lesson' },
+  { icon: FiBookOpen, text: 'Simple explanations, no jargon' },
+  { icon: FiClock, text: 'Completed in just a few minutes' },
 ];
 
 const LessonStart = () => {
@@ -62,7 +62,7 @@ const LessonStart = () => {
           onClick={() => navigate(`/category/${level.id}`)}
           className="w-10 h-10 rounded-full bg-muted flex items-center justify-center"
         >
-          <ArrowLeft className="w-5 h-5 text-foreground" />
+          <FiArrowLeft className="w-5 h-5 text-foreground" />
         </button>
       </div>
 

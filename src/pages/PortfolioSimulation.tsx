@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Trophy, TrendUp, Vault, ChartPie, Lightning, CoinVertical, ShieldWarning, Scales, Warning, Info, Brain, Star, Lock } from '@phosphor-icons/react';
+import { FiArrowLeft, FiAward, FiTrendingUp, FiLock, FiPieChart, FiZap, FiDollarSign, FiShield, FiSliders, FiAlertTriangle, FiInfo, FiCpu, FiStar } from 'react-icons/fi';
 import { calcDiversificationWithETFs, ETF_CONSTITUENTS } from '@/hooks/useDiversification';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { useBudget } from '@/contexts/BudgetContext';
@@ -17,11 +17,11 @@ const YEAR_LABELS = ['2006', '2007', '2008', '2009', '2010', '2011'];
 
 /* ── Asset class definitions ── */
 const ASSET_CLASSES = [
-  { key: 'aktien', label: 'Stocks', color: 'hsl(var(--level-aktien))', icon: TrendUp },
-  { key: 'etfs', label: 'ETFs', color: 'hsl(var(--level-etfs))', icon: ChartPie },
-  { key: 'festgeld', label: 'Fixed Deposit', color: 'hsl(var(--level-festgeld))', icon: Vault },
-  { key: 'crypto', label: 'Crypto', color: 'hsl(var(--level-crypto))', icon: Lightning },
-  { key: 'tagesgeld', label: 'Cash', color: 'hsl(var(--level-tagesgeld))', icon: CoinVertical },
+  { key: 'aktien', label: 'Stocks', color: 'hsl(var(--level-aktien))', icon: FiTrendingUp },
+  { key: 'etfs', label: 'ETFs', color: 'hsl(var(--level-etfs))', icon: FiPieChart },
+  { key: 'festgeld', label: 'Fixed Deposit', color: 'hsl(var(--level-festgeld))', icon: FiLock },
+  { key: 'crypto', label: 'Crypto', color: 'hsl(var(--level-crypto))', icon: FiZap },
+  { key: 'tagesgeld', label: 'Cash', color: 'hsl(var(--level-tagesgeld))', icon: FiDollarSign },
 ] as const;
 
 /* ── Chart helpers ── */
@@ -600,7 +600,7 @@ const PortfolioSimulation = () => {
           onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })}
           className="w-10 h-10 rounded-full bg-muted flex items-center justify-center mb-4"
         >
-          <ArrowLeft size={20} className="text-foreground" />
+          <FiArrowLeft size={20} className="text-foreground" />
         </button>
         <h1 className="font-display text-2xl font-bold text-foreground">Portfolio Simulation</h1>
         <p className="font-body text-sm text-muted-foreground mt-1">
@@ -719,9 +719,9 @@ const PortfolioSimulation = () => {
                       animate={{ opacity: 1, scale: 1, rotate: 0 }}
                       transition={{ delay: 0.3 + s * 0.2, type: 'spring', stiffness: 300, damping: 15 }}
                     >
-                      <Star
+                      <FiStar
                         size={40}
-                        weight="fill"
+                       
                         className={s <= challengeStars
                           ? 'text-amber-400 drop-shadow-[0_0_6px_hsl(45,100%,60%)]'
                           : 'text-muted-foreground/25'
@@ -831,7 +831,7 @@ const PortfolioSimulation = () => {
                         className="w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0"
                         style={{ backgroundColor: isZero ? 'hsl(var(--muted))' : `${ac.color}20` }}
                       >
-                        <Icon size={16} weight="bold" style={{ color: isZero ? 'hsl(var(--muted-foreground))' : ac.color }} />
+                        <Icon size={16} style={{ color: isZero ? 'hsl(var(--muted-foreground))' : ac.color }} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between mb-1">
@@ -896,7 +896,7 @@ const PortfolioSimulation = () => {
               <div className="rounded-3xl bg-card border border-border shadow-card p-5">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ backgroundColor: 'hsl(var(--level-festgeld) / 0.12)' }}>
-                    <Vault size={20} weight="fill" style={{ color: 'hsl(var(--level-festgeld))' }} />
+                    <FiLock size={20} style={{ color: 'hsl(var(--level-festgeld))' }} />
                   </div>
                   <div>
                     <p className="font-display font-bold text-foreground text-[15px]">Maturity Structure</p>
@@ -935,7 +935,7 @@ const PortfolioSimulation = () => {
               <div className="rounded-3xl bg-card border border-border shadow-card p-5">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-2xl bg-[hsl(var(--level-aktien))]/12 flex items-center justify-center">
-                    <ChartPie size={20} weight="fill" style={{ color: 'hsl(var(--level-aktien))' }} />
+                    <FiPieChart size={20} style={{ color: 'hsl(var(--level-aktien))' }} />
                   </div>
                   <div>
                     <p className="font-display font-bold text-foreground text-[15px]">Stock Allocation</p>
@@ -962,7 +962,7 @@ const PortfolioSimulation = () => {
                 {isChapter1 && (
                   <div className="absolute inset-0 z-10 rounded-3xl bg-background/60 backdrop-blur-[1px] flex flex-col items-center justify-center gap-3">
                     <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                      <Lock size={24} weight="fill" className="text-muted-foreground" />
+                      <FiLock size={24} className="text-muted-foreground" />
                     </div>
                     <p className="font-display text-sm font-bold text-muted-foreground text-center px-6 leading-snug">
                       This analysis section unlocks from Chapter 2 (Stocks) onwards.
@@ -973,7 +973,7 @@ const PortfolioSimulation = () => {
                 <div className={isChapter1 ? 'opacity-40 pointer-events-none select-none' : ''}>
                   <div className="flex items-center gap-3 mb-5">
                     <div className="w-10 h-10 rounded-2xl bg-destructive/10 flex items-center justify-center">
-                      <ShieldWarning size={20} weight="fill" className="text-destructive" />
+                      <FiShield size={20} className="text-destructive" />
                     </div>
                     <div>
                       <p className="font-display font-bold text-foreground text-[15px]">Risk & Stability</p>
@@ -985,13 +985,13 @@ const PortfolioSimulation = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       <div className="bg-card rounded-2xl p-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <Scales size={16} weight="bold" className="text-primary" />
+                          <FiSliders size={16} className="text-primary" />
                           <p className="font-display text-sm font-bold text-foreground">Diversification</p>
                           {!isChapter1 && (
                             <Popover>
                               <PopoverTrigger asChild>
                                 <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
-                                  <Info size={12} weight="bold" className="text-muted-foreground" />
+                                  <FiInfo size={12} className="text-muted-foreground" />
                                 </button>
                               </PopoverTrigger>
                               <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
@@ -1017,13 +1017,13 @@ const PortfolioSimulation = () => {
 
                       <div className="bg-card rounded-2xl p-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <Warning size={16} weight="bold" className="text-destructive" />
+                          <FiAlertTriangle size={16} className="text-destructive" />
                           <p className="font-display text-sm font-bold text-foreground">Max. Drawdown</p>
                           {!isChapter1 && (
                             <Popover>
                               <PopoverTrigger asChild>
                                 <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
-                                  <Info size={12} weight="bold" className="text-muted-foreground" />
+                                  <FiInfo size={12} className="text-muted-foreground" />
                                 </button>
                               </PopoverTrigger>
                               <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
@@ -1042,13 +1042,13 @@ const PortfolioSimulation = () => {
 
                       <div className="bg-card rounded-2xl p-4">
                         <div className="flex items-center gap-2 mb-2">
-                          <TrendUp size={16} weight="bold" className="text-muted-foreground" />
+                          <FiTrendingUp size={16} className="text-muted-foreground" />
                           <p className="font-display text-sm font-bold text-foreground">Volatility</p>
                           {!isChapter1 && (
                             <Popover>
                               <PopoverTrigger asChild>
                                 <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
-                                  <Info size={12} weight="bold" className="text-muted-foreground" />
+                                  <FiInfo size={12} className="text-muted-foreground" />
                                 </button>
                               </PopoverTrigger>
                               <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
@@ -1170,7 +1170,7 @@ const PortfolioSimulation = () => {
                       <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
                         isPerfect ? 'bg-primary/15' : 'bg-[hsl(210,70%,55%)]/15'
                       }`}>
-                        <Brain size={24} weight="fill" className={isPerfect ? 'text-primary' : 'text-[hsl(210,70%,55%)]'} />
+                        <FiCpu size={24} className={isPerfect ? 'text-primary' : 'text-[hsl(210,70%,55%)]'} />
                       </div>
                       <div>
                         <p className="font-display font-bold text-foreground text-[15px]">AI Analysis</p>

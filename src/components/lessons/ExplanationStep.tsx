@@ -1,12 +1,13 @@
 import { motion } from 'framer-motion';
-import { TrendUp, Warning, Clock, ChartPie } from '@phosphor-icons/react';
+import { FiTrendingUp, FiAlertTriangle, FiClock, FiPieChart } from 'react-icons/fi';
 import { pageVariants } from './LessonShared';
+import { IconType } from 'react-icons';
 
-const iconMap: Record<string, React.ComponentType<any>> = {
-  TrendUp,
-  Warning,
-  Clock,
-  ChartPie,
+const iconMap: Record<string, IconType> = {
+  TrendUp: FiTrendingUp,
+  Warning: FiAlertTriangle,
+  Clock: FiClock,
+  ChartPie: FiPieChart,
 };
 
 interface Props {
@@ -30,7 +31,7 @@ const ExplanationStep = ({
   secondaryText,
   onNext,
 }: Props) => {
-  const IconComp = iconMap[iconName] ?? TrendUp;
+  const IconComp = iconMap[iconName] ?? FiTrendingUp;
 
   return (
     <motion.div
@@ -47,7 +48,7 @@ const ExplanationStep = ({
           className="w-16 h-16 rounded-3xl flex items-center justify-center mx-auto mb-4"
           style={{ backgroundColor: iconBgColor }}
         >
-          <IconComp size={34} weight="fill" style={{ color: iconColor }} />
+          <IconComp size={34} style={{ color: iconColor }} />
         </div>
         <h1 className="font-display text-2xl font-bold text-foreground">{title}</h1>
         <p className="text-muted-foreground text-sm mt-1 font-body">{subtitle}</p>

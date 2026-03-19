@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { ArrowLeft } from '@phosphor-icons/react';
+import { FiArrowLeft } from 'react-icons/fi';
 import type { TopicConfig } from '@/data/topicConfig';
 import { StepDots, CompletionOverlay } from './LessonShared';
 import ExplanationStep from './ExplanationStep';
@@ -41,7 +41,7 @@ const LessonFlow = ({ config }: Props) => {
           onClick={() => navigate(-1)}
           className="w-10 h-10 rounded-full bg-muted flex items-center justify-center"
         >
-          <ArrowLeft size={20} className="text-foreground" />
+          <FiArrowLeft size={20} className="text-foreground" />
         </button>
         <div className="flex-1">
           <StepDots current={currentDot} total={totalDots} />
