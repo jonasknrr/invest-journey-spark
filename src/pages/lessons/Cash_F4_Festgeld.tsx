@@ -59,6 +59,20 @@ const quiz2: QuizConfig = {
     'Careful! Banks don\'t make exceptions — fixed deposits are locked until maturity. Getting out early means paying a penalty or losing all interest.',
 };
 
+const quiz3: QuizConfig = {
+  label: 'Question 3 of 3',
+  question: 'What is an important characteristic of the interest rate on a typical call money account?',
+  answers: [
+    { id: 'a', text: 'It is guaranteed to stay the exact same for 10 years.' },
+    { id: 'b', text: 'It is variable and can be changed by the bank depending on market conditions.' },
+    { id: 'c', text: 'It is legally required to always be higher than the inflation rate.' },
+    { id: 'd', text: 'It is only paid out if you do not withdraw any money for a full year.' },
+  ],
+  correctId: 'b',
+  correctFeedback: 'Correct! Call money rates are variable — the bank can adjust them anytime based on market conditions. That\'s the trade-off for flexibility.',
+  wrongFeedback: 'Not quite. Call money interest rates are variable — the bank can change them at any time depending on the market. That\'s the price of staying flexible.',
+};
+
 /* ── Component ── */
 const Cash_F4_Festgeld = () => {
   const navigate = useNavigate();
