@@ -174,7 +174,7 @@ const CashSortGame = ({ onComplete }: Props) => {
           >
             <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center mb-4">
               <p className="font-display text-sm font-bold text-green-800">
-                🎉 Perfekt! Du kennst jetzt den Unterschied.
+                🎉 Perfect! You now know the difference.
               </p>
             </div>
             <motion.button
