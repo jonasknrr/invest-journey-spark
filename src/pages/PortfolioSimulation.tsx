@@ -232,6 +232,7 @@ function analyzePortfolio(
   mdd: number,
   aktienPct: number,
   sharpeApprox: number,
+  safePct: number,
 ): CoachAnalysis {
   const praise: string[] = [];
   const critique: string[] = [];
@@ -245,7 +246,7 @@ function analyzePortfolio(
   }
   if (divScore > 7) {
     praise.push(
-      'Hervorragende Arbeit bei der Risikostreuung. Dein Portfolio ist breit aufgestellt und nicht von einer einzelnen Position abhängig.',
+      'Hervorragende Arbeit bei der Risikostreuung. Deine risikobehafteten Anlagen sind breit aufgestellt und nicht von einer einzelnen Position abhängig.',
     );
   }
   if (Math.abs(mdd) < 15 && aktienPct > 30) {
@@ -254,27 +255,42 @@ function analyzePortfolio(
     );
   }
 
-  // Critique
-  if (divScore < 3) {
+  // Critique — Klumpenrisiko only for risky assets
+  if (aktienPct > 0 && divScore < 3) {
     critique.push(
-      'Achtung, Klumpenrisiko! Du verlässt dich auf zu wenige Positionen. Wenn eine davon fällt, reißt sie dein ganzes Portfolio mit.',
+      'Achtung, Klumpenrisiko! Deine risikobehafteten Anlagen (Aktien, ETFs) sind auf zu wenige Positionen konzentriert. Wenn eine davon fällt, reißt sie dein ganzes Portfolio mit.',
     );
   }
-  if (Math.abs(mdd) > 40 || divScore < 3) {
+  if (Math.abs(mdd) > 40) {
     critique.push(
       'Das war eine harte Fahrt. Dein Portfolio hat in der Krise massiv an Wert verloren. Das zeigt, dass dein Risikomanagement lückenhaft war.',
     );
   }
-  if (sharpeApprox < 0.5 && rendite > 0) {
+
+  // Opportunity cost — too much in safe assets
+  if (safePct > 60) {
+    critique.push(
+      'Über ' + Math.round(safePct) + '% deines Budgets liegen in risikoarmen Anlagen (Tagesgeld/Festgeld). Das ist zwar sicher, aber du verzichtest auf erhebliches Renditepotenzial — das nennt man Opportunitätskosten.',
+    );
+  } else if (safePct > 40 && rendite < 5) {
+    critique.push(
+      'Ein grosser Teil deines Portfolios steckt in risikoarmen Anlagen. Das schützt dein Kapital, kostet aber Rendite. Prüfe, ob du nicht etwas mehr in Aktien oder ETFs investieren könntest.',
+    );
+  }
+
+  if (sharpeApprox < 0.5 && rendite > 0 && aktienPct > 20) {
     critique.push(
       'Deine Rendite ist zwar okay, aber du hast dafür ein unverhältnismäßig hohes Risiko auf dich genommen. Ein effizienteres Portfolio hätte die gleiche Rendite mit weniger Schwankung erreicht.',
     );
   }
 
   // Suggestion
-  if (divScore < 5) {
+  if (aktienPct > 0 && divScore < 5) {
     suggestion =
       'Um dein Portfolio krisenfester zu machen, solltest du dein Kapital auf mindestens 5–10 verschiedene Aktien aus unterschiedlichen Branchen oder Regionen verteilen. Ein Welt-ETF wäre ein guter Start.';
+  } else if (safePct > 60) {
+    suggestion =
+      'Überlege, einen Teil deiner sicheren Anlagen in breit diversifizierte ETFs umzuschichten. So kannst du langfristig deutlich mehr Rendite erzielen, ohne ein übermässiges Risiko einzugehen.';
   } else if (Math.abs(mdd) > 25) {
     suggestion =
       'Mische defensive Werte wie Festgeld oder Anleihen bei, um die extremen Schwankungen in Krisenzeiten abzufedern — auch wenn das etwas Rendite kostet.';
@@ -334,25 +350,29 @@ const PortfolioSimulation = () => {
   const goalMet = profit >= GOAL;
 
   // ── Risk metrics ──
-  const numPositions = Object.values(aktienAllocs).filter(v => v > 0).length
-    + Object.values(etfAllocs).filter(v => v > 0).length
-    + festgeldPositions.length
-    + (tagesgeldAmount > 0 ? 1 : 0);
+  // Only count risky positions for diversification (Aktien, ETFs) — Festgeld/Tagesgeld are safe and don't cause Klumpenrisiko
+  const numRiskyPositions = Object.values(aktienAllocs).filter(v => v > 0).length
+    + Object.values(etfAllocs).filter(v => v > 0).length;
 
-  // Concentration penalty: if any single position > 30%, reduce score
-  const allPositionPcts = [
-    ...Object.values(aktienAllocs).filter(v => v > 0).map(v => (v / invested) * 100),
-    ...Object.values(etfAllocs).filter(v => v > 0).map(v => (v / invested) * 100),
-    ...festgeldPositions.map(f => (f.amount / invested) * 100),
-    ...(tagesgeldAmount > 0 ? [(tagesgeldAmount / invested) * 100] : []),
-  ];
-  const maxPositionPct = allPositionPcts.length > 0 ? Math.max(...allPositionPcts) : 0;
-  const concentrationPenalty = maxPositionPct > 30 ? (maxPositionPct - 30) / 10 : 0;
+  const riskyInvested = Object.values(aktienAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0)
+    + Object.values(etfAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0);
 
-  const divScoreRaw = invested > 0
-    ? Math.min(10, (numPositions / (invested / 500)) * 5)
-    : 0;
+  // Concentration penalty: only for risky positions — if any single risky position > 30% of risky total
+  const riskyPositionPcts = riskyInvested > 0 ? [
+    ...Object.values(aktienAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
+    ...Object.values(etfAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
+  ] : [];
+  const maxRiskyPositionPct = riskyPositionPcts.length > 0 ? Math.max(...riskyPositionPcts) : 0;
+  const concentrationPenalty = maxRiskyPositionPct > 30 ? (maxRiskyPositionPct - 30) / 10 : 0;
+
+  const divScoreRaw = riskyInvested > 0
+    ? Math.min(10, (numRiskyPositions / (riskyInvested / 500)) * 5)
+    : 10; // If no risky assets, diversification is not an issue
   const divScore = Math.max(0, Math.round((divScoreRaw - concentrationPenalty) * 10) / 10);
+
+  // Safe asset percentage (Tagesgeld + Festgeld)
+  const safeTotal = tagesgeldAmount + festgeldPositions.reduce((s, f) => s + f.amount, 0);
+  const safePct = invested > 0 ? (safeTotal / invested) * 100 : 0;
 
   const maxDrawdown = useMemo(() => {
     if (values.length < 2) return 0;
@@ -393,8 +413,8 @@ const PortfolioSimulation = () => {
 
   // Coach analysis
   const coachAnalysis = useMemo(
-    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox),
-    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox],
+    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox, safePct),
+    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox, safePct],
   );
 
   // ── Challenge evaluation (Liquidity + Risk) ──
@@ -858,7 +878,7 @@ const PortfolioSimulation = () => {
                         </div>
                         <span className="font-display text-lg font-bold text-foreground tabular-nums w-12 text-right">{divScore.toFixed(1)}</span>
                       </div>
-                      <p className="font-body text-[11px] text-muted-foreground">{numPositions} Position{numPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} $</p>
+                      <p className="font-body text-[11px] text-muted-foreground">{numRiskyPositions} risikobehaftete Position{numRiskyPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} $</p>
                     </div>
 
                     {/* Max Drawdown */}
