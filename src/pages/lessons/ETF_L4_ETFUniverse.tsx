@@ -873,7 +873,7 @@ const ETF_L4_ETFUniverse = () => {
                 onClick={() => setShowDeepDive(false)}
                 className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm"
               >
-                Schliessen
+                Close
               </button>
             </motion.div>
           </motion.div>
