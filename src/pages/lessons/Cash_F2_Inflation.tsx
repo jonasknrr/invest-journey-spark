@@ -90,32 +90,44 @@ const Cash_F2_Inflation = () => {
   // Step 1 — slider
   const [sliderYear, setSliderYear] = useState(2004);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
-  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const startTimeRef = useRef<number | null>(null);
+  const DURATION_MS = 4000; // 4 seconds for full sweep
 
   const stopAutoPlay = useCallback(() => {
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current);
-      autoPlayRef.current = null;
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
     }
+    startTimeRef.current = null;
     setIsAutoPlaying(false);
   }, []);
 
   const startAutoPlay = useCallback(() => {
     setSliderYear(2004);
     setIsAutoPlaying(true);
-    autoPlayRef.current = setInterval(() => {
-      setSliderYear(prev => {
-        if (prev >= 2024) {
-          stopAutoPlay();
-          return 2024;
-        }
-        return prev + 1;
-      });
-    }, 200);
+    startTimeRef.current = null;
+
+    const tick = (timestamp: number) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const elapsed = timestamp - startTimeRef.current;
+      const progress = Math.min(elapsed / DURATION_MS, 1);
+      // ease-out curve for smoother feel
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const year = 2004 + eased * 20;
+      setSliderYear(year);
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        setSliderYear(2024);
+        stopAutoPlay();
+      }
+    };
+    rafRef.current = requestAnimationFrame(tick);
   }, [stopAutoPlay]);
 
   useEffect(() => {
-    return () => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); };
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, []);
 
   // Step 2 — quiz 1
