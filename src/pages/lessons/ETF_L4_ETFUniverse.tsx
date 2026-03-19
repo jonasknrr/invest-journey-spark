@@ -801,7 +801,7 @@ const ETF_L4_ETFUniverse = () => {
             transition={{ duration: 0.4 }}
           >
             <span className="text-5xl mb-4">🎉</span>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lektion abgeschlossen!</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
             <p className="font-body text-sm text-muted-foreground mb-5">
               Du kennst jetzt den ETF-Kosmos.
             </p>
@@ -840,7 +840,7 @@ const ETF_L4_ETFUniverse = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Zur nächsten Lektion →' : 'Weiter →'}
+              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}
