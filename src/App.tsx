@@ -31,6 +31,8 @@ import TagesgeldOverview from "./pages/TagesgeldOverview";
 import TagesgeldDetail from "./pages/TagesgeldDetail";
 import EtfOverview from "./pages/EtfOverview";
 import EtfDetail from "./pages/EtfDetail";
+import AktienOverview from "./pages/AktienOverview";
+import AktienDetail from "./pages/AktienDetail";
 import PortfolioSimulation from "./pages/PortfolioSimulation";
 import NotFound from "./pages/NotFound";
 
