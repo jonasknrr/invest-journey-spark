@@ -45,13 +45,13 @@ const TagesgeldOverview = () => {
           <div className="flex-1 rounded-3xl bg-card border border-border shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Verfügbar</p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-              {remaining.toLocaleString('de-CH')} €
+              {remaining.toLocaleString('de-CH')} CHF
             </p>
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-tagesgeld)/0.08)] border border-[hsl(var(--level-tagesgeld)/0.15)] shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">In Tagesgeld</p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-tagesgeld))] tabular-nums">
-              {tagesgeldTotal.toLocaleString('de-CH')} €
+              {tagesgeldTotal.toLocaleString('de-CH')} CHF
             </p>
           </div>
         </motion.div>
@@ -91,7 +91,7 @@ const TagesgeldOverview = () => {
                 {/* Allocated amount */}
                 <div className="text-right flex-shrink-0">
                   <p className={`font-display font-bold tabular-nums text-[15px] ${allocated > 0 ? 'text-[hsl(var(--level-tagesgeld))]' : 'text-muted-foreground'}`}>
-                    {allocated > 0 ? `${allocated.toLocaleString('de-CH')} €` : '—'}
+                    {allocated > 0 ? `${allocated.toLocaleString('de-CH')} CHF` : '—'}
                   </p>
                 </div>
 

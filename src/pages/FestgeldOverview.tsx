@@ -44,13 +44,13 @@ const FestgeldOverview = () => {
           <div className="flex-1 rounded-3xl bg-card border border-border shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Verfügbar</p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-              {remaining.toLocaleString('de-CH')} €
+              {remaining.toLocaleString('de-CH')} CHF
             </p>
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-festgeld)/0.08)] border border-[hsl(var(--level-festgeld)/0.15)] shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">In Festgeld</p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-festgeld))] tabular-nums">
-              {festgeldTotal.toLocaleString('de-CH')} €
+              {festgeldTotal.toLocaleString('de-CH')} CHF
             </p>
           </div>
         </motion.div>
@@ -92,11 +92,11 @@ const FestgeldOverview = () => {
                 {/* Allocated amount */}
                 <div className="text-right flex-shrink-0">
                   <p className={`font-display font-bold tabular-nums text-[15px] ${allocated > 0 ? 'text-[hsl(var(--level-festgeld))]' : 'text-muted-foreground'}`}>
-                    {allocated > 0 ? `${allocated.toLocaleString('de-CH')} €` : '—'}
+                    {allocated > 0 ? `${allocated.toLocaleString('de-CH')} CHF` : '—'}
                   </p>
                   {allocated > 0 && (
                     <p className="text-xs text-muted-foreground font-body tabular-nums mt-0.5">
-                      +{(allocated * product.interestRate / 100 * product.durationYears).toFixed(0)} € Zinsen
+                      +{(allocated * product.interestRate / 100 * product.durationYears).toFixed(0)} CHF Zinsen
                     </p>
                   )}
                 </div>

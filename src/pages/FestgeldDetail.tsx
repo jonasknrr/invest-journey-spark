@@ -66,7 +66,7 @@ const FestgeldDetail = () => {
         {/* Available budget */}
         <div className="bg-muted/50 rounded-2xl px-5 py-2.5 mb-6">
           <p className="text-xs text-muted-foreground font-body text-center">
-            Verfügbar: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} €</span>
+            Verfügbar: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} CHF</span>
           </p>
         </div>
 
@@ -81,7 +81,7 @@ const FestgeldDetail = () => {
             >
               {inputValue || '0'}
             </motion.span>
-            <span className="font-display text-2xl font-bold text-muted-foreground">€</span>
+            <span className="font-display text-2xl font-bold text-muted-foreground">CHF</span>
           </div>
           {isOverBudget && (
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-destructive text-sm font-body mt-2">
@@ -101,7 +101,7 @@ const FestgeldDetail = () => {
               Erwartete Zinsen nach {product.durationYears} {product.durationYears === 1 ? 'Jahr' : 'Jahren'}
             </p>
             <p className="font-display text-xl font-bold text-primary tabular-nums mt-0.5">
-              +{projectedReturn.toFixed(0)} €
+              +{projectedReturn.toFixed(0)} CHF
             </p>
           </motion.div>
         )}
@@ -115,7 +115,7 @@ const FestgeldDetail = () => {
                 onClick={() => handleQuickAmount(amt)}
                 className="h-10 px-5 rounded-2xl bg-muted text-muted-foreground font-display font-bold text-sm hover:bg-muted/80 transition-colors"
               >
-                {amt.toLocaleString('de-CH')} €
+                {amt.toLocaleString('de-CH')} CHF
               </button>
             ))}
             <button
