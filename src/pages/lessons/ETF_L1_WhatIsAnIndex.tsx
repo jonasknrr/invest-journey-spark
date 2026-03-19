@@ -307,7 +307,7 @@ const ETF_L1_WhatIsAnIndex = () => {
                         className="w-full h-12 rounded-full font-display font-bold text-white text-sm"
                         style={{ backgroundColor: '#16a34a' }}
                       >
-                        Meinen Index erstellen →
+                        Create My Index →
                       </motion.button>
                     </motion.div>
                   )}
