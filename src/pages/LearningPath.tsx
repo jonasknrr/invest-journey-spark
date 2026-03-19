@@ -134,10 +134,6 @@ const LearningPath = () => {
               <p className="text-xs text-muted-foreground">Gesamtfortschritt</p>
               <p className="text-xl font-bold text-foreground tabular-nums">{totalPercent}% geschafft</p>
             </div>
-            <div className="text-right">
-              <p className="text-xs text-muted-foreground">Lektionen</p>
-              <p className="text-base font-bold text-foreground tabular-nums">{completedTotal}/{totalLessons}</p>
-            </div>
           </div>
           <div className="h-3 rounded-full bg-muted overflow-hidden">
             <motion.div
