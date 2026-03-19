@@ -147,29 +147,6 @@ const LearningPath = () => {
               transition={{ duration: 0.8, ease: 'easeOut' }}
             />
           </div>
-          {/* Mini chapter bars */}
-          <div className="flex gap-2 mt-3">
-            {levels.filter(l => categoryLessonIds[l.id]).map(level => {
-              const { percent } = getChapterProgress(level.id);
-              const color = chapterColors[level.id] || '#D1D5DB';
-              return (
-                <div key={level.id} className="flex-1 min-w-0">
-                  <div className="w-full bg-muted rounded-full h-1.5 overflow-hidden">
-                    <motion.div
-                      className="h-1.5 rounded-full"
-                      style={{ backgroundColor: color }}
-                      initial={{ width: 0 }}
-                      animate={{ width: `${percent}%` }}
-                      transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-                    />
-                  </div>
-                  <p className="text-[10px] text-muted-foreground text-center mt-1 truncate">
-                    {chapterShortNames[level.id] || level.title}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
 
