@@ -63,8 +63,45 @@ const aktienTopics: TopicConfig[] = [
       wrongFeedback:
         'Almost! You\'re a co-owner of the company — its success is your success too.',
     },
+    quizzes: [
+      {
+        question: 'Du kaufst eine Aktie von BurgerBros AG. Was bist du jetzt?',
+        answers: [
+          { id: 'a', text: 'Ein Kunde von BurgerBros' },
+          { id: 'b', text: 'Ein kleiner Miteigentümer von BurgerBros' },
+          { id: 'c', text: 'Ein Mitarbeiter von BurgerBros' },
+          { id: 'd', text: 'Der Chef von BurgerBros' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Genau! Eine Aktie = ein kleines Stück des Unternehmens. Du bist jetzt Miteigentümer — egal wie klein der Anteil ist.',
+        wrongFeedback: 'Eine Aktie ist ein Besitzanteil. Wer eine Aktie kauft, wird Miteigentümer — auch wenn es nur ein winziger Anteil ist.',
+      },
+      {
+        question: 'Warum verkaufen Unternehmen überhaupt Aktien an andere Menschen?',
+        answers: [
+          { id: 'a', text: 'Weil sie dazu gesetzlich verpflichtet sind' },
+          { id: 'b', text: 'Um Geld für Wachstum zu sammeln, ohne einen Kredit aufzunehmen' },
+          { id: 'c', text: 'Um ihre Mitarbeiter zu bezahlen' },
+          { id: 'd', text: 'Damit der Aktienkurs steigt' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Richtig! Aktien ausgeben ist wie eine Finanzierungsrunde — das Unternehmen bekommt Kapital, die Käufer bekommen einen Anteil.',
+        wrongFeedback: 'Unternehmen verkaufen Aktien freiwillig um Kapital zu sammeln — als Alternative zu einem Bankkredit. Die Käufer werden dafür Miteigentümer.',
+      },
+      {
+        question: 'SolarMax AG verdoppelt ihren Gewinn dieses Jahr. Du hältst 10 Aktien. Was passiert wahrscheinlich?',
+        answers: [
+          { id: 'a', text: 'Nichts — Gewinne betreffen nur die Geschäftsführung' },
+          { id: 'b', text: 'Du musst Steuern auf den Unternehmensgewinn zahlen' },
+          { id: 'c', text: 'Der Wert deiner 10 Aktien steigt wahrscheinlich — du profitierst als Miteigentümer' },
+          { id: 'd', text: 'Du bekommst automatisch 10 weitere Aktien gratis' },
+        ],
+        correctId: 'c',
+        correctFeedback: 'Genau! Als Miteigentümer profitierst du vom Erfolg des Unternehmens — der Markt bewertet ein profitableres Unternehmen höher, also steigt der Aktienkurs.',
+        wrongFeedback: 'Als Miteigentümer gehört dir ein Stück des Erfolgs. Wenn das Unternehmen mehr verdient, wird es am Markt höher bewertet — und deine Aktien werden mehr wert.',
+      },
+    ],
   },
-  {
     slug: 'a2',
     levelId: 'aktien',
     title: 'How do Returns Arise?',
