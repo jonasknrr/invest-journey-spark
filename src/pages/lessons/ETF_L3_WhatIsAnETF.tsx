@@ -398,7 +398,7 @@ const ETF_L3_WhatIsAnETF = () => {
                   {/* Counter */}
                   <div className="space-y-0.5 mt-auto pt-2">
                     <p className="font-body text-xs text-muted-foreground">
-                      Transaktionen:{' '}
+                      Transaction:{' '}
                       <motion.span
                         key={`tc-${buyCount}`}
                         className="font-bold text-red-600 dark:text-red-400 inline-block"
