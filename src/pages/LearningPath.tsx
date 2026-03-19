@@ -110,7 +110,12 @@ const LearningPath = () => {
               </svg>
             </div>
             <div>
-              <p className="text-xs text-muted-foreground leading-tight">Leon's</p>
+              {(() => {
+                const userName = localStorage.getItem('investify_name')?.trim();
+                return userName ? (
+                  <p className="text-xs text-muted-foreground leading-tight">{userName}'s</p>
+                ) : null;
+              })()}
               <p className="text-base font-bold text-primary leading-tight">Investify</p>
             </div>
           </div>
