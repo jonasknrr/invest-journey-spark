@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Trophy, TrendUp, Vault, ChartPie, Lightning, CoinVertical, ShieldWarning, Scales, Warning, Info, Brain, Star, Lock } from '@phosphor-icons/react';
+import { calcDiversification } from '@/hooks/useDiversification';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { useBudget } from '@/contexts/BudgetContext';
 import { festgeldProducts } from '@/data/festgeldProducts';
@@ -257,7 +258,7 @@ function analyzePortfolio(
   }
 
   // Critique — Klumpenrisiko only for risky assets
-  if (aktienPct > 0 && divScore < 3) {
+  if (aktienPct > 0 && divScore < 5) {
     critique.push(
       'Achtung, Klumpenrisiko! Deine risikobehafteten Anlagen (Aktien, ETFs) sind auf zu wenige Positionen konzentriert. Wenn eine davon fällt, reißt sie dein ganzes Portfolio mit.',
     );
@@ -353,26 +354,22 @@ const PortfolioSimulation = () => {
   const profitPct = invested > 0 ? Math.round((profit / invested) * 10000) / 100 : 0;
   const goalMet = profit >= GOAL;
 
-  // ── Risk metrics ──
-  // Only count risky positions for diversification (Aktien, ETFs) — Festgeld/Tagesgeld are safe and don't cause Klumpenrisiko
-  const numRiskyPositions = Object.values(aktienAllocs).filter(v => v > 0).length
-    + Object.values(etfAllocs).filter(v => v > 0).length;
+  // ── Risk metrics (HHI-based diversification) ──
+  const riskyPositionAmounts = [
+    ...Object.values(aktienAllocs).filter(v => v > 0),
+    ...Object.values(etfAllocs).filter(v => v > 0),
+  ];
+  const riskyInvested = riskyPositionAmounts.reduce((s, v) => s + v, 0);
+  const numRiskyPositions = riskyPositionAmounts.length;
 
-  const riskyInvested = Object.values(aktienAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0)
-    + Object.values(etfAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0);
+  const divResult = useMemo(
+    () => calcDiversification(riskyPositionAmounts, riskyInvested),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(riskyPositionAmounts), riskyInvested],
+  );
 
-  // Concentration penalty: only for risky positions — if any single risky position > 30% of risky total
-  const riskyPositionPcts = riskyInvested > 0 ? [
-    ...Object.values(aktienAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
-    ...Object.values(etfAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
-  ] : [];
-  const maxRiskyPositionPct = riskyPositionPcts.length > 0 ? Math.max(...riskyPositionPcts) : 0;
-  const concentrationPenalty = maxRiskyPositionPct > 30 ? (maxRiskyPositionPct - 30) / 10 : 0;
-
-  const divScoreRaw = riskyInvested > 0
-    ? Math.min(10, (numRiskyPositions / (riskyInvested / 500)) * 5)
-    : 10; // If no risky assets, diversification is not an issue
-  const divScore = Math.max(0, Math.round((divScoreRaw - concentrationPenalty) * 10) / 10);
+  // Backward compat: divScore 0-10 scale for coach analysis
+  const divScore = divResult.riskPassed ? 8 : divResult.rating === 'Ausreichend' ? 5 : 2;
 
   // Safe asset percentage (Tagesgeld + Festgeld)
   const safeTotal = tagesgeldAmount + festgeldPositions.reduce((s, f) => s + f.amount, 0);
@@ -441,7 +438,7 @@ const PortfolioSimulation = () => {
   // Default evaluation (for non-chapter-1)
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
   const liquidityPassed = isChapter1 ? ch1_notgroschenOk : safeAmount >= 1000;
-  const riskPassed = divScore >= 7;
+  const riskPassed = divResult.riskPassed;
   const opportunityCostPenalty = isChapter1
     ? !ch1_restInLongTerm // For ch1: penalty if rest is NOT in long-term
     : safePct > 60;
@@ -735,7 +732,7 @@ const PortfolioSimulation = () => {
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         riskPassed ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
                       }`}>
-                        {riskPassed ? '✓' : '✗'} Diversifikation: {divScore.toFixed(1)}/10
+                        {riskPassed ? '✓' : '✗'} Diversifikation: {divResult.rating}
                       </span>
                     </>
                   )}
@@ -924,30 +921,22 @@ const PortfolioSimulation = () => {
                                 </button>
                               </PopoverTrigger>
                               <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
-                                Misst, wie gut dein Kapital verteilt ist.
+                                Bewertet nach dem Herfindahl-Hirschman-Index (HHI) und deinem Kapital. Je mehr Geld du investierst, desto mehr verschiedene Wertpapiere solltest du halten, um das Risiko zu streuen.
                               </PopoverContent>
                             </Popover>
                           )}
                         </div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="flex-1 h-3 rounded-full bg-muted overflow-hidden">
-                            {!isChapter1 && (
-                              <motion.div
-                                className="h-full rounded-full"
-                                style={{ backgroundColor: divScore >= 7 ? 'hsl(var(--primary))' : divScore >= 4 ? 'hsl(30,90%,55%)' : 'hsl(var(--destructive))' }}
-                                initial={{ width: 0 }}
-                                animate={{ width: `${divScore * 10}%` }}
-                                transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
-                              />
-                            )}
-                          </div>
-                          <span className="font-display text-lg font-bold text-foreground tabular-nums w-12 text-right">
-                            {isChapter1 ? '—' : divScore.toFixed(1)}
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <span
+                            className="font-display text-xl font-bold"
+                            style={{ color: isChapter1 ? 'hsl(var(--muted-foreground))' : divResult.color }}
+                          >
+                            {isChapter1 ? '—' : divResult.rating}
                           </span>
                         </div>
                         {!isChapter1 && (
                           <p className="font-body text-[11px] text-muted-foreground">
-                            {numRiskyPositions} risikobehaftete Position{numRiskyPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} {currency}
+                            HHI: {divResult.hhi.toLocaleString('de-CH')} | {divResult.numPositions} Position{divResult.numPositions !== 1 ? 'en' : ''} bei {riskyInvested.toLocaleString('de-CH')} {currency}
                           </p>
                         )}
                       </div>
@@ -1010,10 +999,10 @@ const PortfolioSimulation = () => {
               // Build weakness bullets
               const weaknesses: { icon: string; text: string }[] = [];
 
-              if (aktienPct > 0 && divScore < 7) {
+              if (aktienPct > 0 && !divResult.riskPassed) {
                 weaknesses.push({
                   icon: '⚠️',
-                  text: 'Klumpenrisiko: Dein Kapital ist auf zu wenige Anlageklassen oder Positionen verteilt.',
+                  text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}).`,
                 });
               }
               if (Math.abs(maxDrawdown) * 100 > 25) {
