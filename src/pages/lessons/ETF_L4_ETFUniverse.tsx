@@ -807,9 +807,9 @@ const ETF_L4_ETFUniverse = () => {
             </p>
 
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left space-y-1">
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 ETF-Kategorien: Breit, Land, Sektor, Thema, Faktor</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Je spezifischer, desto mehr Risiko</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 US-ETFs = nicht diversifiziert</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 ETF categories: Broad, Country, Sector, Thematic, Factor</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ The more specific, the higher the risk</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 US ETFs = not diversified</p>
               <p className="font-body text-sm text-green-700 dark:text-green-300">✅ MSCI World = maximale Streuung in einem ETF</p>
             </div>
 
