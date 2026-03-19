@@ -91,7 +91,7 @@ const Onboarding = () => {
           whileTap={canProceed ? { scale: 0.95 } : undefined}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         >
-          LET'S GO 🚀
+          LET'S GO
         </motion.button>
       </div>
     </div>
