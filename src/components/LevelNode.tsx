@@ -125,6 +125,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
             width: RING_SIZE - (RING_STROKE + 1) * 2,
             height: RING_SIZE - (RING_STROKE + 1) * 2,
             boxShadow: isLocked ? 'none' : shadowMap[level.colorKey],
+            ...(isLocked ? { backgroundColor: '#D1D5DB', color: '#F9FAFB' } : {}),
           }}
         >
           {isCompleted && (
