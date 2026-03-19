@@ -83,10 +83,9 @@ const LevelChallenge = () => {
 
   const intro = levelId ? levelIntros[levelId] : undefined;
 
-  // All asset classes unlocked for testing (no greying out)
-  const unlockedSlugs = new Set(assetClasses.map(a => a.slug));
+  const unlockedSlugs = levelId ? getUnlockedSlugs(levelId) : new Set(assetClasses.map(a => a.slug));
   const chapterLabel = chapterConfig?.label ?? 'Challenge';
-  const unlockedCount = assetClasses.length;
+  const unlockedCount = assetClasses.filter(a => unlockedSlugs.has(a.slug)).length;
 
   const remaining = getRemaining();
   const allocated = getAllocatedTotal();
