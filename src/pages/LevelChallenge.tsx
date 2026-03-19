@@ -96,7 +96,7 @@ const LevelChallenge = () => {
     <div className="min-h-screen bg-background pb-10">
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate('/learn')} className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1">
-          ← Zurück
+          ← Back
         </button>
       </div>
 
