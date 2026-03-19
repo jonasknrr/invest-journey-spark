@@ -31,7 +31,7 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question: 'What distinguishes call money from a fixed deposit?',
   answers: [
     { id: 'a', text: 'Call money always earns more interest than fixed deposits' },
