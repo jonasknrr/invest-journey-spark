@@ -532,8 +532,16 @@ const Cash_F3_Liquidity = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* No Hearts Overlay */}
+      {noHeartsScreen === 'showing' && (
+        <NoHeartsOverlay
+          onRestart={() => { setCurrentStep(0); setHearts(3); setPlaced({}); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onContinue={() => setNoHeartsScreen('none')}
+        />
+      )}
     </div>
-  );
 };
 
 /* ── Drag Card sub-component ── */

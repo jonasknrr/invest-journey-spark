@@ -460,6 +460,15 @@ const Cash_F5_Tagesgeld = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* No Hearts Overlay */}
+      {noHeartsScreen === 'showing' && (
+        <NoHeartsOverlay
+          onRestart={() => { setCurrentStep(0); setHearts(3); setDurIdx(0); setTappedDurations(new Set([0])); setShowTagesgeldHint(false); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onContinue={() => setNoHeartsScreen('none')}
+        />
+      )}
     </div>
   );
 };
