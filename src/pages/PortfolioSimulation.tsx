@@ -309,7 +309,7 @@ const PortfolioSimulation = () => {
   const { getProductAmount, getAssetTotal, allocations, totalBudget } = useBudget();
   const chapterConfig = levelId ? getChapterConfig(levelId) : undefined;
   const isChapter1 = levelId === 'chapter-1';
-  const currency = chapterConfig?.scenario?.currency ?? '$';
+  const currency = chapterConfig?.scenario?.currency ?? 'CHF';
   const [animProgress, setAnimProgress] = useState(0);
   const [animDone, setAnimDone] = useState(false);
   const [stockReturns, setStockReturns] = useState<Map<string, StockReturn>>(new Map());
