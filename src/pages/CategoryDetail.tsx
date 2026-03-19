@@ -4,8 +4,6 @@ import { ArrowLeft, Check, Lock, Play } from 'lucide-react';
 import { levels } from '@/data/levels';
 import LevelIcon from '@/components/LevelIcon';
 import { useProgressStore } from '@/hooks/useProgressStore';
-import LevelIcon from '@/components/LevelIcon';
-import { useProgressStore } from '@/hooks/useProgressStore';
 
 const bgMap: Record<string, string> = {
   festgeld: 'bg-level-festgeld',
