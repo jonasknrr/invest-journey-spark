@@ -26,7 +26,7 @@ const QuizStep = ({ question, answers, correctId, correctFeedback, wrongFeedback
       className="flex-1 flex flex-col px-6 pb-8"
     >
       <p className="font-display text-sm font-semibold text-muted-foreground text-center mt-2 mb-1">
-        Kurze Frage
+        Quick question
       </p>
       <h2 className="font-display text-lg font-bold text-foreground text-center leading-snug mb-6 max-w-xs mx-auto">
         {question}
