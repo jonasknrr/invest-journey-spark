@@ -22,11 +22,11 @@ interface ETFCategory {
 }
 
 const categories: ETFCategory[] = [
-  { id: 0, emoji: '🌍', title: 'Breit (Broad Market)', playlist: 'All Music in the World', examples: 'MSCI World, S&P 500, FTSE All-World', holdings: '1.500–3.000', fee: '0.07–0.20%', risk: 1 },
-  { id: 1, emoji: '🏳', title: 'Land / Region', playlist: 'Top 50 Germany', examples: 'iShares MSCI Germany, Euro Stoxx 50', holdings: '40–200', fee: '0.15–0.40%', risk: 2 },
-  { id: 2, emoji: '🏭', title: 'Sektor', playlist: 'Only Rock Music', examples: 'Clean Energy, Healthcare, Financials', holdings: '50–150', fee: '0.25–0.50%', risk: 3 },
-  { id: 3, emoji: '💡', title: 'Thematisch', playlist: 'Workout Songs', examples: 'AI & Robotics, Cybersecurity, Clean Water', holdings: '25–60', fee: '0.35–0.75%', risk: 4 },
-  { id: 4, emoji: '🧲', title: 'Faktor / Smart Beta', playlist: 'Only 5-Star Tracks', examples: 'MSCI World Value, Min Volatility, Momentum', holdings: '200–400', fee: '0.25–0.50%', risk: 2 },
+  { id: 0, emoji: '🌍', title: 'Broad Market', playlist: 'All Music in the World', examples: 'MSCI World, S&P 500, FTSE All-World', holdings: '1,500–3,000', fee: '0.07–0.20%', risk: 1 },
+  { id: 1, emoji: '🏳', title: 'Country / Region', playlist: 'Top 50 Germany', examples: 'iShares MSCI Germany, Euro Stoxx 50', holdings: '40–200', fee: '0.15–0.40%', risk: 2 },
+  { id: 2, emoji: '🏭', title: 'Sector', playlist: 'Only Rock Music', examples: 'Clean Energy, Healthcare, Financials', holdings: '50–150', fee: '0.25–0.50%', risk: 3 },
+  { id: 3, emoji: '💡', title: 'Thematic', playlist: 'Workout Songs', examples: 'AI & Robotics, Cybersecurity, Clean Water', holdings: '25–60', fee: '0.35–0.75%', risk: 4 },
+  { id: 4, emoji: '🧲', title: 'Factor / Smart Beta', playlist: 'Only 5-Star Tracks', examples: 'MSCI World Value, Min Volatility, Momentum', holdings: '200–400', fee: '0.25–0.50%', risk: 2 },
 ];
 
 const riskColor = (level: number) => {
@@ -59,7 +59,7 @@ const scenarios: Scenario[] = [
     options: [
       { emoji: '🌍', label: 'MSCI All Country World', correct: false },
       { emoji: '💡', label: 'Cybersecurity ETF', correct: true },
-      { emoji: '🏭', label: 'Healthcare Sektor ETF', correct: false },
+      { emoji: '🏭', label: 'Healthcare Sector ETF', correct: false },
     ],
     wrongExplanation: 'A thematic ETF focuses exactly on a trend topic — but with higher risk.',
   },
@@ -807,9 +807,9 @@ const ETF_L4_ETFUniverse = () => {
             </p>
 
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left space-y-1">
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 ETF-Kategorien: Breit, Land, Sektor, Thema, Faktor</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Je spezifischer, desto mehr Risiko</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 US-ETFs = nicht diversifiziert</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 ETF categories: Broad, Country, Sector, Thematic, Factor</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ The more specific, the higher the risk</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ 5 US ETFs = not diversified</p>
               <p className="font-body text-sm text-green-700 dark:text-green-300">✅ MSCI World = maximale Streuung in einem ETF</p>
             </div>
 
