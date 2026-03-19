@@ -300,8 +300,13 @@ const LessonFlow = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [canAdvance, setCanAdvance] = useState(false);
+  const [hearts, setHearts] = useState(3);
+  const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
+  const { completeLesson, updateLessonProgress } = useProgressStore();
 
   const config = lessonConfigs[lessonId ?? 'a1'] ?? lessonConfigs.a1;
+  const lessonStoreId = `${categoryId}-${lessonId}`;
 
   // Story and Completion slides allow immediate advance
   useEffect(() => {
@@ -310,9 +315,29 @@ const LessonFlow = () => {
     }
   }, [currentStep]);
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress(lessonStoreId, Math.min(currentStep / 4, 1));
+  }, [currentStep]);
+
+  // No hearts effect
+  useEffect(() => {
+    if (hearts === 0) {
+      setNoHeartsScreen('showing');
+      try { navigator.vibrate?.([300, 100, 300]); } catch {}
+    }
+  }, [hearts]);
+
+  // Completion effect
+  useEffect(() => {
+    if (currentStep === 4 && !completionResult) {
+      const r = completeLesson(lessonStoreId, hearts);
+      setCompletionResult(r);
+    }
+  }, [currentStep]);
+
   const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
   const goBack = () => navigate(`/category/${categoryId}`);
-  const finishLesson = () => navigate(`/challenge/${categoryId}`, { state: { fromSubPage: true } });
 
   const handleNext = () => {
     if (!canAdvance) return;
@@ -320,8 +345,12 @@ const LessonFlow = () => {
       setCanAdvance(false);
       setCurrentStep(prev => prev + 1);
     } else {
-      finishLesson();
+      navigate(`/category/${categoryId}`);
     }
+  };
+
+  const handleWrongAnswer = () => {
+    setHearts(h => Math.max(0, h - 1));
   };
 
   const renderInteraction = () => {
