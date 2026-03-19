@@ -223,9 +223,6 @@ const LearningPath = () => {
                         ★
                       </span>
                     ))}
-                  </div>
-                    </div>
-                  </div>
                 )}
               </div>
             </div>
