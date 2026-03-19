@@ -72,6 +72,8 @@ const App = () => (
             <Route path="/challenge/:levelId/tagesgeld" element={<TagesgeldOverview />} />
             <Route path="/challenge/:levelId/etfs/:ticker" element={<EtfDetail />} />
             <Route path="/challenge/:levelId/etfs" element={<EtfOverview />} />
+            <Route path="/challenge/:levelId/aktien/:ticker" element={<AktienDetail />} />
+            <Route path="/challenge/:levelId/aktien" element={<AktienOverview />} />
             <Route path="/challenge/:levelId/simulation" element={<PortfolioSimulation />} />
             <Route path="/challenge/:levelId/:topicSlug" element={<LevelChallenge />} />
             <Route path="/challenge/:levelId" element={<LevelChallenge />} />
