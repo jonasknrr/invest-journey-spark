@@ -498,9 +498,9 @@ const ETF_L4_ETFUniverse = () => {
                       className="rounded-2xl bg-primary/5 border border-primary/15 p-4 mb-4"
                     >
                       <p className="font-body text-sm text-primary leading-relaxed">
-                        Mit NUR &ldquo;Alle Musik der Welt&rdquo;:<br />
-                        Loss: nur -5% = -CHF 50<br />
-                        <span className="font-bold">→ That\'s diversification.</span>
+                        With ONLY &ldquo;All Music in the World&rdquo;:<br />
+                        Loss: only -5% = -CHF 50<br />
+                        <span className="font-bold">→ That's diversification.</span>
                       </p>
                     </motion.div>
 
