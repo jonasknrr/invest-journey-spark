@@ -36,7 +36,7 @@ const EtfOverview = () => {
           onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })}
           className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1"
         >
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
