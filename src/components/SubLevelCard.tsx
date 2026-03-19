@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, Lock, Play } from 'lucide-react';
+import { FiCheck, FiLock, FiPlay } from 'react-icons/fi';
 import ProgressRing from './ProgressRing';
 import type { SubLevel } from '@/data/levels';
 
