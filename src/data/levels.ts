@@ -37,6 +37,10 @@ export const levels: Level[] = [
       { id: 'f3', title: 'What is Liquidity?', description: 'Why availability matters', status: 'current', duration: '2 Min' },
       { id: 'f4', title: 'What is Call Money?', description: 'Flexible saving with returns', status: 'current', duration: '3 Min' },
       { id: 'f5', title: 'What is Fixed Deposit?', description: 'More interest, less flexibility', status: 'current', duration: '3 Min' },
+      { id: 'f6', title: 'The Emergency Fund', description: 'Your financial safety net', status: 'current', duration: '3 Min' },
+      { id: 'f7', title: 'Real vs. Nominal Interest', description: 'What you actually earn', status: 'current', duration: '3 Min' },
+      { id: 'f8', title: 'Deposit Protection', description: 'Why your bank account is safe', status: 'current', duration: '3 Min' },
+      { id: 'f9', title: 'Opportunity Cost', description: 'The price of doing nothing', status: 'current', duration: '3 Min' },
     ],
   },
   {
