@@ -169,21 +169,16 @@ const CategoryDetail = () => {
                         <Check className="w-5 h-5 text-primary-foreground" strokeWidth={3} />
                       </div>
                       {result && (
-                        <>
-                          <div className="flex gap-0.5">
-                            {[0, 1, 2].map(h => (
-                              <div
-                                key={h}
-                                className={`w-2 h-2 rounded-full ${
-                                  h < (result.heartsRemaining ?? 0) ? 'bg-destructive' : 'bg-muted-foreground/30'
-                                }`}
-                              />
-                            ))}
-                          </div>
-                          <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">
-                            +{result.xpEarned} XP
-                          </span>
-                        </>
+                        <div className="flex gap-0.5">
+                          {[0, 1, 2].map(h => (
+                            <div
+                              key={h}
+                              className={`w-2 h-2 rounded-full ${
+                                h < (result.heartsRemaining ?? 0) ? 'bg-destructive' : 'bg-muted-foreground/30'
+                              }`}
+                            />
+                          ))}
+                        </div>
                       )}
                     </>
                   )}
