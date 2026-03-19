@@ -74,7 +74,7 @@ const FestgeldOverview = () => {
                 {/* Duration badge */}
                 <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-festgeld)/0.12)] flex items-center justify-center flex-shrink-0">
                   <span className="font-display font-bold text-[hsl(var(--level-festgeld))] text-sm">
-                    {product.durationYears}J
+                    {product.durationYears}Y
                   </span>
                 </div>
 
