@@ -262,8 +262,8 @@ const LearningPath = () => {
           width: 56,
           height: 56,
           borderRadius: '50%',
-          backgroundColor: '#059669',
-          boxShadow: '0 4px 12px rgba(5, 150, 105, 0.4)',
+          backgroundColor: '#1E293B',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
         }}
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
