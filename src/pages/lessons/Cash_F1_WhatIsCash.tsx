@@ -49,6 +49,23 @@ const QUIZ_2 = {
     'Not quite — cash doesn\'t shine through returns, but through safety and instant availability. That\'s its greatest advantage.',
 };
 
+const QUIZ_3 = {
+  label: 'Question 3 of 3',
+  question:
+    'Besides physical banknotes and coins, which of the following is also considered a highly liquid \'cash equivalent\'?',
+  answers: [
+    { id: 'a', text: 'A long-term real estate investment' },
+    { id: 'b', text: 'A volatile cryptocurrency' },
+    { id: 'c', text: 'A call money account (savings account)' },
+    { id: 'd', text: 'A 10-year government bond' },
+  ],
+  correctId: 'c',
+  correctFeedback:
+    'Correct! A call money account is highly liquid and safe — making it a classic cash equivalent.',
+  wrongFeedback:
+    'Not quite — real estate, crypto, and long-term bonds are not easily or quickly convertible to cash without risk. A call money account is the closest to cash.',
+};
+
 /* ── Quiz slide component ── */
 const QuizSlide = ({
   quiz,
