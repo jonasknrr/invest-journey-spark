@@ -272,7 +272,7 @@ const ETF_L3_WhatIsAnETF = () => {
                         <span className="text-2xl">🎵</span>
                         <span className="font-display text-sm font-bold text-foreground flex-1">Top 50 Playlist</span>
                         <span className="text-lg text-muted-foreground">→</span>
-                        <span className="font-display text-sm font-bold text-foreground">Spotify Abo</span>
+                        <span className="font-display text-sm font-bold text-foreground">Spotify Sub</span>
                       </div>
                       <p className="font-body text-xs text-muted-foreground">Already existed • Spotify makes it listenable</p>
                     </div>
