@@ -202,7 +202,7 @@ const LevelChallenge = () => {
                     </motion.div>
                   </TooltipTrigger>
                   <TooltipContent>
-                    <p>Diese Anlageklasse wird in einem späteren Kapitel freigeschaltet.</p>
+                    <p>This asset class unlocks in a later chapter.</p>
                   </TooltipContent>
                 </Tooltip>
               );
