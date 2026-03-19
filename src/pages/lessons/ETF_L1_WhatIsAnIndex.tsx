@@ -386,7 +386,7 @@ const ETF_L1_WhatIsAnIndex = () => {
                     onClick={() => { setSelectedStocks([]); setGamePhase('pick'); }}
                     className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors mx-auto"
                   >
-                    ← Nochmal wählen
+                    ← Choose Again
                   </button>
                 </motion.div>
               )}
