@@ -149,7 +149,7 @@ const LevelChallenge = () => {
                 <Lightning size={22} weight="fill" className="text-primary" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-body font-medium">Verfügbares Budget</p>
+                <p className="text-xs text-muted-foreground font-body font-medium">Available budget</p>
                 <p className="font-display text-xl font-bold text-foreground tabular-nums">{remaining.toLocaleString('de-CH')} {currency}</p>
               </div>
             </div>
