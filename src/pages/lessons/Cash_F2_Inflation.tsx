@@ -96,7 +96,10 @@ const Cash_F2_Inflation = () => {
   // Step 3 — quiz 2
   const [q2Answer, setQ2Answer] = useState<string | null>(null);
 
-  // Step 4 — completion star anim
+  // Step 4 — quiz 3
+  const [q3Answer, setQ3Answer] = useState<string | null>(null);
+
+  // Step 5 — completion star anim
   const [starsShown, setStarsShown] = useState(0);
 
   const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
