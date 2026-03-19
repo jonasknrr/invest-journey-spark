@@ -97,7 +97,7 @@ const TagesgeldDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             className="bg-[hsl(var(--level-tagesgeld)/0.08)] border border-[hsl(var(--level-tagesgeld)/0.15)] rounded-2xl px-5 py-3 mt-4 text-center"
           >
-            <p className="text-xs text-muted-foreground font-body">Zinssatz</p>
+            <p className="text-xs text-muted-foreground font-body">Interest rate</p>
             <p className="font-display text-xl font-bold text-[hsl(var(--level-tagesgeld))] tabular-nums mt-0.5">
               {product.interestRate.toFixed(1)} % p.a.
             </p>
