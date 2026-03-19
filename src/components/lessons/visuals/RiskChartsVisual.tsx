@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play } from '@phosphor-icons/react';
+import { FiPlay } from 'react-icons/fi';
 import { pageVariants } from '../LessonShared';
 
 const stablePath = 'M 0 80 Q 20 78, 40 75 Q 60 72, 80 70 Q 100 73, 120 68 Q 140 65, 160 62 Q 180 60, 200 58 Q 220 55, 240 50 Q 260 48, 280 45 Q 300 43, 320 40';

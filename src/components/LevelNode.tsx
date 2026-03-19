@@ -130,7 +130,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
         >
           {isCompleted && (
             <div className="absolute -top-1 -right-1 w-7 h-7 rounded-full bg-primary flex items-center justify-center shadow-soft">
-              <Check className="w-4 h-4 text-primary-foreground" strokeWidth={3} />
+              <FiCheck className="w-4 h-4 text-primary-foreground" strokeWidth={3} />
             </div>
           )}
           <LevelIcon name={level.iconName} size={34} />

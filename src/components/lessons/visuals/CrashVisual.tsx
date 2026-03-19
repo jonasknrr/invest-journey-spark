@@ -59,7 +59,7 @@ const CrashVisual = ({ onNext }: { onNext: () => void }) => {
         {!crashed && (
           <motion.button onClick={handleCrash} whileTap={{ scale: 0.96 }}
             className="flex items-center gap-2 h-12 px-6 rounded-full bg-destructive/10 border border-destructive/20 font-display font-bold text-destructive text-sm">
-            <Lightning size={18} weight="fill" /> Trigger market crash 💥
+            <FiZap size={18} /> Trigger market crash 💥
           </motion.button>
         )}
 

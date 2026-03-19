@@ -53,7 +53,7 @@ const SubLevelCard = ({ subLevel, index, accentColor, onClick }: SubLevelCardPro
           )}
           {isLocked && (
             <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
-              <Lock className="w-4 h-4 text-muted-foreground/50" />
+              <FiLock className="w-4 h-4 text-muted-foreground/50" />
             </div>
           )}
         </div>
