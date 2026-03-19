@@ -183,9 +183,6 @@ const CategoryDetail = () => {
                           <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">
                             +{result.xpEarned} XP
                           </span>
-                          {result.perfect && (
-                            <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">⭐</span>
-                          )}
                         </>
                       )}
                     </>
