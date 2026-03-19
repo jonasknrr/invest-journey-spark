@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, TrendUp } from '@phosphor-icons/react';
+import { FiArrowLeft, FiArrowRight, FiTrendingUp } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getAllStocks, type StockListItem } from '@/services/stockList';
 

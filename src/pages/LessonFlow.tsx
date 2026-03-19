@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart } from 'lucide-react';
+import { FiX, FiHeart } from 'react-icons/fi';
 import StorySlide from './lessonSlides/StorySlide';
 import PizzaSlide from './lessonSlides/PizzaSlide';
 import ScaleSlide from './lessonSlides/ScaleSlide';

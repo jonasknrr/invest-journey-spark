@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check } from '@phosphor-icons/react';
-import { PiggyBank } from 'lucide-react';
+import { FiArrowLeft, FiCheck, FiDollarSign } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getTagesgeldProduct } from '@/data/tagesgeldProducts';
 

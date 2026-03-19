@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, BookOpen, Clock, Target } from 'lucide-react';
+import { FiArrowLeft, FiBookOpen, FiClock, FiTarget } from 'react-icons/fi';
 import { levels } from '@/data/levels';
 import LevelIcon from '@/components/LevelIcon';
 

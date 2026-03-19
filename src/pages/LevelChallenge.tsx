@@ -2,20 +2,20 @@ import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
-  TrendUp,
-  ChartBar,
-  Stack,
-  Vault,
-  Coins,
-  Certificate,
-  Trophy,
-  Lightning,
-  ArrowRight,
-  DiamondsFour,
-  CurrencyBtc,
-  Lock,
-  Scales,
-} from '@phosphor-icons/react';
+  FiTrendingUp,
+  FiBarChart2,
+  FiLayers,
+  FiLock as FiVault,
+  FiDollarSign,
+  FiFileText,
+  FiAward,
+  FiZap,
+  FiArrowRight,
+  FiGrid,
+  FiLock,
+  FiSliders,
+} from 'react-icons/fi';
+import { BiBitcoin } from 'react-icons/bi';
 import { Button } from '@/components/ui/button';
 import LevelIntroOverlay from '@/components/LevelIntroOverlay';
 import { levelIntros } from '@/data/levelIntros';

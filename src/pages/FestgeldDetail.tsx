@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Vault, Check } from '@phosphor-icons/react';
+import { FiArrowLeft, FiLock, FiCheck } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getFestgeldProduct } from '@/data/festgeldProducts';
 

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Trophy, TrendUp, Vault, ChartPie, Lightning, CoinVertical, ShieldWarning, Scales, Warning, Info, Brain, Star, Lock } from '@phosphor-icons/react';
+import { FiArrowLeft, FiAward, FiTrendingUp, FiLock, FiPieChart, FiZap, FiDollarSign, FiShield, FiSliders, FiAlertTriangle, FiInfo, FiCpu, FiStar } from 'react-icons/fi';
 import { calcDiversificationWithETFs, ETF_CONSTITUENTS } from '@/hooks/useDiversification';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { useBudget } from '@/contexts/BudgetContext';

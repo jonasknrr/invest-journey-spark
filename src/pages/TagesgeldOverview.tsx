@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Percent } from '@phosphor-icons/react';
-import { PiggyBank } from 'lucide-react';
+import { FiArrowLeft, FiArrowRight, FiPercent, FiDollarSign } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { tagesgeldProducts } from '@/data/tagesgeldProducts';
 

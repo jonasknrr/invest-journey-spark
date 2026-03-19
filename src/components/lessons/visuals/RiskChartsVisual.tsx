@@ -49,7 +49,7 @@ const RiskChartsVisual = ({ onNext }: { onNext: () => void }) => {
         {!played && (
           <motion.button onClick={() => setPlayed(true)} whileTap={{ scale: 0.96 }}
             className="flex items-center gap-2 h-12 px-6 rounded-full bg-card border border-border shadow-card font-display font-bold text-foreground text-sm">
-            <Play size={18} weight="fill" className="text-primary" /> Play animation
+            <FiPlay size={18} className="text-primary" /> Play animation
           </motion.button>
         )}
 

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { levels } from '@/data/levels';
 import LevelNode from '@/components/LevelNode';
-import { Sparkles } from 'lucide-react';
+import { FiStar } from 'react-icons/fi';
 import { useProgressStore } from '@/hooks/useProgressStore';
 
 const categoryLessonIds: Record<string, string[]> = {

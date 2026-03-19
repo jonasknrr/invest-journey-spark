@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Stack, Check } from '@phosphor-icons/react';
+import { FiArrowLeft, FiLayers, FiCheck } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getAllEtfs, type EtfListItem } from '@/services/etfList';
 

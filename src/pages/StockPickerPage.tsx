@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Lock, CheckCircle, Trophy, ArrowClockwise, X } from '@phosphor-icons/react';
+import { FiArrowLeft, FiLock, FiCheckCircle, FiAward, FiRefreshCw, FiX } from 'react-icons/fi';
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
 import { getStocksForGame, type StockSummary } from '@/services/marketData';
 

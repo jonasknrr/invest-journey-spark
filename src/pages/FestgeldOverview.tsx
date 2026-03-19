@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Vault, ArrowRight, Percent } from '@phosphor-icons/react';
+import { FiArrowLeft, FiLock, FiArrowRight, FiPercent } from 'react-icons/fi';
 import { useBudget } from '@/contexts/BudgetContext';
 import { festgeldProducts } from '@/data/festgeldProducts';
 
