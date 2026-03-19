@@ -478,7 +478,7 @@ const ETF_L3_WhatIsAnETF = () => {
                           <div className="grid grid-cols-2 gap-2">
                             <div>
                               <p className="font-body text-[10px] text-amber-700 dark:text-amber-300 font-semibold mb-0.5">You:</p>
-                              <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">CHF {buyCount} Gebühren</p>
+                              <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">CHF {buyCount} Charge</p>
                               <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">{buyCount} Transaktionen</p>
                             </div>
                             <div>
