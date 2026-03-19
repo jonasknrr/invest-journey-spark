@@ -140,7 +140,7 @@ const Cash_F4_Festgeld = () => {
       return;
     }
     setCurrentStep(s => s + 1);
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
