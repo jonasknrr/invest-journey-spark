@@ -250,7 +250,7 @@ const ETF_L6_Risk = () => {
                       <span className="text-3xl mb-2">✅</span>
                       <p className="font-display text-sm font-bold text-foreground mb-1">Specific Risk</p>
                       <p className="font-body text-xs text-foreground/80 mb-1">One company goes bankrupt</p>
-                      <p className="font-body text-[10px] text-muted-foreground mb-2">Wirecard-Skandal 2020</p>
+                      <p className="font-body text-[10px] text-muted-foreground mb-2">Wirecard Scandal 2020</p>
                       <span className="inline-block px-2 py-0.5 rounded-full bg-green-500/20 text-green-700 font-body text-[10px] font-semibold">ETF protects you ✓</span>
                     </div>
                     <div className="rounded-2xl p-4 flex flex-col items-center text-center" style={{ backgroundColor: '#FEF2F2' }}>
