@@ -5,7 +5,7 @@ export interface TagesgeldProduct {
 }
 
 export const tagesgeldProducts: TagesgeldProduct[] = [
-  { slug: 'tagesgeld', title: 'Tagesgeld', interestRate: 0 },
+  { slug: 'tagesgeld', title: 'Tagesgeld', interestRate: 0.5 },
 ];
 
 export function getTagesgeldProduct(slug: string): TagesgeldProduct | undefined {

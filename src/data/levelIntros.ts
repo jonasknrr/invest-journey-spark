@@ -35,6 +35,42 @@ export interface LevelIntro {
 }
 
 export const levelIntros: Record<string, LevelIntro> = {
+  'chapter-1': {
+    introTitle: 'Liquiditätsplanung',
+    introSubtitle: 'Deine erste Simulation',
+    introText:
+      'Verteile 10.000 € auf Tagesgeld und Festgeld. Behalte deinen Notgroschen flexibel, sichere deine geplante Ausgabe und maximiere die Rendite für den Rest.',
+    heroIcon: Vault,
+    accentColor: 'var(--level-festgeld)',
+    introFacts: [
+      {
+        icon: ShieldCheck,
+        label: 'Notgroschen',
+        text: '2.000 € müssen jederzeit sofort verfügbar sein — auf dem Tagesgeld.',
+        color: 'hsl(var(--level-tagesgeld))',
+      },
+      {
+        icon: CalendarBlank,
+        label: 'Weiterbildung',
+        text: 'In 2 Jahren brauchst du 3.000 € — das Geld muss rechtzeitig frei sein.',
+        color: 'hsl(var(--level-aktien))',
+      },
+      {
+        icon: Percent,
+        label: 'Rendite',
+        text: 'Das restliche Geld sollte möglichst hoch verzinst angelegt werden.',
+        color: 'hsl(var(--level-waehrungen))',
+      },
+      {
+        icon: Clock,
+        label: 'Laufzeiten',
+        text: 'Festgeld mit längerer Laufzeit bringt mehr Zinsen — aber du kommst nicht dran.',
+        color: 'hsl(var(--level-krypto))',
+      },
+    ],
+    introTip:
+      'Tipp: Nicht alles auf Tagesgeld legen — das bringt wenig Zinsen. Nutze die unterschiedlichen Laufzeiten strategisch!',
+  },
   festgeld: {
     introTitle: 'Was ist Festgeld?',
     introSubtitle: 'Dein sicherer Start ins Investieren',

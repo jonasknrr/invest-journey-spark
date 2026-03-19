@@ -12,6 +12,8 @@ interface BudgetContextType {
   getAssetTotal: (assetSlug: string) => number;
   getProductAmount: (assetSlug: string, productSlug: string) => number;
   setProductAmount: (assetSlug: string, productSlug: string, amount: number) => void;
+  resetAllocations: () => void;
+  setTotalBudget: (budget: number) => void;
 }
 
 const BudgetContext = createContext<BudgetContextType | null>(null);
@@ -22,7 +24,8 @@ export const useBudget = () => {
   return ctx;
 };
 
-export const BudgetProvider = ({ totalBudget = 5000, children }: { totalBudget?: number; children: ReactNode }) => {
+export const BudgetProvider = ({ totalBudget: initialBudget = 5000, children }: { totalBudget?: number; children: ReactNode }) => {
+  const [totalBudget, setTotalBudget] = useState(initialBudget);
   const [allocations, setAllocations] = useState<Allocation>({});
 
   const getAllocatedTotal = useCallback(() => {
@@ -65,9 +68,13 @@ export const BudgetProvider = ({ totalBudget = 5000, children }: { totalBudget?:
     [],
   );
 
+  const resetAllocations = useCallback(() => {
+    setAllocations({});
+  }, []);
+
   return (
     <BudgetContext.Provider
-      value={{ totalBudget, allocations, getAllocatedTotal, getRemaining, getAssetTotal, getProductAmount, setProductAmount }}
+      value={{ totalBudget, allocations, getAllocatedTotal, getRemaining, getAssetTotal, getProductAmount, setProductAmount, resetAllocations, setTotalBudget }}
     >
       {children}
     </BudgetContext.Provider>

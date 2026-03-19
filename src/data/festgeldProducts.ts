@@ -6,9 +6,9 @@ export interface FestgeldProduct {
 }
 
 export const festgeldProducts: FestgeldProduct[] = [
-  { slug: '1-jahr', title: '1 Jahr Festgeld', durationYears: 1, interestRate: 0.5 },
-  { slug: '3-jahre', title: '3 Jahre Festgeld', durationYears: 3, interestRate: 1.0 },
-  { slug: '5-jahre', title: '5 Jahre Festgeld', durationYears: 5, interestRate: 1.5 },
+  { slug: '1-jahr', title: '1 Jahr Festgeld', durationYears: 1, interestRate: 1.5 },
+  { slug: '2-jahre', title: '2 Jahre Festgeld', durationYears: 2, interestRate: 2.0 },
+  { slug: '5-jahre', title: '5 Jahre Festgeld', durationYears: 5, interestRate: 3.0 },
 ];
 
 export function getFestgeldProduct(slug: string): FestgeldProduct | undefined {
