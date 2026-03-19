@@ -43,7 +43,7 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question:
     "Your car breaks down and you need CHF 2'000 immediately. Your money is in a fixed deposit with 8 months remaining. What happens?",
   answers: [
