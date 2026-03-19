@@ -26,7 +26,7 @@ export const levels: Level[] = [
     id: 'festgeld',
     title: 'Cash & Cash Equivalents',
     subtitle: 'Your safe start',
-    iconName: 'Vault',
+    iconName: 'Banknote',
     colorKey: 'festgeld',
     colorVar: '--level-festgeld',
     status: 'current',
