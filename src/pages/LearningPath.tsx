@@ -92,13 +92,30 @@ const LearningPath = () => {
         </svg>
 
         <div className="relative space-y-10">
-          {levels.map((level, index) => (
+          {levels.map((level, index) => {
+            const stars = categoryLessonIds[level.id]
+              ? getCategoryStars(categoryLessonIds[level.id])
+              : null;
+
+            return (
             <div key={level.id}>
               <LevelNode
                 level={level}
                 index={index}
                 onClick={() => navigate(`/category/${level.id}`)}
               />
+              {stars && (
+                <div className="flex justify-center gap-1 mt-2">
+                  {[1, 2, 3].map(i => (
+                    <span
+                      key={i}
+                      className={`text-lg ${i <= stars ? 'text-amber-400' : 'text-muted-foreground/30'}`}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+              )}
               {/* Milestone tree between levels */}
               {index < levels.length - 1 && (
                 <div className="flex justify-center my-4">
