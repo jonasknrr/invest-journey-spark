@@ -4,11 +4,11 @@ import { Lightning } from '@phosphor-icons/react';
 import { pageVariants } from '../LessonShared';
 
 const sectors = [
-  { icon: '💻', name: 'Technologie' },
-  { icon: '🏥', name: 'Gesundheit' },
-  { icon: '⚡', name: 'Energie' },
-  { icon: '🛒', name: 'Konsum' },
-  { icon: '🏦', name: 'Finanzen' },
+  { icon: '💻', name: 'Technology' },
+  { icon: '🏥', name: 'Healthcare' },
+  { icon: '⚡', name: 'Energy' },
+  { icon: '🛒', name: 'Consumer' },
+  { icon: '🏦', name: 'Finance' },
 ];
 
 const CrashVisual = ({ onNext }: { onNext: () => void }) => {
@@ -25,7 +25,7 @@ const CrashVisual = ({ onNext }: { onNext: () => void }) => {
 
   return (
     <motion.div key="crash" variants={pageVariants} initial="enter" animate="center" exit="exit" className="flex-1 flex flex-col px-6 pb-8">
-      <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-6">Was passiert wenn eine Branche crasht?</h2>
+      <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-6">What happens when a sector crashes?</h2>
 
       <div className="flex-1 flex flex-col items-center justify-center max-w-sm mx-auto w-full">
         <div className="flex gap-2 w-full mb-4">
@@ -48,18 +48,18 @@ const CrashVisual = ({ onNext }: { onNext: () => void }) => {
         </div>
 
         <div className="w-full bg-muted/50 rounded-2xl p-4 text-center mb-4">
-          <p className="text-xs text-muted-foreground font-body">Gesamtportfolio</p>
+          <p className="text-xs text-muted-foreground font-body">Total portfolio</p>
           <motion.p key={crashed ? 'after' : 'before'} initial={{ scale: 0.9 }} animate={{ scale: 1 }}
             className="font-display text-2xl font-bold text-foreground tabular-nums">
             CHF {crashed ? totalAfter.toLocaleString('de-CH') : "10'000"}
           </motion.p>
-          {crashed && <p className="text-xs text-muted-foreground font-body mt-1">nur -8% Verlust</p>}
+          {crashed && <p className="text-xs text-muted-foreground font-body mt-1">only -8% loss</p>}
         </div>
 
         {!crashed && (
           <motion.button onClick={handleCrash} whileTap={{ scale: 0.96 }}
             className="flex items-center gap-2 h-12 px-6 rounded-full bg-destructive/10 border border-destructive/20 font-display font-bold text-destructive text-sm">
-            <Lightning size={18} weight="fill" /> Marktkrise auslösen 💥
+            <Lightning size={18} weight="fill" /> Trigger market crash 💥
           </motion.button>
         )}
 
@@ -67,14 +67,14 @@ const CrashVisual = ({ onNext }: { onNext: () => void }) => {
           {crashed && (
             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="w-full space-y-2 mt-4">
               <div className="bg-destructive/10 border border-destructive/20 rounded-2xl px-4 py-3">
-                <p className="font-body text-sm text-destructive">🔴 Alles in eine Aktie: <span className="font-bold">-40% = CHF 6'000</span></p>
+                <p className="font-body text-sm text-destructive">🔴 All in one stock: <span className="font-bold">-40% = CHF 6'000</span></p>
               </div>
               <div className="bg-primary/10 border border-primary/20 rounded-2xl px-4 py-3">
-                <p className="font-body text-sm text-primary">🟢 Verteilt auf 5 Branchen: <span className="font-bold">-8% = CHF 9'200</span></p>
+                <p className="font-body text-sm text-primary">🟢 Spread across 5 sectors: <span className="font-bold">-8% = CHF 9'200</span></p>
               </div>
               <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
                 className="text-foreground font-body text-[15px] leading-relaxed text-center mt-2">
-                Derselbe Crash — aber dank Diversifikation verlierst du nur einen Bruchteil.
+                Same crash — but thanks to diversification you only lose a fraction.
               </motion.p>
             </motion.div>
           )}
@@ -85,7 +85,7 @@ const CrashVisual = ({ onNext }: { onNext: () => void }) => {
         {crashed && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} className="max-w-sm mx-auto w-full mt-4">
             <motion.button onClick={onNext} whileTap={{ scale: 0.96 }}
-              className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft">Weiter</motion.button>
+              className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft">Continue</motion.button>
           </motion.div>
         )}
       </AnimatePresence>

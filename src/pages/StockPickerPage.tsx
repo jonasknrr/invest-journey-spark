@@ -49,9 +49,7 @@ const StockPickerPage = () => {
     : 0;
   const goalMet = selectedStock ? selectedStock.returnPct >= TARGET_PCT : false;
 
-  // Chart data for modal — anonymised years
   const getChartData = (stock: StockSummary) => {
-    // Sample ~60 points for performance
     const step = Math.max(1, Math.floor(stock.prices.length / 60));
     const sampled = stock.prices.filter((_, i) => i % step === 0 || i === stock.prices.length - 1);
     const startDate = new Date(sampled[0].date).getTime();
@@ -59,7 +57,7 @@ const StockPickerPage = () => {
     return sampled.map((p) => {
       const elapsed = new Date(p.date).getTime() - startDate;
       const year = (elapsed / totalMs) * (END_YEAR - START_YEAR);
-      return { year: `Jahr ${Math.round(year)}`, price: p.price };
+      return { year: `Year ${Math.round(year)}`, price: p.price };
     });
   };
 
@@ -81,7 +79,7 @@ const StockPickerPage = () => {
             📅
           </motion.p>
           <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-            Der Zeitraum war:
+            The time period was:
           </h2>
           <motion.p
             className="font-display text-4xl font-bold text-primary"
@@ -99,7 +97,7 @@ const StockPickerPage = () => {
             transition={{ delay: 1 }}
             onClick={() => setPhase('result')}
           >
-            Ergebnis anzeigen →
+            Show result →
           </motion.button>
         </motion.div>
       </div>
@@ -116,7 +114,6 @@ const StockPickerPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {/* Emoji */}
           <motion.p
             className="text-center text-6xl"
             animate={goalMet ? { scale: [1, 1.3, 1] } : { x: [0, -8, 8, -8, 0] }}
@@ -125,12 +122,10 @@ const StockPickerPage = () => {
             {goalMet ? '🎉' : '😬'}
           </motion.p>
 
-          {/* Title */}
           <h1 className={`font-display text-2xl font-bold text-center ${goalMet ? 'text-primary' : 'text-destructive'}`}>
-            {goalMet ? 'Ziel erreicht!' : 'Knapp daneben!'}
+            {goalMet ? 'Goal reached!' : 'Close, but not quite!'}
           </h1>
 
-          {/* Result card */}
           <div className={`rounded-3xl p-5 border shadow-card ${
             goalMet ? 'bg-primary/5 border-primary/20' : 'bg-destructive/5 border-destructive/20'
           }`}>
@@ -148,13 +143,13 @@ const StockPickerPage = () => {
 
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="bg-card rounded-2xl p-3 text-center">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Investiert</p>
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Invested</p>
                 <p className="font-display text-lg font-bold text-foreground tabular-nums">
                   {BUDGET.toLocaleString('de-CH')} CHF
                 </p>
               </div>
               <div className="bg-card rounded-2xl p-3 text-center">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Endwert</p>
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Final value</p>
                 <p className={`font-display text-lg font-bold tabular-nums ${goalMet ? 'text-primary' : 'text-destructive'}`}>
                   {endValue.toLocaleString('de-CH')} CHF
                 </p>
@@ -162,22 +157,20 @@ const StockPickerPage = () => {
             </div>
 
             <div className="bg-card rounded-2xl p-3 text-center">
-              <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Rendite</p>
+              <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Return</p>
               <p className={`font-display text-2xl font-bold tabular-nums ${goalMet ? 'text-primary' : 'text-destructive'}`}>
                 {selectedStock.returnPct >= 0 ? '+' : ''}{selectedStock.returnPct.toFixed(1)}%
               </p>
             </div>
           </div>
 
-          {/* Description */}
           <p className="font-body text-sm text-muted-foreground text-center leading-relaxed">
             {goalMet
-              ? `Deine ${selectedStock.name} hat ${selectedStock.returnPct.toFixed(1)}% Rendite erzielt — aus CHF ${BUDGET.toLocaleString('de-CH')} wurden CHF ${endValue.toLocaleString('de-CH')}!`
-              : `${selectedStock.name} hat nur ${selectedStock.returnPct.toFixed(1)}% erreicht. Du brauchst +${TARGET_PCT}% — versuch eine andere Aktie!`
+              ? `Your ${selectedStock.name} achieved a ${selectedStock.returnPct.toFixed(1)}% return — CHF ${BUDGET.toLocaleString('de-CH')} grew to CHF ${endValue.toLocaleString('de-CH')}!`
+              : `${selectedStock.name} only achieved ${selectedStock.returnPct.toFixed(1)}%. You needed +${TARGET_PCT}% — try a different stock!`
             }
           </p>
 
-          {/* Button */}
           <motion.button
             whileTap={{ scale: 0.96 }}
             onClick={() => {
@@ -197,12 +190,12 @@ const StockPickerPage = () => {
             {goalMet ? (
               <>
                 <CheckCircle size={20} weight="bold" />
-                Weiter
+                Continue
               </>
             ) : (
               <>
                 <ArrowClockwise size={20} weight="bold" />
-                Nochmal versuchen
+                Try again
               </>
             )}
           </motion.button>
@@ -214,7 +207,6 @@ const StockPickerPage = () => {
   /* ── Picking phase ── */
   return (
     <div className="min-h-screen bg-background pb-10">
-      {/* Header */}
       <div className="px-5 pt-6 pb-4">
         <button
           onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })}
@@ -222,13 +214,12 @@ const StockPickerPage = () => {
         >
           <ArrowLeft size={20} className="text-foreground" />
         </button>
-        <h1 className="font-display text-2xl font-bold text-foreground">Aktien auswählen</h1>
+        <h1 className="font-display text-2xl font-bold text-foreground">Pick a stock</h1>
         <p className="font-body text-sm text-muted-foreground mt-1">
-          Tippe auf eine Aktie um den Verlauf zu sehen
+          Tap a stock to see its price history
         </p>
       </div>
 
-      {/* Market Tabs */}
       <div className="px-5 mb-5">
         <div className="flex gap-2">
           {(['smi', 'djia'] as const).map((m) => (
@@ -247,7 +238,6 @@ const StockPickerPage = () => {
         </div>
       </div>
 
-      {/* Loading */}
       {loading && (
         <div className="flex items-center justify-center py-20">
           <motion.div
@@ -258,7 +248,6 @@ const StockPickerPage = () => {
         </div>
       )}
 
-      {/* Stock List */}
       {!loading && (
         <div className="px-5 space-y-3">
           {stocks.map((stock) => (
@@ -275,7 +264,7 @@ const StockPickerPage = () => {
                 </div>
                 <div className="flex items-center gap-1.5 bg-muted rounded-full px-3 py-1.5">
                   <Lock size={12} className="text-muted-foreground" />
-                  <span className="text-[11px] text-muted-foreground font-body">Rendite verborgen</span>
+                  <span className="text-[11px] text-muted-foreground font-body">Return hidden</span>
                 </div>
               </div>
             </motion.div>
@@ -283,7 +272,6 @@ const StockPickerPage = () => {
         </div>
       )}
 
-      {/* Detail Modal */}
       <AnimatePresence>
         {modalStock && (
           <motion.div
@@ -292,10 +280,8 @@ const StockPickerPage = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            {/* Backdrop */}
             <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={() => setModalStock(null)} />
 
-            {/* Sheet */}
             <motion.div
               className="relative w-full max-w-md bg-card rounded-t-3xl sm:rounded-3xl p-6 pb-8 shadow-xl max-h-[90vh] overflow-y-auto"
               initial={{ y: 100, opacity: 0 }}
@@ -303,7 +289,6 @@ const StockPickerPage = () => {
               exit={{ y: 100, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
-              {/* Close */}
               <button
                 onClick={() => setModalStock(null)}
                 className="absolute top-4 right-4 w-8 h-8 rounded-full bg-muted flex items-center justify-center"
@@ -314,7 +299,6 @@ const StockPickerPage = () => {
               <h2 className="font-display text-xl font-bold text-foreground mb-1">{modalStock.name}</h2>
               <p className="text-xs text-muted-foreground font-body mb-5">{modalStock.ticker}</p>
 
-              {/* Chart */}
               <div className="h-48 mb-5">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={getChartData(modalStock)}>
@@ -339,7 +323,7 @@ const StockPickerPage = () => {
                         borderRadius: 12,
                         fontSize: 12,
                       }}
-                      formatter={(val: number) => [`CHF ${val.toFixed(2)}`, 'Preis']}
+                      formatter={(val: number) => [`CHF ${val.toFixed(2)}`, 'Price']}
                     />
                     <Line
                       type="monotone"
@@ -352,42 +336,40 @@ const StockPickerPage = () => {
                 </ResponsiveContainer>
               </div>
 
-              {/* Info cards */}
               <div className="grid grid-cols-3 gap-2 mb-6">
                 <div className="bg-muted/50 rounded-2xl p-3 text-center">
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Startpreis</p>
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Start price</p>
                   <p className="font-display text-sm font-bold text-foreground tabular-nums">
                     {modalStock.firstPrice.toFixed(2)}
                   </p>
                 </div>
                 <div className="bg-muted/50 rounded-2xl p-3 text-center">
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Tiefststand</p>
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Low</p>
                   <p className="font-display text-sm font-bold text-foreground tabular-nums">
                     {modalStock.minPrice.toFixed(2)}
                   </p>
                 </div>
                 <div className="bg-muted/50 rounded-2xl p-3 text-center">
-                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Höchststand</p>
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">High</p>
                   <p className="font-display text-sm font-bold text-foreground tabular-nums">
                     {modalStock.maxPrice.toFixed(2)}
                   </p>
                 </div>
               </div>
 
-              {/* Buttons */}
               <div className="space-y-3">
                 <motion.button
                   whileTap={{ scale: 0.96 }}
                   onClick={() => handleSelect(modalStock)}
                   className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display text-base font-bold shadow-sm"
                 >
-                  Diese Aktie wählen
+                  Pick this stock
                 </motion.button>
                 <button
                   onClick={() => setModalStock(null)}
                   className="w-full h-12 rounded-full border border-border text-foreground font-display text-sm font-bold"
                 >
-                  Zurück
+                  Back
                 </button>
               </div>
             </motion.div>

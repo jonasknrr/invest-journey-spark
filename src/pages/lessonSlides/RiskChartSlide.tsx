@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// StableBank: gentle upward trend with small wiggles → ~16000
 const stableData = [
   10000,10200,10350,10300,10500,10650,10600,10800,10950,11000,
   11100,11050,11200,11350,11300,11500,11600,11550,11700,11850,
@@ -11,7 +10,6 @@ const stableData = [
   14500,14600,14700,14800,14900,15000,15200,15400,15600,15800,16000,
 ];
 
-// RocketStartup: wild swings with one huge crash (~-60%) then recovery to 40000
 const rocketData = [
   10000,11000,12500,13000,11500,10000,8500,7000,5500,4500,
   4000,4200,5000,5500,4800,5200,6000,7500,8000,7000,
@@ -81,93 +79,56 @@ const RiskChartSlide = ({ onComplete }: { onComplete: () => void }) => {
       transition={{ duration: 0.35 }}
     >
       <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-6">
-        Nicht alle Aktien sind gleich riskant
+        Not all stocks carry the same risk
       </h2>
 
       <div className="flex-1 flex flex-col items-center justify-center max-w-md mx-auto w-full">
-        {/* Two mini charts side by side */}
         <div className="grid grid-cols-2 gap-4 w-full mb-6">
-          {/* StableBank */}
           <div className="bg-card border border-border rounded-2xl p-4 flex flex-col items-center">
             <p className="font-display text-sm font-bold text-foreground mb-1">StableBank AG</p>
             <svg width={WIDTH} height={HEIGHT} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="mb-2">
               {progress > 0 && (
-                <path
-                  d={toPath(stableData, progress)}
-                  fill="none"
-                  stroke="hsl(142, 71%, 45%)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d={toPath(stableData, progress)} fill="none" stroke="hsl(142, 71%, 45%)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               )}
             </svg>
             <p className="font-display text-lg font-bold text-foreground tabular-nums">
               CHF {(progress > 0 ? stableEnd : 10000).toLocaleString('de-CH')}
             </p>
             {done && (
-              <motion.span
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-xs font-body font-medium mt-1"
-                style={{ color: 'hsl(142, 71%, 45%)' }}
-              >
-                Wenig Risiko · Solide Rendite
+              <motion.span initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="text-xs font-body font-medium mt-1" style={{ color: 'hsl(142, 71%, 45%)' }}>
+                Low risk · Solid return
               </motion.span>
             )}
           </div>
 
-          {/* RocketStartup */}
           <div className="bg-card border border-border rounded-2xl p-4 flex flex-col items-center">
             <p className="font-display text-sm font-bold text-foreground mb-1">RocketStartup AG</p>
             <svg width={WIDTH} height={HEIGHT} viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="mb-2">
               {progress > 0 && (
-                <path
-                  d={toPath(rocketData, progress)}
-                  fill="none"
-                  stroke="hsl(25, 95%, 53%)"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                <path d={toPath(rocketData, progress)} fill="none" stroke="hsl(25, 95%, 53%)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               )}
             </svg>
             <p className="font-display text-lg font-bold text-foreground tabular-nums">
               CHF {(progress > 0 ? rocketEnd : 10000).toLocaleString('de-CH')}
             </p>
             {done && (
-              <motion.span
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-xs font-body font-medium mt-1"
-                style={{ color: 'hsl(25, 95%, 53%)' }}
-              >
-                Hohes Risiko · Hohe Chance
+              <motion.span initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} className="text-xs font-body font-medium mt-1" style={{ color: 'hsl(25, 95%, 53%)' }}>
+                High risk · High potential
               </motion.span>
             )}
           </div>
         </div>
 
-        {/* Play button */}
         {!playing && !done && (
-          <motion.button
-            onClick={play}
-            whileTap={{ scale: 0.96 }}
-            className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-sm mb-4"
-          >
-            ▶ Abspielen
+          <motion.button onClick={play} whileTap={{ scale: 0.96 }} className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-sm mb-4">
+            ▶ Play
           </motion.button>
         )}
 
-        {/* Post-animation text */}
         <AnimatePresence>
           {done && (
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-foreground font-body text-[15px] leading-relaxed text-center mt-2 max-w-xs"
-            >
-              Beide können profitabel sein — aber der Weg dorthin ist sehr unterschiedlich.
+            <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="text-foreground font-body text-[15px] leading-relaxed text-center mt-2 max-w-xs">
+              Both can be profitable — but the path is very different.
             </motion.p>
           )}
         </AnimatePresence>

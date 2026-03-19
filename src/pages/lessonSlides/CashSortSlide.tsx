@@ -13,21 +13,20 @@ interface CardItem {
 }
 
 const CARDS: CardItem[] = [
-  { id: 'bargeld', emoji: '💵', label: 'Bargeld', correctBucket: 'cash' },
-  { id: 'girokonto', emoji: '🏦', label: 'Girokonto', correctBucket: 'cash' },
-  { id: 'sparbuch', emoji: '📗', label: 'Sparbuch', correctBucket: 'equivalent' },
-  { id: 'immobilie', emoji: '🏠', label: 'Immobilie', correctBucket: 'none' },
-  { id: 'aktien', emoji: '📈', label: 'Aktien', correctBucket: 'none' },
-  { id: 'tagesgeld', emoji: '💰', label: 'Tagesgeldkonto', correctBucket: 'equivalent' },
+  { id: 'bargeld', emoji: '💵', label: 'Cash', correctBucket: 'cash' },
+  { id: 'girokonto', emoji: '🏦', label: 'Checking account', correctBucket: 'cash' },
+  { id: 'sparbuch', emoji: '📗', label: 'Savings book', correctBucket: 'equivalent' },
+  { id: 'immobilie', emoji: '🏠', label: 'Real estate', correctBucket: 'none' },
+  { id: 'aktien', emoji: '📈', label: 'Stocks', correctBucket: 'none' },
+  { id: 'tagesgeld', emoji: '💰', label: 'Call money account', correctBucket: 'equivalent' },
 ];
 
 const BUCKETS = [
   { id: 'cash' as const, label: 'Cash 💵' },
   { id: 'equivalent' as const, label: 'Cash Equivalent 🏦' },
-  { id: 'none' as const, label: 'Kein Cash ❌' },
+  { id: 'none' as const, label: 'No Cash ❌' },
 ];
 
-// Shuffle helper
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -56,7 +55,6 @@ const CashSortSlide = ({ onComplete }: CashSortSlideProps) => {
       setPlaced(newPlaced);
       setDraggedCard(null);
 
-      // Check if all placed
       if (Object.keys(newPlaced).length === CARDS.length && !completedRef.current) {
         completedRef.current = true;
         setTimeout(() => {
@@ -74,7 +72,6 @@ const CashSortSlide = ({ onComplete }: CashSortSlideProps) => {
     }
   };
 
-  // Touch/click-based: tap card to select, tap bucket to place
   const handleCardTap = (cardId: string) => {
     if (placed[cardId]) return;
     setDraggedCard(prev => prev === cardId ? null : cardId);
@@ -98,14 +95,13 @@ const CashSortSlide = ({ onComplete }: CashSortSlideProps) => {
       transition={{ duration: 0.3 }}
     >
       <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">
-        Sortiere die Karten in die richtigen Töpfe
+        Sort the cards into the correct buckets
       </h2>
       <p className="font-body text-sm text-muted-foreground text-center mb-5">
-        Tippe eine Karte an, dann den passenden Topf
+        Tap a card, then tap the matching bucket
       </p>
 
       <div className="max-w-sm mx-auto w-full space-y-4">
-        {/* Unplaced cards */}
         <div className="flex flex-wrap gap-2 justify-center min-h-[48px]">
           <AnimatePresence>
             {unplacedCards.map(card => (
@@ -141,11 +137,10 @@ const CashSortSlide = ({ onComplete }: CashSortSlideProps) => {
             ))}
           </AnimatePresence>
           {unplacedCards.length === 0 && !allCorrect && (
-            <p className="text-sm text-muted-foreground font-body">Alle Karten platziert!</p>
+            <p className="text-sm text-muted-foreground font-body">All cards placed!</p>
           )}
         </div>
 
-        {/* Buckets */}
         <div className="space-y-3">
           {BUCKETS.map(bucket => {
             const bucketCards = getBucketCards(bucket.id);
@@ -181,7 +176,7 @@ const CashSortSlide = ({ onComplete }: CashSortSlideProps) => {
                 )}
                 {bucketCards.length === 0 && (
                   <p className="font-body text-xs text-muted-foreground/60">
-                    Karten hierhin sortieren
+                    Sort cards here
                   </p>
                 )}
               </motion.button>
@@ -189,7 +184,6 @@ const CashSortSlide = ({ onComplete }: CashSortSlideProps) => {
           })}
         </div>
 
-        {/* Success banner */}
         {allCorrect && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -197,7 +191,7 @@ const CashSortSlide = ({ onComplete }: CashSortSlideProps) => {
             className="bg-green-500/10 border border-green-500/20 rounded-2xl p-4 text-center"
           >
             <p className="font-display font-bold text-green-700 dark:text-green-300">
-              Perfekt! Du kennst jetzt den Unterschied. 🎉
+              Perfect! You now know the difference. 🎉
             </p>
           </motion.div>
         )}

@@ -16,9 +16,9 @@ const chart5Y = [10000, 9500, 11000, 10500, 12000, 11200, 13500, 12800, 14200, 1
 const chart20Y = [10000, 9000, 11000, 8500, 12000, 14000, 11000, 16000, 18000, 15000, 20000, 22000, 19000, 25000, 28000, 24000, 32000, 35000, 30000, 40000, 45000];
 
 const timeframes = [
-  { label: '1 Jahr', data: chart1Y, endVal: 10500, max: 13000, text: 'Kurzfristig: unvorhersehbar', color: 'text-muted-foreground' },
-  { label: '5 Jahre', data: chart5Y, endVal: 16000, max: 18000, text: 'Mittelfristig: ein Trend zeichnet sich ab', color: 'text-foreground' },
-  { label: '20 Jahre', data: chart20Y, endVal: 45000, max: 50000, text: 'Langfristig: Zeit arbeitet für dich', color: 'text-primary' },
+  { label: '1 Year', data: chart1Y, endVal: 10500, max: 13000, text: 'Short-term: unpredictable', color: 'text-muted-foreground' },
+  { label: '5 Years', data: chart5Y, endVal: 16000, max: 18000, text: 'Medium-term: a trend emerges', color: 'text-foreground' },
+  { label: '20 Years', data: chart20Y, endVal: 45000, max: 50000, text: 'Long-term: time works for you', color: 'text-primary' },
 ] as const;
 
 const TimeChartVisual = ({ onNext }: { onNext: () => void }) => {
@@ -36,7 +36,7 @@ const TimeChartVisual = ({ onNext }: { onNext: () => void }) => {
 
   return (
     <motion.div key="timeChart" variants={pageVariants} initial="enter" animate="center" exit="exit" className="flex-1 flex flex-col px-6 pb-8">
-      <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-6">Sieh selbst was Zeit bewirkt</h2>
+      <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-6">See for yourself what time does</h2>
 
       <div className="flex-1 flex flex-col items-center justify-center max-w-sm mx-auto w-full">
         <div className="w-full bg-card border border-border rounded-3xl p-5 shadow-card mb-4">
@@ -60,7 +60,7 @@ const TimeChartVisual = ({ onNext }: { onNext: () => void }) => {
         </div>
 
         <div className="w-full bg-muted/50 rounded-2xl p-4 text-center">
-          <p className="text-xs text-muted-foreground font-body">Gestartet mit CHF 10'000 — heute:</p>
+          <p className="text-xs text-muted-foreground font-body">Started with CHF 10'000 — today:</p>
           <motion.p key={`val-${activeIdx}`} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
             className="font-display text-2xl font-bold text-foreground tabular-nums">
             CHF {tf.endVal.toLocaleString('de-CH')}
@@ -72,7 +72,7 @@ const TimeChartVisual = ({ onNext }: { onNext: () => void }) => {
         {allVisited && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto w-full mt-4">
             <motion.button onClick={onNext} whileTap={{ scale: 0.96 }}
-              className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft">Weiter</motion.button>
+              className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft">Continue</motion.button>
           </motion.div>
         )}
       </AnimatePresence>
