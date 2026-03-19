@@ -46,11 +46,11 @@ export const chapterConfigs: ChapterConfig[] = [
     categoryId: 'etfs',
     unlockedSlugs: ['tagesgeld', 'festgeld', 'aktien', 'etfs'],
     scenario: {
-      budget: 10000,
+      budget: 100000,
       currency: 'CHF',
       title: 'ETF Diversification',
       description:
-        'You have a budget of 10,000.\n1. You need a liquid emergency fund of 1,000 (available immediately).\n2. You plan a larger purchase in exactly 3 years, requiring a safe 2,000.\n3. The remaining 7,000 is for your long-term wealth building. Maximize returns but ensure your portfolio is highly diversified using the newly unlocked ETFs!',
+        'You have a budget of 100,000 CHF.\n1. You need a liquid emergency fund of 10,000 CHF (available immediately).\n2. You plan to buy a car in exactly 3 years, requiring a safe 20,000 CHF.\n3. The remaining 70,000 CHF is for your long-term wealth building.',
     },
   },
 ];
