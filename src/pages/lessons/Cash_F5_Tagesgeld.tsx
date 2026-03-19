@@ -85,6 +85,22 @@ const Cash_F5_Tagesgeld = () => {
     updateLessonProgress('festgeld-f5', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
   }, [currentStep]);
 
+  // No hearts effect
+  useEffect(() => {
+    if (hearts === 0) {
+      setNoHeartsScreen('showing');
+      try { navigator.vibrate?.([300, 100, 300]); } catch {}
+    }
+  }, [hearts]);
+
+  // Completion effect
+  useEffect(() => {
+    if (currentStep === TOTAL_STEPS - 1 && !completionResult) {
+      const r = completeLesson('festgeld-f5', hearts);
+      setCompletionResult(r);
+    }
+  }, [currentStep]);
+
   const showCTA = () => {
     if (currentStep === 0) return true;
     if (currentStep === 1) return tappedDurations.size >= 3;
