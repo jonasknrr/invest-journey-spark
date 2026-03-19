@@ -426,6 +426,7 @@ const LessonFlow = () => {
             correctFeedback={config.quiz1.correctFeedback}
             wrongFeedback={config.quiz1.wrongFeedback}
             onAnswered={() => setCanAdvance(true)}
+            onWrongAnswer={handleWrongAnswer}
           />
         )}
         {currentStep === 3 && (
@@ -438,10 +439,17 @@ const LessonFlow = () => {
             correctFeedback={config.quiz2.correctFeedback}
             wrongFeedback={config.quiz2.wrongFeedback}
             onAnswered={() => setCanAdvance(true)}
+            onWrongAnswer={handleWrongAnswer}
           />
         )}
         {currentStep === 4 && (
-          <CompletionSlide key="completion" subtitle={config.completionSubtitle} />
+          <motion.div key="completion" className="flex-1 flex flex-col items-center justify-center px-6 text-center"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+            <span className="text-5xl mb-4">🎉</span>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lektion abgeschlossen!</h2>
+            <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">{config.completionSubtitle}</p>
+            <CompletionXP result={completionResult} hearts={hearts} />
+          </motion.div>
         )}
       </AnimatePresence>
 
