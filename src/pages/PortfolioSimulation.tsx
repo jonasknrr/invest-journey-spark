@@ -1076,25 +1076,31 @@ const PortfolioSimulation = () => {
                 if (!ch3_notgroschenOk) {
                   weaknesses.push({
                     icon: '🚨',
-                    text: `Insufficient emergency fund: You only have ${tagesgeldAmount.toLocaleString('de-CH')} ${currency} in call money, but need at least 10,000 ${currency} as an immediately available reserve.`,
+                    text: `Insufficient emergency fund: You only have ${tagesgeldAmount.toLocaleString('de-CH')} ${currency} in call money, but need at least 1,000 ${currency} as an immediately available reserve.`,
                   });
                 }
                 if (!ch3_carOk) {
                   weaknesses.push({
-                    icon: '🚗',
-                    text: `Car fund at risk: Only ${Math.max(0, ch3_carFundAvailable - 10000).toLocaleString('de-CH')} ${currency} is safely available within 3 years for the car — you need 20,000 ${currency}.`,
+                    icon: '🛒',
+                    text: `Purchase fund at risk: Only ${Math.max(0, ch3_carFundAvailable - 1000).toLocaleString('de-CH')} ${currency} is safely available within 3 years for the purchase — you need 2,000 ${currency}.`,
                   });
                 }
                 if (fiveYearFestgeld > 0 && !ch3_carOk) {
                   weaknesses.push({
                     icon: '⏰',
-                    text: `Wrong term: You locked ${fiveYearFestgeld.toLocaleString('de-CH')} ${currency} for 5 years, even though you need 20,000 ${currency} in 3 years.`,
+                    text: `Wrong term: You locked ${fiveYearFestgeld.toLocaleString('de-CH')} ${currency} for 5 years, even though you need 2,000 ${currency} in 3 years.`,
                   });
                 }
-                if (ch3_riskyTotal >= 50000 && etfInvested === 0) {
+                if (fiveYearFestgeld >= 3000) {
+                  weaknesses.push({
+                    icon: '🔒',
+                    text: `Liquidity Trap: You locked too much money away for 5 years. Remember you need 2,000 in exactly 3 years!`,
+                  });
+                }
+                if (ch3_riskyTotal >= 5000 && etfInvested === 0) {
                   weaknesses.push({
                     icon: '📊',
-                    text: `Missed ETF Opportunity: Picking single stocks with your long-term capital is risky. Use index funds (ETFs) to instantly spread your risk across dozens of companies.`,
+                    text: `Missed ETF Opportunity: Picking single stocks with your 7,000 long-term capital is highly risky. Use index funds (ETFs) to instantly spread your risk across dozens of companies.`,
                   });
                 }
                 if (ch3_riskyTotal > 0 && !ch3_divGood) {
@@ -1103,17 +1109,17 @@ const PortfolioSimulation = () => {
                     text: `Concentration risk (${divResult.rating}): Your capital is spread across too few positions (HHI: ${divResult.hhi.toLocaleString('de-CH')}). Diversify more broadly!`,
                   });
                 }
-                if (ch3_riskyTotal < 60000 && ch3_notgroschenOk && ch3_carOk) {
+                if (ch3_riskyTotal < 6000 && ch3_notgroschenOk && ch3_carOk) {
                   weaknesses.push({
                     icon: '💸',
-                    text: `Returns wasted: Only ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} is working long-term for you. You could invest approximately 70,000 ${currency} for growth.`,
+                    text: `Returns wasted: Only ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} is working long-term for you. You could invest approximately 7,000 ${currency} for growth.`,
                   });
                 }
                 // Praise for great ETF usage
                 if (ch3_riskyTotal > 0 && ch3_divGood && etfInvested > 0) {
                   weaknesses.push({
                     icon: '🌍',
-                    text: `Excellent Diversification: By utilizing ETFs, you've instantly minimized your exposure to single-company failures and secured a robust portfolio.`,
+                    text: `Excellent Diversification: By utilizing ETFs, you've instantly minimized your exposure to single-company failures and secured a robust, professional-grade portfolio.`,
                   });
                 }
               } else {
