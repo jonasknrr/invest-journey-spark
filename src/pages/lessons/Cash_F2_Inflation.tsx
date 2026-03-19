@@ -142,7 +142,7 @@ const Cash_F2_Inflation = () => {
     }
     setCurrentStep(s => s + 1);
     // Trigger star animation on completion slide
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
