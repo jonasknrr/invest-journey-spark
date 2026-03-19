@@ -65,7 +65,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
   const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
-  const { completeLesson } = useProgressStore();
+  const { completeLesson, updateLessonProgress } = useProgressStore();
   const [storySlide, setStorySlide] = useState(0);
   const [appleMove, setAppleMove] = useState([0]);
   const [teslaMove, setTeslaMove] = useState([0]);
@@ -78,6 +78,10 @@ const ETF_L2_HowIndexesAreBuilt = () => {
   const [showDeepDive, setShowDeepDive] = useState(false);
 
   // Matching game correct answers: marktKap→C, preis→B, gleich→A
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e2', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
   const correctMap: Record<string, string> = { marktKap: 'C', preis: 'B', gleich: 'A' };
 
   const handleMatchTap = (cardId: string, method: 'marktKap' | 'preis' | 'gleich') => {

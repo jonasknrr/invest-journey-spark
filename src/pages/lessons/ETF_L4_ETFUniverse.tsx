@@ -95,7 +95,7 @@ const ETF_L4_ETFUniverse = () => {
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
   const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
-  const { completeLesson } = useProgressStore();
+  const { completeLesson, updateLessonProgress } = useProgressStore();
 
   // Step 0 — playlist simulation
   const [selectedPlaylists, setSelectedPlaylists] = useState<string[]>([]);
@@ -121,6 +121,11 @@ const ETF_L4_ETFUniverse = () => {
   const [showDeepDive, setShowDeepDive] = useState(false);
 
   const progress = (currentStep / (TOTAL_STEPS - 1)) * 100;
+
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e4', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
 
   // No hearts effect
   useEffect(() => {

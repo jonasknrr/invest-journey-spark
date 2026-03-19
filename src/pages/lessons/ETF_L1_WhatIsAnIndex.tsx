@@ -62,7 +62,7 @@ const ETF_L1_WhatIsAnIndex = () => {
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
   const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
-  const { completeLesson } = useProgressStore();
+  const { completeLesson, updateLessonProgress } = useProgressStore();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [selectedChip, setSelectedChip] = useState<string | null>(null);
   const [showDeepDive, setShowDeepDive] = useState(false);
@@ -79,6 +79,11 @@ const ETF_L1_WhatIsAnIndex = () => {
       try { navigator.vibrate?.([300, 100, 300]); } catch {}
     }
   }, [hearts]);
+
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e1', Math.min(currentStep / 4, 1));
+  }, [currentStep]);
 
   // Completion effect
   useEffect(() => {

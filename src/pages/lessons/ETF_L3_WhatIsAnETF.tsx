@@ -87,7 +87,7 @@ const ETF_L3_WhatIsAnETF = () => {
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
   const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
-  const { completeLesson } = useProgressStore();
+  const { completeLesson, updateLessonProgress } = useProgressStore();
 
   // Step 1 — manual buy
   const [buyCount, setBuyCount] = useState(0);
@@ -106,6 +106,11 @@ const ETF_L3_WhatIsAnETF = () => {
   const [storySlide, setStorySlide] = useState(0);
 
   const progress = (currentStep / (TOTAL_STEPS - 1)) * 100;
+
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e3', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
 
   // No hearts effect
   useEffect(() => {

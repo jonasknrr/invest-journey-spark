@@ -60,7 +60,7 @@ const ETF_L5_Costs = () => {
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
   const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
-  const { completeLesson } = useProgressStore();
+  const { completeLesson, updateLessonProgress } = useProgressStore();
   const [storySlide, setStorySlide] = useState(0);
 
   // Step 1 — Leaky Bucket
@@ -83,6 +83,11 @@ const ETF_L5_Costs = () => {
   const [showDeepDive, setShowDeepDive] = useState(false);
 
   const progress = (currentStep / (TOTAL_STEPS - 1)) * 100;
+
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e5', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
 
   // No hearts effect
   useEffect(() => {
