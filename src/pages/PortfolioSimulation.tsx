@@ -438,7 +438,7 @@ const PortfolioSimulation = () => {
   // Default evaluation (for non-chapter-1)
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
   const liquidityPassed = isChapter1 ? ch1_notgroschenOk : safeAmount >= 1000;
-  const riskPassed = divScore >= 7;
+  const riskPassed = divResult.riskPassed;
   const opportunityCostPenalty = isChapter1
     ? !ch1_restInLongTerm // For ch1: penalty if rest is NOT in long-term
     : safePct > 60;
