@@ -12,16 +12,44 @@ const LearningPath = () => {
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-background/90 backdrop-blur-md border-b border-border px-6 pt-6 pb-4">
-        <div className="flex items-center justify-between max-w-sm mx-auto">
-          <div>
-            <h2 className="font-display text-2xl font-bold text-foreground">Dein Lernpfad</h2>
-            <p className="text-sm text-muted-foreground mt-0.5 tabular-nums">{totalProgress}% geschafft</p>
+      <div className="sticky top-0 z-10 bg-background/90 backdrop-blur-md border-b border-border px-6 pt-5 pb-4">
+        {/* Top row: Avatar + Name | Streak + XP */}
+        <div className="flex items-center justify-between max-w-sm mx-auto mb-3">
+          <div className="flex items-center gap-2.5">
+            <div className="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden border-2 border-blue-200 shrink-0">
+              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                <circle cx="50" cy="50" r="50" fill="#DBEAFE"/>
+                <ellipse cx="50" cy="85" rx="28" ry="20" fill="#3B82F6"/>
+                <circle cx="50" cy="38" r="18" fill="#FCD34D"/>
+                <ellipse cx="50" cy="24" rx="18" ry="8" fill="#1E3A5F"/>
+                <ellipse cx="34" cy="32" rx="6" ry="12" fill="#1E3A5F"/>
+                <ellipse cx="66" cy="32" rx="6" ry="12" fill="#1E3A5F"/>
+                <circle cx="43" cy="38" r="2.5" fill="#1E293B"/>
+                <circle cx="57" cy="38" r="2.5" fill="#1E293B"/>
+                <path d="M 43 46 Q 50 52 57 46" stroke="#1E293B" strokeWidth="2" fill="none" strokeLinecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground leading-tight">Leon's</p>
+              <p className="text-base font-bold text-primary leading-tight">Investify</p>
+            </div>
           </div>
-          <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full">
-            <Sparkles className="w-4 h-4 text-primary" fill="currentColor" />
-            <span className="text-sm font-bold text-primary tabular-nums">{completedCount}/{levels.length}</span>
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 bg-orange-50 border border-orange-200 rounded-full px-3 py-1">
+              <span className="text-orange-500 text-lg">🔥</span>
+              <span className="font-bold text-orange-600 text-sm">7</span>
+              <span className="text-orange-400 text-xs">Tage</span>
+            </div>
+            <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full">
+              <Sparkles className="w-4 h-4 text-primary" fill="currentColor" />
+              <span className="text-sm font-bold text-primary tabular-nums">{completedCount}/{levels.length}</span>
+            </div>
           </div>
+        </div>
+        {/* Title row */}
+        <div className="max-w-sm mx-auto">
+          <h1 className="font-display text-2xl font-bold text-foreground">Investify</h1>
+          <p className="text-sm text-muted-foreground mt-0.5 tabular-nums">{totalProgress}% geschafft</p>
         </div>
         {/* Total progress bar */}
         <div className="mt-3 h-2.5 rounded-full bg-muted overflow-hidden max-w-sm mx-auto">
