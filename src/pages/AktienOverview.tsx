@@ -58,7 +58,7 @@ const AktienOverview = () => {
         <motion.div variants={itemVariants} className="flex gap-3">
           <div className="flex-1 rounded-3xl bg-card border border-border shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">
-              Verfügbares Kapital
+              Available capital
             </p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
               {remaining.toLocaleString('de-CH')} CHF
