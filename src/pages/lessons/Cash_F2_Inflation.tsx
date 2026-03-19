@@ -64,6 +64,20 @@ const quiz2: QuizConfig = {
     'Close! Spending or hiding doesn\'t solve the problem. The only real solution is a return that\'s higher than inflation.',
 };
 
+const quiz3: QuizConfig = {
+  label: 'Question 3 of 3',
+  question: 'In simple terms, what does an inflation rate of 2% mean for your everyday life?',
+  answers: [
+    { id: 'a', text: 'Your salary will automatically increase by exactly 2% every year.' },
+    { id: 'b', text: 'A typical basket of groceries costing 100 today will cost about 102 next year.' },
+    { id: 'c', text: 'The bank will charge a 2% penalty fee on your savings account.' },
+    { id: 'd', text: 'The value of your stock portfolio will drop by 2%.' },
+  ],
+  correctId: 'b',
+  correctFeedback: 'Exactly! A 2% inflation rate means prices rise on average by 2% per year — so what costs CHF 100 today will cost about CHF 102 next year.',
+  wrongFeedback: 'Not quite. Inflation means prices rise — a 2% rate means a CHF 100 basket of goods will cost about CHF 102 a year later.',
+};
+
 /* ── Component ── */
 const Cash_F2_Inflation = () => {
   const navigate = useNavigate();
