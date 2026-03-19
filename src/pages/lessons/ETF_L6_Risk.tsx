@@ -257,7 +257,7 @@ const ETF_L6_Risk = () => {
                       <span className="text-3xl mb-2">⚠️</span>
                       <p className="font-display text-sm font-bold text-foreground mb-1">Systematic Risk</p>
                       <p className="font-body text-xs text-foreground/80 mb-1">The entire market crashes</p>
-                      <p className="font-body text-[10px] text-muted-foreground mb-2">COVID März 2020: -34%</p>
+                      <p className="font-body text-[10px] text-muted-foreground mb-2">COVID March 2020: -34%</p>
                       <span className="inline-block px-2 py-0.5 rounded-full bg-red-500/20 text-red-700 font-body text-[10px] font-semibold">ETF does NOT protect ✗</span>
                     </div>
                   </div>
