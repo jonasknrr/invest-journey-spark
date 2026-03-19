@@ -155,7 +155,7 @@ const LessonStart = () => {
             }
           }}
         >
-          Lektion beginnen · {subLevel.duration}
+          Start lesson · {subLevel.duration}
         </motion.button>
       </div>
     </div>

@@ -246,10 +246,10 @@ const CategoryDetail = () => {
               </div>
               <div className="flex-1 min-w-0 text-left">
                 <h4 className="font-display text-base font-bold text-primary-foreground">
-                  Simulationsaufgabe
+                  Simulation Challenge
                 </h4>
                 <p className="text-sm text-primary-foreground/80 mt-0.5">
-                  Wende dein Wissen an und investiere dein Budget
+                  Apply your knowledge and invest your budget
                 </p>
               </div>
               <div className="text-primary-foreground/60">→</div>
