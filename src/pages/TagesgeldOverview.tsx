@@ -58,7 +58,7 @@ const TagesgeldOverview = () => {
 
         {/* Product list */}
         <motion.div variants={itemVariants}>
-          <h2 className="font-display text-lg font-bold text-foreground mb-3">Tagesgeldkonto</h2>
+          <h2 className="font-display text-lg font-bold text-foreground mb-3">Call money account</h2>
         </motion.div>
 
         <motion.div variants={containerVariants} className="space-y-3">
