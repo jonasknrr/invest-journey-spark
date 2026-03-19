@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Heart } from 'lucide-react';
 import { useProgressStore } from '@/hooks/useProgressStore';
+import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
+import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
 const TOTAL_STEPS = 5;
@@ -65,9 +67,11 @@ const quiz2: QuizConfig = {
 /* ── Component ── */
 const Cash_F2_Inflation = () => {
   const navigate = useNavigate();
-  const { updateLessonProgress } = useProgressStore();
+  const { updateLessonProgress, completeLesson } = useProgressStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts, setHearts] = useState(3);
+  const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
 
   // Step 1 — slider
   const [sliderYear, setSliderYear] = useState(2004);
@@ -86,6 +90,22 @@ const Cash_F2_Inflation = () => {
   // Track progress
   useEffect(() => {
     updateLessonProgress('festgeld-f2', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
+
+  // No hearts effect
+  useEffect(() => {
+    if (hearts === 0) {
+      setNoHeartsScreen('showing');
+      try { navigator.vibrate?.([300, 100, 300]); } catch {}
+    }
+  }, [hearts]);
+
+  // Completion effect
+  useEffect(() => {
+    if (currentStep === TOTAL_STEPS - 1 && !completionResult) {
+      const r = completeLesson('festgeld-f2', hearts);
+      setCompletionResult(r);
+    }
   }, [currentStep]);
 
   const showCTA = () => {
@@ -445,27 +465,7 @@ const Cash_F2_Inflation = () => {
               Du verstehst jetzt was Inflation ist und warum Geld das einfach nur liegt jedes Jahr an Wert verliert.
             </p>
 
-            <motion.div
-              className="inline-flex flex-col items-center gap-0.5 px-6 py-3 rounded-2xl bg-green-500/10 border border-green-500/20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
-            >
-              <motion.span
-                className="font-display text-xl font-bold text-green-600 dark:text-green-400"
-                animate={{
-                  textShadow: [
-                    '0 0 0px hsl(142,71%,45%)',
-                    '0 0 16px hsl(142,71%,45%)',
-                    '0 0 0px hsl(142,71%,45%)',
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                +50 XP
-              </motion.span>
-              <span className="font-body text-xs text-green-600/70 dark:text-green-400/70">verdient</span>
-            </motion.div>
+            <CompletionXP result={completionResult} hearts={hearts} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -490,6 +490,15 @@ const Cash_F2_Inflation = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* No Hearts Overlay */}
+      {noHeartsScreen === 'showing' && (
+        <NoHeartsOverlay
+          onRestart={() => { setCurrentStep(0); setHearts(3); setSliderYear(2004); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onContinue={() => setNoHeartsScreen('none')}
+        />
+      )}
     </div>
   );
 };

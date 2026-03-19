@@ -12,6 +12,9 @@ import DividendSlide from './lessonSlides/DividendSlide';
 import QuizSlide from './lessonSlides/QuizSlide';
 import CompletionSlide from './lessonSlides/CompletionSlide';
 import CashSortSlide from './lessonSlides/CashSortSlide';
+import { useProgressStore } from '@/hooks/useProgressStore';
+import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
+import CompletionXP from '@/components/lessons/CompletionXP';
 
 const TOTAL_STEPS = 5;
 
@@ -297,8 +300,13 @@ const LessonFlow = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [canAdvance, setCanAdvance] = useState(false);
+  const [hearts, setHearts] = useState(3);
+  const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
+  const { completeLesson, updateLessonProgress } = useProgressStore();
 
   const config = lessonConfigs[lessonId ?? 'a1'] ?? lessonConfigs.a1;
+  const lessonStoreId = `${categoryId}-${lessonId}`;
 
   // Story and Completion slides allow immediate advance
   useEffect(() => {
@@ -307,9 +315,29 @@ const LessonFlow = () => {
     }
   }, [currentStep]);
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress(lessonStoreId, Math.min(currentStep / 4, 1));
+  }, [currentStep]);
+
+  // No hearts effect
+  useEffect(() => {
+    if (hearts === 0) {
+      setNoHeartsScreen('showing');
+      try { navigator.vibrate?.([300, 100, 300]); } catch {}
+    }
+  }, [hearts]);
+
+  // Completion effect
+  useEffect(() => {
+    if (currentStep === 4 && !completionResult) {
+      const r = completeLesson(lessonStoreId, hearts);
+      setCompletionResult(r);
+    }
+  }, [currentStep]);
+
   const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
   const goBack = () => navigate(`/category/${categoryId}`);
-  const finishLesson = () => navigate(`/challenge/${categoryId}`, { state: { fromSubPage: true } });
 
   const handleNext = () => {
     if (!canAdvance) return;
@@ -317,8 +345,12 @@ const LessonFlow = () => {
       setCanAdvance(false);
       setCurrentStep(prev => prev + 1);
     } else {
-      finishLesson();
+      navigate(`/category/${categoryId}`);
     }
+  };
+
+  const handleWrongAnswer = () => {
+    setHearts(h => Math.max(0, h - 1));
   };
 
   const renderInteraction = () => {
@@ -365,7 +397,9 @@ const LessonFlow = () => {
 
         <div className="flex items-center gap-0.5 flex-shrink-0">
           {[0, 1, 2].map(i => (
-            <Heart key={i} className="w-5 h-5 text-red-500 fill-red-500" />
+            <Heart key={i} className={`w-5 h-5 transition-all ${
+              i < hearts ? 'text-red-500 fill-red-500' : 'text-muted-foreground/30'
+            }`} />
           ))}
         </div>
       </div>
@@ -392,6 +426,7 @@ const LessonFlow = () => {
             correctFeedback={config.quiz1.correctFeedback}
             wrongFeedback={config.quiz1.wrongFeedback}
             onAnswered={() => setCanAdvance(true)}
+            onWrongAnswer={handleWrongAnswer}
           />
         )}
         {currentStep === 3 && (
@@ -404,10 +439,17 @@ const LessonFlow = () => {
             correctFeedback={config.quiz2.correctFeedback}
             wrongFeedback={config.quiz2.wrongFeedback}
             onAnswered={() => setCanAdvance(true)}
+            onWrongAnswer={handleWrongAnswer}
           />
         )}
         {currentStep === 4 && (
-          <CompletionSlide key="completion" subtitle={config.completionSubtitle} />
+          <motion.div key="completion" className="flex-1 flex flex-col items-center justify-center px-6 text-center"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
+            <span className="text-5xl mb-4">🎉</span>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lektion abgeschlossen!</h2>
+            <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">{config.completionSubtitle}</p>
+            <CompletionXP result={completionResult} hearts={hearts} />
+          </motion.div>
         )}
       </AnimatePresence>
 
@@ -428,6 +470,15 @@ const LessonFlow = () => {
           </motion.button>
         )}
       </div>
+
+      {/* No Hearts Overlay */}
+      {noHeartsScreen === 'showing' && (
+        <NoHeartsOverlay
+          onRestart={() => { setCurrentStep(0); setHearts(3); setCanAdvance(false); setNoHeartsScreen('none'); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setCanAdvance(false); setNoHeartsScreen('none'); }}
+          onContinue={() => setNoHeartsScreen('none')}
+        />
+      )}
     </div>
   );
 };
