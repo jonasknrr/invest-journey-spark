@@ -105,7 +105,7 @@ const TagesgeldOverview = () => {
         {tagesgeldTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Dein Tagesgeld ist flexibel — du kannst es jederzeit anpassen oder abrufen.
+              💡 Your call money is flexible — you can adjust or withdraw it at any time.
             </p>
           </motion.div>
         )}

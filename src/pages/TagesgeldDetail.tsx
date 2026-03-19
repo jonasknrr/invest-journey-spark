@@ -149,7 +149,7 @@ const TagesgeldDetail = () => {
           }`}
         >
           <Check size={20} weight="bold" />
-          {currentAmount > 0 ? 'Betrag anpassen' : 'Investieren'}
+          {currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>
     </div>
