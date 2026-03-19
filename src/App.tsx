@@ -31,6 +31,8 @@ import TagesgeldOverview from "./pages/TagesgeldOverview";
 import TagesgeldDetail from "./pages/TagesgeldDetail";
 import EtfOverview from "./pages/EtfOverview";
 import EtfDetail from "./pages/EtfDetail";
+import AktienOverview from "./pages/AktienOverview";
+import AktienDetail from "./pages/AktienDetail";
 import PortfolioSimulation from "./pages/PortfolioSimulation";
 import NotFound from "./pages/NotFound";
 
@@ -70,6 +72,8 @@ const App = () => (
             <Route path="/challenge/:levelId/tagesgeld" element={<TagesgeldOverview />} />
             <Route path="/challenge/:levelId/etfs/:ticker" element={<EtfDetail />} />
             <Route path="/challenge/:levelId/etfs" element={<EtfOverview />} />
+            <Route path="/challenge/:levelId/aktien/:ticker" element={<AktienDetail />} />
+            <Route path="/challenge/:levelId/aktien" element={<AktienOverview />} />
             <Route path="/challenge/:levelId/simulation" element={<PortfolioSimulation />} />
             <Route path="/challenge/:levelId/:topicSlug" element={<LevelChallenge />} />
             <Route path="/challenge/:levelId" element={<LevelChallenge />} />
