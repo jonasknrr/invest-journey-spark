@@ -320,7 +320,7 @@ const Cash_F2_Inflation = () => {
             <div className="max-w-sm mx-auto w-full mb-4">
               <div className="flex justify-between mb-1">
                 <span className="font-body text-xs text-muted-foreground">2004</span>
-                <span className="font-display text-sm font-bold text-foreground">{sliderYear}</span>
+                <span className="font-display text-sm font-bold text-foreground">{Math.round(sliderYear)}</span>
                 <span className="font-body text-xs text-muted-foreground">2024</span>
               </div>
               <input
