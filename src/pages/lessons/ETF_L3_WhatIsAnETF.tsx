@@ -410,7 +410,7 @@ const ETF_L3_WhatIsAnETF = () => {
                       </motion.span>
                     </p>
                     <p className="font-body text-xs text-muted-foreground">
-                      Gebühren:{' '}
+                      Charge:{' '}
                       <motion.span
                         key={`gc-${buyCount}`}
                         className="font-bold text-red-600 dark:text-red-400 inline-block"
