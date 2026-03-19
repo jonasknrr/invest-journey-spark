@@ -542,6 +542,7 @@ const Cash_F3_Liquidity = () => {
         />
       )}
     </div>
+  );
 };
 
 /* ── Drag Card sub-component ── */
