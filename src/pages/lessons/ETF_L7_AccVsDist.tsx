@@ -26,25 +26,25 @@ interface DecoderETF {
 }
 
 const decoderETFs: DecoderETF[] = [
-  { name: 'iShares Core MSCI World UCITS ETF (Acc)', answer: 'acc', feedback: "✅ '(Acc)' am Ende = thesaurierend. Dividenden werden automatisch reinvestiert." },
-  { name: 'Vanguard FTSE All-World UCITS ETF (USD) Distributing', answer: 'dist', feedback: "✅ 'Distributing' = ausschüttend. Du bekommst Dividenden ausgezahlt." },
-  { name: 'Xtrackers MSCI World Swap UCITS ETF 1C', answer: 'acc', feedback: "✅ '1C' steht für 'Capitalising' = thesaurierend. Auch 'C' am Ende ist ein Hinweis." },
-  { name: 'SPDR S&P 500 ETF Trust', answer: 'dist', feedback: "✅ Kein 'Acc' = meist ausschüttend. US-ETFs schütten fast immer aus." },
-  { name: 'Amundi MSCI World II UCITS ETF Acc', answer: 'acc', feedback: "✅ 'Acc' direkt im Namen = thesaurierend." },
+  { name: 'iShares Core MSCI World UCITS ETF (Acc)', answer: 'acc', feedback: "✅ '(Acc)' at the end = accumulating. Dividends are automatically reinvested." },
+  { name: 'Vanguard FTSE All-World UCITS ETF (USD) Distributing', answer: 'dist', feedback: "✅ 'Distributing' = distributing. You receive dividends paid out." },
+  { name: 'Xtrackers MSCI World Swap UCITS ETF 1C', answer: 'acc', feedback: "✅ '1C' stands for 'Capitalising' = accumulating. 'C' at the end is also a hint." },
+  { name: 'SPDR S&P 500 ETF Trust', answer: 'dist', feedback: "✅ No 'Acc' = usually distributing. US ETFs almost always distribute." },
+  { name: 'Amundi MSCI World II UCITS ETF Acc', answer: 'acc', feedback: "✅ 'Acc' directly in the name = accumulating." },
 ];
 
 /* ── Quiz ── */
 const quiz = {
-  question: 'Julia ist 28 und investiert für die Rente mit 65. Sie will maximales Wachstum ohne manuellen Aufwand. Was wählt sie?',
+  question: 'Julia is 28 and investing for retirement at 65. She wants maximum growth with no manual effort. What does she choose?',
   answers: [
-    { id: 'a', text: 'Ausschüttend — regelmässige Barzahlungen zum selbst reinvestieren' },
-    { id: 'b', text: 'Thesaurierend — Dividenden automatisch reinvestiert, kein Aufwand' },
-    { id: 'c', text: 'Macht keinen Unterschied für die Rendite' },
-    { id: 'd', text: 'Ausschüttend — hat immer niedrigere TER' },
+    { id: 'a', text: 'Distributing — regular cash payments to reinvest yourself' },
+    { id: 'b', text: 'Accumulating — dividends automatically reinvested, no effort' },
+    { id: 'c', text: 'Makes no difference for returns' },
+    { id: 'd', text: 'Distributing — always has lower TER' },
   ],
   correctId: 'b',
-  correctFeedback: 'Genau! Thesaurierend = Schneeball rollt ungestört. 37 Jahre Zinseszins ohne einen Finger zu rühren.',
-  wrongFeedback: 'Thesaurierende ETFs reinvestieren automatisch — kein Aufwand, kein verpasstes Timing, maximaler Zinseszins über 37 Jahre.',
+  correctFeedback: 'Exactly! Accumulating = snowball rolls undisturbed. 37 years of compound interest without lifting a finger.',
+  wrongFeedback: 'Accumulating ETFs reinvest automatically — no effort, no missed timing, maximum compound interest over 37 years.',
 };
 
 /* ── Component ── */
@@ -145,9 +145,9 @@ const ETF_L7_AccVsDist = () => {
 
   // Milestones
   useEffect(() => {
-    if (accVal >= 250000) showMilestone('💎 CHF 250k erreicht!');
-    else if (accVal >= 100000) showMilestone('🚀 CHF 100k erreicht!');
-    else if (accVal >= 50000) showMilestone('🎯 CHF 50k erreicht!');
+    if (accVal >= 250000) showMilestone('💎 CHF 250k reached!');
+    else if (accVal >= 100000) showMilestone('🚀 CHF 100k reached!');
+    else if (accVal >= 50000) showMilestone('🎯 CHF 50k reached!');
     else setMilestone(null);
   }, [accVal]);
 
@@ -230,11 +230,11 @@ const ETF_L7_AccVsDist = () => {
               {storySlide === 0 && (
                 <motion.div key="ss0" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <span className="mb-4" style={{ fontSize: 64 }}>⛄</span>
-                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Zwei Schneebälle. Ein Hügel.</h2>
+                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Two snowballs. One hill.</h2>
                   <div className="flex gap-8 items-end justify-center mb-4 h-56">
                     {/* Acc snowball */}
                     <div className="flex flex-col items-center">
-                      <p className="font-display text-[10px] font-bold text-foreground mb-2">Thesaurierend (Acc)</p>
+                      <p className="font-display text-[10px] font-bold text-foreground mb-2">Accumulating (Acc)</p>
                       <div className="relative flex items-center justify-center" style={{ width: 140, height: 140 }}>
                         <motion.div
                           className="rounded-full bg-blue-400/80 border-2 border-blue-300"
@@ -242,11 +242,11 @@ const ETF_L7_AccVsDist = () => {
                           transition={{ duration: 0.05 }}
                         />
                       </div>
-                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Rollt ungestört ✓</span>
+                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Rolls undisturbed ✓</span>
                     </div>
                     {/* Dist snowball */}
                     <div className="flex flex-col items-center">
-                      <p className="font-display text-[10px] font-bold text-foreground mb-2">Ausschüttend (Dist)</p>
+                      <p className="font-display text-[10px] font-bold text-foreground mb-2">Distributing (Dist)</p>
                       <div className="relative flex items-center justify-center" style={{ width: 140, height: 140 }}>
                         <motion.div
                           className="rounded-full bg-gray-300/80 border-2 border-gray-400"
@@ -265,31 +265,31 @@ const ETF_L7_AccVsDist = () => {
                           />
                         ))}
                       </div>
-                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">Gibt Schnee ab...</span>
+                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">Gives off snow...</span>
                     </div>
                   </div>
-                  <p className="font-body text-sm text-muted-foreground text-center mb-4">Gleicher Start. Gleiche Strecke. 30 Jahre später: riesiger Unterschied.</p>
-                  <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                  <p className="font-body text-sm text-muted-foreground text-center mb-4">Same start. Same slope. 30 years later: huge difference.</p>
+                  <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Next →</button>
                 </motion.div>
               )}
 
               {/* SLIDE 1 — What happens to dividends */}
               {storySlide === 1 && (
                 <motion.div key="ss1" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
-                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">Was passiert mit deinen Dividenden?</h2>
+                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">What happens to your dividends?</h2>
                   <div className="w-full rounded-2xl border border-border overflow-hidden mb-4">
                     {/* Acc section */}
                     <div className="p-4" style={{ backgroundColor: '#EFF6FF' }}>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xl">📋</span>
-                        <p className="font-display text-sm font-bold text-foreground">Thesaurierend (Acc)</p>
+                        <p className="font-display text-sm font-bold text-foreground">Accumulating (Acc)</p>
                       </div>
                       <div className="flex items-center gap-2 mb-2">
                         <motion.span animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 1.5, repeat: Infinity }}>💰</motion.span>
                         <span className="text-muted-foreground">→</span>
-                        <span className="font-body text-xs text-foreground">Automatisch reinvestiert</span>
+                        <span className="font-body text-xs text-foreground">Automatically reinvested</span>
                       </div>
-                      <span className="inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Zinseszins voll erhalten ✓</span>
+                      <span className="inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Full compound interest preserved ✓</span>
                     </div>
                     {/* Divider */}
                     <div className="border-t-2 border-dashed border-border" />
@@ -297,36 +297,36 @@ const ETF_L7_AccVsDist = () => {
                     <div className="p-4 bg-muted/30">
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-xl">💸</span>
-                        <p className="font-display text-sm font-bold text-foreground">Ausschüttend (Dist)</p>
+                        <p className="font-display text-sm font-bold text-foreground">Distributing (Dist)</p>
                       </div>
                       <div className="flex items-center gap-2 mb-2">
                         <motion.span animate={{ x: [0, 10, 0] }} transition={{ duration: 2, repeat: Infinity }}>💰</motion.span>
                         <span className="text-muted-foreground">→</span>
                         <span className="text-sm">🏦</span>
-                        <span className="font-body text-xs text-foreground">Wird dir ausgezahlt</span>
+                        <span className="font-body text-xs text-foreground">Gets paid out to you</span>
                       </div>
-                      <span className="inline-block px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">Du musst selbst reinvestieren</span>
+                      <span className="inline-block px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">You have to reinvest yourself</span>
                     </div>
                   </div>
-                  <p className="font-body text-xs text-muted-foreground text-center mb-4">Vergisst du die Reinvestition auch nur einen Monat? Der Zinseszins-Effekt leidet.</p>
-                  <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                  <p className="font-body text-xs text-muted-foreground text-center mb-4">Forget to reinvest even one month? The compound interest effect suffers.</p>
+                  <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Next →</button>
                 </motion.div>
               )}
 
               {/* SLIDE 2 — 30 year difference */}
               {storySlide === 2 && (
                 <motion.div key="ss2" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
-                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">Der Unterschied nach 30 Jahren.</h2>
+                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">The difference after 30 years.</h2>
                   <div className="w-full rounded-2xl p-5 mb-4" style={{ backgroundColor: '#1E3A5F' }}>
-                    <p className="font-body text-[10px] text-white/60 mb-3">Startkapital: CHF 10.000 · Rendite: 7% · Dividende: 2%</p>
-                    <p className="font-body text-xs text-white/80 mb-1">⛄ Acc nach 30 Jahren:</p>
+                    <p className="font-body text-[10px] text-white/60 mb-3">Starting capital: CHF 10,000 · Return: 7% · Dividend: 2%</p>
+                    <p className="font-body text-xs text-white/80 mb-1">⛄ Acc after 30 years:</p>
                     <p className="font-display text-3xl font-bold text-green-400 mb-3">CHF {fmt(10000 * Math.pow(1.07, 30))}</p>
                     <div className="border-t border-white/20 my-3" />
-                    <p className="font-body text-xs text-white/80 mb-1">💸 Dist nach 30 Jahren (Dividenden ausgegeben):</p>
+                    <p className="font-body text-xs text-white/80 mb-1">💸 Dist after 30 years (dividends spent):</p>
                     <p className="font-display text-2xl font-bold text-white/60 mb-3">CHF {fmt(10000 * Math.pow(1.05, 30))}</p>
                     <div className="rounded-xl bg-amber-500/20 p-3">
-                      <p className="font-display text-sm font-bold text-amber-300">Unterschied: CHF {fmt(10000 * Math.pow(1.07, 30) - 10000 * Math.pow(1.05, 30))}</p>
-                      <p className="font-body text-[10px] text-amber-300/70 mt-1">Das ist der Preis für «ich nehme lieber das Geld jetzt.»</p>
+                      <p className="font-display text-sm font-bold text-amber-300">Difference: CHF {fmt(10000 * Math.pow(1.07, 30) - 10000 * Math.pow(1.05, 30))}</p>
+                      <p className="font-body text-[10px] text-amber-300/70 mt-1">That\'s the price for «I\'d rather take the money now.»</p>
                     </div>
                   </div>
                 </motion.div>
@@ -338,32 +338,32 @@ const ETF_L7_AccVsDist = () => {
         {/* ═══ STEP 1 — Snowball Race ═══ */}
         {currentStep === 1 && (
           <motion.div key="s1" className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Sieh wie die Schneebälle auseinanderdriften</h2>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Watch the snowballs drift apart</h2>
 
             <div className="space-y-3 mb-4 max-w-sm mx-auto w-full">
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="font-body text-xs text-muted-foreground">Monatliche Sparrate</span>
+                  <span className="font-body text-xs text-muted-foreground">Monthly savings rate</span>
                   <span className="font-display text-xs font-bold text-foreground">CHF {fmt(monthlyAmount)}</span>
                 </div>
                 <input type="range" min={50} max={1000} step={50} value={monthlyAmount} onChange={e => setMonthlyAmount(+e.target.value)} className="w-full accent-blue-500" />
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="font-body text-xs text-muted-foreground">Jahre</span>
+                  <span className="font-body text-xs text-muted-foreground">Years</span>
                   <span className="font-display text-xs font-bold text-foreground">{years}</span>
                 </div>
                 <input type="range" min={5} max={40} step={1} value={years} onChange={e => setYears(+e.target.value)} className="w-full accent-blue-500" />
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="font-body text-xs text-muted-foreground">Jährliche Rendite</span>
+                  <span className="font-body text-xs text-muted-foreground">Annual return</span>
                   <span className="font-display text-xs font-bold text-foreground">{returnRate.toFixed(1)}%</span>
                 </div>
                 <input type="range" min={3} max={12} step={0.5} value={returnRate} onChange={e => setReturnRate(+e.target.value)} className="w-full accent-blue-500" />
               </div>
               <div className="flex justify-between">
-                <span className="font-body text-xs text-muted-foreground">Dividendenrendite</span>
+                <span className="font-body text-xs text-muted-foreground">Dividend yield</span>
                 <span className="font-display text-xs font-bold text-muted-foreground">{dividendYield}% (fix)</span>
               </div>
             </div>
@@ -401,18 +401,18 @@ const ETF_L7_AccVsDist = () => {
 
             {/* Diff box */}
             <div className="max-w-sm mx-auto w-full rounded-xl bg-amber-500/10 border border-amber-500/20 p-3 mb-2 text-center">
-              <p className="font-body text-xs text-muted-foreground">Acc ist mehr</p>
+              <p className="font-body text-xs text-muted-foreground">Acc is more</p>
               <p className="font-display text-xl font-bold text-amber-600">CHF {fmt(diff)}</p>
             </div>
-            <p className="font-body text-[11px] text-muted-foreground text-center max-w-xs mx-auto">Der blaue Ball wächst schneller weil jeder Cent sofort wieder arbeitet.</p>
+            <p className="font-body text-[11px] text-muted-foreground text-center max-w-xs mx-auto">The blue ball grows faster because every cent goes right back to work.</p>
           </motion.div>
         )}
 
         {/* ═══ STEP 2 — ETF Name Decoder ═══ */}
         {currentStep === 2 && (
           <motion.div key="s2" className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">Acc oder Dist? Du entscheidest!</h2>
-            <p className="font-body text-xs text-muted-foreground text-center mb-4">Tippe auf den richtigen Typ für jeden ETF-Namen</p>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">Acc or Dist? You decide!</h2>
+            <p className="font-body text-xs text-muted-foreground text-center mb-4">Tap the correct type for each ETF name</p>
 
             {!decoderDone ? (
               <div className="max-w-sm mx-auto w-full">
@@ -424,10 +424,10 @@ const ETF_L7_AccVsDist = () => {
 
                 <div className="grid grid-cols-2 gap-3 mb-4">
                   <motion.button whileTap={{ scale: 0.95 }} onClick={() => handleDecoder('acc')} className="py-3 rounded-2xl border-2 border-blue-500 text-blue-700 font-display text-sm font-bold">
-                    ⛄ Thesaurierend (Acc)
+                    ⛄ Accumulating (Acc)
                   </motion.button>
                   <motion.button whileTap={{ scale: 0.95 }} onClick={() => handleDecoder('dist')} className="py-3 rounded-2xl border-2 border-blue-500 text-blue-700 font-display text-sm font-bold">
-                    💸 Ausschüttend (Dist)
+                    💸 Distributing (Dist)
                   </motion.button>
                 </div>
 
@@ -442,7 +442,7 @@ const ETF_L7_AccVsDist = () => {
                 <div className="rounded-2xl p-5 text-center mb-4 bg-green-500/10 border border-green-500/20">
                   <p className="font-display text-2xl font-bold text-foreground mb-2">{decoderScore}/{decoderETFs.length}</p>
                   <p className="font-display text-base font-bold text-foreground">
-                    {decoderScore >= 5 ? '🎯 Perfekt! Du erkennst ETF-Namen wie ein Profi.' : decoderScore >= 3 ? '👍 Gut! Fast alle richtig.' : "💪 Schau auf 'Acc', 'C', 'Capitalising' vs 'Dist', 'D', 'Distributing'."}
+                    {decoderScore >= 5 ? '🎯 Perfect! You read ETF names like a pro.' : decoderScore >= 3 ? '👍 Good! Almost all correct.' : "💪 Look for 'Acc', 'C', 'Capitalising' vs 'Dist', 'D', 'Distributing'."}
                   </p>
                 </div>
               </motion.div>
@@ -487,13 +487,13 @@ const ETF_L7_AccVsDist = () => {
               ))}
             </div>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
-            <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">Du kennst den Unterschied der über Jahrzehnte zehntausende Euro ausmacht.</p>
+            <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">You now know the difference that amounts to tens of thousands of euros over decades.</p>
 
             <div className="w-full max-w-sm rounded-2xl bg-green-500/10 border border-green-500/20 p-4 mb-4 space-y-2">
-              <p className="font-body text-xs text-foreground">✅ Acc = Schneeball rollt ungestört, voller Zinseszins</p>
-              <p className="font-body text-xs text-foreground">✅ Dist = Dividenden ausgezahlt, du musst reinvestieren</p>
-              <p className="font-body text-xs text-foreground">✅ 'Acc'/'C' im Namen = thesaurierend</p>
-              <p className="font-body text-xs text-foreground">✅ Für Vermögensaufbau: Thesaurierung meist besser</p>
+              <p className="font-body text-xs text-foreground">✅ Acc = snowball rolls undisturbed, full compound interest</p>
+              <p className="font-body text-xs text-foreground">✅ Dist = dividends paid out, you must reinvest</p>
+              <p className="font-body text-xs text-foreground">✅ 'Acc'/'C' in the name = accumulating</p>
+              <p className="font-body text-xs text-foreground">✅ For wealth building: accumulating usually better</p>
             </div>
 
             <CompletionXP result={completionResult} hearts={hearts} />
@@ -522,17 +522,17 @@ const ETF_L7_AccVsDist = () => {
           <motion.div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowDeepDive(false)}>
             <motion.div className="bg-card rounded-t-3xl p-6 max-w-md w-full max-h-[70vh] overflow-y-auto" initial={{ y: '100%' }} animate={{ y: 0 }} exit={{ y: '100%' }} transition={{ type: 'spring', stiffness: 300, damping: 30 }} onClick={e => e.stopPropagation()}>
               <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4" />
-              <h3 className="font-display text-lg font-bold text-foreground mb-3">Steuerliche Details 📖</h3>
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">Tax Details 📖</h3>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                Irisch domizilierte ETFs (ISIN beginnt 'IE') zahlen 15% Quellensteuer auf US-Dividenden statt 30% für Nicht-Vertragsländer — deshalb sind iShares und Vanguard EU-ETFs steuerlich effizienter.
+                Irish-domiciled ETFs (ISIN starts 'IE') pay 15% withholding tax on US dividends instead of 30% for non-treaty countries — that\'s why iShares and Vanguard EU ETFs are more tax-efficient.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                Vorabpauschale (Deutschland): jährliche Vorauszahlung auf unrealisierte Gewinne bei thesaurierenden ETFs.
+                Advance flat-rate tax (Germany): annual prepayment on unrealized gains for accumulating ETFs.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Schweizer Privatanleger: 0% Kapitalertragsteuer, Dividenden als Einkommen versteuert.
+                Swiss private investors: 0% capital gains tax, dividends taxed as income.
               </p>
-              <button onClick={() => setShowDeepDive(false)} className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm">Schliessen</button>
+              <button onClick={() => setShowDeepDive(false)} className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm">Close</button>
             </motion.div>
           </motion.div>
         )}

@@ -11,16 +11,16 @@ const BLUE = '#1A56DB';
 const TOTAL_STEPS = 6;
 
 /* ── Matching game data ── */
-const methods = ['Marktkapitalisierung', 'Preis', 'Gleichgewichtung'] as const;
+const methods = ['Market Cap', 'Price', 'Equal Weight'] as const;
 const descriptions: Record<string, { id: string; text: string }> = {
-  A: { id: 'A', text: 'Jede Aktie zählt gleich viel — egal ob Apple oder ein kleines Startup' },
-  B: { id: 'B', text: 'Eine $400 Aktie hat 4× mehr Einfluss als eine $100 Aktie — unabhängig von der Unternehmensgrösse' },
-  C: { id: 'C', text: 'Grössere Unternehmen haben mehr Einfluss — Apple bewegt den Index mehr als ein kleines Unternehmen' },
+  A: { id: 'A', text: 'Every stock counts the same — whether Apple or a small startup' },
+  B: { id: 'B', text: 'A $400 stock has 4× more influence than a $100 stock — regardless of company size' },
+  C: { id: 'C', text: 'Larger companies have more influence — Apple moves the index more than a small company' },
 };
 const correctMatches: Record<string, string> = {
-  'Marktkapitalisierung': 'C',
-  'Preis': 'B',
-  'Gleichgewichtung': 'A',
+  'Market Cap': 'C',
+  'Price': 'B',
+  'Equal Weight': 'A',
 };
 
 /* ── Quiz data ── */
@@ -33,29 +33,29 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  question: 'Tesla (1.7% des S&P 500) fällt an einem Tag um 40%. Wie stark bewegt sich der S&P 500 allein durch Tesla?',
+  question: 'Tesla (1.7% of the S&P 500) falls 40% in one day. How much does the S&P 500 move due to Tesla alone?',
   answers: [
-    { id: 'a', text: '40% runter — der Index spiegelt Tesla' },
-    { id: 'b', text: '0% — Indizes ignorieren Einzelaktien' },
-    { id: 'c', text: 'Etwa -0.68% (40% × 1.7% Gewicht)' },
-    { id: 'd', text: 'Genau -1.7% — gleich dem Gewicht von Tesla' },
+    { id: 'a', text: '40% down — the index mirrors Tesla' },
+    { id: 'b', text: '0% — indexes ignore individual stocks' },
+    { id: 'c', text: 'About -0.68% (40% × 1.7% weight)' },
+    { id: 'd', text: 'Exactly -1.7% — equal to Tesla\'s weight' },
   ],
   correctId: 'c',
-  correctFeedback: 'Genau! Marktkapitalisierungsgewichtung bedeutet: Auswirkung ist proportional. 40% × 1.7% = 0.68%. Die anderen 499 Aktien bewegen sich weiterhin unabhängig.',
-  wrongFeedback: 'Mit Marktkapitalisierungsgewichtung ist der Einfluss proportional zum Gewicht. Tesla bei 1.7% das 40% fällt: 40% × 0.017 = 0.68% Belastung für den Index.',
+  correctFeedback: 'Exactly! Market cap weighting means: impact is proportional. 40% × 1.7% = 0.68%. The other 499 stocks continue to move independently.',
+  wrongFeedback: 'With market cap weighting, influence is proportional to weight. Tesla at 1.7% falling 40%: 40% × 0.017 = 0.68% drag on the index.',
 };
 
 const quiz2: QuizConfig = {
-  question: 'Warum wird der Dow Jones (DJIA) oft als schlechtes Marktbarometer kritisiert?',
+  question: 'Why is the Dow Jones (DJIA) often criticized as a poor market barometer?',
   answers: [
-    { id: 'a', text: 'Er nutzt Preisgewichtung — eine $400 Aktie hat 4× mehr Einfluss als eine $100 Aktie, unabhängig von der Grösse' },
-    { id: 'b', text: 'Er verfolgt zu viele Sektoren' },
-    { id: 'c', text: 'Er wird zu selten neu berechnet' },
-    { id: 'd', text: 'Er enthält nur nicht-amerikanische Unternehmen' },
+    { id: 'a', text: 'It uses price weighting — a $400 stock has 4× more influence than a $100 stock, regardless of size' },
+    { id: 'b', text: 'It tracks too many sectors' },
+    { id: 'c', text: 'It\'s recalculated too infrequently' },
+    { id: 'd', text: 'It only contains non-American companies' },
   ],
   correctId: 'a',
-  correctFeedback: 'Korrekt! Preisgewichtung ist willkürlich — ein Aktiensplit halbiert den Preis und würde den Index verzerren. Deshalb bevorzugen Finanzexperten marktkapitalisierungsgewichtete Indizes.',
-  wrongFeedback: 'Der DJIA nutzt Preisgewichtung: eine $400 Aktie hat 4× mehr Einfluss als eine $100 Aktie — auch wenn das $100-Unternehmen eigentlich grösser ist. Das gilt weitgehend als fehlerhaft.',
+  correctFeedback: 'Correct! Price weighting is arbitrary — a stock split halves the price and would distort the index. That\'s why financial experts prefer market-cap-weighted indexes.',
+  wrongFeedback: 'The DJIA uses price weighting: a $400 stock has 4× more influence than a $100 stock — even if the $100 company is actually larger. This is widely considered flawed.',
 };
 
 /* ── Main Component ── */
@@ -179,7 +179,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                   exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <span className="mb-4" style={{ fontSize: 64 }}>🎵</span>
                   <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">
-                    Warum dominiert Ed Sheeran die Charts?
+                    Why does Ed Sheeran dominate the charts?
                   </h2>
                   <div className="grid grid-cols-2 gap-3 w-full mb-4">
                     {/* Ed Sheeran card */}
@@ -189,20 +189,20 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                       <div className="w-full h-3 bg-muted-foreground/10 rounded-full overflow-hidden mb-1">
                         <div className="h-full rounded-full bg-green-500" style={{ width: '90%' }} />
                       </div>
-                      <p className="font-body text-xs text-muted-foreground">3 Mrd. Streams</p>
+                      <p className="font-body text-xs text-muted-foreground">3B streams</p>
                     </div>
                     {/* Indie artist card */}
                     <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center">
                       <span className="text-3xl mb-2">🎸</span>
-                      <p className="font-display text-sm font-bold text-foreground mb-2">Indie Künstler</p>
+                      <p className="font-display text-sm font-bold text-foreground mb-2">Indie Artist</p>
                       <div className="w-full h-3 bg-muted-foreground/10 rounded-full overflow-hidden mb-1">
                         <div className="h-full rounded-full bg-green-500" style={{ width: '10%' }} />
                       </div>
-                      <p className="font-body text-xs text-muted-foreground">1 Mio. Streams</p>
+                      <p className="font-body text-xs text-muted-foreground">1M streams</p>
                     </div>
                   </div>
                   <p className="font-body text-sm text-muted-foreground text-center mb-4">
-                    Mehr Streams = mehr Einfluss auf die Playlist
+                    More streams = more influence on the playlist
                   </p>
                   <div className="flex justify-end w-full">
                     <button onClick={() => setStorySlide(1)}
@@ -219,36 +219,36 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                   initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">
-                    An der Börse heisst das: Marktkapitalisierung
+                    On the stock exchange, that\'s called: Market Capitalization
                   </h2>
                   <div className="grid grid-cols-2 gap-3 w-full mb-4">
                     {/* Apple card */}
                     <div className="rounded-2xl p-4 flex flex-col items-center text-center" style={{ backgroundColor: '#EFF6FF' }}>
                       <span className="text-3xl mb-2">🍎</span>
                       <p className="font-display text-sm font-bold text-foreground">Apple</p>
-                      <p className="font-body text-xs text-muted-foreground mb-2">$3 Billionen</p>
+                      <p className="font-body text-xs text-muted-foreground mb-2">$3 Trillion</p>
                       <div className="w-full h-3 bg-blue-200 rounded-full overflow-hidden mb-1">
                         <div className="h-full rounded-full" style={{ width: '90%', backgroundColor: BLUE }} />
                       </div>
                       <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 dark:text-green-300 font-body text-[10px] font-semibold">
-                        7.1% des S&P 500
+                        7.1% of the S&P 500
                       </span>
                     </div>
                     {/* Small company card */}
                     <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center">
                       <span className="text-3xl mb-2">🏢</span>
-                      <p className="font-display text-sm font-bold text-foreground">Kleinfirma</p>
-                      <p className="font-body text-xs text-muted-foreground mb-2">$2 Milliarden</p>
+                      <p className="font-display text-sm font-bold text-foreground">Small Company</p>
+                      <p className="font-body text-xs text-muted-foreground mb-2">$2 Billion</p>
                       <div className="w-full h-3 bg-muted-foreground/10 rounded-full overflow-hidden mb-1">
                         <div className="h-full rounded-full bg-muted-foreground/30" style={{ width: '5%' }} />
                       </div>
                       <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-muted-foreground/10 text-muted-foreground font-body text-[10px] font-semibold">
-                        ~0.0% des S&P 500
+                        ~0.0% of the S&P 500
                       </span>
                     </div>
                   </div>
                   <p className="font-body text-sm text-muted-foreground text-center mb-4">
-                    1.500× kleiner = fast kein Einfluss
+                    1,500× smaller = almost no influence
                   </p>
                   <div className="flex justify-end w-full">
                     <button onClick={() => setStorySlide(2)}
@@ -265,29 +265,29 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                   initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">
-                    Deshalb bewegt Apple den ganzen Markt.
+                    That\'s why Apple moves the entire market.
                   </h2>
                   {/* Dark visual card */}
                   <div className="w-full rounded-2xl p-5 text-white mb-4" style={{ backgroundColor: '#1E3A5F' }}>
-                    <p className="font-body text-sm text-white/70 mb-3">Wenn Apple +10% steigt:</p>
+                    <p className="font-body text-sm text-white/70 mb-3">If Apple rises +10%:</p>
                     <div className="flex items-center gap-3 mb-1">
                       <span className="text-green-400 text-2xl">↑</span>
                       <span className="font-display text-3xl font-bold">+0.71%</span>
                     </div>
-                    <p className="font-body text-xs text-white/60 mb-4">Beitrag zum S&P 500</p>
+                    <p className="font-body text-xs text-white/60 mb-4">Contribution to the S&P 500</p>
                     <div className="border-t border-white/20 pt-4">
-                      <p className="font-body text-sm text-white/70 mb-3">Wenn Kleinfirma +100% steigt:</p>
+                      <p className="font-body text-sm text-white/70 mb-3">Wenn Small Company +100% steigt:</p>
                       <div className="flex items-center gap-3 mb-1">
                         <span className="text-green-400 text-base">↑</span>
                         <span className="font-display text-lg font-bold text-white/80">+0.001%</span>
                       </div>
-                      <p className="font-body text-xs text-white/60">Beitrag zum S&P 500</p>
+                      <p className="font-body text-xs text-white/60">Contribution to the S&P 500</p>
                     </div>
                   </div>
                   {/* Amber infobox */}
                   <div className="w-full rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3">
                     <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
-                      💡 Top 10 Firmen = ~35% des S&P 500. Die 490 anderen? Alle zusammen = 65%.
+                      💡 Top 10 companies = ~35% of the S&P 500. The other 490? All together = 65%.
                     </p>
                   </div>
                 </motion.div>
@@ -306,11 +306,11 @@ const ETF_L2_HowIndexesAreBuilt = () => {
 
           const infoBox = (() => {
             const a = appleMove[0], t = teslaMove[0];
-            if (a === 0 && t === 0) return { bg: 'bg-muted', border: 'border-muted-foreground/20', text: 'text-muted-foreground', msg: '👆 Bewege die Slider um den Gewichtungseffekt zu spüren' };
-            if (a > 10 && t < -10) return { bg: 'bg-red-50 dark:bg-red-950/30', border: 'border-red-400', text: 'text-red-800 dark:text-red-200', msg: `🔥 Apple +${a}% rettet den Index fast trotz Tesla-Crash — dank seines 4× höheren Gewichts!` };
-            if ((a > 0 && t < 0) || (a < 0 && t > 0)) return { bg: 'bg-amber-50 dark:bg-amber-950/30', border: 'border-amber-400', text: 'text-amber-800 dark:text-amber-200', msg: '⚔️ Gegenläufig! Apple zieht hoch, Tesla zieht runter — wer gewinnt? Apple wiegt 4× mehr als Tesla.' };
-            if (a > 10 && t > 10) return { bg: 'bg-green-50 dark:bg-green-950/30', border: 'border-green-400', text: 'text-green-800 dark:text-green-200', msg: '🚀 Beide steigen — Apple treibt den Index aber deutlich mehr!' };
-            if (a < -10 && t < -10) return { bg: 'bg-red-50 dark:bg-red-950/30', border: 'border-red-400', text: 'text-red-800 dark:text-red-200', msg: '📉 Doppelter Absturz — Apple reisst den Index stärker runter als Tesla.' };
+            if (a === 0 && t === 0) return { bg: 'bg-muted', border: 'border-muted-foreground/20', text: 'text-muted-foreground', msg: '👆 Move the sliders to feel the weighting effect' };
+            if (a > 10 && t < -10) return { bg: 'bg-red-50 dark:bg-red-950/30', border: 'border-red-400', text: 'text-red-800 dark:text-red-200', msg: `🔥 Apple +${a}% nearly saves the index despite Tesla crash — thanks to its 4× higher weight!` };
+            if ((a > 0 && t < 0) || (a < 0 && t > 0)) return { bg: 'bg-amber-50 dark:bg-amber-950/30', border: 'border-amber-400', text: 'text-amber-800 dark:text-amber-200', msg: '⚔️ Opposing forces! Apple pulls up, Tesla pulls down — who wins? Apple weighs 4× more than Tesla.' };
+            if (a > 10 && t > 10) return { bg: 'bg-green-50 dark:bg-green-950/30', border: 'border-green-400', text: 'text-green-800 dark:text-green-200', msg: '🚀 Both rising — but Apple drives the index much more!' };
+            if (a < -10 && t < -10) return { bg: 'bg-red-50 dark:bg-red-950/30', border: 'border-red-400', text: 'text-red-800 dark:text-red-200', msg: '📉 Double crash — Apple drags the index down harder than Tesla.' };
             return null;
           })();
 
@@ -319,17 +319,17 @@ const ETF_L2_HowIndexesAreBuilt = () => {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">
-              Zwei Unternehmen, ein Index — spür den Unterschied
+              Two companies, one index — feel the difference
             </h2>
             <p className="font-body text-sm text-muted-foreground text-center mb-5">
-              Bewege beide Slider — auch in entgegengesetzte Richtungen
+              Move both sliders — even in opposite directions
             </p>
             <div className="max-w-sm mx-auto w-full space-y-4">
               {/* Apple slider */}
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-display text-sm font-bold text-foreground">🍎 Apple</span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-white" style={{ backgroundColor: BLUE }}>7.1% Gewicht</span>
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold text-white" style={{ backgroundColor: BLUE }}>7.1% weight</span>
                 </div>
                 <p className={`font-display text-2xl font-bold text-center tabular-nums mb-1 ${clr(appleMove[0])}`}>
                   {appleMove[0] > 0 ? '+' : ''}{appleMove[0]}%
@@ -341,7 +341,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                 </div>
                 <div className="flex justify-center mt-1">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${appleContrib > 0 ? 'bg-green-500/10 text-green-700 dark:text-green-300' : appleContrib < 0 ? 'bg-red-500/10 text-red-700 dark:text-red-300' : 'bg-muted text-muted-foreground'}`}>
-                    Beitrag zum Index: {fmt(appleContrib)}
+                    Index contribution: {fmt(appleContrib)}
                   </span>
                 </div>
               </div>
@@ -352,7 +352,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="font-display text-sm font-bold text-foreground">⚡ Tesla</span>
-                  <span className="px-2 py-0.5 rounded-full bg-muted text-[10px] font-bold text-muted-foreground">1.7% Gewicht</span>
+                  <span className="px-2 py-0.5 rounded-full bg-muted text-[10px] font-bold text-muted-foreground">1.7% weight</span>
                 </div>
                 <p className={`font-display text-2xl font-bold text-center tabular-nums mb-1 ${clr(teslaMove[0])}`}>
                   {teslaMove[0] > 0 ? '+' : ''}{teslaMove[0]}%
@@ -364,7 +364,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                 </div>
                 <div className="flex justify-center mt-1">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${teslaContrib > 0 ? 'bg-green-500/10 text-green-700 dark:text-green-300' : teslaContrib < 0 ? 'bg-red-500/10 text-red-700 dark:text-red-300' : 'bg-muted text-muted-foreground'}`}>
-                    Beitrag zum Index: {fmt(teslaContrib)}
+                    Index contribution: {fmt(teslaContrib)}
                   </span>
                 </div>
               </div>
@@ -374,7 +374,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                 key={total.toFixed(2)}
                 initial={{ scale: 1 }} animate={{ scale: [1, 1.02, 1] }}
                 transition={{ duration: 0.3 }}>
-                <p className="font-body text-xs text-white/50 text-center mb-1">S&P 500 BEWEGT SICH</p>
+                <p className="font-body text-xs text-white/50 text-center mb-1">S&P 500 MOVES</p>
                 <p className={`font-display font-bold text-center tabular-nums ${total > 0 ? 'text-green-400' : total < 0 ? 'text-red-400' : 'text-white'}`}
                   style={{ fontSize: 48 }}>
                   {fmt(total)}
@@ -421,10 +421,10 @@ const ETF_L2_HowIndexesAreBuilt = () => {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">
-              Welche Methode ist welche?
+              Which method is which?
             </h2>
             <p className="font-body text-sm text-muted-foreground text-center mb-5">
-              Tippe auf eine Beschreibung und wähle die passende Methode
+              Tap a description and choose the matching method
             </p>
             <div className="max-w-sm mx-auto w-full space-y-3">
               {/* Card A — correct: Gleichgewichtung */}
@@ -442,7 +442,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                     <div className="flex items-start gap-3">
                       <div className="flex-1">
                         <p className="font-body text-sm text-foreground leading-relaxed">
-                          Jede Aktie zählt gleich viel — egal ob Apple oder kleines Startup
+                          Every stock counts the same — whether Apple or a small startup
                         </p>
                       </div>
                       {answered && (
@@ -450,12 +450,12 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                       )}
                     </div>
                     {answered && (
-                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Gleichgewichtung ✓</p>
+                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Equal Weight ✓</p>
                     )}
                     {!answered && (
                       <div className="flex gap-2 mt-3">
-                        {(['Marktkapitalisierung', 'Preis', 'Gleichgewichtung'] as const).map(m => {
-                          const methodKey = m === 'Marktkapitalisierung' ? 'marktKap' : m === 'Preis' ? 'preis' : 'gleich';
+                        {(['Market Cap', 'Price', 'Equal Weight'] as const).map(m => {
+                          const methodKey = m === 'Market Cap' ? 'marktKap' : m === 'Price' ? 'preis' : 'gleich';
                           const alreadyUsed = matchAnswers[methodKey] !== null;
                           return (
                             <button key={m} onClick={() => handleMatchTap('A', methodKey as 'marktKap' | 'preis' | 'gleich')}
@@ -488,7 +488,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                     <div className="flex items-start gap-3">
                       <div className="flex-1">
                         <p className="font-body text-sm text-foreground leading-relaxed">
-                          Eine $400 Aktie hat 4× mehr Einfluss als eine $100 Aktie
+                          A $400 stock has 4× more influence than a $100 stock
                         </p>
                       </div>
                       {answered && (
@@ -496,12 +496,12 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                       )}
                     </div>
                     {answered && (
-                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Preis ✓</p>
+                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Price ✓</p>
                     )}
                     {!answered && (
                       <div className="flex gap-2 mt-3">
-                        {(['Marktkapitalisierung', 'Preis', 'Gleichgewichtung'] as const).map(m => {
-                          const methodKey = m === 'Marktkapitalisierung' ? 'marktKap' : m === 'Preis' ? 'preis' : 'gleich';
+                        {(['Market Cap', 'Price', 'Equal Weight'] as const).map(m => {
+                          const methodKey = m === 'Market Cap' ? 'marktKap' : m === 'Price' ? 'preis' : 'gleich';
                           const alreadyUsed = matchAnswers[methodKey] !== null;
                           return (
                             <button key={m} onClick={() => handleMatchTap('B', methodKey as 'marktKap' | 'preis' | 'gleich')}
@@ -534,7 +534,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                     <div className="flex items-start gap-3">
                       <div className="flex-1">
                         <p className="font-body text-sm text-foreground leading-relaxed">
-                          Grössere Firmen haben mehr Einfluss auf den Index
+                          Larger companies have more influence on the index
                         </p>
                       </div>
                       {answered && (
@@ -542,12 +542,12 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                       )}
                     </div>
                     {answered && (
-                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Marktkapitalisierung ✓</p>
+                      <p className="font-display text-xs font-bold text-green-600 dark:text-green-400 mt-2">Correct! → Market Cap ✓</p>
                     )}
                     {!answered && (
                       <div className="flex gap-2 mt-3">
-                        {(['Marktkapitalisierung', 'Preis', 'Gleichgewichtung'] as const).map(m => {
-                          const methodKey = m === 'Marktkapitalisierung' ? 'marktKap' : m === 'Preis' ? 'preis' : 'gleich';
+                        {(['Market Cap', 'Price', 'Equal Weight'] as const).map(m => {
+                          const methodKey = m === 'Market Cap' ? 'marktKap' : m === 'Price' ? 'preis' : 'gleich';
                           const alreadyUsed = matchAnswers[methodKey] !== null;
                           return (
                             <button key={m} onClick={() => handleMatchTap('C', methodKey as 'marktKap' | 'preis' | 'gleich')}
@@ -568,7 +568,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
               {allMatched && (
                 <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
                   className="bg-green-500/10 border border-green-500/20 rounded-2xl p-4 text-center">
-                  <p className="font-display font-bold text-green-700 dark:text-green-300">Alle richtig! 🎉</p>
+                  <p className="font-display font-bold text-green-700 dark:text-green-300">All correct! 🎉</p>
                 </motion.div>
               )}
             </div>
@@ -593,11 +593,11 @@ const ETF_L2_HowIndexesAreBuilt = () => {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
             <span className="text-5xl mb-4">🎉</span>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
-            <p className="font-body text-sm text-muted-foreground mb-5">Du verstehst jetzt wie Indizes gebaut werden.</p>
+            <p className="font-body text-sm text-muted-foreground mb-5">You now understand how indexes are built.</p>
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left space-y-1">
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Marktkapitalisierung = Grösse des Unternehmens</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Grössere Firmen haben mehr Indexeinfluss</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Es gibt 3 Gewichtungsmethoden: Marktkapitalisierung, Preis, Gleichgewichtung</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Market cap = size of the company</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Larger companies have more index influence</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ There are 3 weighting methods: market cap, price, equal weight</p>
               <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Top 10 S&P 500 Firmen = ~35% des Index</p>
             </div>
             <CompletionXP result={completionResult} hearts={hearts} />
@@ -634,9 +634,9 @@ const ETF_L2_HowIndexesAreBuilt = () => {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               onClick={e => e.stopPropagation()}>
               <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4" />
-              <h3 className="font-display text-lg font-bold text-foreground mb-3">Wie Indizes gebaut werden 📖</h3>
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">How indexes are built 📖</h3>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                <strong>Float-adjustierte Marktkapitalisierungsgewichtung:</strong> Der S&P 500 nutzt den "Float" — nur frei handelbare Aktien zählen, nicht solche die von Insidern oder Regierungen gehalten werden.
+                <strong>Float-adjusted market cap weighting:</strong> The S&P 500 uses the "float" — only freely tradable shares count, not those held by insiders or governments.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
                 <strong>Rebalancing:</strong> quartalsweise Anpassung für Preisdrift, halbjährliche Vollüberprüfung für neue/entfernte Unternehmen.

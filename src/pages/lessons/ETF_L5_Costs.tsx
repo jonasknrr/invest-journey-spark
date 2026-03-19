@@ -10,16 +10,16 @@ const BLUE = '#1A56DB';
 const TOTAL_STEPS = 5;
 
 const quiz = {
-  question: 'ETF A: TER 0.15%, Tracking Difference -0.05%.\nETF B: TER 0.07%, Tracking Difference +0.20%.\nWelcher ist tatsächlich günstiger?',
+  question: 'ETF A: TER 0.15%, Tracking Difference -0.05%.\nETF B: TER 0.07%, Tracking Difference +0.20%.\nWhich one is actually cheaper?',
   answers: [
-    { id: 'a', text: 'ETF B — niedrigere TER' },
-    { id: 'b', text: 'ETF A — negative TD bedeutet er schlug seinen Index, echte Kosten nahe null' },
-    { id: 'c', text: 'Beide gleich teuer' },
-    { id: 'd', text: 'Unmöglich zu sagen' },
+    { id: 'a', text: 'ETF B — lower TER' },
+    { id: 'b', text: 'ETF A — negative TD means it beat its index, real costs near zero' },
+    { id: 'c', text: 'Both equally expensive' },
+    { id: 'd', text: 'Impossible to tell' },
   ],
   correctId: 'b',
-  correctFeedback: 'Genau! Tracking Difference ist die echte Kostenkennzahl. TD -0.05% = ETF A übertraf seinen Index. ETF B bei +0.20% TD ist trotz niedrigerer TER teurer.',
-  wrongFeedback: 'Schau auf die Tracking Difference, nicht nur die TER. ETF A mit TD -0.05% übertraf sogar seinen Index — echte Kosten = negativ. ETF B bei +0.20% TD ist der teurere.',
+  correctFeedback: 'Exactly! Tracking Difference is the true cost metric. TD -0.05% = ETF A outperformed its index. ETF B at +0.20% TD is more expensive despite a lower TER.',
+  wrongFeedback: 'Look at the Tracking Difference, not just the TER. ETF A with TD -0.05% even outperformed its index — real costs = negative. ETF B at +0.20% TD is the more expensive one.',
 };
 
 /* ── Helpers ── */
@@ -203,7 +203,7 @@ const ETF_L5_Costs = () => {
               {storySlide === 0 && (
                 <motion.div key="ss0" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <span className="mb-4" style={{ fontSize: 64 }}>🪣</span>
-                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Deine Investition ist ein Wassereimer.</h2>
+                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Your investment is a water bucket.</h2>
                   <div className="flex gap-6 mb-4 w-full justify-center">
                     <div className="flex flex-col items-center">
                       <p className="font-display text-xs font-bold text-foreground mb-1">ETF A — 0.07%</p>
@@ -211,7 +211,7 @@ const ETF_L5_Costs = () => {
                         <div className="absolute bottom-0 left-0 right-0 bg-blue-500/70" style={{ height: '99%' }} />
                         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-foreground/30" />
                       </div>
-                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Nach 30 Jahren: CHF 96.000</span>
+                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">After 30 years: CHF 96,000</span>
                     </div>
                     <div className="flex flex-col items-center">
                       <p className="font-display text-xs font-bold text-foreground mb-1">ETF B — 0.50%</p>
@@ -219,11 +219,11 @@ const ETF_L5_Costs = () => {
                         <div className="absolute bottom-0 left-0 right-0 bg-red-500/70" style={{ height: '78%' }} />
                         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-foreground/30" />
                       </div>
-                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-red-500/10 text-red-700 font-body text-[10px] font-semibold">Nach 30 Jahren: CHF 82.000</span>
+                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-red-500/10 text-red-700 font-body text-[10px] font-semibold">After 30 years: CHF 82,000</span>
                     </div>
                   </div>
-                  <p className="font-body text-sm text-muted-foreground text-center mb-4">Dasselbe Loch. 30 Jahre. CHF 14.000 Unterschied.</p>
-                  <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                  <p className="font-body text-sm text-muted-foreground text-center mb-4">Same hole. 30 years. CHF 14,000 difference.</p>
+                  <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Next →</button>
                 </motion.div>
               )}
 
@@ -231,14 +231,14 @@ const ETF_L5_Costs = () => {
               {storySlide === 1 && (
                 <motion.div key="ss1" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <span className="mb-4" style={{ fontSize: 64 }}>🎸</span>
-                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Der ETF ist eine Coverband.</h2>
+                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">The ETF is a cover band.</h2>
                   <div className="w-full rounded-2xl p-5 mb-4" style={{ backgroundColor: '#1E3A5F' }}>
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-xl">🎵</span>
                       <p className="font-body text-sm text-white font-medium">Original-Song (Index)</p>
                     </div>
                     <div className="h-1 rounded-full bg-green-400 mb-1" />
-                    <p className="font-body text-[10px] text-green-300 mb-3">Exakte Index-Rendite</p>
+                    <p className="font-body text-[10px] text-green-300 mb-3">Exact index return</p>
                     <div className="border-t border-white/20 mb-3" />
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-xl">🎸</span>
@@ -247,13 +247,13 @@ const ETF_L5_Costs = () => {
                     <svg className="w-full h-2 mb-1" viewBox="0 0 200 8">
                       <path d="M0,4 Q10,1 20,4 T40,4 T60,4 T80,4 T100,4 T120,4 T140,4 T160,4 T180,4 T200,4" fill="none" stroke="#F59E0B" strokeWidth="2" />
                     </svg>
-                    <p className="font-body text-[10px] text-amber-300">Fast gleich — aber nicht ganz</p>
+                    <p className="font-body text-[10px] text-amber-300">Almost the same — but not quite</p>
                   </div>
                   <div className="flex gap-2 mb-4">
-                    <span className="inline-block px-2 py-1 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Gute Coverband = niedrige Tracking Difference</span>
-                    <span className="inline-block px-2 py-1 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">Schlechte Coverband = du verlierst mehr als die TER</span>
+                    <span className="inline-block px-2 py-1 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Good cover band = low Tracking Difference</span>
+                    <span className="inline-block px-2 py-1 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">Bad cover band = you lose more than the TER</span>
                   </div>
-                  <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                  <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Next →</button>
                 </motion.div>
               )}
 
@@ -261,35 +261,35 @@ const ETF_L5_Costs = () => {
               {storySlide === 2 && (
                 <motion.div key="ss2" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <span className="mb-4" style={{ fontSize: 64 }}>🎟</span>
-                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Kaufen kostet — auch beim ETF.</h2>
+                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Buying costs — even with ETFs.</h2>
                   <div className="w-full rounded-2xl border border-border bg-card p-4 mb-4 space-y-4">
                     <div className="flex items-start gap-3">
                       <span className="text-xl flex-shrink-0">🎟</span>
                       <div>
-                        <p className="font-display text-sm font-bold text-foreground">Eintrittspreis (Spread)</p>
-                        <p className="font-body text-xs text-muted-foreground">Du zahlst CHF 100.10, kriegst CHF 99.90 zurück</p>
-                        <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-body text-[10px] font-semibold">CHF 0.20 sofort weg</span>
+                        <p className="font-display text-sm font-bold text-foreground">Entry price (Spread)</p>
+                        <p className="font-body text-xs text-muted-foreground">You pay CHF 100.10, get back CHF 99.90</p>
+                        <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-body text-[10px] font-semibold">CHF 0.20 gone instantly</span>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="text-xl flex-shrink-0">📅</span>
                       <div>
-                        <p className="font-display text-sm font-bold text-foreground">Jahresgebühr (TER)</p>
-                        <p className="font-body text-xs text-muted-foreground">Täglich still vom Fondsvermögen abgezogen</p>
+                        <p className="font-display text-sm font-bold text-foreground">Annual fee (TER)</p>
+                        <p className="font-body text-xs text-muted-foreground">Silently deducted from fund assets daily</p>
                         <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">0.07% – 0.75% p.a.</span>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="text-xl flex-shrink-0">📊</span>
                       <div>
-                        <p className="font-display text-sm font-bold text-foreground">Abweichung (Tracking Diff.)</p>
-                        <p className="font-body text-xs text-muted-foreground">Wie nah folgt der ETF wirklich dem Index?</p>
-                        <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-700 font-body text-[10px] font-semibold">Wichtiger als die TER!</span>
+                        <p className="font-display text-sm font-bold text-foreground">Deviation (Tracking Diff.)</p>
+                        <p className="font-body text-xs text-muted-foreground">How closely does the ETF really follow the index?</p>
+                        <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-700 font-body text-[10px] font-semibold">More important than TER!</span>
                       </div>
                     </div>
                   </div>
                   <div className="w-full rounded-xl bg-amber-500/10 border border-amber-500/20 p-3 mb-2">
-                    <p className="font-body text-xs text-amber-700 text-center">💡 Prüfe immer die Tracking Difference — nicht nur die TER.</p>
+                    <p className="font-body text-xs text-amber-700 text-center">💡 Always check the Tracking Difference — not just the TER.</p>
                   </div>
                 </motion.div>
               )}
@@ -300,19 +300,19 @@ const ETF_L5_Costs = () => {
         {/* ═══ STEP 1 — Leaky Bucket Calculator ═══ */}
         {currentStep === 1 && (
           <motion.div key="s1" className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Wie gross ist dein Loch?</h2>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">How big is your hole?</h2>
 
             <div className="space-y-4 mb-5 max-w-sm mx-auto w-full">
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="font-body text-xs text-muted-foreground">Startinvestition</span>
+                  <span className="font-body text-xs text-muted-foreground">Initial investment</span>
                   <span className="font-display text-xs font-bold text-foreground">CHF {fmt(investment)}</span>
                 </div>
                 <input type="range" min={1000} max={100000} step={1000} value={investment} onChange={e => setInvestment(+e.target.value)} className="w-full accent-blue-500" />
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="font-body text-xs text-muted-foreground">Jährliche Rendite</span>
+                  <span className="font-body text-xs text-muted-foreground">Annual return</span>
                   <span className="font-display text-xs font-bold text-foreground">{returnRate.toFixed(1)}%</span>
                 </div>
                 <input type="range" min={1} max={12} step={0.5} value={returnRate} onChange={e => setReturnRate(+e.target.value)} className="w-full accent-blue-500" />
@@ -332,18 +332,18 @@ const ETF_L5_Costs = () => {
             </div>
 
             <div className="max-w-sm mx-auto w-full rounded-xl bg-blue-500/10 border border-blue-500/20 p-3 mb-3 text-center">
-              <p className="font-body text-xs text-muted-foreground">Du sparst mit ETF A</p>
+              <p className="font-body text-xs text-muted-foreground">You save with ETF A</p>
               <p className="font-display text-xl font-bold text-amber-600">CHF {fmt(saved)}</p>
             </div>
-            <p className="font-body text-[11px] text-muted-foreground text-center max-w-xs mx-auto">Die TER wird täglich vom Fondsvermögen abgezogen — du siehst sie nie direkt.</p>
+            <p className="font-body text-[11px] text-muted-foreground text-center max-w-xs mx-auto">The TER is deducted from fund assets daily — you never see it directly.</p>
           </motion.div>
         )}
 
         {/* ═══ STEP 2 — Race ═══ */}
         {currentStep === 2 && (
           <motion.div key="s2" className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">30-Jahres Rennen — wer gewinnt?</h2>
-            <p className="font-body text-xs text-muted-foreground text-center mb-4">Stelle die Gebühren ein und starte das Rennen</p>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">30-year race — who wins?</h2>
+            <p className="font-body text-xs text-muted-foreground text-center mb-4">Set the fees and start the race</p>
 
             <div className="grid grid-cols-2 gap-4 mb-4 max-w-sm mx-auto w-full">
               <div>
@@ -369,13 +369,13 @@ const ETF_L5_Costs = () => {
                 className="mx-auto mb-4 px-6 py-3 rounded-full font-display text-sm font-bold text-white"
                 style={{ backgroundColor: BLUE }}
               >
-                Rennen starten! 🏁
+                Start the race! 🏁
               </motion.button>
             )}
 
             <div className="max-w-sm mx-auto w-full mb-4">
               <p className="font-display text-sm font-bold text-foreground text-center mb-2">
-                {raceYear > 0 ? `Jahr ${raceYear} / 30` : 'Bereit'}
+                {raceYear > 0 ? `Year ${raceYear} / 30` : 'Ready'}
               </p>
               <div className="relative h-20 bg-muted rounded-xl overflow-hidden">
                 <div className="absolute right-2 top-0 bottom-0 w-px border-r-2 border-dashed border-foreground/20 flex items-center">
@@ -397,12 +397,12 @@ const ETF_L5_Costs = () => {
                 <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="max-w-sm mx-auto w-full mb-3">
                   <div className={`rounded-2xl p-4 text-center ${raceDiff > 5000 ? 'bg-red-500/10 border border-red-500/20' : raceDiff >= 1000 ? 'bg-amber-500/10 border border-amber-500/20' : 'bg-green-500/10 border border-green-500/20'}`}>
                     <p className="font-display text-sm font-bold text-foreground">
-                      {raceDiff > 5000 && `😱 ETF B kostet dich CHF ${fmt(raceDiff)} mehr über 30 Jahre!`}
-                      {raceDiff >= 1000 && raceDiff <= 5000 && `⚠️ CHF ${fmt(raceDiff)} Unterschied — nicht zu unterschätzen.`}
-                      {raceDiff < 1000 && `✅ Kleiner Unterschied — beide ETFs fast gleich.`}
+                      {raceDiff > 5000 && `😱 ETF B costs you CHF ${fmt(raceDiff)} more over 30 years!`}
+                      {raceDiff >= 1000 && raceDiff <= 5000 && `⚠️ CHF ${fmt(raceDiff)} difference — not to be underestimated.`}
+                      {raceDiff < 1000 && `✅ Small difference — both ETFs nearly identical.`}
                     </p>
                   </div>
-                  <button onClick={() => { setRaceYear(0); setRaceRunning(false); }} className="mt-2 font-body text-xs text-muted-foreground underline mx-auto block">↺ Nochmal</button>
+                  <button onClick={() => { setRaceYear(0); setRaceRunning(false); }} className="mt-2 font-body text-xs text-muted-foreground underline mx-auto block">↺ Again</button>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -451,13 +451,13 @@ const ETF_L5_Costs = () => {
               ))}
             </div>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
-            <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">Du durchschaust jetzt versteckte Kosten.</p>
+            <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">You now see through hidden costs.</p>
 
             <div className="w-full max-w-sm rounded-2xl bg-green-500/10 border border-green-500/20 p-4 mb-4 space-y-2">
-              <p className="font-body text-xs text-foreground">✅ TER = das Loch im Eimer, täglich still abgezogen</p>
-              <p className="font-body text-xs text-foreground">✅ Tracking Difference = echte Kosten (wichtiger als TER!)</p>
-              <p className="font-body text-xs text-foreground">✅ Spread = Eintrittskosten beim Handel</p>
-              <p className="font-body text-xs text-foreground">✅ Kleiner TER-Unterschied = grosse Summe nach 30 Jahren</p>
+              <p className="font-body text-xs text-foreground">✅ TER = the hole in the bucket, silently deducted daily</p>
+              <p className="font-body text-xs text-foreground">✅ Tracking Difference = true costs (more important than TER!)</p>
+              <p className="font-body text-xs text-foreground">✅ Spread = entry costs when trading</p>
+              <p className="font-body text-xs text-foreground">✅ Small TER difference = big sum after 30 years</p>
             </div>
 
             <CompletionXP result={completionResult} hearts={hearts} />
@@ -488,12 +488,12 @@ const ETF_L5_Costs = () => {
               <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4" />
               <h3 className="font-display text-lg font-bold text-foreground mb-3">TER vs Tracking Difference 📖</h3>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                TER ist die angegebene Jahresgebühr. TD ist die tatsächliche Renditedifferenz zwischen ETF und Index — die wahren Kosten.
+                TER is the stated annual fee. TD is the actual return difference between ETF and index — the true costs.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Wertpapierleihe: ETF-Anbieter verleihen Aktien an Leerverkäufer und verdienen eine Gebühr — dies kann die TER überkompensieren und zu negativer TD führen.
+                Securities lending: ETF providers lend stocks to short sellers and earn a fee — this can overcompensate the TER and lead to negative TD.
               </p>
-              <button onClick={() => setShowDeepDive(false)} className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm">Schliessen</button>
+              <button onClick={() => setShowDeepDive(false)} className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm">Close</button>
             </motion.div>
           </motion.div>
         )}

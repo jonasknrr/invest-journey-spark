@@ -40,23 +40,23 @@ interface Shock {
 
 const shocks: Shock[] = [
   {
-    title: 'Tech-Ausverkauf',
-    description: 'Steigende Zinsen lösen eine Rotation aus Tech-Aktien aus.',
-    affected: 'Tech-Sektor weltweit',
+    title: 'Tech Selloff',
+    description: 'Rising rates trigger a rotation out of tech stocks.',
+    affected: 'Tech sector worldwide',
     sectorImpact: { Tech: -0.22, Consumer: -0.05, Finance: 0.05, Energy: 0.08, Luxury: -0.02, Materials: 0.02, Healthcare: -0.03 },
     countryImpact: {},
   },
   {
-    title: 'Euro wertet auf (+8%)',
-    description: 'EZB-Überraschungszinserhöhung drückt EUR/USD nach oben.',
-    affected: 'Europäische Märkte',
+    title: 'Euro appreciates (+8%)',
+    description: 'ECB surprise rate hike pushes EUR/USD higher.',
+    affected: 'European markets',
     sectorImpact: {},
     countryImpact: { DE: -0.06, FR: -0.07, NL: -0.05, US: 0.02, UK: 0.01, CH: -0.04, KR: 0, CN: 0, AU: 0 },
   },
   {
     title: 'Emerging Market Rally',
-    description: 'Fed wird dovish. Kapital fliesst in Schwellenländer.',
-    affected: 'Schwellenländer & Rohstoffe',
+    description: 'Fed turns dovish. Capital flows into emerging markets.',
+    affected: 'Emerging markets & commodities',
     sectorImpact: {},
     countryImpact: { CN: 0.18, KR: 0.14, AU: 0.06, US: -0.02, DE: 0, FR: 0, NL: 0, UK: 0, CH: 0 },
   },
@@ -179,10 +179,10 @@ const ETF_L8_Simulation = () => {
     }, { c: '', w: 0 });
     const totalOneCountry = stocks.filter(s => s.country === maxCountry.c).reduce((s, st) => s + (portfolio[st.ticker] || 0), 0);
 
-    if (techWeight > 40) result.push('📊 Dein Portfolio war Tech-lastig — du hättest von einem NASDAQ-100 ETF profitiert, aber mit weniger Einzelrisiko.');
-    if (totalOneCountry > 60) result.push('🌍 Du warst geografisch konzentriert — wie 10 Playlists vom selben Künstler. Ein globaler ETF hätte das gestreut.');
-    if (countries.size > 5 && sectors.size > 4) result.push('🎯 Gute Instinkte! Dein Portfolio war bereits breit gestreut — du denkst wie ein ETF-Manager.');
-    if (result.length === 0) result.push('💡 Mit einem einzigen ETF hättest du breitere Streuung, weniger Aufwand und geringere Kosten erreicht.');
+    if (techWeight > 40) result.push('📊 Your portfolio was tech-heavy — you would have benefited from a NASDAQ-100 ETF, but with less individual risk.');
+    if (totalOneCountry > 60) result.push('🌍 You were geographically concentrated — like 10 playlists from the same artist. A global ETF would have diversified that.');
+    if (countries.size > 5 && sectors.size > 4) result.push('🎯 Good instincts! Your portfolio was already broadly diversified — you think like an ETF manager.');
+    if (result.length === 0) result.push('💡 With a single ETF you would have achieved broader diversification, less effort and lower costs.');
     return result;
   }, [portfolio]);
 
@@ -213,12 +213,12 @@ const ETF_L8_Simulation = () => {
         {currentPhase === 0 && (
           <motion.div key="p0" className="flex-1 flex flex-col items-center justify-center px-6 text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
             <span className="text-5xl mb-4">🎮</span>
-            <h2 className="font-display text-2xl font-bold text-foreground leading-tight max-w-xs mb-3">Die finale Simulation</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground leading-tight max-w-xs mb-3">The final simulation</h2>
             <p className="font-body text-[15px] leading-relaxed text-muted-foreground max-w-sm mb-8">
-              Du hast alles gelernt. Jetzt verwendest du es. Du hast CHF 10.000 zu investieren. Wähle deine Aktien — dann zeigen wir dir welcher ETF das gleiche günstiger und breiter abgedeckt hätte.
+              You\'ve learned everything. Now put it to use. You have CHF 10,000 to invest. Pick your stocks — then we\'ll show you which ETF could have covered the same thing cheaper and broader.
             </p>
             <motion.button onClick={() => setCurrentPhase(1)} whileTap={{ scale: 0.96 }} className="h-14 px-8 rounded-full font-display text-lg font-bold text-white shadow-sm" style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}>
-              Simulation starten →
+              Start simulation →
             </motion.button>
           </motion.div>
         )}
@@ -227,8 +227,8 @@ const ETF_L8_Simulation = () => {
         {currentPhase === 1 && (
           <motion.div key="p1" className="flex-1 flex flex-col px-4 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
             <div className="flex items-center justify-between mb-2 max-w-sm mx-auto w-full">
-              <h2 className="font-display text-lg font-bold text-foreground">Baue dein Portfolio</h2>
-              <span className="font-display text-sm font-bold text-primary">{remainingBudget}% übrig</span>
+              <h2 className="font-display text-lg font-bold text-foreground">Build your portfolio</h2>
+              <span className="font-display text-sm font-bold text-primary">{remainingBudget}% remaining</span>
             </div>
             <div className="h-2 bg-muted rounded-full overflow-hidden max-w-sm mx-auto w-full mb-4">
               <motion.div className="h-full rounded-full bg-primary" animate={{ width: `${100 - remainingBudget}%` }} transition={{ duration: 0.3 }} />
@@ -260,11 +260,11 @@ const ETF_L8_Simulation = () => {
             {/* Scores */}
             <div className="flex gap-3 max-w-sm mx-auto w-full mb-4">
               <div className="flex-1 bg-card border border-border rounded-xl p-3 text-center">
-                <p className="font-body text-[10px] text-muted-foreground mb-1">Geo-Diversifikation</p>
+                <p className="font-body text-[10px] text-muted-foreground mb-1">Geo diversification</p>
                 <p className="font-display text-lg font-bold text-foreground">{diversityScores.geo}/10</p>
               </div>
               <div className="flex-1 bg-card border border-border rounded-xl p-3 text-center">
-                <p className="font-body text-[10px] text-muted-foreground mb-1">Sektor-Diversifikation</p>
+                <p className="font-body text-[10px] text-muted-foreground mb-1">Sector diversification</p>
                 <p className="font-display text-lg font-bold text-foreground">{diversityScores.sector}/10</p>
               </div>
             </div>
@@ -273,7 +273,7 @@ const ETF_L8_Simulation = () => {
             {remainingBudget === 0 && (
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="max-w-sm mx-auto w-full">
                 <motion.button onClick={() => setCurrentPhase(2)} whileTap={{ scale: 0.96 }} className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm" style={{ backgroundColor: BLUE }}>
-                  Portfolio einfrieren →
+                  Freeze portfolio →
                 </motion.button>
               </motion.div>
             )}
@@ -285,7 +285,7 @@ const ETF_L8_Simulation = () => {
           <motion.div key={`p2-${currentShock}`} className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
             {/* Portfolio value */}
             <div className="text-center mb-4">
-              <p className="font-body text-xs text-muted-foreground">Portfoliowert</p>
+              <p className="font-body text-xs text-muted-foreground">Portfolio value</p>
               <motion.p key={portfolioValue} className="font-display text-2xl font-bold text-foreground" initial={{ scale: 1.2 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }}>
                 CHF {fmt(portfolioValue)}
               </motion.p>
@@ -294,16 +294,16 @@ const ETF_L8_Simulation = () => {
             {/* Shock card */}
             <div className="max-w-sm mx-auto w-full rounded-2xl border-2 border-red-400 dark:border-red-600 overflow-hidden mb-4">
               <div className="bg-red-600 dark:bg-red-700 px-4 py-3">
-                <p className="font-display text-sm font-bold text-white">⚡ Marktschock {currentShock + 1}/3</p>
+                <p className="font-display text-sm font-bold text-white">⚡ Market shock {currentShock + 1}/3</p>
               </div>
               <div className="p-4 space-y-3">
                 <h3 className="font-display text-xl font-bold text-foreground">{shocks[currentShock].title}</h3>
                 <p className="font-body text-sm text-muted-foreground">{shocks[currentShock].description}</p>
-                <p className="font-body text-xs text-muted-foreground">Betroffen: {shocks[currentShock].affected}</p>
+                <p className="font-body text-xs text-muted-foreground">Affected: {shocks[currentShock].affected}</p>
 
                 {!shockRevealed ? (
                   <motion.button onClick={handleRevealShock} whileTap={{ scale: 0.96 }} className="w-full h-12 rounded-full font-display text-sm font-bold text-white" style={{ backgroundColor: BLUE }}>
-                    Auswirkung auf dein Portfolio →
+                    Impact on your portfolio →
                   </motion.button>
                 ) : (
                   <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-2">
@@ -335,14 +335,14 @@ const ETF_L8_Simulation = () => {
         {/* PHASE 3 — Resolution */}
         {currentPhase === 3 && (
           <motion.div key="p3" className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">Was ein ETF daraus gemacht hätte</h2>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">What an ETF would have made of this</h2>
 
             <div className="max-w-sm mx-auto w-full space-y-4">
               {/* Your portfolio */}
               <div className="rounded-2xl border-2 border-border bg-card p-4 space-y-2">
-                <p className="font-display text-sm font-bold text-foreground">Dein Portfolio</p>
+                <p className="font-display text-sm font-bold text-foreground">Your Portfolio</p>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Final value nach Schocks</span>
+                  <span className="font-body text-xs text-muted-foreground">Final value after shocks</span>
                   <span className="font-display text-sm font-bold text-foreground">CHF {fmt(portfolioValue)}</span>
                 </div>
                 <div className="flex justify-between">
@@ -354,11 +354,11 @@ const ETF_L8_Simulation = () => {
                   <span className="font-display text-sm font-bold text-foreground">{diversityScores.sector}/10</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Transaktionen</span>
+                  <span className="font-body text-xs text-muted-foreground">Transactions</span>
                   <span className="font-body text-xs text-foreground">{Object.keys(portfolio).filter(k => portfolio[k] > 0).length}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Broker-Gebühren</span>
+                  <span className="font-body text-xs text-muted-foreground">Broker fees</span>
                   <span className="font-body text-xs text-foreground">~CHF {Object.keys(portfolio).filter(k => portfolio[k] > 0).length}</span>
                 </div>
               </div>
@@ -377,19 +377,19 @@ const ETF_L8_Simulation = () => {
                   <span className="font-body text-xs text-foreground">{etfRec.ter}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Anzahl Titel</span>
+                  <span className="font-body text-xs text-muted-foreground">Number of holdings</span>
                   <span className="font-body text-xs text-foreground">{etfRec.holdings}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Transaktionen</span>
+                  <span className="font-body text-xs text-muted-foreground">Transactions</span>
                   <span className="font-body text-xs text-foreground font-semibold text-green-600">1</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Broker-Gebühren</span>
+                  <span className="font-body text-xs text-muted-foreground">Broker fees</span>
                   <span className="font-body text-xs text-foreground font-semibold text-green-600">CHF 1</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-body text-xs text-muted-foreground">Diversifikations-Score</span>
+                  <span className="font-body text-xs text-muted-foreground">Diversification score</span>
                   <span className="font-display text-sm font-bold text-green-600">{etfRec.score}/10</span>
                 </div>
               </div>
@@ -426,7 +426,7 @@ const ETF_L8_Simulation = () => {
                 </div>
               </div>
               <div className="flex justify-between mb-2">
-                <span className="font-body text-sm text-muted-foreground">Anteil</span>
+                <span className="font-body text-sm text-muted-foreground">Allocation</span>
                 <span className="font-display text-lg font-bold text-foreground">{sliderVal}%</span>
               </div>
               <input
@@ -439,7 +439,7 @@ const ETF_L8_Simulation = () => {
                 className="w-full accent-primary h-2 rounded-full mb-5"
               />
               <motion.button onClick={handleAllocConfirm} whileTap={{ scale: 0.96 }} className="w-full h-12 rounded-full font-display text-base font-bold text-white" style={{ backgroundColor: BLUE }}>
-                {sliderVal > 0 ? 'Bestätigen' : 'Entfernen'}
+                {sliderVal > 0 ? 'Confirm' : 'Remove'}
               </motion.button>
             </motion.div>
           </motion.div>

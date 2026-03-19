@@ -22,11 +22,11 @@ interface ETFCategory {
 }
 
 const categories: ETFCategory[] = [
-  { id: 0, emoji: '🌍', title: 'Breit (Broad Market)', playlist: 'Alle Musik der Welt', examples: 'MSCI World, S&P 500, FTSE All-World', holdings: '1.500–3.000', fee: '0.07–0.20%', risk: 1 },
-  { id: 1, emoji: '🏳', title: 'Land / Region', playlist: 'Top 50 Deutschland', examples: 'iShares MSCI Germany, Euro Stoxx 50', holdings: '40–200', fee: '0.15–0.40%', risk: 2 },
-  { id: 2, emoji: '🏭', title: 'Sektor', playlist: 'Nur Rock-Musik', examples: 'Clean Energy, Healthcare, Financials', holdings: '50–150', fee: '0.25–0.50%', risk: 3 },
-  { id: 3, emoji: '💡', title: 'Thematisch', playlist: 'Songs zum Trainieren', examples: 'AI & Robotics, Cybersecurity, Clean Water', holdings: '25–60', fee: '0.35–0.75%', risk: 4 },
-  { id: 4, emoji: '🧲', title: 'Faktor / Smart Beta', playlist: 'Nur 5-Sterne Tracks', examples: 'MSCI World Value, Min Volatility, Momentum', holdings: '200–400', fee: '0.25–0.50%', risk: 2 },
+  { id: 0, emoji: '🌍', title: 'Breit (Broad Market)', playlist: 'All Music in the World', examples: 'MSCI World, S&P 500, FTSE All-World', holdings: '1.500–3.000', fee: '0.07–0.20%', risk: 1 },
+  { id: 1, emoji: '🏳', title: 'Land / Region', playlist: 'Top 50 Germany', examples: 'iShares MSCI Germany, Euro Stoxx 50', holdings: '40–200', fee: '0.15–0.40%', risk: 2 },
+  { id: 2, emoji: '🏭', title: 'Sektor', playlist: 'Only Rock Music', examples: 'Clean Energy, Healthcare, Financials', holdings: '50–150', fee: '0.25–0.50%', risk: 3 },
+  { id: 3, emoji: '💡', title: 'Thematisch', playlist: 'Workout Songs', examples: 'AI & Robotics, Cybersecurity, Clean Water', holdings: '25–60', fee: '0.35–0.75%', risk: 4 },
+  { id: 4, emoji: '🧲', title: 'Faktor / Smart Beta', playlist: 'Only 5-Star Tracks', examples: 'MSCI World Value, Min Volatility, Momentum', holdings: '200–400', fee: '0.25–0.50%', risk: 2 },
 ];
 
 const riskColor = (level: number) => {
@@ -46,46 +46,46 @@ interface Scenario {
 
 const scenarios: Scenario[] = [
   {
-    question: 'Maria möchte mit einem einzigen ETF so breit wie möglich investieren. Welchen nimmt sie?',
+    question: 'Maria wants to invest as broadly as possible with a single ETF. Which one does she pick?',
     options: [
       { emoji: '🌍', label: 'MSCI World', correct: true },
       { emoji: '💡', label: 'AI & Robotics ETF', correct: false },
       { emoji: '🏳', label: 'DAX ETF', correct: false },
     ],
-    wrongExplanation: 'MSCI World hält ~1.500 Firmen aus 23 Ländern — maximale Streuung.',
+    wrongExplanation: 'MSCI World holds ~1,500 companies from 23 countries — maximum diversification.',
   },
   {
-    question: 'Tom glaubt dass Cybersecurity die Zukunft ist und will davon profitieren. Welcher ETF?',
+    question: 'Tom believes cybersecurity is the future and wants to profit from it. Which ETF?',
     options: [
       { emoji: '🌍', label: 'MSCI All Country World', correct: false },
       { emoji: '💡', label: 'Cybersecurity ETF', correct: true },
       { emoji: '🏭', label: 'Healthcare Sektor ETF', correct: false },
     ],
-    wrongExplanation: 'Ein thematischer ETF fokussiert genau auf ein Trend-Thema — aber mit höherem Risiko.',
+    wrongExplanation: 'A thematic ETF focuses exactly on a trend topic — but with higher risk.',
   },
   {
-    question: 'Julia will günstig und breit in Europa investieren.',
+    question: 'Julia wants to invest cheaply and broadly in Europe.',
     options: [
       { emoji: '🏳', label: 'Euro Stoxx 50 ETF', correct: true },
       { emoji: '🧲', label: 'Momentum Faktor ETF', correct: false },
       { emoji: '💡', label: 'Clean Energy ETF', correct: false },
     ],
-    wrongExplanation: 'Regionale ETFs fokussieren auf eine geografische Zone — Euro Stoxx 50 = 50 grösste europäische Firmen.',
+    wrongExplanation: 'Regional ETFs focus on a geographic zone — Euro Stoxx 50 = 50 largest European companies.',
   },
 ];
 
 /* ── Quiz ── */
 const quiz = {
-  question: 'Ein Investor hält 5 ETFs: S&P 500, NASDAQ-100, US Small Cap, US Dividenden, US Value. Wie diversifiziert ist er?',
+  question: 'An investor holds 5 ETFs: S&P 500, NASDAQ-100, US Small Cap, US Dividends, US Value. How diversified is he?',
   answers: [
-    { id: 'a', text: 'Sehr gut — 5 verschiedene ETFs ist immer besser als 1' },
-    { id: 'b', text: 'Schlecht — alle sind US-Aktien, hochkorreliert, fallen im US-Crash gemeinsam' },
-    { id: 'c', text: 'Perfekt — jeder ETF verfolgt einen anderen Index' },
-    { id: 'd', text: 'Gut diversifiziert nach Sektoren' },
+    { id: 'a', text: 'Very good — 5 different ETFs is always better than 1' },
+    { id: 'b', text: 'Poor — all are US stocks, highly correlated, fall together in a US crash' },
+    { id: 'c', text: 'Perfect — each ETF tracks a different index' },
+    { id: 'd', text: 'Well diversified by sectors' },
   ],
   correctId: 'b',
-  correctFeedback: 'Genau! Alle 5 sind US-Aktien — wie 5 Playlists vom selben Künstler. Im US-Bärenmarkt fallen alle 5 zusammen. Echte Diversifikation braucht andere Regionen, andere Anlageklassen.',
-  wrongFeedback: 'Alle 5 ETFs sind US-Aktien — hochkorreliert, wie 5 Playlists vom selben Künstler. Mehr ETFs ≠ mehr Diversifikation wenn sie alle gleich reagieren.',
+  correctFeedback: 'Exactly! All 5 are US stocks — like 5 playlists from the same artist. In a US bear market, all 5 fall together. Real diversification needs other regions, other asset classes.',
+  wrongFeedback: 'All 5 ETFs are US stocks — highly correlated, like 5 playlists from the same artist. More ETFs ≠ more diversification when they all react the same.',
 };
 
 /* ── Component ── */
@@ -250,24 +250,24 @@ const ETF_L4_ETFUniverse = () => {
                 >
                   <div className="flex items-center justify-between mb-1">
                     <h2 className="font-display text-xl font-bold text-foreground leading-tight">
-                      Bau dein Musik-Portfolio 🎵
+                      Build your music portfolio 🎵
                     </h2>
                     <span className="text-xs font-display font-bold text-muted-foreground bg-muted rounded-full px-3 py-1">
                       {selectedPlaylists.length} / 4
                     </span>
                   </div>
                   <p className="font-body text-sm text-muted-foreground mb-4">
-                    Wähle bis zu 4 Playlists zum Investieren
+                    Choose up to 4 playlists to invest in
                   </p>
 
                   <div className="grid grid-cols-2 gap-3 mb-5">
                     {[
-                      { id: 'world', emoji: '🌍', title: 'Alle Musik der Welt', sub: 'Pop, Rock, Jazz, Klassik, alles', badge: '~10.000 Songs' },
-                      { id: 'hiphop', emoji: '🇩🇪', title: 'Deutscher Hip-Hop', sub: 'Nur ein Genre, nur ein Land', badge: '~200 Songs' },
-                      { id: 'workout', emoji: '💪', title: 'Workout Hits', sub: 'Nur energetische Songs', badge: '~150 Songs' },
-                      { id: 'rock90', emoji: '🎸', title: '90er Rock', sub: 'Nur eine Ära, ein Genre', badge: '~300 Songs' },
-                      { id: 'taylor', emoji: '🎵', title: 'Taylor Swift Alles', sub: 'Nur eine Künstlerin', badge: '~200 Songs' },
-                      { id: 'global50', emoji: '🌐', title: 'Global Top 50', sub: 'Pop weltweit, mehrere Länder', badge: '~500 Songs' },
+                      { id: 'world', emoji: '🌍', title: 'All Music in the World', sub: 'Pop, Rock, Jazz, Classical, everything', badge: '~10,000 songs' },
+                      { id: 'hiphop', emoji: '🇩🇪', title: 'German Hip-Hop', sub: 'Only one genre, one country', badge: '~200 songs' },
+                      { id: 'workout', emoji: '💪', title: 'Workout Hits', sub: 'Only high-energy songs', badge: '~150 songs' },
+                      { id: 'rock90', emoji: '🎸', title: '90s Rock', sub: 'Only one era, one genre', badge: '~300 songs' },
+                      { id: 'taylor', emoji: '🎵', title: 'Taylor Swift Everything', sub: 'Only one artist', badge: '~200 songs' },
+                      { id: 'global50', emoji: '🌐', title: 'Global Top 50', sub: 'Pop worldwide, multiple countries', badge: '~500 songs' },
                     ].map(card => {
                       const isSelected = selectedPlaylists.includes(card.id);
                       return (
@@ -318,7 +318,7 @@ const ETF_L4_ETFUniverse = () => {
                       }}
                       className="w-full h-12 rounded-full bg-green-600 text-white font-display font-bold text-sm"
                     >
-                      Schock kommt! ⚡ →
+                      Shock incoming! ⚡ →
                     </motion.button>
                   )}
                 </motion.div>
@@ -343,12 +343,12 @@ const ETF_L4_ETFUniverse = () => {
                     >
                       ⚡
                     </motion.span>
-                    <h2 className="font-display text-2xl font-bold mb-3">MARKTSCHOCK</h2>
+                    <h2 className="font-display text-2xl font-bold mb-3">MARKET SHOCK</h2>
                     <div className="w-full h-px bg-white/20 mb-3" />
-                    <p className="font-body text-sm leading-relaxed mb-1">Ein grosser Künstler wird gecancelt.</p>
-                    <p className="font-body text-sm leading-relaxed mb-3">Alle seine Playlists verlieren sofort 80% ihrer Hörer.</p>
+                    <p className="font-body text-sm leading-relaxed mb-1">A major artist gets cancelled.</p>
+                    <p className="font-body text-sm leading-relaxed mb-3">All their playlists instantly lose 80% of their listeners.</p>
                     <div className="w-full h-px bg-white/20 mb-3" />
-                    <p className="font-display text-lg font-bold">Dein Portfolio: CHF 1.000</p>
+                    <p className="font-display text-lg font-bold">Your portfolio: CHF 1,000</p>
 
                     <AnimatePresence>
                       {showShockBtn && (
@@ -366,12 +366,12 @@ const ETF_L4_ETFUniverse = () => {
                               taylor: -80,
                             };
                             const nameMap: Record<string, string> = {
-                              world: 'Alle Musik der Welt',
+                              world: 'All Music in the World',
                               global50: 'Global Top 50',
-                              hiphop: 'Deutscher Hip-Hop',
+                              hiphop: 'German Hip-Hop',
                               workout: 'Workout Hits',
-                              rock90: '90er Rock',
-                              taylor: 'Taylor Swift Alles',
+                              rock90: '90s Rock',
+                              taylor: 'Taylor Swift Everything',
                             };
                             const count = selectedPlaylists.length;
                             const perSlice = 1000 / count;
@@ -398,7 +398,7 @@ const ETF_L4_ETFUniverse = () => {
                           className="mt-4 w-full h-12 rounded-full font-display font-bold text-sm"
                           style={{ backgroundColor: '#DC2626' }}
                         >
-                          Auswirkung sehen →
+                          See impact →
                         </motion.button>
                       )}
                     </AnimatePresence>
@@ -421,7 +421,7 @@ const ETF_L4_ETFUniverse = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">
-                      Dein Portfolio nach dem Schock
+                      Your portfolio after the shock
                     </h2>
 
                     <div className="space-y-2.5 mb-4">
@@ -474,19 +474,19 @@ const ETF_L4_ETFUniverse = () => {
                       <p className={`font-display text-2xl font-bold tabular-nums mb-1 ${
                         severity === 'bad' ? 'text-red-600 dark:text-red-400' : severity === 'mid' ? 'text-amber-600 dark:text-amber-400' : 'text-green-600 dark:text-green-400'
                       }`}>
-                        Dein Portfolio: CHF {displayValue}
+                        Your portfolio: CHF {displayValue}
                       </p>
                       <p className={`font-body text-sm mb-2 ${
                         severity === 'bad' ? 'text-red-700 dark:text-red-300' : severity === 'mid' ? 'text-amber-700 dark:text-amber-300' : 'text-green-700 dark:text-green-300'
                       }`}>
-                        Verlust: -CHF {Math.abs(totalLoss)} ({totalPct}%)
+                        Loss: -CHF {Math.abs(totalLoss)} ({totalPct}%)
                       </p>
                       <p className={`font-body text-sm font-medium ${
                         severity === 'bad' ? 'text-red-700 dark:text-red-300' : severity === 'mid' ? 'text-amber-700 dark:text-amber-300' : 'text-green-700 dark:text-green-300'
                       }`}>
-                        {severity === 'bad' && '😬 Zu konzentriert — ein Schock trifft alles.'}
-                        {severity === 'mid' && 'Solide — aber noch Luft nach oben.'}
-                        {severity === 'good' && '🛡 Breite Streuung hat dich geschützt!'}
+                        {severity === 'bad' && '😬 Too concentrated — one shock hits everything.'}
+                        {severity === 'mid' && 'Solid — but room for improvement.'}
+                        {severity === 'good' && '🛡 Broad diversification protected you!'}
                       </p>
                     </motion.div>
 
@@ -499,8 +499,8 @@ const ETF_L4_ETFUniverse = () => {
                     >
                       <p className="font-body text-sm text-primary leading-relaxed">
                         Mit NUR &ldquo;Alle Musik der Welt&rdquo;:<br />
-                        Verlust: nur -5% = -CHF 50<br />
-                        <span className="font-bold">→ Das ist Diversifikation.</span>
+                        Loss: nur -5% = -CHF 50<br />
+                        <span className="font-bold">→ That\'s diversification.</span>
                       </p>
                     </motion.div>
 
@@ -515,7 +515,7 @@ const ETF_L4_ETFUniverse = () => {
                       }}
                       className="w-full text-center font-display text-sm font-bold text-muted-foreground py-2"
                     >
-                      ← Nochmal wählen
+                      ← Pick again
                     </button>
                   </motion.div>
                 );
@@ -535,10 +535,10 @@ const ETF_L4_ETFUniverse = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">
-              Erkunde den ETF-Kosmos
+              Explore the ETF universe
             </h2>
             <p className="font-body text-sm text-muted-foreground text-center mb-5">
-              Tippe auf jede Kategorie
+              Tap on each category
             </p>
             <div className="space-y-3 max-w-sm mx-auto w-full">
               {categories.map(cat => {
@@ -574,19 +574,19 @@ const ETF_L4_ETFUniverse = () => {
                         >
                           <div className="px-4 pb-4 space-y-2">
                             <div className="flex items-center gap-2">
-                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Beispiele:</span>
+                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Examples:</span>
                               <span className="font-body text-xs text-foreground">{cat.examples}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Titel:</span>
+                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Holdings:</span>
                               <span className="font-body text-xs text-foreground">{cat.holdings}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Gebühr:</span>
+                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Fee:</span>
                               <span className="font-body text-xs text-foreground">{cat.fee}</span>
                             </div>
                             <div className="flex items-center gap-2">
-                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Risiko:</span>
+                              <span className="font-body text-xs text-muted-foreground w-20 flex-shrink-0">Risk:</span>
                               <div className="flex gap-1">
                                 {[1, 2, 3, 4, 5].map(dot => (
                                   <span
@@ -613,7 +613,7 @@ const ETF_L4_ETFUniverse = () => {
                   className="rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 max-w-sm mx-auto w-full mt-4"
                 >
                   <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
-                    Du hast alle Kategorien entdeckt! 🎉
+                    You\'ve discovered all categories! 🎉
                   </p>
                 </motion.div>
               )}
@@ -632,10 +632,10 @@ const ETF_L4_ETFUniverse = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">
-              Welcher ETF passt zum Ziel?
+              Which ETF fits the goal?
             </h2>
             <p className="font-body text-sm text-muted-foreground text-center mb-5">
-              Tippe auf die beste Antwort für jede Situation
+              Tap on the best answer for each situation
             </p>
 
             {/* Progress dots */}
@@ -715,7 +715,7 @@ const ETF_L4_ETFUniverse = () => {
                 className="rounded-xl border-l-4 border-green-400 bg-green-50 dark:bg-green-950/30 px-4 py-3 max-w-sm mx-auto w-full mt-4"
               >
                 <p className="font-body text-sm text-green-800 dark:text-green-200 leading-relaxed">
-                  Alle Szenarien gelöst! 🎉
+                  All scenarios solved! 🎉
                 </p>
               </motion.div>
             )}

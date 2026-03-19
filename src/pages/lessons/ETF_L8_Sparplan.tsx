@@ -19,25 +19,25 @@ const fvAnnuity = (monthly: number, annualRate: number, years: number) => {
 
 /* ── Cost averaging months ── */
 const caMonths = [
-  { name: 'Januar', price: 50.00 },
-  { name: 'Februar', price: 40.00 },
-  { name: 'März', price: 33.33 },
+  { name: 'January', price: 50.00 },
+  { name: 'February', price: 40.00 },
+  { name: 'March', price: 33.33 },
   { name: 'April', price: 40.00 },
-  { name: 'Mai', price: 50.00 },
-  { name: 'Juni', price: 66.67 },
+  { name: 'May', price: 50.00 },
+  { name: 'June', price: 66.67 },
 ];
 
 const quiz = {
-  question: 'Der ETF-Kurs fällt diesen Monat um 20%. Was bedeutet das für einen Sparplan-Anleger der monatlich CHF 200 investiert?',
+  question: 'The ETF price drops 20% this month. What does that mean for a savings plan investor who invests CHF 200 monthly?',
   answers: [
-    { id: 'a', text: 'Schlecht — Sparplan sollte pausiert werden' },
-    { id: 'b', text: 'Neutral — kein Einfluss auf den Sparplan' },
-    { id: 'c', text: 'Gut — für CHF 200 kauft er 25% mehr Anteile und senkt seinen Durchschnittskurs' },
-    { id: 'd', text: 'Der Sparplan kauft automatisch weniger Anteile' },
+    { id: 'a', text: 'Bad — savings plan should be paused' },
+    { id: 'b', text: 'Neutral — no impact on the savings plan' },
+    { id: 'c', text: 'Good — for CHF 200 he buys 25% more shares and lowers his average price' },
+    { id: 'd', text: 'The savings plan automatically buys fewer shares' },
   ],
   correctId: 'c',
-  correctFeedback: 'Genau! Cost Averaging: günstigere Kurse = mehr Anteile für denselben Betrag. Langfristige Sparplan-Anleger profitieren von Kursschwankungen statt darunter zu leiden.',
-  wrongFeedback: 'Bei einem Sparplan kaufst du für einen fixen Betrag. Bei -20% Kurs bekommst du automatisch 25% mehr Anteile für deine CHF 200. Das senkt deinen Durchschnittskurs.',
+  correctFeedback: 'Exactly! Cost Averaging: lower prices = more shares for the same amount. Long-term savings plan investors benefit from price fluctuations instead of suffering from them.',
+  wrongFeedback: 'With a savings plan you buy for a fixed amount. At -20% price you automatically get 25% more shares for your CHF 200. This lowers your average price.',
 };
 
 const ETF_L8_Sparplan = () => {
@@ -96,9 +96,9 @@ const ETF_L8_Sparplan = () => {
   const depPct = deposited / endValue * 100;
 
   useEffect(() => {
-    if (endValue > 500000) showMs('💎 Halbe Million!');
-    else if (endValue > 100000) showMs('🚀 CHF 100k erreicht!');
-    else if (endValue > 50000) showMs('🎯 CHF 50k Meilenstein!');
+    if (endValue > 500000) showMs('💎 Half million!');
+    else if (endValue > 100000) showMs('🚀 CHF 100k reached!');
+    else if (endValue > 50000) showMs('🎯 CHF 50k milestone!');
     else setMilestone(null);
   }, [endValue]);
 
@@ -172,16 +172,16 @@ const ETF_L8_Sparplan = () => {
               {storySlide === 0 && (
                 <motion.div key="ss0" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <span className="mb-4" style={{ fontSize: 64 }}>☕</span>
-                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">Ein Kaffee weniger pro Tag.</h2>
+                  <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">One fewer coffee per day.</h2>
                   <div className="w-full rounded-2xl border border-border overflow-hidden mb-4">
                     <div className="grid grid-cols-[1fr_auto_1fr]">
                       {/* Coffee side */}
                       <div className="p-4 bg-muted/30 flex flex-col items-center text-center">
                         <span className="text-3xl mb-2">☕</span>
-                        <p className="font-display text-sm font-bold text-foreground mb-1">CHF 4 Kaffee täglich</p>
-                        <p className="font-body text-[10px] text-muted-foreground">= CHF 120 pro Monat</p>
+                        <p className="font-display text-sm font-bold text-foreground mb-1">CHF 4 coffee daily</p>
+                        <p className="font-body text-[10px] text-muted-foreground">= CHF 120 per month</p>
                         <p className="font-body text-[10px] text-muted-foreground">= CHF {fmt(coffeeDeposited)} in 30 Jahren</p>
-                        <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-body text-[9px] font-semibold">Ausgegeben</span>
+                        <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-body text-[9px] font-semibold">Spent</span>
                       </div>
                       {/* Arrow */}
                       <div className="flex items-center px-2">
@@ -190,7 +190,7 @@ const ETF_L8_Sparplan = () => {
                       {/* ETF side */}
                       <div className="p-4 flex flex-col items-center text-center" style={{ backgroundColor: '#EFF6FF' }}>
                         <span className="text-3xl mb-2">📈</span>
-                        <p className="font-display text-sm font-bold text-foreground mb-1">CHF 120/Monat ETF-Sparplan</p>
+                        <p className="font-display text-sm font-bold text-foreground mb-1">CHF 120/month ETF savings plan</p>
                         <p className="font-body text-[10px] text-muted-foreground">= CHF {fmt(coffeeDeposited)} eingezahlt</p>
                         <p className="font-body text-[10px] text-foreground font-semibold">= CHF {fmt(coffeeEndValue)} nach 30 Jahren</p>
                         <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[9px] font-semibold">CHF {fmt(coffeeGain)} geschenkt vom Zinseszins</span>
@@ -198,19 +198,19 @@ const ETF_L8_Sparplan = () => {
                     </div>
                   </div>
                   <p className="font-body text-xs text-muted-foreground text-center mb-4">Die CHF {fmt(coffeeGain)} hast du nicht eingezahlt. Die hat der Zinseszins erarbeitet.</p>
-                  <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                  <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Next →</button>
                 </motion.div>
               )}
 
               {/* SLIDE 1 — How it works */}
               {storySlide === 1 && (
                 <motion.div key="ss1" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
-                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">Wie funktioniert ein Sparplan?</h2>
+                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">How does a savings plan work?</h2>
                   <div className="w-full space-y-3 mb-4">
                     {[
-                      { n: '①', title: 'Du richtest einmal ein', desc: 'Betrag + ETF + Datum festlegen', badge: '~5 Minuten', delay: 0 },
-                      { n: '②', title: 'Jeden Monat automatisch', desc: 'Bank kauft ETF-Anteile für dich', badge: '0 Minuten Aufwand', delay: 0.4 },
-                      { n: '③', title: 'Du machst — nichts', desc: 'Zinseszins arbeitet still im Hintergrund', badge: '30 Jahre lang ✓', delay: 0.8, green: true },
+                      { n: '①', title: 'You set it up once', desc: 'Set amount + ETF + date', badge: '~5 minutes', delay: 0 },
+                      { n: '②', title: 'Every month automatically', desc: 'Bank buys ETF shares for you', badge: '0 minutes effort', delay: 0.4 },
+                      { n: '③', title: 'You do — nothing', desc: 'Compound interest works silently in the background', badge: '30 years ✓', delay: 0.8, green: true },
                     ].map(s => (
                       <motion.div key={s.n} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: s.delay, duration: 0.3 }} className="rounded-2xl border border-border p-4">
                         <p className="font-display text-sm font-bold text-foreground mb-1">{s.n} {s.title}</p>
@@ -219,24 +219,24 @@ const ETF_L8_Sparplan = () => {
                       </motion.div>
                     ))}
                   </div>
-                  <p className="font-body text-xs text-muted-foreground text-center mb-4">Bei vielen Brokern ab CHF 1/Monat möglich.</p>
-                  <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                  <p className="font-body text-xs text-muted-foreground text-center mb-4">Available at many brokers from CHF 1/month.</p>
+                  <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Next →</button>
                 </motion.div>
               )}
 
               {/* SLIDE 2 — Cost averaging intro */}
               {storySlide === 2 && (
                 <motion.div key="ss2" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
-                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">Was passiert wenn der Kurs fällt?</h2>
+                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">What happens when the price drops?</h2>
                   <div className="w-full rounded-2xl p-5 mb-4" style={{ backgroundColor: '#1E3A5F' }}>
-                    <p className="font-body text-xs text-white/80 mb-3">Du investierst jeden Monat CHF 100.</p>
-                    <p className="font-body text-sm text-white mb-1">Kurs hoch → du kaufst weniger Anteile</p>
-                    <p className="font-body text-xs text-white/60 mb-3">CHF 50 → 2 Anteile</p>
+                    <p className="font-body text-xs text-white/80 mb-3">You invest CHF 100 every month.</p>
+                    <p className="font-body text-sm text-white mb-1">Price high → you buy fewer shares</p>
+                    <p className="font-body text-xs text-white/60 mb-3">CHF 50 → 2 shares</p>
                     <div className="border-t border-white/20 my-3" />
-                    <p className="font-body text-sm text-white mb-1">Kurs tief → du kaufst mehr Anteile</p>
-                    <p className="font-body text-xs text-white/60 mb-3">CHF 25 → 4 Anteile 🎉</p>
+                    <p className="font-body text-sm text-white mb-1">Price low → you buy more shares</p>
+                    <p className="font-body text-xs text-white/60 mb-3">CHF 25 → 4 shares 🎉</p>
                     <div className="rounded-xl bg-amber-500/20 p-3">
-                      <p className="font-body text-xs text-amber-300 text-center">Kursschwankungen sind beim Sparplan dein Freund — tiefe Kurse = Rabatt.</p>
+                      <p className="font-body text-xs text-amber-300 text-center">Price fluctuations are your friend with a savings plan — low prices = discount.</p>
                     </div>
                   </div>
                 </motion.div>
@@ -248,20 +248,20 @@ const ETF_L8_Sparplan = () => {
         {/* ═══ STEP 1 — Sparplan Builder ═══ */}
         {currentStep === 1 && (
           <motion.div key="s1" className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">Dein persönlicher Sparplan</h2>
-            <p className="font-body text-xs text-muted-foreground text-center mb-4">Stelle ein und sieh wie dein Vermögen wächst</p>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">Your personal savings plan</h2>
+            <p className="font-body text-xs text-muted-foreground text-center mb-4">Adjust and watch your wealth grow</p>
 
             <div className="space-y-3 mb-4 max-w-sm mx-auto w-full">
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="font-body text-xs text-muted-foreground">Monatlicher Betrag</span>
+                  <span className="font-body text-xs text-muted-foreground">Monthly amount</span>
                   <span className="font-display text-xs font-bold text-foreground">CHF {fmt(monthlyAmount)}</span>
                 </div>
                 <input type="range" min={25} max={1000} step={25} value={monthlyAmount} onChange={e => setMonthlyAmount(+e.target.value)} className="w-full accent-blue-500" />
               </div>
               <div>
                 <div className="flex justify-between mb-1">
-                  <span className="font-body text-xs text-muted-foreground">Anlagedauer</span>
+                  <span className="font-body text-xs text-muted-foreground">Investment duration</span>
                   <span className="font-display text-xs font-bold text-foreground">{years} Jahre</span>
                 </div>
                 <input type="range" min={5} max={40} step={1} value={years} onChange={e => setYears(+e.target.value)} className="w-full accent-blue-500" />
@@ -290,7 +290,7 @@ const ETF_L8_Sparplan = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-2 max-w-sm mx-auto w-full mb-3">
               <div className="rounded-xl bg-blue-500/10 p-3 text-center">
-                <p className="font-body text-[10px] text-muted-foreground">Eingezahlt</p>
+                <p className="font-body text-[10px] text-muted-foreground">Deposited</p>
                 <p className="font-display text-sm font-bold text-foreground">CHF {fmt(deposited)}</p>
               </div>
               <div className="rounded-xl bg-green-500/10 p-3 text-center">
@@ -298,7 +298,7 @@ const ETF_L8_Sparplan = () => {
                 <p className="font-display text-sm font-bold text-foreground">CHF {fmt(endValue)}</p>
               </div>
               <div className="rounded-xl bg-amber-500/10 p-3 text-center">
-                <p className="font-body text-[10px] text-muted-foreground">Gewinn</p>
+                <p className="font-body text-[10px] text-muted-foreground">Gain</p>
                 <p className="font-display text-sm font-bold text-amber-600">CHF {fmt(gain)}</p>
               </div>
             </div>
@@ -314,8 +314,8 @@ const ETF_L8_Sparplan = () => {
             <div className={`max-w-sm mx-auto w-full rounded-xl p-3 ${gain > deposited ? 'bg-green-500/10 border border-green-500/20' : 'bg-blue-500/10 border border-blue-500/20'}`}>
               <p className="font-body text-xs text-foreground text-center">
                 {gain > deposited
-                  ? '🚀 Der Zinseszins arbeitet mehr für dich als du selbst eingezahlt hast!'
-                  : '📈 Mit mehr Jahren überholt der Zinseszins deine eigenen Einzahlungen.'}
+                  ? '🚀 Compound interest is working more for you than you deposited yourself!'
+                  : '📈 With more years, compound interest overtakes your own deposits.'}
               </p>
             </div>
           </motion.div>
@@ -324,8 +324,8 @@ const ETF_L8_Sparplan = () => {
         {/* ═══ STEP 2 — Cost Averaging ═══ */}
         {currentStep === 2 && (
           <motion.div key="s2" className="flex-1 flex flex-col px-6 py-4 overflow-y-auto" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.3 }}>
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">6 Monate Sparplan — erlebe Cost Averaging</h2>
-            <p className="font-body text-xs text-muted-foreground text-center mb-4">Tippe «Nächster Monat» um jeden Kauf zu sehen</p>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">6 months savings plan — experience Cost Averaging</h2>
+            <p className="font-body text-xs text-muted-foreground text-center mb-4">Tap «Next month» to see each purchase</p>
 
             <div className="max-w-sm mx-auto w-full space-y-2 mb-3">
               {revealedMonths.map((m, i) => {
@@ -348,13 +348,13 @@ const ETF_L8_Sparplan = () => {
                         CHF {fmt2(m.price)} {dir === 'down' ? (m.price < 35 ? '↓↓' : '↓') : dir === 'up' ? (m.price > 60 ? '↑↑' : '↑') : ''}
                       </span>
                     </div>
-                    <p className="font-body text-[10px] text-muted-foreground">Du kaufst: {fmt2(shares)} Anteile für CHF 100</p>
+                    <p className="font-body text-[10px] text-muted-foreground">You buy: {fmt2(shares)} shares for CHF 100</p>
                     {isGreen && (
                       <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[9px] font-semibold">
-                        {m.price < 35 ? 'Grosser Rabatt! 🎉🎉' : 'Rabatt! Mehr Anteile 🎉'}
+                        {m.price < 35 ? 'Big discount! 🎉🎉' : 'Discount! More shares 🎉'}
                       </span>
                     )}
-                    <p className="font-body text-[10px] text-foreground mt-1">Anteile gesamt: {fmt2(runShares)}</p>
+                    <p className="font-body text-[10px] text-foreground mt-1">Total shares: {fmt2(runShares)}</p>
                   </motion.div>
                 );
               })}
@@ -374,12 +374,12 @@ const ETF_L8_Sparplan = () => {
             {monthsRevealed >= 6 && (
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="max-w-sm mx-auto w-full">
                 <div className="rounded-2xl bg-green-500/10 border border-green-500/20 p-4 mb-3 text-center">
-                  <p className="font-display text-sm font-bold text-foreground mb-2">🎯 Dein Ergebnis:</p>
-                  <p className="font-body text-xs text-foreground">Investiert: CHF {fmt(totalInvested)}</p>
-                  <p className="font-body text-xs text-foreground">Anteile: {fmt2(totalShares)}</p>
-                  <p className="font-body text-xs text-foreground">Dein Durchschnittskurs: CHF {fmt2(avgPrice)}</p>
-                  <p className="font-body text-xs text-foreground">Aktueller Kurs: CHF 66.67</p>
-                  <p className="font-display text-lg font-bold text-green-600 mt-1">Depot-Wert: CHF {fmt(totalShares * 66.67)} (+{Math.round((totalShares * 66.67 / totalInvested - 1) * 100)}%!)</p>
+                  <p className="font-display text-sm font-bold text-foreground mb-2">🎯 Your result:</p>
+                  <p className="font-body text-xs text-foreground">Invested: CHF {fmt(totalInvested)}</p>
+                  <p className="font-body text-xs text-foreground">Shares: {fmt2(totalShares)}</p>
+                  <p className="font-body text-xs text-foreground">Your average price: CHF {fmt2(avgPrice)}</p>
+                  <p className="font-body text-xs text-foreground">Current price: CHF 66.67</p>
+                  <p className="font-display text-lg font-bold text-green-600 mt-1">Portfolio value: CHF {fmt(totalShares * 66.67)} (+{Math.round((totalShares * 66.67 / totalInvested - 1) * 100)}%!)</p>
                 </div>
                 <div className="rounded-xl bg-amber-500/10 border border-amber-500/20 p-3">
                   <p className="font-body text-xs text-foreground text-center">Dein Durchschnittskurs (CHF {fmt2(avgPrice)}) ist tiefer als der aktuelle Kurs (CHF 66.67) — obwohl der Kurs zwischendurch stark fiel. Das ist Cost Averaging: tiefe Monate kaufen mehr Anteile und senken deinen Schnitt.</p>
@@ -426,13 +426,13 @@ const ETF_L8_Sparplan = () => {
               ))}
             </div>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
-            <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">Du weisst jetzt wie ein Sparplan langfristig Vermögen aufbaut.</p>
+            <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">You now know how a savings plan builds wealth long-term.</p>
 
             <div className="w-full max-w-sm rounded-2xl bg-green-500/10 border border-green-500/20 p-4 mb-4 space-y-2">
-              <p className="font-body text-xs text-foreground">✅ Sparplan = automatisch monatlich in ETF investieren</p>
-              <p className="font-body text-xs text-foreground">✅ Zinseszins überholt nach ~15 Jahren deine Einzahlungen</p>
-              <p className="font-body text-xs text-foreground">✅ Cost Averaging: tiefe Kurse = mehr Anteile = Vorteil</p>
-              <p className="font-body text-xs text-foreground">✅ Start ab CHF 1/Monat — wichtig ist der Start</p>
+              <p className="font-body text-xs text-foreground">✅ Savings plan = automatically invest in ETF monthly</p>
+              <p className="font-body text-xs text-foreground">✅ Compound interest overtakes your deposits after ~15 years</p>
+              <p className="font-body text-xs text-foreground">✅ Cost Averaging: low prices = more shares = advantage</p>
+              <p className="font-body text-xs text-foreground">✅ Start from CHF 1/month — what matters is starting</p>
             </div>
 
             <CompletionXP result={completionResult} hearts={hearts} />
@@ -463,12 +463,12 @@ const ETF_L8_Sparplan = () => {
               <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4" />
               <h3 className="font-display text-lg font-bold text-foreground mb-3">Cost Averaging 📖</h3>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                Cost Averaging (Durchschnittskosteneffekt): durch regelmässige fixe Investitionen kauft man bei tiefen Kursen mehr Anteile und bei hohen weniger. Über Zeit resultiert ein tieferer Durchschnittskaufkurs als der arithmetische Kursdurchschnitt.
+                Cost Averaging: through regular fixed investments you buy more shares at low prices and fewer at high prices. Over time this results in a lower average purchase price than the arithmetic price average.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Wichtig: Bei langfristig steigenden Märkten ist eine Einmalanlage mathematisch oft überlegen — aber psychologisch ist der Sparplan nachhaltiger und führt zu besserem Anlegerverhalten.
+                Important: In long-term rising markets, a lump-sum investment is often mathematically superior — but psychologically, a savings plan is more sustainable and leads to better investor behavior.
               </p>
-              <button onClick={() => setShowDeepDive(false)} className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm">Schliessen</button>
+              <button onClick={() => setShowDeepDive(false)} className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm">Close</button>
             </motion.div>
           </motion.div>
         )}
