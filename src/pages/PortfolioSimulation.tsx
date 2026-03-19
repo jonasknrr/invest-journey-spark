@@ -472,8 +472,8 @@ const PortfolioSimulation = () => {
 
   // Coach analysis
   const coachAnalysis = useMemo(
-    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox, safePct),
-    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox, safePct],
+    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox, safePct, levelId),
+    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox, safePct, levelId],
   );
 
   // ── Challenge evaluation ──
