@@ -31,7 +31,7 @@ const QUIZ_1 = {
 };
 
 const QUIZ_2 = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question: 'What distinguishes cash from a stock?',
   answers: [
     { id: 'a', text: 'Cash earns higher returns than stocks' },
