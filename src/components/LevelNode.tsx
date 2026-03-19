@@ -76,7 +76,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
       style={{ transitionDelay: `${index * 0.08}s` }}
     >
       {/* Icon circle with progress ring */}
-      <div className="relative flex-shrink-0" style={{ width: RING_SIZE, height: RING_SIZE }}>
+      <div className="relative flex-shrink-0 z-10" style={{ width: RING_SIZE, height: RING_SIZE }}>
         {/* SVG progress ring */}
         <svg
           className="absolute inset-0"
