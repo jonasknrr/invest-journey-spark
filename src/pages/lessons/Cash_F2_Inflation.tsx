@@ -89,6 +89,34 @@ const Cash_F2_Inflation = () => {
 
   // Step 1 — slider
   const [sliderYear, setSliderYear] = useState(2004);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const stopAutoPlay = useCallback(() => {
+    if (autoPlayRef.current) {
+      clearInterval(autoPlayRef.current);
+      autoPlayRef.current = null;
+    }
+    setIsAutoPlaying(false);
+  }, []);
+
+  const startAutoPlay = useCallback(() => {
+    setSliderYear(2004);
+    setIsAutoPlaying(true);
+    autoPlayRef.current = setInterval(() => {
+      setSliderYear(prev => {
+        if (prev >= 2024) {
+          stopAutoPlay();
+          return 2024;
+        }
+        return prev + 1;
+      });
+    }, 200);
+  }, [stopAutoPlay]);
+
+  useEffect(() => {
+    return () => { if (autoPlayRef.current) clearInterval(autoPlayRef.current); };
+  }, []);
 
   // Step 2 — quiz 1
   const [q1Answer, setQ1Answer] = useState<string | null>(null);
