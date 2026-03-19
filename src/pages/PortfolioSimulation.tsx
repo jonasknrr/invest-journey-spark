@@ -788,7 +788,7 @@ const PortfolioSimulation = () => {
                 <div>
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Endwert</p>
                   <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-                    {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                    {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                   </p>
                 </div>
                 <div className="text-right">
