@@ -815,6 +815,24 @@ const PortfolioSimulation = () => {
                         {ch1_restInLongTerm ? '✓' : '△'} Max. Rendite: {longTermFestgeld.toLocaleString('de-CH')} {currency} langfristig
                       </span>
                     </>
+                  ) : isChapter3 ? (
+                    <>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch3_notgroschenOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {ch3_notgroschenOk ? '✓' : '✗'} Notgroschen: {tagesgeldAmount.toLocaleString('de-CH')} / 10.000 {currency}
+                      </span>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch3_immobilieOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {ch3_immobilieOk ? '✓' : '✗'} Immobilie: {ch3_safeShortMedium.toLocaleString('de-CH')} / 40.000 {currency}
+                      </span>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch3_renditeOk ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
+                      }`}>
+                        {ch3_renditeOk ? '✓' : '△'} Rendite & Streuung: {ch3_riskyTotal.toLocaleString('de-CH')} {currency} / {divResult.rating}
+                      </span>
+                    </>
                   ) : (
                     <>
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
