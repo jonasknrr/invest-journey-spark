@@ -160,7 +160,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
                 onClick={onClose}
                 className="w-full h-13 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft active:scale-[0.98] transition-transform"
               >
-                Verstanden, los geht's!
+                Got it, let's go!
               </button>
 
               {/* Bottom spacer for safe area */}

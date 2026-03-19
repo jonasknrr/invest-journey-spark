@@ -136,8 +136,8 @@ const LearningPath = () => {
         <div className="max-w-sm mx-auto">
           <div className="flex justify-between items-center mb-2">
             <div>
-              <p className="text-xs text-muted-foreground">Gesamtfortschritt</p>
-              <p className="text-xl font-bold text-foreground tabular-nums">{totalPercent}% geschafft</p>
+              <p className="text-xs text-muted-foreground">Overall progress</p>
+              <p className="text-xl font-bold text-foreground tabular-nums">{totalPercent}% completed</p>
             </div>
           </div>
           <div className="h-3 rounded-full bg-muted overflow-hidden">
