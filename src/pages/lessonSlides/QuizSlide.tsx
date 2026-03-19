@@ -23,6 +23,9 @@ const QuizSlide = ({ label, question, answers, correctId, correctFeedback, wrong
   const handleSelect = (id: string) => {
     if (selected) return;
     setSelected(id);
+    if (id !== correctId && onWrongAnswer) {
+      onWrongAnswer();
+    }
     onAnswered();
   };
 
