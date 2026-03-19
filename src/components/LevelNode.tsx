@@ -31,7 +31,7 @@ const shadowMap: Record<string, string> = {
   etfs: '0 10px 25px -5px hsla(225,85%,55%,0.35)',
   currencies: '0 10px 25px -5px hsla(35,95%,55%,0.35)',
   crypto: '0 10px 25px -5px hsla(265,85%,65%,0.35)',
-  gold: '0 10px 25px -5px hsla(45,100%,50%,0.35)',
+  metals: '0 10px 25px -5px hsla(45,100%,50%,0.35)',
   immobilien: '0 10px 25px -5px hsla(15,70%,55%,0.35)',
 };
 
