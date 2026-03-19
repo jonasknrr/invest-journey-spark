@@ -326,7 +326,7 @@ const ETF_L7_AccVsDist = () => {
                     <p className="font-display text-2xl font-bold text-white/60 mb-3">CHF {fmt(10000 * Math.pow(1.05, 30))}</p>
                     <div className="rounded-xl bg-amber-500/20 p-3">
                       <p className="font-display text-sm font-bold text-amber-300">Difference: CHF {fmt(10000 * Math.pow(1.07, 30) - 10000 * Math.pow(1.05, 30))}</p>
-                      <p className="font-body text-[10px] text-amber-300/70 mt-1">That\'s the price for «I\'d rather take the money now.»</p>
+                      <p className="font-body text-[10px] text-amber-300/70 mt-1">That's the price for «I'd rather take the money now.»</p>
                     </div>
                   </div>
                 </motion.div>
