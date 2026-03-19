@@ -886,93 +886,119 @@ const PortfolioSimulation = () => {
 
             {/* ── 5. Risiko & Stabilität ── */}
             {invested > 0 && values.length > 1 && (
-              <div className="rounded-3xl bg-muted/40 border border-border shadow-card p-5">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-2xl bg-destructive/10 flex items-center justify-center">
-                    <ShieldWarning size={20} weight="fill" className="text-destructive" />
+              <div className="relative rounded-3xl bg-muted/40 border border-border shadow-card p-5 overflow-hidden">
+                {/* Disabled overlay for chapter 1 */}
+                {isChapter1 && (
+                  <div className="absolute inset-0 z-10 rounded-3xl bg-background/60 backdrop-blur-[1px] flex flex-col items-center justify-center gap-3">
+                    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
+                      <Lock size={24} weight="fill" className="text-muted-foreground" />
+                    </div>
+                    <p className="font-display text-sm font-bold text-muted-foreground text-center px-6 leading-snug">
+                      Dieser Analyse-Bereich wird ab Kapitel 2 (Aktien) freigeschaltet.
+                    </p>
                   </div>
-                  <div>
-                    <p className="font-display font-bold text-foreground text-[15px]">Risiko & Stabilität</p>
-                    <p className="text-xs text-muted-foreground font-body">Wie krisenfest war dein Portfolio?</p>
-                  </div>
-                </div>
+                )}
 
-                 <div className="space-y-3 mb-5">
-                  {/* 3-card grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    {/* Diversifikations-Score */}
-                    <div className="bg-card rounded-2xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Scales size={16} weight="bold" className="text-primary" />
-                        <p className="font-display text-sm font-bold text-foreground">Diversifikation</p>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
-                              <Info size={12} weight="bold" className="text-muted-foreground" />
-                            </button>
-                          </PopoverTrigger>
-                          <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
-                            Misst, wie gut dein Kapital verteilt ist. Ein hoher Score bedeutet, dass du nicht von einer einzelnen Aktie abhängig bist. Bei wenig Kapital reichen wenige Aktien, bei viel Kapital solltest du mehr streuen.
-                          </PopoverContent>
-                        </Popover>
-                      </div>
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="flex-1 h-3 rounded-full bg-muted overflow-hidden">
-                          <motion.div
-                            className="h-full rounded-full"
-                            style={{ backgroundColor: divScore >= 7 ? 'hsl(var(--primary))' : divScore >= 4 ? 'hsl(30,90%,55%)' : 'hsl(var(--destructive))' }}
-                            initial={{ width: 0 }}
-                            animate={{ width: `${divScore * 10}%` }}
-                            transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
-                          />
+                <div className={isChapter1 ? 'opacity-40 pointer-events-none select-none' : ''}>
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-10 h-10 rounded-2xl bg-destructive/10 flex items-center justify-center">
+                      <ShieldWarning size={20} weight="fill" className="text-destructive" />
+                    </div>
+                    <div>
+                      <p className="font-display font-bold text-foreground text-[15px]">Risiko & Stabilität</p>
+                      <p className="text-xs text-muted-foreground font-body">Wie krisenfest war dein Portfolio?</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 mb-5">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div className="bg-card rounded-2xl p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Scales size={16} weight="bold" className="text-primary" />
+                          <p className="font-display text-sm font-bold text-foreground">Diversifikation</p>
+                          {!isChapter1 && (
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
+                                  <Info size={12} weight="bold" className="text-muted-foreground" />
+                                </button>
+                              </PopoverTrigger>
+                              <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
+                                Misst, wie gut dein Kapital verteilt ist.
+                              </PopoverContent>
+                            </Popover>
+                          )}
                         </div>
-                        <span className="font-display text-lg font-bold text-foreground tabular-nums w-12 text-right">{divScore.toFixed(1)}</span>
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="flex-1 h-3 rounded-full bg-muted overflow-hidden">
+                            {!isChapter1 && (
+                              <motion.div
+                                className="h-full rounded-full"
+                                style={{ backgroundColor: divScore >= 7 ? 'hsl(var(--primary))' : divScore >= 4 ? 'hsl(30,90%,55%)' : 'hsl(var(--destructive))' }}
+                                initial={{ width: 0 }}
+                                animate={{ width: `${divScore * 10}%` }}
+                                transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
+                              />
+                            )}
+                          </div>
+                          <span className="font-display text-lg font-bold text-foreground tabular-nums w-12 text-right">
+                            {isChapter1 ? '—' : divScore.toFixed(1)}
+                          </span>
+                        </div>
+                        {!isChapter1 && (
+                          <p className="font-body text-[11px] text-muted-foreground">
+                            {numRiskyPositions} risikobehaftete Position{numRiskyPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} {currency}
+                          </p>
+                        )}
                       </div>
-                      <p className="font-body text-[11px] text-muted-foreground">{numRiskyPositions} risikobehaftete Position{numRiskyPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} $</p>
-                    </div>
 
-                    {/* Max Drawdown */}
-                    <div className="bg-card rounded-2xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Warning size={16} weight="bold" className="text-destructive" />
-                        <p className="font-display text-sm font-bold text-foreground">Max. Drawdown</p>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
-                              <Info size={12} weight="bold" className="text-muted-foreground" />
-                            </button>
-                          </PopoverTrigger>
-                          <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
-                            Der maximale Wertverlust vom höchsten zum tiefsten Punkt. Es zeigt dir das «Worst-Case-Szenario», das du während der 5 Jahre hättest aussitzen müssen.
-                          </PopoverContent>
-                        </Popover>
+                      <div className="bg-card rounded-2xl p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Warning size={16} weight="bold" className="text-destructive" />
+                          <p className="font-display text-sm font-bold text-foreground">Max. Drawdown</p>
+                          {!isChapter1 && (
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
+                                  <Info size={12} weight="bold" className="text-muted-foreground" />
+                                </button>
+                              </PopoverTrigger>
+                              <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
+                                Der maximale Wertverlust vom höchsten zum tiefsten Punkt.
+                              </PopoverContent>
+                            </Popover>
+                          )}
+                        </div>
+                        <p className={`font-display text-2xl font-bold tabular-nums ${
+                          isChapter1 ? 'text-muted-foreground' : maxDrawdown < -0.15 ? 'text-destructive' : maxDrawdown < -0.05 ? 'text-[hsl(30,90%,55%)]' : 'text-primary'
+                        }`}>
+                          {isChapter1 ? '—' : `${(maxDrawdown * 100).toFixed(1)}%`}
+                        </p>
+                        {!isChapter1 && <p className="font-body text-[11px] text-muted-foreground mt-1">Grösster Verlust vom Höchststand</p>}
                       </div>
-                      <p className={`font-display text-2xl font-bold tabular-nums ${maxDrawdown < -0.15 ? 'text-destructive' : maxDrawdown < -0.05 ? 'text-[hsl(30,90%,55%)]' : 'text-primary'}`}>
-                        {(maxDrawdown * 100).toFixed(1)}%
-                      </p>
-                      <p className="font-body text-[11px] text-muted-foreground mt-1">Grösster Verlust vom Höchststand</p>
-                    </div>
 
-                    {/* Volatilität */}
-                    <div className="bg-card rounded-2xl p-4">
-                      <div className="flex items-center gap-2 mb-2">
-                        <TrendUp size={16} weight="bold" className="text-[hsl(30,90%,55%)]" />
-                        <p className="font-display text-sm font-bold text-foreground">Volatilität</p>
-                        <Popover>
-                          <PopoverTrigger asChild>
-                            <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
-                              <Info size={12} weight="bold" className="text-muted-foreground" />
-                            </button>
-                          </PopoverTrigger>
-                          <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
-                            Das Mass für die Schwankungsbreite. Hohe Volatilität bedeutet nervöse Kurssprünge, niedrige Volatilität steht für einen ruhigeren Verlauf.
-                          </PopoverContent>
-                        </Popover>
+                      <div className="bg-card rounded-2xl p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <TrendUp size={16} weight="bold" className="text-muted-foreground" />
+                          <p className="font-display text-sm font-bold text-foreground">Volatilität</p>
+                          {!isChapter1 && (
+                            <Popover>
+                              <PopoverTrigger asChild>
+                                <button className="ml-auto w-5 h-5 rounded-full bg-muted flex items-center justify-center hover:bg-muted-foreground/20 transition-colors">
+                                  <Info size={12} weight="bold" className="text-muted-foreground" />
+                                </button>
+                              </PopoverTrigger>
+                              <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
+                                Das Mass für die Schwankungsbreite.
+                              </PopoverContent>
+                            </Popover>
+                          )}
+                        </div>
+                        <p className={`font-display text-2xl font-bold tabular-nums ${isChapter1 ? 'text-muted-foreground' : volColor}`}>
+                          {isChapter1 ? '—' : <>{volatility.toFixed(1)}% <span className="text-sm font-body font-normal">({volLabel})</span></>}
+                        </p>
+                        {!isChapter1 && <p className="font-body text-[11px] text-muted-foreground mt-1">Schwankung der Monatsrenditen</p>}
                       </div>
-                      <p className={`font-display text-2xl font-bold tabular-nums ${volColor}`}>
-                        {volatility.toFixed(1)}% <span className="text-sm font-body font-normal">({volLabel})</span>
-                      </p>
-                      <p className="font-body text-[11px] text-muted-foreground mt-1">Schwankung der Monatsrenditen</p>
                     </div>
                   </div>
                 </div>
