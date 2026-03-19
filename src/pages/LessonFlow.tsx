@@ -815,7 +815,7 @@ const LessonFlow = () => {
           onClick={goBack}
           className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0"
         >
-          <X className="w-5 h-5 text-foreground" />
+          <FiX className="w-5 h-5 text-foreground" />
         </button>
 
         <div className="flex-1 h-2.5 bg-muted rounded-full overflow-hidden">
@@ -829,7 +829,7 @@ const LessonFlow = () => {
 
         <div className="flex items-center gap-0.5 flex-shrink-0">
           {[0, 1, 2].map(i => (
-            <Heart key={i} className={`w-5 h-5 transition-all ${
+            <FiHeart key={i} className={`w-5 h-5 transition-all ${
               i < hearts ? 'text-red-500 fill-red-500' : 'text-muted-foreground/30'
             }`} />
           ))}

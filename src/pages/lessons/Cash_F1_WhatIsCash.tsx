@@ -241,7 +241,7 @@ const Cash_F1_WhatIsCash = () => {
           onClick={() => navigate("/category/festgeld")}
           className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0"
         >
-          <X className="w-5 h-5 text-foreground" />
+          <FiX className="w-5 h-5 text-foreground" />
         </button>
         <div className="flex-1 h-2.5 bg-muted rounded-full overflow-hidden">
           <motion.div
@@ -358,7 +358,7 @@ const Cash_F1_WhatIsCash = () => {
                 >
                   <Star
                     size={i === 1 ? 64 : 48}
-                    weight="fill"
+                   
                     className="text-[hsl(45,100%,50%)]"
                     style={{
                       filter: "drop-shadow(0 0 12px hsl(45 100% 50% / 0.5))",

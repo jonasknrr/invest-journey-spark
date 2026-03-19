@@ -23,7 +23,7 @@ const TagesgeldOverview = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}`, { state: { fromSubPage: true } })} className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1">
-          <ArrowLeft size={16} /> Back
+          <FiArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -31,7 +31,7 @@ const TagesgeldOverview = () => {
         {/* Title card */}
         <motion.div variants={itemVariants} className="flex items-center gap-4">
           <div className="w-14 h-14 rounded-3xl bg-[hsl(var(--level-tagesgeld)/0.12)] flex items-center justify-center">
-            <PiggyBank size={30} className="text-[hsl(var(--level-tagesgeld))]" />
+            <FiDollarSign size={30} className="text-[hsl(var(--level-tagesgeld))]" />
           </div>
           <div>
             <h1 className="font-display text-2xl font-bold text-foreground">Call Money</h1>
@@ -73,14 +73,14 @@ const TagesgeldOverview = () => {
               >
                 {/* Icon badge */}
                 <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-tagesgeld)/0.12)] flex items-center justify-center flex-shrink-0">
-                  <PiggyBank size={22} className="text-[hsl(var(--level-tagesgeld))]" />
+                  <FiDollarSign size={22} className="text-[hsl(var(--level-tagesgeld))]" />
                 </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
                   <p className="font-display font-bold text-foreground text-[15px]">{product.title}</p>
                   <div className="flex items-center gap-1.5 mt-1">
-                    <Percent size={12} className="text-[hsl(var(--level-tagesgeld))]" />
+                    <FiPercent size={12} className="text-[hsl(var(--level-tagesgeld))]" />
                     <span className="text-xs text-muted-foreground font-body">
                       {product.interestRate.toFixed(1)} % p.a.
                     </span>
@@ -94,7 +94,7 @@ const TagesgeldOverview = () => {
                   </p>
                 </div>
 
-                <ArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
+                <FiArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
               </motion.button>
             );
           })}

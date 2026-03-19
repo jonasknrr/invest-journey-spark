@@ -60,14 +60,14 @@ const EtfDetail = () => {
           onClick={() => navigate(`/challenge/${levelId}/etfs`)}
           className="text-muted-foreground text-sm font-body flex items-center gap-1"
         >
-          <ArrowLeft size={16} /> Back
+          <FiArrowLeft size={16} /> Back
         </button>
       </div>
 
       <div className="px-5 pt-2 pb-4">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-etfs)/0.12)] flex items-center justify-center">
-            <Stack size={24} weight="fill" className="text-[hsl(var(--level-etfs))]" />
+            <FiLayers size={24} className="text-[hsl(var(--level-etfs))]" />
           </div>
           <div>
             <h1 className="font-display text-xl font-bold text-foreground">{etf.name}</h1>
@@ -143,7 +143,7 @@ const EtfDetail = () => {
               : 'bg-muted text-muted-foreground cursor-not-allowed'
           }`}
         >
-          <Check size={20} weight="bold" />
+          <FiCheck size={20} />
           {isReset ? 'Remove investment' : currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>

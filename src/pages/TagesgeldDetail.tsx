@@ -41,7 +41,7 @@ const TagesgeldDetail = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}/tagesgeld`)} className="text-muted-foreground text-sm font-body flex items-center gap-1">
-          <ArrowLeft size={16} /> Back
+          <FiArrowLeft size={16} /> Back
         </button>
       </div>
 
@@ -49,7 +49,7 @@ const TagesgeldDetail = () => {
       <div className="px-5 pt-2 pb-4">
         <div className="flex items-center gap-3">
           <div className="w-12 h-12 rounded-2xl bg-[hsl(var(--level-tagesgeld)/0.12)] flex items-center justify-center">
-            <PiggyBank size={24} className="text-[hsl(var(--level-tagesgeld))]" />
+            <FiDollarSign size={24} className="text-[hsl(var(--level-tagesgeld))]" />
           </div>
           <div>
             <h1 className="font-display text-xl font-bold text-foreground">{product.title}</h1>
@@ -147,7 +147,7 @@ const TagesgeldDetail = () => {
               : 'bg-muted text-muted-foreground cursor-not-allowed'
           }`}
         >
-          <Check size={20} weight="bold" />
+          <FiCheck size={20} />
           {currentAmount > 0 ? 'Adjust amount' : 'Invest'}
         </motion.button>
       </div>
