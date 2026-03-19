@@ -423,7 +423,7 @@ const PortfolioSimulation = () => {
   );
 
   // Backward compat: divScore 0-10 scale for coach analysis
-  const divScore = divResult.riskPassed ? 8 : divResult.rating === 'Ausreichend' ? 5 : 2;
+  const divScore = divResult.riskPassed ? 8 : divResult.rating === 'Fair' ? 5 : 2;
 
   // Safe asset percentage (Tagesgeld + Festgeld)
   const safeTotal = tagesgeldAmount + festgeldPositions.reduce((s, f) => s + f.amount, 0);
@@ -456,7 +456,7 @@ const PortfolioSimulation = () => {
     return Math.sqrt(variance) * 100;
   }, [values]);
 
-  const volLabel = volatility < 2 ? 'Niedrig' : volatility < 5 ? 'Mittel' : 'Hoch';
+  const volLabel = volatility < 2 ? 'Low' : volatility < 5 ? 'Medium' : 'High';
   const volColor = volatility < 2 ? 'text-primary' : volatility < 5 ? 'text-[hsl(30,90%,55%)]' : 'text-destructive';
 
   // Sharpe approximation (annualized return / volatility)
@@ -504,7 +504,7 @@ const PortfolioSimulation = () => {
   // Bedingung C: Rest (~60k) in Aktien/ETFs AND good diversification
   const ch3_riskyTotal = riskyInvested;
   const ch3_riskyEnough = ch3_riskyTotal >= 50000; // at least ~50k in risky assets
-  const ch3_divGood = divResult.rating === 'Sehr gut' || divResult.rating === 'Gut';
+  const ch3_divGood = divResult.rating === 'Very Good' || divResult.rating === 'Good';
   const ch3_renditeOk = ch3_riskyEnough && ch3_divGood;
 
   // Chapter 1 conditions

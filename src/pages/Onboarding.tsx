@@ -24,7 +24,7 @@ const Onboarding = () => {
         {/* Hero illustration */}
         <motion.img
           src={onboardingHero}
-          alt="Person sitzt auf einer Münze und blickt optimistisch in die Zukunft"
+          alt="Person sitting on a coin looking optimistically into the future"
           className="w-64 h-64 object-contain mb-8"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -33,19 +33,19 @@ const Onboarding = () => {
 
         {/* Welcome text */}
         <h1 className="font-display text-4xl font-bold text-foreground text-balance leading-tight">
-          Willkommen bei Investify.
+          Welcome to Investify.
         </h1>
 
         <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
-          Lerne in 5 Minuten mehr über Investieren als 90% der Menschen. Versprochen. ✨
+          Learn more about investing in 5 minutes than 90% of people. Guaranteed. ✨
         </p>
 
         {/* Features */}
         <div className="mt-8 space-y-3 w-full">
           {[
-            { emoji: '🎯', text: '8 Anlageklassen, Schritt für Schritt' },
-            { emoji: '⏱', text: 'Lektionen in 2–4 Minuten' },
-            { emoji: '🏆', text: 'Fortschritt, der sich gut anfühlt' },
+            { emoji: '🎯', text: '8 asset classes, step by step' },
+            { emoji: '⏱', text: 'Lessons in 2–4 minutes' },
+            { emoji: '🏆', text: 'Progress that feels great' },
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -62,10 +62,10 @@ const Onboarding = () => {
 
         {/* Name input */}
         <div className="flex flex-col gap-2 mt-8 w-full text-left">
-          <label className="text-sm text-muted-foreground font-medium">Wie heisst du?</label>
+          <label className="text-sm text-muted-foreground font-medium">What's your name?</label>
           <input
             type="text"
-            placeholder="Dein Name"
+            placeholder="Your name"
             maxLength={20}
             className="border border-border rounded-xl px-4 py-3 text-foreground bg-card font-semibold focus:outline-none focus:border-primary transition-colors"
             onChange={handleNameChange}
@@ -83,11 +83,11 @@ const Onboarding = () => {
           animate={{ opacity: 1, y: 0 }}
           style={{ transitionDelay: '0.7s' }}
         >
-          Lernpfad starten 🚀
+          Start learning 🚀
         </motion.button>
 
         <p className="mt-4 text-sm text-muted-foreground">
-          Kostenlos. Keine Anmeldung nötig.
+          Free. No sign-up required.
         </p>
       </motion.div>
     </div>

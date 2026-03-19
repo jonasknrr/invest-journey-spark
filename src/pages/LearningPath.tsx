@@ -24,13 +24,13 @@ const chapterColors: Record<string, string> = {
 
 const chapterShortNames: Record<string, string> = {
   festgeld: 'Cash',
-  aktien: 'Aktien',
+  aktien: 'Stocks',
   etfs: 'ETFs',
-  anleihen: 'Anleihen',
-  waehrungen: 'Währungen',
-  krypto: 'Krypto',
+  anleihen: 'Bonds',
+  waehrungen: 'Currencies',
+  krypto: 'Crypto',
   gold: 'Gold',
-  immobilien: 'Immo',
+  immobilien: 'RE',
 };
 
 /** Vertical spacing per node in the zigzag path (px) */
@@ -123,7 +123,7 @@ const LearningPath = () => {
             <div className="flex items-center gap-1 bg-orange-50 border border-orange-200 rounded-full px-3 py-1">
               <span className="text-orange-500 text-lg">🔥</span>
               <span className="font-bold text-orange-600 text-sm">7</span>
-              <span className="text-orange-400 text-xs">Tage</span>
+              <span className="text-orange-400 text-xs">Days</span>
             </div>
             <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full">
               <Sparkles className="w-4 h-4 text-primary" fill="currentColor" />
@@ -136,8 +136,8 @@ const LearningPath = () => {
         <div className="max-w-sm mx-auto">
           <div className="flex justify-between items-center mb-2">
             <div>
-              <p className="text-xs text-muted-foreground">Gesamtfortschritt</p>
-              <p className="text-xl font-bold text-foreground tabular-nums">{totalPercent}% geschafft</p>
+              <p className="text-xs text-muted-foreground">Overall progress</p>
+              <p className="text-xl font-bold text-foreground tabular-nums">{totalPercent}% completed</p>
             </div>
           </div>
           <div className="h-3 rounded-full bg-muted overflow-hidden">

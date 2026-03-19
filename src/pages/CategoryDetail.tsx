@@ -85,7 +85,7 @@ const CategoryDetail = () => {
                   {Math.round(averageProgress * 100)}%
                 </span>
                 <span className="text-primary-foreground/70 text-sm">
-                  · {completedSubs}/{level.subLevels.length} Lektionen
+                  · {completedSubs}/{level.subLevels.length} Lessons
                 </span>
               </div>
             );
@@ -99,7 +99,7 @@ const CategoryDetail = () => {
               transition={{ delay: 0.3 }}
             >
               <span className="text-xs font-semibold text-amber-200">
-                🔥 {store.currentStreak} Lektion Streak
+                🔥 {store.currentStreak} Lesson Streak
               </span>
             </motion.div>
           )}
@@ -153,7 +153,7 @@ const CategoryDetail = () => {
                   </p>
                   {progress > 0 && !isCompleted && (
                     <span className="text-xs text-muted-foreground mt-1 block">
-                      {Math.round(progress * 100)}% abgeschlossen
+                      {Math.round(progress * 100)}% completed
                     </span>
                   )}
                   <span className={`inline-block mt-2 text-xs font-medium px-2.5 py-1 rounded-full
@@ -216,7 +216,7 @@ const CategoryDetail = () => {
                       <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                         <Play className="w-5 h-5 text-primary-foreground" fill="currentColor" />
                       </div>
-                      <span className="text-[10px] font-medium text-muted-foreground">Starten</span>
+                      <span className="text-[10px] font-medium text-muted-foreground">Start</span>
                     </>
                   )}
                   {isLocked && (
@@ -246,10 +246,10 @@ const CategoryDetail = () => {
               </div>
               <div className="flex-1 min-w-0 text-left">
                 <h4 className="font-display text-base font-bold text-primary-foreground">
-                  Simulationsaufgabe
+                  Simulation Challenge
                 </h4>
                 <p className="text-sm text-primary-foreground/80 mt-0.5">
-                  Wende dein Wissen an und investiere dein Budget
+                  Apply your knowledge and invest your budget
                 </p>
               </div>
               <div className="text-primary-foreground/60">→</div>

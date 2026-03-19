@@ -19,17 +19,17 @@ const bgMap: Record<string, string> = {
 const lessonContent: Record<string, { bullets: { icon: typeof BookOpen; text: string }[] }> = {
   a3: {
     bullets: [
-      { icon: Target, text: 'Verstehe, warum Kurse schwanken' },
-      { icon: BookOpen, text: 'Lerne, warum Volatilität kein Feind ist' },
-      { icon: Clock, text: 'Entdecke, wie Zeit Risiko reduziert' },
+      { icon: Target, text: 'Understand why prices fluctuate' },
+      { icon: BookOpen, text: 'Learn why volatility is not the enemy' },
+      { icon: Clock, text: 'Discover how time reduces risk' },
     ],
   },
 };
 
 const defaultBullets = [
-  { icon: Target, text: 'Klare Lernziele für jede Lektion' },
-  { icon: BookOpen, text: 'Einfache Erklärungen, kein Fachjargon' },
-  { icon: Clock, text: 'In wenigen Minuten abgeschlossen' },
+  { icon: Target, text: 'Clear learning goals for each lesson' },
+  { icon: BookOpen, text: 'Simple explanations, no jargon' },
+  { icon: Clock, text: 'Completed in just a few minutes' },
 ];
 
 const LessonStart = () => {
@@ -155,7 +155,7 @@ const LessonStart = () => {
             }
           }}
         >
-          Lektion beginnen · {subLevel.duration}
+          Start lesson · {subLevel.duration}
         </motion.button>
       </div>
     </div>

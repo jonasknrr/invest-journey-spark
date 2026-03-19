@@ -78,7 +78,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
               <button
                 onClick={onClose}
                 className="absolute top-4 right-4 w-9 h-9 rounded-full bg-background/80 backdrop-blur flex items-center justify-center shadow-sm active:scale-95 transition-transform"
-                aria-label="Schließen"
+                aria-label="Close"
               >
                 <X size={18} weight="bold" className="text-muted-foreground" />
               </button>
@@ -148,7 +148,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
                   <Lightbulb size={18} weight="fill" className="text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-display font-bold text-sm text-foreground mb-1">Merke dir</p>
+                  <p className="font-display font-bold text-sm text-foreground mb-1">Remember</p>
                   <p className="text-[13px] text-muted-foreground font-body leading-relaxed">
                     {intro.introTip}
                   </p>
@@ -160,7 +160,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
                 onClick={onClose}
                 className="w-full h-13 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft active:scale-[0.98] transition-transform"
               >
-                Verstanden, los geht's!
+                Got it, let's go!
               </button>
 
               {/* Bottom spacer for safe area */}

@@ -5,7 +5,7 @@ interface Props {
 }
 
 const CompletionSlide = ({
-  subtitle = 'Du weisst jetzt was eine Aktie ist und warum du damit Miteigentümer einer Firma wirst.',
+  subtitle = 'You now know what a stock is and why it makes you a co-owner of a company.',
 }: Props) => (
   <motion.div
     className="flex-1 flex flex-col items-center justify-center px-6 text-center"
@@ -35,7 +35,7 @@ const CompletionSlide = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.2 }}
     >
-      Lektion abgeschlossen! 🎉
+      Lesson complete! 🎉
     </motion.h2>
 
     <motion.p

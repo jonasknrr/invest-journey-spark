@@ -29,156 +29,156 @@ const aktienTopics: TopicConfig[] = [
   {
     slug: 'a1',
     levelId: 'aktien',
-    title: 'Was sind Aktien?',
-    subtitle: 'Werde Miteigentümer:in von Unternehmen',
+    title: 'What are Stocks?',
+    subtitle: 'Become a co-owner of companies',
     iconName: 'TrendUp',
     iconColor: 'hsl(215, 90%, 60%)',
     iconBgColor: 'hsl(var(--level-aktien) / 0.12)',
     explanation: {
       mainText:
-        'Wenn du eine Aktie kaufst, gehört dir ein kleines Stück eines Unternehmens. Steigt der Wert des Unternehmens, steigt auch deine Aktie — du profitierst direkt von seinem Erfolg.',
+        'When you buy a stock, you own a small piece of a company. If the company\'s value rises, so does your stock — you directly benefit from its success.',
       secondaryText:
-        'Unternehmen verkaufen Aktien um Geld für Wachstum zu sammeln — statt einen Kredit aufzunehmen.',
+        'Companies sell stocks to raise money for growth — instead of taking out a loan.',
     },
     visualKey: 'pizza',
     quiz: {
       question:
-        'Die Bewertung der AlphaFirma AG steigt dieses Jahr. Was passiert mit deiner Aktie?',
+        'AlphaFirm AG\'s valuation rises this year. What happens to your stock?',
       answers: [
-        { id: 'a', text: 'Nichts — das betrifft mich nicht' },
-        { id: 'b', text: 'Sie wird mehr wert' },
-        { id: 'c', text: 'Ich muss mehr dafür bezahlen' },
-        { id: 'd', text: 'Die Aktie verschwindet' },
+        { id: 'a', text: 'Nothing — it doesn\'t affect me' },
+        { id: 'b', text: 'It becomes more valuable' },
+        { id: 'c', text: 'I have to pay more for it' },
+        { id: 'd', text: 'The stock disappears' },
       ],
       correctId: 'b',
       correctFeedback:
-        'Richtig! Du bist Miteigentümer — wenn die Firma gewinnt, gewinnt dein Stück.',
+        'Correct! You\'re a co-owner — when the company wins, your piece wins too.',
       wrongFeedback:
-        'Fast! Du bist Miteigentümer der Firma — ihr Erfolg ist auch dein Erfolg.',
+        'Almost! You\'re a co-owner of the company — its success is your success too.',
     },
   },
   {
     slug: 'a2',
     levelId: 'aktien',
-    title: 'Wie entstehen Renditen?',
-    subtitle: 'Warum Aktien langfristig wachsen',
+    title: 'How do Returns Arise?',
+    subtitle: 'Why stocks grow long-term',
     iconName: 'TrendUp',
     iconColor: 'hsl(215, 90%, 60%)',
     iconBgColor: 'hsl(var(--level-aktien) / 0.12)',
     explanation: {
       mainText:
-        'Eine Rendite ist der Gewinn den du mit deiner Investition machst. Bei Aktien entsteht sie auf zwei Wegen: der Kurs der Aktie steigt — oder die Firma zahlt dir regelmässig einen Teil ihres Gewinns aus, genannt Dividende.',
+        'A return is the profit you make from your investment. With stocks, it comes in two ways: the stock price rises — or the company regularly pays you a share of its profits, called a dividend.',
       secondaryText:
-        'Langfristig haben Aktien historisch fast immer an Wert gewonnen — weil Unternehmen wachsen.',
+        'Historically, stocks have almost always gained value over the long term — because companies grow.',
     },
     visualKey: 'scale',
     quiz: {
       question:
-        'Eine bekannte Firma kündigt ein revolutionäres neues Produkt an. Was passiert wohl mit dem Aktienkurs?',
+        'A well-known company announces a revolutionary new product. What likely happens to the stock price?',
       answers: [
-        { id: 'a', text: 'Er fällt — die Firma hat Geld für Entwicklung ausgegeben' },
-        { id: 'b', text: 'Er bleibt gleich — Produkte ändern nichts' },
-        { id: 'c', text: 'Er steigt — mehr Leute wollen die Aktie kaufen' },
-        { id: 'd', text: 'Die Börse schliesst vorübergehend' },
+        { id: 'a', text: 'It falls — the company spent money on development' },
+        { id: 'b', text: 'It stays the same — products don\'t change anything' },
+        { id: 'c', text: 'It rises — more people want to buy the stock' },
+        { id: 'd', text: 'The exchange closes temporarily' },
       ],
       correctId: 'c',
       correctFeedback:
-        'Genau! Gute Nachrichten erzeugen mehr Nachfrage — und mehr Nachfrage treibt den Preis hoch.',
+        'Exactly! Good news creates more demand — and more demand drives the price up.',
       wrongFeedback:
-        'Fast! Gute Nachrichten bedeuten mehr Käufer. Mehr Käufer = höherer Preis. So reagiert die Börse täglich.',
+        'Almost! Good news means more buyers. More buyers = higher price. That\'s how the market reacts every day.',
     },
   },
   {
     slug: 'a3',
     levelId: 'aktien',
-    title: 'Risiko und Volatilität',
-    subtitle: 'Warum Schwankungen normal sind',
+    title: 'Risk and Volatility',
+    subtitle: 'Why fluctuations are normal',
     iconName: 'Warning',
     iconColor: 'hsl(35, 95%, 50%)',
     iconBgColor: 'hsl(35, 95%, 55% / 0.12)',
     explanation: {
       mainText:
-        'Aktien können im Wert steigen — aber auch fallen. Diese Schwankungen nennt man Volatilität. Je grösser die mögliche Rendite, desto grösser ist meist auch das Risiko. Das ist kein Fehler des Systems — es ist wie Aktien funktionieren.',
+        'Stocks can rise in value — but also fall. These fluctuations are called volatility. The greater the potential return, the greater the risk usually is. This isn\'t a flaw — it\'s how stocks work.',
       secondaryText:
-        'Eine junge Startup-Aktie kann sich verdoppeln oder auf null fallen. Eine grosse etablierte Firma schwankt viel ruhiger.',
+        'A young startup stock can double or fall to zero. A large established company fluctuates much more calmly.',
     },
     visualKey: 'riskCharts',
     quiz: {
       question:
-        'Du brauchst dein Geld in genau 1 Jahr sicher zurück. Welche Aktie wählst du?',
+        'You need your money back with certainty in exactly 1 year. Which stock do you choose?',
       answers: [
-        { id: 'a', text: 'RocketStartup AG — könnte sich verdoppeln' },
-        { id: 'b', text: 'StableBank AG — ruhiger Verlauf' },
-        { id: 'c', text: 'Beide je zur Hälfte' },
-        { id: 'd', text: 'Lieber gar nichts investieren' },
+        { id: 'a', text: 'RocketStartup AG — could double' },
+        { id: 'b', text: 'StableBank AG — steady performance' },
+        { id: 'c', text: 'Both, half each' },
+        { id: 'd', text: 'Better not to invest at all' },
       ],
       correctId: 'b',
       correctFeedback:
-        'Perfekt! Wenn du das Geld bald brauchst, ist Stabilität wichtiger als maximale Chance. RocketStartup könnte in einem Jahr auch -60% sein.',
+        'Perfect! When you need the money soon, stability matters more than maximum upside. RocketStartup could be down -60% in a year.',
       wrongFeedback:
-        'Vorsicht — RocketStartup könnte in einem Jahr bei -60% liegen. Hohes Risiko bedeutet auch hohes Verlustpotenzial, besonders kurzfristig.',
+        'Careful — RocketStartup could be at -60% in a year. High risk also means high loss potential, especially short-term.',
     },
   },
   {
     slug: 'a5',
     levelId: 'aktien',
-    title: 'Diversifikation',
-    subtitle: 'Nicht alles auf eine Karte setzen',
+    title: 'Diversification',
+    subtitle: 'Don\'t put all your eggs in one basket',
     iconName: 'ChartPie',
     iconColor: 'hsl(var(--primary))',
     iconBgColor: 'hsl(var(--primary) / 0.12)',
     explanation: {
       mainText:
-        'Wenn du alles in eine einzige Aktie investierst, hängst du komplett von dieser einen Firma ab. Verteilst du dein Geld auf viele verschiedene Aktien aus verschiedenen Branchen, sinkt dein Risiko deutlich — weil sie nicht alle gleichzeitig fallen.',
+        'If you invest everything in a single stock, you depend entirely on that one company. If you spread your money across many different stocks from various sectors, your risk drops significantly — because they don\'t all fall at the same time.',
       secondaryText:
-        'Diversifikation ist die einzige «kostenlose» Risikoreduzierung die es gibt.',
+        'Diversification is the only "free" risk reduction that exists.',
     },
     visualKey: 'crash',
     quiz: {
       question:
-        'Welches Portfolio übersteht einen schweren Crash in der Technologiebranche am besten?',
+        'Which portfolio survives a severe crash in the tech sector best?',
       answers: [
-        { id: 'a', text: '100% Apple-Aktien' },
+        { id: 'a', text: '100% Apple stock' },
         { id: 'b', text: '50% Apple, 50% Microsoft' },
-        { id: 'c', text: 'Je 20% in Tech, Gesundheit, Energie, Konsum und Finanzen' },
-        { id: 'd', text: 'Alle Aktien verkaufen und warten' },
+        { id: 'c', text: '20% each in Tech, Healthcare, Energy, Consumer & Finance' },
+        { id: 'd', text: 'Sell all stocks and wait' },
       ],
       correctId: 'c',
       correctFeedback:
-        'Genau! Apple und Microsoft fallen gemeinsam wenn Tech crasht — das ist keine echte Diversifikation. Verschiedene Branchen reagieren unterschiedlich auf Krisen.',
+        'Exactly! Apple and Microsoft fall together when tech crashes — that\'s not real diversification. Different sectors react differently to crises.',
       wrongFeedback:
-        'Aufgepasst! Apple und Microsoft sind beide Tech-Aktien — sie fallen meist gemeinsam. Echte Diversifikation bedeutet verschiedene Branchen, nicht nur verschiedene Firmennamen.',
+        'Watch out! Apple and Microsoft are both tech stocks — they usually fall together. Real diversification means different sectors, not just different company names.',
     },
   },
   {
     slug: 'a6',
     levelId: 'aktien',
-    title: 'Zeitraum & Geduld',
-    subtitle: 'Dein grösster Vorteil als Anleger',
+    title: 'Time Horizon & Patience',
+    subtitle: 'Your greatest advantage as an investor',
     iconName: 'Clock',
     iconColor: 'hsl(var(--primary))',
     iconBgColor: 'hsl(var(--primary) / 0.12)',
     explanation: {
       mainText:
-        'Aktien schwanken täglich — manchmal stark. Aber je länger du investiert bleibst, desto mehr gleichen sich diese Schwankungen aus. Historisch gesehen haben breit diversifizierte Portfolios über lange Zeiträume fast immer positive Renditen erzielt.',
+        'Stocks fluctuate daily — sometimes sharply. But the longer you stay invested, the more these fluctuations even out. Historically, broadly diversified portfolios have almost always delivered positive returns over long periods.',
       secondaryText:
-        'Zeit im Markt schlägt fast immer das Timing des Marktes.',
+        'Time in the market almost always beats timing the market.',
     },
     visualKey: 'timeChart',
     quiz: {
       question:
-        'Der Markt crasht gerade um 30%. Du brauchst das Geld erst in 15 Jahren. Was machst du?',
+        'The market just crashed by 30%. You don\'t need the money for 15 years. What do you do?',
       answers: [
-        { id: 'a', text: 'Sofort alles verkaufen — bevor es noch schlimmer wird' },
-        { id: 'b', text: 'Investiert bleiben und ruhig abwarten' },
-        { id: 'c', text: 'Noch mehr kaufen auf Kredit' },
-        { id: 'd', text: 'Alles in Gold umtauschen' },
+        { id: 'a', text: 'Sell everything immediately — before it gets worse' },
+        { id: 'b', text: 'Stay invested and wait patiently' },
+        { id: 'c', text: 'Buy even more on credit' },
+        { id: 'd', text: 'Convert everything to gold' },
       ],
       correctId: 'b',
       correctFeedback:
-        'Perfekt! Verluste werden erst real wenn du verkaufst. Wer langfristig denkt und bleibt, erholt sich mit dem Markt — das zeigt die Geschichte immer wieder.',
+        'Perfect! Losses only become real when you sell. Those who think long-term and stay in recover with the market — history shows this time and again.',
       wrongFeedback:
-        'Das ist der teuerste Fehler den Anleger machen — Panikverkäufe realisieren den Verlust. Mit 15 Jahren Horizont hat der Markt fast immer Zeit sich zu erholen.',
+        'That\'s the most expensive mistake investors make — panic selling locks in the loss. With a 15-year horizon, the market has almost always had time to recover.',
     },
   },
 ];

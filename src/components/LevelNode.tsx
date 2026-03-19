@@ -145,7 +145,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
           {level.subtitle}
         </p>
         {isLocked && (
-          <p className="text-xs mt-1 text-muted-foreground/50 font-medium">🔒 Wird freigeschaltet</p>
+          <p className="text-xs mt-1 text-muted-foreground/50 font-medium">🔒 Unlocks soon</p>
         )}
       </div>
     </motion.button>

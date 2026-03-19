@@ -11,18 +11,18 @@ interface CardItem {
 }
 
 const CARDS: CardItem[] = [
-  { id: 'bargeld', emoji: '💵', label: 'Bargeld', correctBucket: 'cash' },
-  { id: 'girokonto', emoji: '🏦', label: 'Girokonto', correctBucket: 'cash' },
-  { id: 'sparbuch', emoji: '📗', label: 'Sparbuch', correctBucket: 'equivalent' },
-  { id: 'tagesgeld', emoji: '💰', label: 'Tagesgeldkonto', correctBucket: 'equivalent' },
-  { id: 'immobilie', emoji: '🏠', label: 'Immobilie', correctBucket: 'nein' },
-  { id: 'aktien', emoji: '📈', label: 'Aktien', correctBucket: 'nein' },
+  { id: 'bargeld', emoji: '💵', label: 'Cash', correctBucket: 'cash' },
+  { id: 'girokonto', emoji: '🏦', label: 'Checking account', correctBucket: 'cash' },
+  { id: 'sparbuch', emoji: '📗', label: 'Savings book', correctBucket: 'equivalent' },
+  { id: 'tagesgeld', emoji: '💰', label: 'Call money account', correctBucket: 'equivalent' },
+  { id: 'immobilie', emoji: '🏠', label: 'Real estate', correctBucket: 'nein' },
+  { id: 'aktien', emoji: '📈', label: 'Stocks', correctBucket: 'nein' },
 ];
 
 const BUCKETS: { id: Bucket; label: string; emoji: string }[] = [
   { id: 'cash', label: 'Cash', emoji: '💵' },
   { id: 'equivalent', label: 'Cash Equivalent', emoji: '🏦' },
-  { id: 'nein', label: 'Kein Cash', emoji: '❌' },
+  { id: 'nein', label: 'No Cash', emoji: '❌' },
 ];
 
 interface Props {
@@ -84,7 +84,7 @@ const CashSortGame = ({ onComplete }: Props) => {
   return (
     <div className="flex-1 flex flex-col px-5 py-4 overflow-y-auto">
       <h2 className="font-display text-lg font-bold text-foreground text-center mb-4">
-        Sortiere die Karten in die richtigen Töpfe
+        Sort the cards into the correct buckets
       </h2>
 
       {/* Unsorted cards */}
@@ -174,7 +174,7 @@ const CashSortGame = ({ onComplete }: Props) => {
           >
             <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-center mb-4">
               <p className="font-display text-sm font-bold text-green-800">
-                🎉 Perfekt! Du kennst jetzt den Unterschied.
+                🎉 Perfect! You now know the difference.
               </p>
             </div>
             <motion.button
@@ -182,7 +182,7 @@ const CashSortGame = ({ onComplete }: Props) => {
               whileTap={{ scale: 0.96 }}
               className="w-full h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm"
             >
-              Weiter
+              Continue
             </motion.button>
           </motion.div>
         )}
