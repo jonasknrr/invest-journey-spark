@@ -35,7 +35,7 @@ const CompletionSlide = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.2 }}
     >
-      Lektion abgeschlossen! 🎉
+      Lesson complete! 🎉
     </motion.h2>
 
     <motion.p

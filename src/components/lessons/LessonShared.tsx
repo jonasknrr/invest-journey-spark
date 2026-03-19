@@ -74,7 +74,7 @@ export const CompletionOverlay = ({ onDone }: { onDone: () => void }) => (
         whileTap={{ scale: 0.96 }}
         className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm shadow-soft"
       >
-        Weiter lernen
+        Continue learning
       </motion.button>
     </motion.div>
   </motion.div>

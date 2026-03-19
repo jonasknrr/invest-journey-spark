@@ -18,9 +18,9 @@ const CompletionXP = ({ result, hearts }: CompletionXPProps) => {
   if (!result.isFirstCompletion) {
     return (
       <div className="w-full max-w-xs rounded-2xl bg-muted border border-border p-4 text-center mb-5">
-        <p className="font-display text-sm font-bold text-foreground mb-1">Du hast diese Lektion bereits abgeschlossen.</p>
-        <p className="font-body text-xs text-muted-foreground mb-2">+0 XP · Keine XP für Wiederholungen</p>
-        <span className="inline-block px-3 py-1 rounded-full bg-green-500/10 text-green-700 font-body text-xs font-semibold">✓ XP bereits verdient</span>
+        <p className="font-display text-sm font-bold text-foreground mb-1">You have already completed this lesson.</p>
+        <p className="font-body text-xs text-muted-foreground mb-2">+0 XP · No XP for repeats</p>
+        <span className="inline-block px-3 py-1 rounded-full bg-green-500/10 text-green-700 font-body text-xs font-semibold">✓ XP already earned</span>
       </div>
     );
   }
@@ -40,7 +40,7 @@ const CompletionXP = ({ result, hearts }: CompletionXPProps) => {
         >
           +{result.xpEarned} XP
         </motion.span>
-        <span className="font-body text-xs text-amber-600/70 dark:text-amber-400/70">verdient</span>
+        <span className="font-body text-xs text-amber-600/70 dark:text-amber-400/70">earned</span>
       </motion.div>
 
       {result.streakBonus > 0 && (
@@ -51,7 +51,7 @@ const CompletionXP = ({ result, hearts }: CompletionXPProps) => {
           transition={{ delay: 0.8 }}
         >
           <span className="font-body text-xs font-semibold text-green-700 dark:text-green-400">
-            🔥 {result.newStreak}er Streak! +{result.streakBonus} Bonus-XP
+            🔥 {result.newStreak} Streak! +{result.streakBonus} Bonus XP
           </span>
         </motion.div>
       )}
@@ -63,7 +63,7 @@ const CompletionXP = ({ result, hearts }: CompletionXPProps) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0 }}
         >
-          <span className="font-body text-xs font-semibold text-blue-700 dark:text-blue-400">⭐ Perfekt abgeschlossen!</span>
+          <span className="font-body text-xs font-semibold text-blue-700 dark:text-blue-400">⭐ Perfectly completed!</span>
         </motion.div>
       )}
     </>

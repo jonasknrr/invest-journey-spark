@@ -182,7 +182,7 @@ const CashSortGame = ({ onComplete }: Props) => {
               whileTap={{ scale: 0.96 }}
               className="w-full h-12 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm"
             >
-              Weiter
+              Continue
             </motion.button>
           </motion.div>
         )}
