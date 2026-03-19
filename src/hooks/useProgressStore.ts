@@ -129,6 +129,7 @@ export function useProgressStore() {
             xpEarned,
             perfect,
             completedAt: Date.now(),
+            progress: 1,
           },
         },
         totalXP: store.totalXP + xpEarned,
