@@ -197,7 +197,7 @@ const ETF_L8_Sparplan = () => {
                       </div>
                     </div>
                   </div>
-                  <p className="font-body text-xs text-muted-foreground text-center mb-4">Die CHF {fmt(coffeeGain)} hast du nicht eingezahlt. Die hat der Zinseszins erarbeitet.</p>
+                  <p className="font-body text-xs text-muted-foreground text-center mb-4">You didn't deposit CHF {fmt(coffeeGain)}. Compound interest earned it for you.</p>
                   <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Next →</button>
                 </motion.div>
               )}
