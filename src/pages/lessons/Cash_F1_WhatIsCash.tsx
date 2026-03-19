@@ -342,20 +342,20 @@ const Cash_F1_WhatIsCash = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}>
           
-            <div className="flex items-center gap-4 mb-6">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0, rotate: -30 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay: 0.3 + i * 0.15, type: 'spring', stiffness: 300 }}
-                >
-                  <span className={`text-3xl ${i < hearts ? 'text-red-500' : 'text-muted-foreground/30'}`}>
-                    ❤️
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+            
+
+
+
+
+
+
+
+
+
+
+
+
+          
 
             <motion.div
             initial={{ opacity: 0, y: 20 }}
