@@ -27,9 +27,9 @@ const lessonContent: Record<string, { bullets: { icon: typeof BookOpen; text: st
 };
 
 const defaultBullets = [
-  { icon: Target, text: 'Klare Lernziele für jede Lektion' },
-  { icon: BookOpen, text: 'Einfache Erklärungen, kein Fachjargon' },
-  { icon: Clock, text: 'In wenigen Minuten abgeschlossen' },
+  { icon: Target, text: 'Clear learning goals for each lesson' },
+  { icon: BookOpen, text: 'Simple explanations, no jargon' },
+  { icon: Clock, text: 'Completed in just a few minutes' },
 ];
 
 const LessonStart = () => {
