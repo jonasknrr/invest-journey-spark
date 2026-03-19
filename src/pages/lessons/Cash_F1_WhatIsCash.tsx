@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Heart } from 'lucide-react';
-import { useProgressStore } from '@/hooks/useProgressStore';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Heart } from "lucide-react";
 
-const BLUE = '#1A56DB';
+const BLUE = "#1A56DB";
 
 interface CardProps {
   icon: string;
@@ -15,14 +14,23 @@ interface CardProps {
   borderColor?: string;
 }
 
-const InfoCard = ({ icon, title, subtext, badge, badgeColor = 'bg-green-100 text-green-700', borderColor = 'border-l-blue-500' }: CardProps) => (
+const InfoCard = ({
+  icon,
+  title,
+  subtext,
+  badge,
+  badgeColor = "bg-green-100 text-green-700",
+  borderColor = "border-l-blue-500",
+}: CardProps) => (
   <div className={`rounded-xl border border-border bg-card p-3 flex gap-3 items-start border-l-4 ${borderColor}`}>
     <span className="text-2xl mt-0.5">{icon}</span>
     <div className="flex-1">
       <p className="font-display text-sm font-bold text-foreground">{title}</p>
       <p className="font-body text-xs text-muted-foreground">{subtext}</p>
       {badge && (
-        <span className={`inline-block mt-1.5 font-body text-[10px] font-semibold px-2 py-0.5 rounded-full ${badgeColor}`}>
+        <span
+          className={`inline-block mt-1.5 font-body text-[10px] font-semibold px-2 py-0.5 rounded-full ${badgeColor}`}
+        >
           {badge}
         </span>
       )}
@@ -32,24 +40,17 @@ const InfoCard = ({ icon, title, subtext, badge, badgeColor = 'bg-green-100 text
 
 const Cash_F1_WhatIsCash = () => {
   const navigate = useNavigate();
-  const { updateLessonProgress, completeLesson } = useProgressStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts] = useState(3);
   const totalSteps = 3;
-  const progress = ((currentStep) / (totalSteps - 1)) * 100;
-
-  // Track progress
-  useEffect(() => {
-    updateLessonProgress('festgeld-f1', Math.min(currentStep / (totalSteps - 1), 1));
-  }, [currentStep]);
+  const progress = (currentStep / (totalSteps - 1)) * 100;
 
   const handleNext = () => {
     if (currentStep >= totalSteps - 1) {
-      completeLesson('festgeld-f1', hearts);
-      navigate('/category/festgeld');
+      navigate("/category/festgeld");
       return;
     }
-    setCurrentStep(s => s + 1);
+    setCurrentStep((s) => s + 1);
   };
 
   return (
@@ -57,7 +58,7 @@ const Cash_F1_WhatIsCash = () => {
       {/* Top bar */}
       <div className="px-4 pt-4 flex items-center gap-3">
         <button
-          onClick={() => navigate('/category/festgeld')}
+          onClick={() => navigate("/category/festgeld")}
           className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0"
         >
           <X className="w-5 h-5 text-foreground" />
@@ -68,15 +69,15 @@ const Cash_F1_WhatIsCash = () => {
             style={{ backgroundColor: BLUE }}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
           />
         </div>
         <div className="flex items-center gap-0.5 flex-shrink-0">
-          {[0, 1, 2].map(i => (
+          {[0, 1, 2].map((i) => (
             <Heart
               key={i}
               className={`w-5 h-5 transition-all ${
-                i < hearts ? 'text-red-500 fill-red-500' : 'text-muted-foreground/30'
+                i < hearts ? "text-red-500 fill-red-500" : "text-muted-foreground/30"
               }`}
             />
           ))}
@@ -97,26 +98,30 @@ const Cash_F1_WhatIsCash = () => {
           >
             <div className="flex flex-col items-center text-center mb-6">
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight">
-                Du kennst eine Wasserflasche?
+                Stell dir ein Glas voll mit Wasser vor...
               </h2>
             </div>
 
-            <div className="flex items-center justify-center gap-2 max-w-sm mx-auto w-full mb-6">
-              <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center gap-2 flex-1">
-                <span className="text-3xl">🫗</span>
-                <p className="font-body text-sm font-medium text-foreground">Eine Wasserflasche</p>
+            <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full mb-6">
+              <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center gap-2">
+                <span className="text-3xl">💧</span>
+                <p className="font-body text-sm font-medium text-foreground">Eine Wasserglas</p>
                 <p className="font-body text-xs text-muted-foreground">= sofort trinkbar</p>
               </div>
-              <span className="text-xl text-muted-foreground">➜</span>
-              <div className="rounded-2xl p-4 flex flex-col items-center text-center gap-2 flex-1" style={{ backgroundColor: '#EFF6FF' }}>
-                <span className="text-3xl">💶</span>
-                <p className="font-body text-sm font-medium text-foreground">Cash auf dem Konto</p>
-                <p className="font-body text-xs" style={{ color: BLUE }}>= sofort verfügbar</p>
+              <div
+                className="rounded-2xl p-4 flex flex-col items-center text-center gap-2"
+                style={{ backgroundColor: "#EFF6FF" }}
+              >
+                <span className="text-3xl">🏦</span>
+                <p className="font-body text-sm font-medium text-foreground">Geld auf dem Konto</p>
+                <p className="font-body text-xs" style={{ color: BLUE }}>
+                  = sofort verfügbar
+                </p>
               </div>
             </div>
 
             <p className="font-body text-sm text-muted-foreground text-center max-w-xs mx-auto mb-6">
-              Cash ist wie Wasser in einer Flasche — immer sofort nutzbar.
+              Geld auf dem Konto ist wie Wasser in einer Flasche — immer sofort nutzbar.
             </p>
 
             <div className="flex justify-end mt-auto">
@@ -206,9 +211,7 @@ const Cash_F1_WhatIsCash = () => {
             exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.3 }}
           >
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">
-              Das hier ist kein Cash.
-            </h2>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">Das hier ist kein Cash.</h2>
 
             <div className="flex flex-col gap-3 max-w-sm mx-auto w-full mb-5">
               <InfoCard
