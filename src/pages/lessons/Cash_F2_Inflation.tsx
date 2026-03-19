@@ -32,7 +32,7 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question:
     'You have CHF 10\'000 in an account with no interest. Inflation is 2% per year. What happens after 10 years?',
   answers: [
