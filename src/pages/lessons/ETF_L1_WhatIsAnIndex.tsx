@@ -203,7 +203,7 @@ const ETF_L1_WhatIsAnIndex = () => {
                     </div>
                   </div>
                   <div className="max-w-sm mx-auto w-full rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-2.5 mb-4">
-                    <p className="font-body text-sm text-destructive font-medium">❌ You can\'t buy this playlist — only listen</p>
+                    <p className="font-body text-sm text-destructive font-medium">❌ You can't buy this playlist — only listen</p>
                   </div>
                   <p className="font-body text-xs text-muted-foreground text-center max-w-xs mx-auto mb-4">Spotify selects, calculates, updates. You just watch.</p>
                   <div className="flex justify-end mt-auto">
