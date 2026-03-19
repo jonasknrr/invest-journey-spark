@@ -10,9 +10,10 @@ interface Props {
   correctFeedback: string;
   wrongFeedback: string;
   onComplete: () => void;
+  isLastQuiz?: boolean;
 }
 
-const QuizStep = ({ question, answers, correctId, correctFeedback, wrongFeedback, onComplete }: Props) => {
+const QuizStep = ({ question, answers, correctId, correctFeedback, wrongFeedback, onComplete, isLastQuiz = true }: Props) => {
   const [selected, setSelected] = useState<string | null>(null);
   const isCorrect = selected === correctId;
 
