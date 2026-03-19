@@ -33,26 +33,26 @@ const replicationCards: ReplicationCard[] = [
   {
     id: 0,
     icon: '📦',
-    title: 'Physisch (voll)',
-    description: 'Kauft jede Aktie im Index exakt nach.',
+    title: 'Physical (full)',
+    description: 'Buys every stock in the index exactly.',
     greenTag: '✓ Transparent',
-    redTag: '✗ Teuer bei grossen Indizes',
+    redTag: '✗ Expensive for large indexes',
   },
   {
     id: 1,
     icon: '🎯',
-    title: 'Physisch (Sampling)',
-    description: 'Kauft eine repräsentative Auswahl, nicht alle Aktien.',
-    greenTag: '✓ Günstiger',
-    yellowTag: '~ Leichter Tracking-Fehler möglich',
+    title: 'Physical (sampling)',
+    description: 'Buys a representative sample, not all stocks.',
+    greenTag: '✓ Cheaper',
+    yellowTag: '~ Slight tracking error possible',
   },
   {
     id: 2,
     icon: '🔄',
-    title: 'Synthetisch',
-    description: 'Kauft keine Aktien — nutzt einen Swap-Vertrag mit einer Bank.',
-    greenTag: '✓ Sehr geringer Tracking-Fehler',
-    redTag: '✗ Gegenparteirisiko',
+    title: 'Synthetic',
+    description: 'Doesn\'t buy stocks — uses a swap contract with a bank.',
+    greenTag: '✓ Very low tracking error',
+    redTag: '✗ Counterparty risk',
   },
 ];
 
@@ -66,18 +66,18 @@ interface QuizConfig {
 }
 
 const quiz: QuizConfig = {
-  question: 'Was ist der Hauptunterschied zwischen einem ETF und einem klassischen Investmentfonds?',
+  question: 'What is the main difference between an ETF and a traditional mutual fund?',
   answers: [
-    { id: 'a', text: 'ETFs verfolgen immer einen Index, Fonds nie' },
-    { id: 'b', text: 'ETFs werden den ganzen Tag an der Börse gehandelt, Fonds nur einmal täglich zum Schlusskurs' },
-    { id: 'c', text: 'ETFs sind nur für institutionelle Anleger' },
-    { id: 'd', text: 'Fonds haben immer niedrigere Gebühren als ETFs' },
+    { id: 'a', text: 'ETFs always track an index, funds never do' },
+    { id: 'b', text: 'ETFs trade on the exchange all day, funds only once daily at the closing price' },
+    { id: 'c', text: 'ETFs are only for institutional investors' },
+    { id: 'd', text: 'Funds always have lower fees than ETFs' },
   ],
   correctId: 'b',
   correctFeedback:
-    'Genau! Beide können passiv (index-folgend) oder aktiv sein. Der strukturelle Unterschied ist der Intraday-Handel — ETFs handeln wie Aktien, Fonds werden einmal täglich zum NAV abgerechnet.',
+    'Exactly! Both can be passive (index-tracking) or active. The structural difference is intraday trading — ETFs trade like stocks, funds settle once daily at NAV.',
   wrongFeedback:
-    'Der Kernunterschied ist die Handelbarkeit: ETFs handeln an der Börse den ganzen Tag wie Aktien. Fonds werden einmal täglich zum Schlusskurs abgerechnet.',
+    'The key difference is tradability: ETFs trade on the exchange all day like stocks. Funds settle once daily at the closing price.',
 };
 
 /* ── Component ── */
@@ -221,16 +221,16 @@ const ETF_L3_WhatIsAnETF = () => {
                   exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <span className="mb-4" style={{ fontSize: 64 }}>📋</span>
                   <h2 className="font-display text-2xl font-bold text-foreground text-center mb-5 leading-tight">
-                    Der Index war da — aber unerreichbar.
+                    The index was there — but unreachable.
                   </h2>
                   <div className="grid grid-cols-[1fr_auto_1fr] gap-2 items-center w-full mb-4">
                     {/* Left — Index */}
                     <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center">
                       <span className="text-3xl mb-2">📋</span>
                       <p className="font-display text-sm font-bold text-foreground">S&P 500 Index</p>
-                      <p className="font-body text-xs text-muted-foreground mb-2">existiert seit 1957</p>
+                      <p className="font-body text-xs text-muted-foreground mb-2">exists since 1957</p>
                       <span className="inline-block px-2 py-0.5 rounded-full bg-red-500/10 text-red-700 dark:text-red-300 font-body text-[10px] font-semibold">
-                        ❌ Nicht kaufbar
+                        ❌ Not buyable
                       </span>
                     </div>
                     {/* Arrow */}
@@ -239,14 +239,14 @@ const ETF_L3_WhatIsAnETF = () => {
                     <div className="rounded-2xl p-4 flex flex-col items-center text-center" style={{ backgroundColor: '#EFF6FF' }}>
                       <span className="text-3xl mb-2">📦</span>
                       <p className="font-display text-sm font-bold text-foreground">S&P 500 ETF</p>
-                      <p className="font-body text-xs text-muted-foreground mb-2">seit 1993 handelbar</p>
+                      <p className="font-body text-xs text-muted-foreground mb-2">tradable since 1993</p>
                       <span className="inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 dark:text-green-300 font-body text-[10px] font-semibold">
-                        ✅ Kaufbar
+                        ✅ Buyable
                       </span>
                     </div>
                   </div>
                   <p className="font-body text-sm text-muted-foreground text-center mb-4">
-                    36 Jahre lang konnte man nur zuschauen.
+                    For 36 years, you could only watch.
                   </p>
                   <div className="flex justify-end w-full">
                     <button onClick={() => setStorySlide(1)}
@@ -263,7 +263,7 @@ const ETF_L3_WhatIsAnETF = () => {
                   initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">
-                    Spotify hat die Playlist zugänglich gemacht.
+                    Spotify made the playlist accessible.
                   </h2>
                   <div className="w-full rounded-2xl border border-border overflow-hidden mb-4">
                     {/* Row 1 — Spotify */}
@@ -274,7 +274,7 @@ const ETF_L3_WhatIsAnETF = () => {
                         <span className="text-lg text-muted-foreground">→</span>
                         <span className="font-display text-sm font-bold text-foreground">Spotify Abo</span>
                       </div>
-                      <p className="font-body text-xs text-muted-foreground">Existierte schon • Spotify macht sie hörbar</p>
+                      <p className="font-body text-xs text-muted-foreground">Already existed • Spotify makes it listenable</p>
                     </div>
                     {/* Dashed separator */}
                     <div className="border-t-2 border-dashed border-border" />
@@ -286,11 +286,11 @@ const ETF_L3_WhatIsAnETF = () => {
                         <span className="text-lg text-muted-foreground">→</span>
                         <span className="font-display text-sm font-bold text-foreground">ETF</span>
                       </div>
-                      <p className="font-body text-xs text-muted-foreground">Existierte schon • ETF macht ihn kaufbar</p>
+                      <p className="font-body text-xs text-muted-foreground">Already existed • ETF makes it buyable</p>
                     </div>
                   </div>
                   <p className="font-body text-sm text-muted-foreground text-center mb-4">
-                    Index = Rezept 📋 &nbsp; ETF = Fertiggericht 🍱
+                    Index = Recipe 📋 &nbsp; ETF = Ready meal 🍱
                   </p>
                   <div className="flex justify-end w-full">
                     <button onClick={() => setStorySlide(2)}
@@ -307,10 +307,10 @@ const ETF_L3_WhatIsAnETF = () => {
                   initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">
-                    1 Kauf. 500 Unternehmen.
+                    1 purchase. 500 companies.
                   </h2>
                   <div className="w-full rounded-2xl p-5 text-white mb-4" style={{ backgroundColor: '#1E3A5F' }}>
-                    <p className="font-body text-sm text-white/70 text-center mb-3">Du kaufst 1 ETF-Anteil</p>
+                    <p className="font-body text-sm text-white/70 text-center mb-3">You buy 1 ETF share</p>
                     <div className="flex justify-center mb-3">
                       <span className="text-3xl">➜</span>
                     </div>
@@ -327,18 +327,18 @@ const ETF_L3_WhatIsAnETF = () => {
                       ))}
                       <div className="flex flex-col items-center gap-0.5">
                         <span className="text-xl">➕</span>
-                        <span className="font-body text-[10px] text-white/70">492 mehr...</span>
+                        <span className="font-body text-[10px] text-white/70">492 more...</span>
                       </div>
                     </div>
                     <div className="flex justify-center">
                       <span className="inline-block px-3 py-1 rounded-full bg-green-500/20 text-green-300 font-body text-xs font-semibold">
-                        Alles in einer Transaktion ✓
+                        All in one transaction ✓
                       </span>
                     </div>
                   </div>
                   <div className="w-full rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3">
                     <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
-                      💡 Die jährliche Gebühr (TER) ist oft günstiger als ein Netflix-Abo.
+                      💡 The annual fee (TER) is often cheaper than a Netflix subscription.
                     </p>
                   </div>
                 </motion.div>
@@ -358,13 +358,13 @@ const ETF_L3_WhatIsAnETF = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">
-              500 Aktien kaufen — oder 1 ETF?
+              Buy 500 stocks — or 1 ETF?
             </h2>
             <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full mb-4">
               {/* LEFT — Manual */}
               <div className="rounded-2xl border-2 border-red-300 dark:border-red-700 overflow-hidden flex flex-col">
                 <div className="bg-red-500/15 px-3 py-2 text-center">
-                  <span className="font-display text-sm font-bold text-red-700 dark:text-red-300">😩 Manuell kaufen</span>
+                  <span className="font-display text-sm font-bold text-red-700 dark:text-red-300">😩 Buy manually</span>
                 </div>
                 <div className="p-3 flex flex-col gap-2 flex-1">
                   <motion.button
@@ -377,7 +377,7 @@ const ETF_L3_WhatIsAnETF = () => {
                         : 'bg-red-500/15 border border-red-500/30 text-red-700 dark:text-red-300'
                     }`}
                   >
-                    {showETFReveal ? 'Genug! 😤' : '📈 Aktie kaufen'}
+                    {showETFReveal ? 'Enough! 😤' : '📈 Buy stock'}
                   </motion.button>
 
                   {/* Bought list */}
@@ -431,7 +431,7 @@ const ETF_L3_WhatIsAnETF = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="font-body text-xs text-red-600 dark:text-red-400 font-semibold leading-snug"
                       >
-                        Das würde Stunden dauern. Es gibt einen besseren Weg. →
+                        This would take hours. There\'s a better way. →
                       </motion.p>
                     )}
                   </AnimatePresence>
@@ -448,7 +448,7 @@ const ETF_L3_WhatIsAnETF = () => {
                       exit={{ opacity: 0 }}
                     >
                       <span className="text-4xl">❓</span>
-                      <p className="font-body text-xs text-muted-foreground">Erst links tippen...</p>
+                      <p className="font-body text-xs text-muted-foreground">Tap left first...</p>
                     </motion.div>
                   ) : (
                     <motion.div
@@ -459,25 +459,25 @@ const ETF_L3_WhatIsAnETF = () => {
                       transition={{ type: 'spring', stiffness: 200, damping: 18 }}
                     >
                       <div className="bg-green-500/15 px-3 py-2 text-center">
-                        <span className="font-display text-sm font-bold text-green-700 dark:text-green-300">😌 ETF kaufen</span>
+                        <span className="font-display text-sm font-bold text-green-700 dark:text-green-300">😌 Buy ETF</span>
                       </div>
                       <div className="p-3 flex flex-col items-center gap-2">
                         <span style={{ fontSize: 48 }}>✅</span>
                         <p className="font-display text-sm font-bold text-foreground">iShares Core S&P 500</p>
                         <div className="space-y-1 w-full">
-                          <p className="font-body text-xs text-muted-foreground">🔢 1 Transaktion</p>
-                          <p className="font-body text-xs text-muted-foreground">🏢 500 Unternehmen</p>
-                          <p className="font-body text-xs text-muted-foreground">💶 Gebühr: CHF 1</p>
+                          <p className="font-body text-xs text-muted-foreground">🔢 1 transaction</p>
+                          <p className="font-body text-xs text-muted-foreground">🏢 500 companies</p>
+                          <p className="font-body text-xs text-muted-foreground">💶 Fee: CHF 1</p>
                         </div>
                         <span className="inline-block mt-1 px-3 py-1 rounded-full bg-green-500/10 text-green-700 dark:text-green-300 font-body text-xs font-semibold">
-                          Fertig. ✓
+                          Done. ✓
                         </span>
 
                         {/* Comparison box */}
                         <div className="w-full mt-2 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300/40 p-2.5 text-left">
                           <div className="grid grid-cols-2 gap-2">
                             <div>
-                              <p className="font-body text-[10px] text-amber-700 dark:text-amber-300 font-semibold mb-0.5">Du:</p>
+                              <p className="font-body text-[10px] text-amber-700 dark:text-amber-300 font-semibold mb-0.5">You:</p>
                               <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">CHF {buyCount} Gebühren</p>
                               <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">{buyCount} Transaktionen</p>
                             </div>
@@ -505,7 +505,7 @@ const ETF_L3_WhatIsAnETF = () => {
                   className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300/40 px-4 py-2.5 max-w-sm mx-auto w-full mb-3"
                 >
                   <p className="font-body text-sm text-amber-800 dark:text-amber-200 text-center">
-                    Nur noch 495 Aktien... 😅
+                    Only 495 stocks left... 😅
                   </p>
                 </motion.div>
               )}
@@ -520,7 +520,7 @@ const ETF_L3_WhatIsAnETF = () => {
                   className="rounded-xl border-l-4 border-blue-400 bg-blue-50 dark:bg-blue-950/30 px-4 py-3 max-w-sm mx-auto w-full"
                 >
                   <p className="font-body text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
-                    💡 Der ETF macht genau das — automatisch, täglich, für ~0.07% pro Jahr.
+                    💡 The ETF does exactly that — automatically, daily, for ~0.07% per year.
                   </p>
                 </motion.div>
               )}
@@ -539,14 +539,14 @@ const ETF_L3_WhatIsAnETF = () => {
             transition={{ duration: 0.3 }}
           >
             <h2 className="font-display text-xl font-bold text-foreground text-center mb-1">
-              Du bist ETF-Manager. Wie kopierst du den Index?
+              You\'re an ETF manager. How do you copy the index?
             </h2>
             <p className="font-body text-sm text-muted-foreground text-center mb-5">
-              Wähle eine Methode — und sieh was passiert
+              Choose a method — and see what happens
             </p>
 
             <div className="space-y-3 max-w-sm mx-auto w-full">
-              {/* Card 1 — Alles kaufen */}
+              {/* Card 1 — Buy everything */}
               <motion.button
                 onClick={() => setChosenMethod('voll')}
                 className="w-full text-left"
@@ -561,8 +561,8 @@ const ETF_L3_WhatIsAnETF = () => {
                   <div className="flex items-center gap-3 mb-1">
                     <span style={{ fontSize: 32 }}>🛒</span>
                     <div>
-                      <p className="font-display text-base font-bold text-foreground">Alles kaufen</p>
-                      <p className="font-body text-xs text-muted-foreground">Du kaufst jede einzelne Aktie im Index — alle 500</p>
+                      <p className="font-display text-base font-bold text-foreground">Buy everything</p>
+                      <p className="font-body text-xs text-muted-foreground">You buy every single stock in the index — all 500</p>
                     </div>
                   </div>
                 </div>
@@ -575,17 +575,17 @@ const ETF_L3_WhatIsAnETF = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="rounded-2xl border border-blue-300/40 bg-blue-50/50 dark:bg-blue-950/20 p-4 space-y-2"
                   >
-                    <p className="font-body text-sm text-foreground">✅ Dein ETF spiegelt den Index perfekt</p>
-                    <p className="font-body text-sm text-foreground">✅ Anleger vertrauen dir — alles transparent</p>
-                    <p className="font-body text-sm text-amber-700 dark:text-amber-300">⚠️ Aber: Bei 3.000 Aktien (MSCI World) wirst du zum Vollzeitjob</p>
+                    <p className="font-body text-sm text-foreground">✅ Your ETF mirrors the index perfectly</p>
+                    <p className="font-body text-sm text-foreground">✅ Investors trust you — fully transparent</p>
+                    <p className="font-body text-sm text-amber-700 dark:text-amber-300">⚠️ But: With 3,000 stocks (MSCI World) it becomes a full-time job</p>
                     <span className="inline-block mt-1 px-3 py-1 rounded-full bg-blue-500/10 text-blue-700 dark:text-blue-300 font-body text-xs font-semibold">
-                      Gut für grosse, liquide Indizes wie S&P 500
+                      Good for large, liquid indexes like S&P 500
                     </span>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Card 2 — Die Wichtigsten kaufen */}
+              {/* Card 2 — Buy the most important ones */}
               <motion.button
                 onClick={() => setChosenMethod('sampling')}
                 className="w-full text-left"
@@ -600,8 +600,8 @@ const ETF_L3_WhatIsAnETF = () => {
                   <div className="flex items-center gap-3 mb-1">
                     <span style={{ fontSize: 32 }}>🎯</span>
                     <div>
-                      <p className="font-display text-base font-bold text-foreground">Die Wichtigsten kaufen</p>
-                      <p className="font-body text-xs text-muted-foreground">Du kaufst nur die 200 grössten Aktien — die anderen lässt du weg</p>
+                      <p className="font-display text-base font-bold text-foreground">Buy the most important ones</p>
+                      <p className="font-body text-xs text-muted-foreground">You only buy the 200 largest stocks — you skip the rest</p>
                     </div>
                   </div>
                 </div>
@@ -614,17 +614,17 @@ const ETF_L3_WhatIsAnETF = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="rounded-2xl border border-green-300/40 bg-green-50/50 dark:bg-green-950/20 p-4 space-y-2"
                   >
-                    <p className="font-body text-sm text-foreground">✅ Günstig und machbar</p>
-                    <p className="font-body text-sm text-foreground">✅ Deckt ~95% des Index ab</p>
-                    <p className="font-body text-sm text-amber-700 dark:text-amber-300">⚠️ Kleiner Unterschied zum echten Index möglich — aber minimal</p>
+                    <p className="font-body text-sm text-foreground">✅ Affordable and doable</p>
+                    <p className="font-body text-sm text-foreground">✅ Covers ~95% of the index</p>
+                    <p className="font-body text-sm text-amber-700 dark:text-amber-300">⚠️ Small difference from the real index possible — but minimal</p>
                     <span className="inline-block mt-1 px-3 py-1 rounded-full bg-green-500/10 text-green-700 dark:text-green-300 font-body text-xs font-semibold">
-                      Meistgenutzt für grosse Indizes wie MSCI World
+                      Most commonly used for large indexes like MSCI World
                     </span>
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Card 3 — Vertrag mit einer Bank */}
+              {/* Card 3 — Contract with a bank */}
               <motion.button
                 onClick={() => setChosenMethod('swap')}
                 className="w-full text-left"
@@ -639,8 +639,8 @@ const ETF_L3_WhatIsAnETF = () => {
                   <div className="flex items-center gap-3 mb-1">
                     <span style={{ fontSize: 32 }}>🤝</span>
                     <div>
-                      <p className="font-display text-base font-bold text-foreground">Vertrag mit einer Bank</p>
-                      <p className="font-body text-xs text-muted-foreground">Du kaufst gar keine Aktien — eine Bank verspricht dir die Index-Rendite</p>
+                      <p className="font-display text-base font-bold text-foreground">Contract with a bank</p>
+                      <p className="font-body text-xs text-muted-foreground">You don\'t buy any stocks — a bank promises you the index return</p>
                     </div>
                   </div>
                 </div>
@@ -653,11 +653,11 @@ const ETF_L3_WhatIsAnETF = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="rounded-2xl border border-amber-300/40 bg-amber-50/50 dark:bg-amber-950/20 p-4 space-y-2"
                   >
-                    <p className="font-body text-sm text-foreground">✅ Günstigste Methode</p>
-                    <p className="font-body text-sm text-foreground">✅ Folgt dem Index extrem genau</p>
-                    <p className="font-body text-sm text-amber-700 dark:text-amber-300">⚠️ Problem: Was wenn die Bank pleitegeht?</p>
+                    <p className="font-body text-sm text-foreground">✅ Cheapest method</p>
+                    <p className="font-body text-sm text-foreground">✅ Follows the index extremely closely</p>
+                    <p className="font-body text-sm text-amber-700 dark:text-amber-300">⚠️ Problem: What if the bank goes bankrupt?</p>
                     <span className="inline-block mt-1 px-3 py-1 rounded-full bg-amber-500/10 text-amber-700 dark:text-amber-300 font-body text-xs font-semibold">
-                      Seltener — erkennbar am 'SWAP' im ETF-Namen
+                      Less common — recognizable by 'SWAP' in the ETF name
                     </span>
                   </motion.div>
                 )}
@@ -674,14 +674,14 @@ const ETF_L3_WhatIsAnETF = () => {
                 >
                   <div className="rounded-xl border-l-4 border-blue-400 bg-blue-50 dark:bg-blue-950/30 px-4 py-3">
                     <p className="font-body text-sm text-blue-800 dark:text-blue-200 leading-relaxed">
-                      💡 In der echten Welt nutzen die meisten ETFs Methode 2 — günstig genug und nah genug am Index. Methode 1 für kleinere Indizes. Methode 3 erkennst du am Wort 'SWAP' im ETF-Namen — dann weisst du Bescheid.
+                      💡 In the real world, most ETFs use Method 2 — cheap enough and close enough to the index. Method 1 for smaller indexes. Method 3 is recognizable by the word 'SWAP' in the ETF name — then you know.
                     </p>
                   </div>
                   <button
                     onClick={() => setChosenMethod(null)}
                     className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    ← Andere Methode ansehen
+                    ← View other method
                   </button>
                 </motion.div>
               )}
