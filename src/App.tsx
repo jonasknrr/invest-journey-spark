@@ -29,8 +29,6 @@ import FestgeldOverview from "./pages/FestgeldOverview";
 import FestgeldDetail from "./pages/FestgeldDetail";
 import TagesgeldOverview from "./pages/TagesgeldOverview";
 import TagesgeldDetail from "./pages/TagesgeldDetail";
-import AktienOverview from "./pages/AktienOverview";
-import AktienDetail from "./pages/AktienDetail";
 import EtfOverview from "./pages/EtfOverview";
 import EtfDetail from "./pages/EtfDetail";
 import PortfolioSimulation from "./pages/PortfolioSimulation";
