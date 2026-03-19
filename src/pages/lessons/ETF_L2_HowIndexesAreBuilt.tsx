@@ -639,14 +639,14 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                 <strong>Float-adjusted market cap weighting:</strong> The S&P 500 uses the "float" — only freely tradable shares count, not those held by insiders or governments.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed mb-3">
-                <strong>Rebalancing:</strong> quartalsweise Anpassung für Preisdrift, halbjährliche Vollüberprüfung für neue/entfernte Unternehmen.
+                <strong>Rebalancing:</strong> quarterly adjustments for price drift, semi-annual full reviews for added/removed companies.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                <strong>Index-Aufnahmeeffekt:</strong> wenn ein Unternehmen in einen grossen Index aufgenommen wird, müssen alle ETFs die diesen Index verfolgen die Aktie gleichzeitig kaufen — das verursacht einen temporären Kursanstieg von durchschnittlich 3-5%.
+                <strong>Index inclusion effect:</strong> when a company is added to a major index, all ETFs tracking that index must buy the stock simultaneously — this causes a temporary price increase of roughly 3–5% on average.
               </p>
               <button onClick={() => setShowDeepDive(false)}
                 className="mt-5 w-full h-12 rounded-full bg-muted text-foreground font-display font-bold text-sm">
-                Schliessen
+                Close
               </button>
             </motion.div>
           </motion.div>
