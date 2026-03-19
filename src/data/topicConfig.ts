@@ -105,33 +105,66 @@ const aktienTopics: TopicConfig[] = [
   {
     slug: 'a2',
     levelId: 'aktien',
-    title: 'How do Returns Arise?',
+    title: 'How is the stock price determined?',
     subtitle: 'Why stocks grow long-term',
     iconName: 'TrendUp',
     iconColor: 'hsl(215, 90%, 60%)',
     iconBgColor: 'hsl(var(--level-aktien) / 0.12)',
     explanation: {
-      mainText:
-        'A return is the profit you make from your investment. With stocks, it comes in two ways: the stock price rises — or the company regularly pays you a share of its profits, called a dividend.',
-      secondaryText:
-        'Historically, stocks have almost always gained value over the long term — because companies grow.',
+      mainText: 'A stock price is simply what buyers and sellers agree on at any given moment. If more people want to buy a stock than sell it, the price rises. If more want to sell, it falls. Every trade is a negotiation between supply and demand.',
+      secondaryText: 'News, company results, and even emotions move stock prices daily — but long-term, it\'s the company\'s actual growth that drives the direction.',
     },
     visualKey: 'scale',
     quiz: {
-      question:
-        'A well-known company announces a revolutionary new product. What likely happens to the stock price?',
+      question: 'A company announces record profits. What most likely happens to the stock price?',
       answers: [
-        { id: 'a', text: 'It falls — the company spent money on development' },
-        { id: 'b', text: 'It stays the same — products don\'t change anything' },
-        { id: 'c', text: 'It rises — more people want to buy the stock' },
-        { id: 'd', text: 'The exchange closes temporarily' },
+        { id: 'a', text: 'It falls — the company has less money now' },
+        { id: 'b', text: 'Nothing — profits don\'t affect the price' },
+        { id: 'c', text: 'It rises — more people want to own a profitable company' },
+        { id: 'd', text: 'The stock is suspended from trading' },
       ],
       correctId: 'c',
-      correctFeedback:
-        'Exactly! Good news creates more demand — and more demand drives the price up.',
-      wrongFeedback:
-        'Almost! Good news means more buyers. More buyers = higher price. That\'s how the market reacts every day.',
+      correctFeedback: 'Exactly! Good news = more buyers. More buyers = higher price. The market reacts to new information almost instantly.',
+      wrongFeedback: 'Record profits mean the company is doing well — more investors want a piece of it. More demand pushes the price up.',
     },
+    quizzes: [
+      {
+        question: 'SpaceX goes public and everyone wants a piece. There are 10x more buyers than sellers. What happens to the price?',
+        answers: [
+          { id: 'a', text: 'It stays the same — supply and demand don\'t affect stocks' },
+          { id: 'b', text: 'It rises — too many buyers push the price up' },
+          { id: 'c', text: 'It falls — too many people buying scares the market' },
+          { id: 'd', text: 'Trading gets suspended until it balances out' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Correct! When demand exceeds supply, sellers can charge more. That\'s the entire mechanism behind rising stock prices.',
+        wrongFeedback: 'Stock prices are set by supply and demand. More buyers than sellers = sellers can ask for more = price rises. Simple as that.',
+      },
+      {
+        question: 'A news headline says: "CEO of MegaCorp resigns unexpectedly." What would you expect the stock to do immediately?',
+        answers: [
+          { id: 'a', text: 'Rise — the old CEO was probably holding it back' },
+          { id: 'b', text: 'Fall — uncertainty makes investors nervous and they sell' },
+          { id: 'c', text: 'Nothing — leadership changes don\'t affect stock prices' },
+          { id: 'd', text: 'Rise — the company gets a fresh start' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Right! Unexpected leadership changes create uncertainty. Nervous investors sell, which pushes the price down — at least until the situation becomes clearer.',
+        wrongFeedback: 'Unexpected events create uncertainty, and markets hate uncertainty. Investors sell first and ask questions later — that\'s why sudden news usually drops a stock initially.',
+      },
+      {
+        question: 'CleanEnergy AG has great technology but no profits yet. RealEstate AG earns stable profits every year but grows slowly. Which likely has a more volatile stock price?',
+        answers: [
+          { id: 'a', text: 'RealEstate AG — stable earnings cause more trading' },
+          { id: 'b', text: 'CleanEnergy AG — no profits means the price depends entirely on future hopes' },
+          { id: 'c', text: 'Both are equally volatile' },
+          { id: 'd', text: 'Neither — volatility only comes from bad management' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Spot on! Companies without profits are priced on hope and expectations. Any change in sentiment can swing the price dramatically. Profitable companies have an anchor — their actual earnings.',
+        wrongFeedback: 'Without real profits, a stock\'s price is based purely on expectations about the future. That makes it extremely sensitive to news, mood, and speculation — far more volatile than a steady profit-maker.',
+      },
+    ],
   },
   {
     slug: 'a3',
