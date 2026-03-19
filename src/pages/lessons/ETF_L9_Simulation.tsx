@@ -586,7 +586,7 @@ const ETF_L9_Simulation = () => {
                         <span className="font-display text-sm font-bold text-foreground">{tempAllocation}% = CHF {fmt(tempAllocation / 100 * 10000)}</span>
                       </div>
                       <input type="range" min={0} max={maxSliderVal} step={5} value={tempAllocation} onChange={e => setTempAllocation(+e.target.value)} className="w-full accent-blue-500" />
-                      <p className="font-body text-[10px] text-muted-foreground mt-1">Danach noch: {remainingBudget - (tempAllocation - (portfolio[selectedStock] ?? 0))}% übrig</p>
+                      <p className="font-body text-[10px] text-muted-foreground mt-1">After this: {remainingBudget - (tempAllocation - (portfolio[selectedStock] ?? 0))}% remaining</p>
                     </div>
                     <div className="flex gap-3">
                       <button onClick={() => setSelectedStock(null)} className="flex-1 h-12 rounded-full border border-border font-display text-sm font-bold text-foreground">Abbrechen</button>
