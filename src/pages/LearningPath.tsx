@@ -29,7 +29,7 @@ const chapterShortNames: Record<string, string> = {
   anleihen: 'Bonds',
   currencies: 'Currencies',
   crypto: 'Crypto',
-  gold: 'Gold',
+  metals: 'Metals',
   immobilien: 'RE',
 };
 

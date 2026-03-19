@@ -44,7 +44,7 @@ const ringColorMap: Record<string, string> = {
   etfs: '#312E81',       // dark indigo vs indigo bg
   currencies: '#92400E', // dark amber vs amber bg
   crypto: '#4C1D95',     // dark violet vs purple bg
-  gold: '#78350F',       // dark amber vs gold bg
+  metals: '#78350F',     // dark amber vs metals bg
   immobilien: '#7C2D12', // dark orange vs warm bg
 };
 

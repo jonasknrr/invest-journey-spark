@@ -59,7 +59,7 @@ export default {
           anleihen: "hsl(var(--level-anleihen))",
           currencies: "hsl(var(--level-currencies))",
           crypto: "hsl(var(--level-crypto))",
-          gold: "hsl(var(--level-gold))",
+          metals: "hsl(var(--level-metals))",
           immobilien: "hsl(var(--level-immobilien))",
         },
         sidebar: {

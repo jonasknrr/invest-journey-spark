@@ -46,7 +46,7 @@ const assetClasses: AssetClass[] = [
   { name: 'ETFs', slug: 'etfs', icon: Stack, color: 'hsl(var(--level-etfs))', bgColor: 'hsl(var(--level-etfs) / 0.12)', hasDetail: true },
   { name: 'Funds', slug: 'indizes', icon: ChartBar, color: 'hsl(var(--level-currencies))', bgColor: 'hsl(var(--level-currencies) / 0.12)' },
   { name: 'Bonds', slug: 'anleihen', icon: Certificate, color: 'hsl(var(--level-anleihen))', bgColor: 'hsl(var(--level-anleihen) / 0.12)' },
-  { name: 'Commodities', slug: 'rohstoffe', icon: DiamondsFour, color: 'hsl(var(--level-gold))', bgColor: 'hsl(var(--level-gold) / 0.12)' },
+  { name: 'Commodities', slug: 'rohstoffe', icon: DiamondsFour, color: 'hsl(var(--level-metals))', bgColor: 'hsl(var(--level-metals) / 0.12)' },
   { name: 'Cryptocurrencies', slug: 'crypto', icon: CurrencyBtc, color: 'hsl(var(--level-crypto))', bgColor: 'hsl(var(--level-crypto) / 0.12)' },
 ];
 
