@@ -14,9 +14,10 @@ interface Props {
   correctFeedback: string;
   wrongFeedback: string;
   onAnswered: () => void;
+  onWrongAnswer?: () => void;
 }
 
-const QuizSlide = ({ label, question, answers, correctId, correctFeedback, wrongFeedback, onAnswered }: Props) => {
+const QuizSlide = ({ label, question, answers, correctId, correctFeedback, wrongFeedback, onAnswered, onWrongAnswer }: Props) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   const handleSelect = (id: string) => {
