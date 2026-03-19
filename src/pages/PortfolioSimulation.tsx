@@ -467,12 +467,12 @@ const PortfolioSimulation = () => {
       : 1;
     challengeLabel = challengeStars === 3 ? 'Perfekt gemeistert!' : challengeStars === 2 ? (opportunityCostPenalty ? 'Rendite verschenkt!' : 'Ziel erreicht, aber riskant!') : 'Ziel verfehlt!';
     challengeFeedback = challengeStars === 3
-      ? 'Perfekt! Du hast die benötigten 1.000 $ für das nächste Jahr sicher geparkt und den Rest deines Kapitals intelligent und breit gestreut investiert.'
+      ? 'Perfekt! Du hast die benötigten 1.000 CHF für das nächste Jahr sicher geparkt und den Rest deines Kapitals intelligent und breit gestreut investiert.'
       : challengeStars === 2
       ? (opportunityCostPenalty
-          ? 'Du hast zwar die 1.000 $ sicher, aber zu viel Kapital liegt in risikoarmen Anlagen. Durch die Inflation verlierst du real an Kaufkraft — das sind Opportunitätskosten.'
-          : 'Du hast zwar die 1.000 $ sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.')
-      : 'Du hast das wichtigste Ziel ignoriert: Du hast keine 1.000 $ sicher für das nächste Jahr zurückgelegt. Aktien schwanken und langfristiges Festgeld ist blockiert — wenn du das Geld jetzt brauchst, hast du ein Problem.';
+          ? 'Du hast zwar die 1.000 CHF sicher, aber zu viel Kapital liegt in risikoarmen Anlagen. Durch die Inflation verlierst du real an Kaufkraft — das sind Opportunitätskosten.'
+          : 'Du hast zwar die 1.000 CHF sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.')
+      : 'Du hast das wichtigste Ziel ignoriert: Du hast keine 1.000 CHF sicher für das nächste Jahr zurückgelegt. Aktien schwanken und langfristiges Festgeld ist blockiert — wenn du das Geld jetzt brauchst, hast du ein Problem.';
   }
 
   const assetAmounts = ASSET_CLASSES.map(ac => ({
