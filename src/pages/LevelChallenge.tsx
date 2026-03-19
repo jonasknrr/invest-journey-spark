@@ -91,7 +91,7 @@ const LevelChallenge = () => {
   const remaining = getRemaining();
   const allocated = getAllocatedTotal();
   const pctUsed = totalBudget > 0 ? Math.round((allocated / totalBudget) * 100) : 0;
-  const currency = scenario?.currency ?? '$';
+  const currency = scenario?.currency ?? 'CHF';
 
   return (
     <div className="min-h-screen bg-background pb-10">

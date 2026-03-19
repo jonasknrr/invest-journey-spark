@@ -309,7 +309,7 @@ const PortfolioSimulation = () => {
   const { getProductAmount, getAssetTotal, allocations, totalBudget } = useBudget();
   const chapterConfig = levelId ? getChapterConfig(levelId) : undefined;
   const isChapter1 = levelId === 'chapter-1';
-  const currency = chapterConfig?.scenario?.currency ?? '$';
+  const currency = chapterConfig?.scenario?.currency ?? 'CHF';
   const [animProgress, setAnimProgress] = useState(0);
   const [animDone, setAnimDone] = useState(false);
   const [stockReturns, setStockReturns] = useState<Map<string, StockReturn>>(new Map());
@@ -433,7 +433,7 @@ const PortfolioSimulation = () => {
   // Chapter 1 conditions
   const ch1_notgroschenOk = tagesgeldAmount >= 2000; // Bedingung A
   const ch1_weiterbildungAvailable = tagesgeldAmount + within2YearsFestgeld >= 5000; // 2000 Notgroschen + 3000 Weiterbildung
-  const ch1_restInLongTerm = longTermFestgeld >= 4500; // ~5000€ in 5-year (allow small rounding)
+  const ch1_restInLongTerm = longTermFestgeld >= 4500; // ~5000CHF in 5-year (allow small rounding)
 
   // Default evaluation (for non-chapter-1)
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
@@ -467,12 +467,12 @@ const PortfolioSimulation = () => {
       : 1;
     challengeLabel = challengeStars === 3 ? 'Perfekt gemeistert!' : challengeStars === 2 ? (opportunityCostPenalty ? 'Rendite verschenkt!' : 'Ziel erreicht, aber riskant!') : 'Ziel verfehlt!';
     challengeFeedback = challengeStars === 3
-      ? 'Perfekt! Du hast die benötigten 1.000 $ für das nächste Jahr sicher geparkt und den Rest deines Kapitals intelligent und breit gestreut investiert.'
+      ? 'Perfekt! Du hast die benötigten 1.000 CHF für das nächste Jahr sicher geparkt und den Rest deines Kapitals intelligent und breit gestreut investiert.'
       : challengeStars === 2
       ? (opportunityCostPenalty
-          ? 'Du hast zwar die 1.000 $ sicher, aber zu viel Kapital liegt in risikoarmen Anlagen. Durch die Inflation verlierst du real an Kaufkraft — das sind Opportunitätskosten.'
-          : 'Du hast zwar die 1.000 $ sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.')
-      : 'Du hast das wichtigste Ziel ignoriert: Du hast keine 1.000 $ sicher für das nächste Jahr zurückgelegt. Aktien schwanken und langfristiges Festgeld ist blockiert — wenn du das Geld jetzt brauchst, hast du ein Problem.';
+          ? 'Du hast zwar die 1.000 CHF sicher, aber zu viel Kapital liegt in risikoarmen Anlagen. Durch die Inflation verlierst du real an Kaufkraft — das sind Opportunitätskosten.'
+          : 'Du hast zwar die 1.000 CHF sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.')
+      : 'Du hast das wichtigste Ziel ignoriert: Du hast keine 1.000 CHF sicher für das nächste Jahr zurückgelegt. Aktien schwanken und langfristiges Festgeld ist blockiert — wenn du das Geld jetzt brauchst, hast du ein Problem.';
   }
 
   const assetAmounts = ASSET_CLASSES.map(ac => ({
@@ -559,7 +559,7 @@ const PortfolioSimulation = () => {
             <div>
               <p className="text-xs text-muted-foreground font-body font-medium">Portfoliowert</p>
               <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-                {currentValue.toLocaleString('de-CH', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} $
+                {currentValue.toLocaleString('de-CH', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} {currency}
               </p>
             </div>
             {animDone && (
@@ -620,13 +620,13 @@ const PortfolioSimulation = () => {
               <div>
                 <p className="text-[10px] text-muted-foreground font-body">Start (Feb 2006)</p>
                 <p className="font-display text-sm font-bold text-foreground tabular-nums">
-                  {values[0].toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                  {values[0].toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                 </p>
               </div>
               <div className="text-right">
                 <p className="text-[10px] text-muted-foreground font-body">Ende (Feb 2011)</p>
                 <p className={`font-display text-sm font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
-                  {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                  {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                 </p>
               </div>
             </motion.div>
@@ -760,7 +760,7 @@ const PortfolioSimulation = () => {
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-body text-sm text-foreground font-medium">{ac.label}</span>
                           <span className="font-display text-xs font-bold text-foreground tabular-nums">
-                            {ac.amount.toLocaleString('de-CH')} $ ({pct.toFixed(0)}%)
+                            {ac.amount.toLocaleString('de-CH')} {currency} ({pct.toFixed(0)}%)
                           </span>
                         </div>
                         <div className="h-2 rounded-full bg-muted overflow-hidden">
@@ -788,13 +788,13 @@ const PortfolioSimulation = () => {
                 <div>
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Endwert</p>
                   <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-                    {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                    {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                   </p>
                 </div>
                 <div className="text-right">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Investiert</p>
                   <p className="font-display text-lg text-muted-foreground tabular-nums">
-                    {invested.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                    {invested.toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                   </p>
                 </div>
               </div>
@@ -804,7 +804,7 @@ const PortfolioSimulation = () => {
                 <div className="bg-muted/50 rounded-2xl p-3 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Rendite</p>
                   <p className={`font-display text-xl font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
-                    {profit >= 0 ? '+' : ''}{profit.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                    {profit >= 0 ? '+' : ''}{profit.toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                   </p>
                 </div>
                 <div className="bg-muted/50 rounded-2xl p-3 text-center">
@@ -836,7 +836,7 @@ const PortfolioSimulation = () => {
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-body text-sm text-foreground">{fb.duration} {fb.duration === 1 ? 'Jahr' : 'Jahre'}</span>
                           <span className="font-display text-xs font-bold text-foreground tabular-nums">
-                            {fb.amount.toLocaleString('de-CH')} $ ({pct.toFixed(0)}%)
+                            {fb.amount.toLocaleString('de-CH')} {currency} ({pct.toFixed(0)}%)
                           </span>
                         </div>
                         <div className="h-2.5 rounded-full bg-muted overflow-hidden">
@@ -1020,7 +1020,7 @@ const PortfolioSimulation = () => {
               if (!liquidityPassed) {
                 weaknesses.push({
                   icon: '🔓',
-                  text: 'Keine Liquiditätsreserve: Du hast keine 1.000 $ kurzfristig verfügbar geparkt.',
+                  text: 'Keine Liquiditätsreserve: Du hast keine 1.000 CHF kurzfristig verfügbar geparkt.',
                 });
               }
               if (sharpeApprox < 0.5 && profitPct > 0 && aktienPct > 20) {

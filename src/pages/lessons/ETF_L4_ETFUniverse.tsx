@@ -348,7 +348,7 @@ const ETF_L4_ETFUniverse = () => {
                     <p className="font-body text-sm leading-relaxed mb-1">Ein grosser Künstler wird gecancelt.</p>
                     <p className="font-body text-sm leading-relaxed mb-3">Alle seine Playlists verlieren sofort 80% ihrer Hörer.</p>
                     <div className="w-full h-px bg-white/20 mb-3" />
-                    <p className="font-display text-lg font-bold">Dein Portfolio: €1.000</p>
+                    <p className="font-display text-lg font-bold">Dein Portfolio: CHF 1.000</p>
 
                     <AnimatePresence>
                       {showShockBtn && (
@@ -440,7 +440,7 @@ const ETF_L4_ETFUniverse = () => {
                             <div className="flex items-center justify-between mb-1.5">
                               <span className="font-body text-sm text-foreground font-medium">{r.name}</span>
                               <span className={`font-display text-sm font-bold tabular-nums ${color}`}>
-                                {r.change}% (€{r.loss})
+                                {r.change}% (CHF {r.loss})
                               </span>
                             </div>
                             <div className="h-2 rounded-full bg-muted overflow-hidden">
@@ -474,12 +474,12 @@ const ETF_L4_ETFUniverse = () => {
                       <p className={`font-display text-2xl font-bold tabular-nums mb-1 ${
                         severity === 'bad' ? 'text-red-600 dark:text-red-400' : severity === 'mid' ? 'text-amber-600 dark:text-amber-400' : 'text-green-600 dark:text-green-400'
                       }`}>
-                        Dein Portfolio: €{displayValue}
+                        Dein Portfolio: CHF {displayValue}
                       </p>
                       <p className={`font-body text-sm mb-2 ${
                         severity === 'bad' ? 'text-red-700 dark:text-red-300' : severity === 'mid' ? 'text-amber-700 dark:text-amber-300' : 'text-green-700 dark:text-green-300'
                       }`}>
-                        Verlust: -€{Math.abs(totalLoss)} ({totalPct}%)
+                        Verlust: -CHF {Math.abs(totalLoss)} ({totalPct}%)
                       </p>
                       <p className={`font-body text-sm font-medium ${
                         severity === 'bad' ? 'text-red-700 dark:text-red-300' : severity === 'mid' ? 'text-amber-700 dark:text-amber-300' : 'text-green-700 dark:text-green-300'
@@ -499,7 +499,7 @@ const ETF_L4_ETFUniverse = () => {
                     >
                       <p className="font-body text-sm text-primary leading-relaxed">
                         Mit NUR &ldquo;Alle Musik der Welt&rdquo;:<br />
-                        Verlust: nur -5% = -€50<br />
+                        Verlust: nur -5% = -CHF 50<br />
                         <span className="font-bold">→ Das ist Diversifikation.</span>
                       </p>
                     </motion.div>

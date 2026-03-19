@@ -57,7 +57,7 @@ const EtfOverview = () => {
               Verfügbares Kapital
             </p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-              {remaining.toLocaleString('de-CH')} $
+              {remaining.toLocaleString('de-CH')} CHF
             </p>
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-etfs)/0.08)] border border-[hsl(var(--level-etfs)/0.15)] shadow-card p-4">
@@ -65,7 +65,7 @@ const EtfOverview = () => {
               Bereits investiert (ETFs)
             </p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-etfs))] tabular-nums">
-              {etfTotal.toLocaleString('de-CH')} $
+              {etfTotal.toLocaleString('de-CH')} CHF
             </p>
           </div>
         </motion.div>
@@ -109,7 +109,7 @@ const EtfOverview = () => {
                         allocated > 0 ? 'text-[hsl(var(--level-etfs))]' : 'text-muted-foreground'
                       }`}
                     >
-                      {allocated > 0 ? `${allocated.toLocaleString('de-CH')} $` : '—'}
+                      {allocated > 0 ? `${allocated.toLocaleString('de-CH')} CHF` : '—'}
                     </p>
                   </div>
                   <ArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
@@ -122,7 +122,7 @@ const EtfOverview = () => {
         {etfTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Du hast insgesamt {etfTotal.toLocaleString('de-CH')} $ in ETFs investiert.
+              💡 Du hast insgesamt {etfTotal.toLocaleString('de-CH')} CHF in ETFs investiert.
             </p>
           </motion.div>
         )}

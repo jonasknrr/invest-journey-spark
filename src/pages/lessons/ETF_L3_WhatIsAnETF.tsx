@@ -418,7 +418,7 @@ const ETF_L3_WhatIsAnETF = () => {
                         animate={{ scale: 1 }}
                         transition={{ type: 'spring', stiffness: 400 }}
                       >
-                        ~€{buyCount}
+                        ~CHF {buyCount}
                       </motion.span>
                     </p>
                   </div>
@@ -467,7 +467,7 @@ const ETF_L3_WhatIsAnETF = () => {
                         <div className="space-y-1 w-full">
                           <p className="font-body text-xs text-muted-foreground">🔢 1 Transaktion</p>
                           <p className="font-body text-xs text-muted-foreground">🏢 500 Unternehmen</p>
-                          <p className="font-body text-xs text-muted-foreground">💶 Gebühr: €1</p>
+                          <p className="font-body text-xs text-muted-foreground">💶 Gebühr: CHF 1</p>
                         </div>
                         <span className="inline-block mt-1 px-3 py-1 rounded-full bg-green-500/10 text-green-700 dark:text-green-300 font-body text-xs font-semibold">
                           Fertig. ✓
@@ -478,12 +478,12 @@ const ETF_L3_WhatIsAnETF = () => {
                           <div className="grid grid-cols-2 gap-2">
                             <div>
                               <p className="font-body text-[10px] text-amber-700 dark:text-amber-300 font-semibold mb-0.5">Du:</p>
-                              <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">€{buyCount} Gebühren</p>
+                              <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">CHF {buyCount} Gebühren</p>
                               <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">{buyCount} Transaktionen</p>
                             </div>
                             <div>
                               <p className="font-body text-[10px] text-amber-700 dark:text-amber-300 font-semibold mb-0.5">ETF:</p>
-                              <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">€1 Gebühr</p>
+                              <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">CHF 1 Gebühr</p>
                               <p className="font-body text-[10px] text-amber-800 dark:text-amber-200">1 Transaktion</p>
                             </div>
                           </div>

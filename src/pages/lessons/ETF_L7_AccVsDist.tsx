@@ -145,9 +145,9 @@ const ETF_L7_AccVsDist = () => {
 
   // Milestones
   useEffect(() => {
-    if (accVal >= 250000) showMilestone('💎 €250k erreicht!');
-    else if (accVal >= 100000) showMilestone('🚀 €100k erreicht!');
-    else if (accVal >= 50000) showMilestone('🎯 €50k erreicht!');
+    if (accVal >= 250000) showMilestone('💎 CHF 250k erreicht!');
+    else if (accVal >= 100000) showMilestone('🚀 CHF 100k erreicht!');
+    else if (accVal >= 50000) showMilestone('🎯 CHF 50k erreicht!');
     else setMilestone(null);
   }, [accVal]);
 
@@ -318,14 +318,14 @@ const ETF_L7_AccVsDist = () => {
                 <motion.div key="ss2" className="flex flex-col items-center max-w-sm mx-auto w-full" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }}>
                   <h2 className="font-display text-xl font-bold text-foreground text-center mb-5 leading-tight">Der Unterschied nach 30 Jahren.</h2>
                   <div className="w-full rounded-2xl p-5 mb-4" style={{ backgroundColor: '#1E3A5F' }}>
-                    <p className="font-body text-[10px] text-white/60 mb-3">Startkapital: €10.000 · Rendite: 7% · Dividende: 2%</p>
+                    <p className="font-body text-[10px] text-white/60 mb-3">Startkapital: CHF 10.000 · Rendite: 7% · Dividende: 2%</p>
                     <p className="font-body text-xs text-white/80 mb-1">⛄ Acc nach 30 Jahren:</p>
-                    <p className="font-display text-3xl font-bold text-green-400 mb-3">€{fmt(10000 * Math.pow(1.07, 30))}</p>
+                    <p className="font-display text-3xl font-bold text-green-400 mb-3">CHF {fmt(10000 * Math.pow(1.07, 30))}</p>
                     <div className="border-t border-white/20 my-3" />
                     <p className="font-body text-xs text-white/80 mb-1">💸 Dist nach 30 Jahren (Dividenden ausgegeben):</p>
-                    <p className="font-display text-2xl font-bold text-white/60 mb-3">€{fmt(10000 * Math.pow(1.05, 30))}</p>
+                    <p className="font-display text-2xl font-bold text-white/60 mb-3">CHF {fmt(10000 * Math.pow(1.05, 30))}</p>
                     <div className="rounded-xl bg-amber-500/20 p-3">
-                      <p className="font-display text-sm font-bold text-amber-300">Unterschied: €{fmt(10000 * Math.pow(1.07, 30) - 10000 * Math.pow(1.05, 30))}</p>
+                      <p className="font-display text-sm font-bold text-amber-300">Unterschied: CHF {fmt(10000 * Math.pow(1.07, 30) - 10000 * Math.pow(1.05, 30))}</p>
                       <p className="font-body text-[10px] text-amber-300/70 mt-1">Das ist der Preis für «ich nehme lieber das Geld jetzt.»</p>
                     </div>
                   </div>
@@ -344,7 +344,7 @@ const ETF_L7_AccVsDist = () => {
               <div>
                 <div className="flex justify-between mb-1">
                   <span className="font-body text-xs text-muted-foreground">Monatliche Sparrate</span>
-                  <span className="font-display text-xs font-bold text-foreground">€{fmt(monthlyAmount)}</span>
+                  <span className="font-display text-xs font-bold text-foreground">CHF {fmt(monthlyAmount)}</span>
                 </div>
                 <input type="range" min={50} max={1000} step={50} value={monthlyAmount} onChange={e => setMonthlyAmount(+e.target.value)} className="w-full accent-blue-500" />
               </div>
@@ -376,7 +376,7 @@ const ETF_L7_AccVsDist = () => {
                   animate={{ width: accBallSize, height: accBallSize }}
                   transition={{ duration: 0.3 }}
                 />
-                <p className="font-display text-sm font-bold text-green-600 mt-2">€{fmt(accVal)}</p>
+                <p className="font-display text-sm font-bold text-green-600 mt-2">CHF {fmt(accVal)}</p>
                 <p className="font-body text-[10px] text-muted-foreground">Acc</p>
               </div>
               <div className="flex flex-col items-center">
@@ -385,7 +385,7 @@ const ETF_L7_AccVsDist = () => {
                   animate={{ width: distBallSize, height: distBallSize }}
                   transition={{ duration: 0.3 }}
                 />
-                <p className="font-display text-sm font-bold text-muted-foreground mt-2">€{fmt(distVal)}</p>
+                <p className="font-display text-sm font-bold text-muted-foreground mt-2">CHF {fmt(distVal)}</p>
                 <p className="font-body text-[10px] text-muted-foreground">Dist</p>
               </div>
             </div>
@@ -402,7 +402,7 @@ const ETF_L7_AccVsDist = () => {
             {/* Diff box */}
             <div className="max-w-sm mx-auto w-full rounded-xl bg-amber-500/10 border border-amber-500/20 p-3 mb-2 text-center">
               <p className="font-body text-xs text-muted-foreground">Acc ist mehr</p>
-              <p className="font-display text-xl font-bold text-amber-600">€{fmt(diff)}</p>
+              <p className="font-display text-xl font-bold text-amber-600">CHF {fmt(diff)}</p>
             </div>
             <p className="font-body text-[11px] text-muted-foreground text-center max-w-xs mx-auto">Der blaue Ball wächst schneller weil jeder Cent sofort wieder arbeitet.</p>
           </motion.div>
