@@ -24,13 +24,13 @@ const chapterColors: Record<string, string> = {
 
 const chapterShortNames: Record<string, string> = {
   festgeld: 'Cash',
-  aktien: 'Aktien',
+  aktien: 'Stocks',
   etfs: 'ETFs',
-  anleihen: 'Anleihen',
-  waehrungen: 'Währungen',
-  krypto: 'Krypto',
+  anleihen: 'Bonds',
+  waehrungen: 'Currencies',
+  krypto: 'Crypto',
   gold: 'Gold',
-  immobilien: 'Immo',
+  immobilien: 'RE',
 };
 
 /** Vertical spacing per node in the zigzag path (px) */
