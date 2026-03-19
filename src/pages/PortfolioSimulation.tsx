@@ -236,6 +236,7 @@ function analyzePortfolio(
   sharpeApprox: number,
   safePct: number,
   levelId?: string,
+  ch1Context?: { tagesgeldPct: number; notgroschenOk: boolean },
 ): CoachAnalysis {
   const praise: string[] = [];
   const critique: string[] = [];
@@ -243,36 +244,30 @@ function analyzePortfolio(
 
   /* ── Chapter 1: Only Tagesgeld / Festgeld available ── */
   if (levelId === 'chapter-1') {
-    // Praise
     if (rendite > 2) {
       praise.push(
-        'Gut gemacht! Du holst eine ordentliche Rendite aus deinen sicheren Anlagen heraus.',
+        '✅ Gut gemacht! Du holst eine ordentliche Rendite aus deinen sicheren Anlagen heraus.',
       );
     }
 
-    // Critique: too much sitting in Tagesgeld (low yield)
-    if (safePct > 0 && aktienPct === 0) {
-      // In ch1 safePct is always 100%, so check Tagesgeld vs Festgeld split
-      // We check if tagesgeld dominates — caller passes safePct as overall safe%
-      // For ch1, "too much Tagesgeld" = opportunity cost
-      // We use a heuristic: if safePct is high AND rendite is low
-      if (rendite < 2) {
-        critique.push(
-          '📉 Zinsverlust: Du hast viel Geld unverzinst oder niedrig verzinst auf dem Tagesgeld liegen lassen, das du eigentlich für längere Zeit ins Festgeld hättest stecken können.',
-        );
-      }
+    if (ch1Context && ch1Context.tagesgeldPct > 50) {
+      critique.push(
+        '📉 Zinsverlust: Du hast viel Geld unverzinst oder niedrig verzinst auf dem Tagesgeld liegen lassen, das du eigentlich für längere Zeit ins Festgeld hättest stecken können.',
+      );
     }
 
-    // Critique: liquidity trap (too much locked in Festgeld, not enough accessible)
-    // This is handled by the star evaluation already, but we add a coach bullet
-    if (mdd === 0 && rendite < 1) {
-      // very low return means barely any festgeld used
+    if (ch1Context && !ch1Context.notgroschenOk) {
+      critique.push(
+        '⚠️ Liquiditätsfalle: Du hast zu viel Geld im Festgeld blockiert. Wenn du kurzfristig Geld brauchst, kommst du da jetzt nicht ran.',
+      );
     }
 
-    // Suggestion for ch1
-    if (rendite < 2) {
+    if (ch1Context && ch1Context.tagesgeldPct > 50) {
       suggestion =
         'Überlege, Geld das du langfristig nicht brauchst in Festgeld mit höherer Laufzeit anzulegen — so sicherst du dir bessere Zinsen.';
+    } else if (ch1Context && !ch1Context.notgroschenOk) {
+      suggestion =
+        'Halte mindestens deinen Notgroschen auf dem Tagesgeldkonto — dort ist er jederzeit verfügbar, wenn du ihn brauchst.';
     } else {
       suggestion =
         'Gute Aufteilung! Achte immer darauf, dass dein Notgroschen flexibel bleibt und nur der Rest langfristig gebunden wird.';
