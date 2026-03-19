@@ -589,8 +589,8 @@ const ETF_L9_Simulation = () => {
                       <p className="font-body text-[10px] text-muted-foreground mt-1">After this: {remainingBudget - (tempAllocation - (portfolio[selectedStock] ?? 0))}% remaining</p>
                     </div>
                     <div className="flex gap-3">
-                      <button onClick={() => setSelectedStock(null)} className="flex-1 h-12 rounded-full border border-border font-display text-sm font-bold text-foreground">Abbrechen</button>
-                      <button onClick={confirmAllocation} className="flex-1 h-12 rounded-full font-display text-sm font-bold text-white" style={{ backgroundColor: '#10B981' }}>Bestätigen ✓</button>
+                      <button onClick={() => setSelectedStock(null)} className="flex-1 h-12 rounded-full border border-border font-display text-sm font-bold text-foreground">Cancel</button>
+                      <button onClick={confirmAllocation} className="flex-1 h-12 rounded-full font-display text-sm font-bold text-white" style={{ backgroundColor: '#10B981' }}>Confirm ✓</button>
                     </div>
                   </>
                 );
