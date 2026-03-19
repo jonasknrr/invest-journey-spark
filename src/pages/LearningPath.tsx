@@ -197,9 +197,7 @@ const LearningPath = () => {
           const stars = categoryLessonIds[level.id]
             ? getCategoryStars(categoryLessonIds[level.id])
             : null;
-          const { completed, total, percent } = getChapterProgress(level.id);
-          const color = chapterColors[level.id] || '#D1D5DB';
-          const isLocked = level.status === 'locked';
+          const { percent } = getChapterProgress(level.id);
 
           return (
             <div
@@ -213,9 +211,10 @@ const LearningPath = () => {
                   index={index}
                   align={isLeft ? 'left' : 'right'}
                   onClick={() => navigate(`/category/${level.id}`)}
+                  progress={percent}
                 />
                 {stars && (
-                  <div className={`flex gap-1 mt-1.5 ${isLeft ? 'ml-4' : 'mr-4'}`}>
+                  <div className={`flex gap-1 mt-1.5 ${isLeft ? 'ml-5' : 'mr-5'}`}>
                     {[1, 2, 3].map(i => (
                       <span
                         key={i}
@@ -224,31 +223,6 @@ const LearningPath = () => {
                         ★
                       </span>
                     ))}
-                  </div>
-                )}
-                {/* Per-chapter progress bar */}
-                {total > 0 && (
-                  <div className={`mt-2 w-28 ${isLeft ? 'ml-4' : 'mr-4'}`}>
-                    <div className="flex justify-between mb-0.5">
-                      <span className="text-[10px] text-muted-foreground tabular-nums">
-                        {completed}/{total}
-                      </span>
-                      <span
-                        className="text-[10px] font-bold tabular-nums"
-                        style={{ color: isLocked ? 'hsl(var(--muted-foreground))' : color }}
-                      >
-                        {percent}%
-                      </span>
-                    </div>
-                    <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
-                      <motion.div
-                        className="h-full rounded-full"
-                        style={{ backgroundColor: isLocked ? '#D1D5DB' : color }}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${percent}%` }}
-                        transition={{ delay: 0.3 + index * 0.08, duration: 0.6, ease: 'easeOut' }}
-                      />
-                    </div>
                   </div>
                 )}
               </div>
