@@ -482,7 +482,7 @@ const Cash_F5_Tagesgeld = () => {
         {/* STEP 5 — Completion */}
         {currentStep === 5 && (
           <motion.div
-            key="s4"
+            key="s5"
             className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
