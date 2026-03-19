@@ -211,9 +211,17 @@ const Cash_F1_WhatIsCash = () => {
       {/* No hearts overlay */}
       {noHeartsScreen === 'showing' && (
         <NoHeartsOverlay
-          onRetry={() => {
+          onRestart={() => {
             setHearts(3);
             setCurrentStep(0);
+            setNoHeartsScreen('none');
+          }}
+          onQuizOnly={() => {
+            setHearts(3);
+            setCurrentStep(2);
+            setNoHeartsScreen('none');
+          }}
+          onContinue={() => {
             setNoHeartsScreen('none');
           }}
         />
