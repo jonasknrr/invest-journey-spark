@@ -687,7 +687,7 @@ const PortfolioSimulation = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.0 }}
                 >
-                  {challengeStars === 3 ? 'Perfekt gemeistert!' : challengeStars === 2 ? (opportunityCostPenalty ? 'Rendite verschenkt!' : 'Ziel erreicht, aber riskant!') : 'Ziel verfehlt!'}
+                  {challengeLabel}
                 </motion.p>
 
                 {/* Feedback */}
@@ -697,13 +697,7 @@ const PortfolioSimulation = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 }}
                 >
-                  {challengeStars === 3
-                    ? 'Perfekt! Du hast die benötigten 1.000 $ für das nächste Jahr sicher geparkt und den Rest deines Kapitals intelligent und breit gestreut investiert.'
-                    : challengeStars === 2
-                    ? (opportunityCostPenalty
-                        ? 'Du hast zwar die 1.000 $ sicher, aber zu viel Kapital liegt in risikoarmen Anlagen. Durch die Inflation verlierst du real an Kaufkraft — das sind Opportunitätskosten.'
-                        : 'Du hast zwar die 1.000 $ sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.')
-                    : 'Du hast das wichtigste Ziel ignoriert: Du hast keine 1.000 $ sicher für das nächste Jahr zurückgelegt. Aktien schwanken und langfristiges Festgeld ist blockiert — wenn du das Geld jetzt brauchst, hast du ein Problem.'}
+                  {challengeFeedback}
                 </motion.p>
 
                 {/* Breakdown pills */}
@@ -713,16 +707,38 @@ const PortfolioSimulation = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.3 }}
                 >
-                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
-                    liquidityPassed ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
-                  }`}>
-                    {liquidityPassed ? '✓' : '✗'} Liquidität: {safeAmount.toLocaleString('de-CH')} $ sicher
-                  </span>
-                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
-                    riskPassed ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
-                  }`}>
-                    {riskPassed ? '✓' : '✗'} Diversifikation: {divScore.toFixed(1)}/10
-                  </span>
+                  {isChapter1 ? (
+                    <>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch1_notgroschenOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {ch1_notgroschenOk ? '✓' : '✗'} Notgroschen: {tagesgeldAmount.toLocaleString('de-CH')} {currency}
+                      </span>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch1_weiterbildungAvailable ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {ch1_weiterbildungAvailable ? '✓' : '✗'} Weiterbildung: ≤2J verfügbar
+                      </span>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        ch1_restInLongTerm ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
+                      }`}>
+                        {ch1_restInLongTerm ? '✓' : '△'} Max. Rendite: {longTermFestgeld.toLocaleString('de-CH')} {currency} langfristig
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        liquidityPassed ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {liquidityPassed ? '✓' : '✗'} Liquidität: {safeAmount.toLocaleString('de-CH')} {currency} sicher
+                      </span>
+                      <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
+                        riskPassed ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
+                      }`}>
+                        {riskPassed ? '✓' : '✗'} Diversifikation: {divScore.toFixed(1)}/10
+                      </span>
+                    </>
+                  )}
                 </motion.div>
               </motion.div>
             )}
