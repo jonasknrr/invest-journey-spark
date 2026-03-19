@@ -249,9 +249,6 @@ const LearningPath = () => {
           <div style={{ marginTop: '8px', fontSize: '13px', fontWeight: 700, color: '#6B7280', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
             Finish
           </div>
-          <div style={{ fontSize: '11px', color: '#9CA3AF', marginTop: '2px' }}>
-            Complete all chapters
-          </div>
         </motion.div>
       </div>
     </div>
