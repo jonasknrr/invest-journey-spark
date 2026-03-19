@@ -38,14 +38,14 @@ interface AssetClass {
 }
 
 const assetClasses: AssetClass[] = [
-  { name: 'Tagesgeld', slug: 'tagesgeld', icon: Coins, color: 'hsl(var(--level-tagesgeld))', bgColor: 'hsl(var(--level-tagesgeld) / 0.12)', hasDetail: true },
-  { name: 'Festgeld', slug: 'festgeld', icon: Vault, color: 'hsl(var(--level-festgeld))', bgColor: 'hsl(var(--level-festgeld) / 0.12)', hasDetail: true },
-  { name: 'Aktien', slug: 'aktien', icon: TrendUp, color: 'hsl(var(--level-aktien))', bgColor: 'hsl(var(--level-aktien) / 0.12)', hasDetail: true },
+  { name: 'Call Money', slug: 'tagesgeld', icon: Coins, color: 'hsl(var(--level-tagesgeld))', bgColor: 'hsl(var(--level-tagesgeld) / 0.12)', hasDetail: true },
+  { name: 'Fixed Deposit', slug: 'festgeld', icon: Vault, color: 'hsl(var(--level-festgeld))', bgColor: 'hsl(var(--level-festgeld) / 0.12)', hasDetail: true },
+  { name: 'Stocks', slug: 'aktien', icon: TrendUp, color: 'hsl(var(--level-aktien))', bgColor: 'hsl(var(--level-aktien) / 0.12)', hasDetail: true },
   { name: 'ETFs', slug: 'etfs', icon: Stack, color: 'hsl(var(--level-etfs))', bgColor: 'hsl(var(--level-etfs) / 0.12)', hasDetail: true },
-  { name: 'Fonds', slug: 'indizes', icon: ChartBar, color: 'hsl(var(--level-waehrungen))', bgColor: 'hsl(var(--level-waehrungen) / 0.12)' },
-  { name: 'Anleihen', slug: 'anleihen', icon: Certificate, color: 'hsl(var(--level-anleihen))', bgColor: 'hsl(var(--level-anleihen) / 0.12)' },
-  { name: 'Rohstoffe', slug: 'rohstoffe', icon: DiamondsFour, color: 'hsl(var(--level-gold))', bgColor: 'hsl(var(--level-gold) / 0.12)' },
-  { name: 'Kryptowährungen', slug: 'krypto', icon: CurrencyBtc, color: 'hsl(var(--level-krypto))', bgColor: 'hsl(var(--level-krypto) / 0.12)' },
+  { name: 'Funds', slug: 'indizes', icon: ChartBar, color: 'hsl(var(--level-waehrungen))', bgColor: 'hsl(var(--level-waehrungen) / 0.12)' },
+  { name: 'Bonds', slug: 'anleihen', icon: Certificate, color: 'hsl(var(--level-anleihen))', bgColor: 'hsl(var(--level-anleihen) / 0.12)' },
+  { name: 'Commodities', slug: 'rohstoffe', icon: DiamondsFour, color: 'hsl(var(--level-gold))', bgColor: 'hsl(var(--level-gold) / 0.12)' },
+  { name: 'Cryptocurrencies', slug: 'krypto', icon: CurrencyBtc, color: 'hsl(var(--level-krypto))', bgColor: 'hsl(var(--level-krypto) / 0.12)' },
 ];
 
 const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.07 } } };
