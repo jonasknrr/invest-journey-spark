@@ -305,7 +305,10 @@ function analyzePortfolio(
 const PortfolioSimulation = () => {
   const { levelId } = useParams();
   const navigate = useNavigate();
-  const { getProductAmount, getAssetTotal, allocations } = useBudget();
+  const { getProductAmount, getAssetTotal, allocations, totalBudget } = useBudget();
+  const chapterConfig = levelId ? getChapterConfig(levelId) : undefined;
+  const isChapter1 = levelId === 'chapter-1';
+  const currency = chapterConfig?.scenario?.currency ?? '$';
   const [animProgress, setAnimProgress] = useState(0);
   const [animDone, setAnimDone] = useState(false);
   const [stockReturns, setStockReturns] = useState<Map<string, StockReturn>>(new Map());
