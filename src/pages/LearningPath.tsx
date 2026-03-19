@@ -11,6 +11,40 @@ const categoryLessonIds: Record<string, string[]> = {
   etfs: ['etfs-e1', 'etfs-e2', 'etfs-e3', 'etfs-e4', 'etfs-e5', 'etfs-e6', 'etfs-e7', 'etfs-e8', 'etfs-e9'],
 };
 
+/** Vertical spacing per node in the zigzag path (px) */
+const NODE_SPACING = 160;
+const NODE_VERTICAL_OFFSET = 60; // where first node sits from SVG top
+
+/**
+ * Build a smooth cubic-bezier SVG path that zigzags between left and right,
+ * passing through each node's icon centre.
+ */
+function buildZigzagPath(count: number, width: number): string {
+  if (count === 0) return '';
+
+  const leftX = width * 0.18;   // icon centre when aligned left
+  const rightX = width * 0.82;  // icon centre when aligned right
+
+  const points: { x: number; y: number }[] = [];
+  for (let i = 0; i < count; i++) {
+    const x = i % 2 === 0 ? leftX : rightX;
+    const y = NODE_VERTICAL_OFFSET + i * NODE_SPACING;
+    points.push({ x, y });
+  }
+
+  let d = `M ${points[0].x} ${points[0].y}`;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const curr = points[i];
+    const next = points[i + 1];
+    const midY = (curr.y + next.y) / 2;
+    // control points keep the horizontal of the current node until midway, then swing to the next
+    d += ` C ${curr.x} ${midY}, ${next.x} ${midY}, ${next.x} ${next.y}`;
+  }
+
+  return d;
+}
+
 const LearningPath = () => {
   const navigate = useNavigate();
   const { store } = useProgressStore();
@@ -31,11 +65,15 @@ const LearningPath = () => {
     return Math.ceil(totalHearts / completedLessons.length);
   };
 
+  // Total SVG / container height
+  const pathHeight = NODE_VERTICAL_OFFSET + (levels.length - 1) * NODE_SPACING + 80;
+  const svgWidth = 390; // matches mobile viewport
+  const pathD = buildZigzagPath(levels.length, svgWidth);
+
   return (
     <div className="min-h-screen bg-background pb-20">
       {/* Header */}
       <div className="sticky top-0 z-10 bg-background/90 backdrop-blur-md border-b border-border px-6 pt-5 pb-4">
-        {/* Top row: Avatar + Name | Streak + XP */}
         <div className="flex items-center justify-between max-w-sm mx-auto mb-3">
           <div className="flex items-center gap-2.5">
             <div className="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden border-2 border-blue-200 shrink-0">
@@ -68,12 +106,10 @@ const LearningPath = () => {
             </div>
           </div>
         </div>
-        {/* Title row */}
         <div className="max-w-sm mx-auto">
           <h1 className="font-display text-2xl font-bold text-foreground">Investify</h1>
           <p className="text-sm text-muted-foreground mt-0.5 tabular-nums">{totalProgress}% geschafft</p>
         </div>
-        {/* Total progress bar */}
         <div className="mt-3 h-2.5 rounded-full bg-muted overflow-hidden max-w-sm mx-auto">
           <motion.div
             className="h-full rounded-full bg-primary"
@@ -84,58 +120,85 @@ const LearningPath = () => {
         </div>
       </div>
 
-      {/* Path */}
-      <div className="relative max-w-sm mx-auto px-6 pt-10">
-        {/* Dashed path line */}
-        <svg className="absolute left-1/2 top-0 -translate-x-1/2 w-2 h-full pointer-events-none" preserveAspectRatio="none">
-          <line x1="4" y1="0" x2="4" y2="100%" stroke="hsl(var(--border))" strokeWidth="4" strokeDasharray="12 8" />
+      {/* Zigzag Path */}
+      <div className="relative max-w-sm mx-auto" style={{ height: pathHeight }}>
+        {/* Curved SVG path in background */}
+        <svg
+          className="absolute inset-0 w-full pointer-events-none"
+          viewBox={`0 0 ${svgWidth} ${pathHeight}`}
+          preserveAspectRatio="xMidYMid meet"
+          style={{ height: pathHeight }}
+        >
+          <path
+            d={pathD}
+            fill="none"
+            stroke="hsl(var(--border))"
+            strokeWidth="4"
+            strokeDasharray="12 8"
+            strokeLinecap="round"
+          />
         </svg>
 
-        <div className="relative space-y-10">
-          {levels.map((level, index) => {
-            const stars = categoryLessonIds[level.id]
-              ? getCategoryStars(categoryLessonIds[level.id])
-              : null;
+        {/* Nodes positioned along the path */}
+        {levels.map((level, index) => {
+          const isLeft = index % 2 === 0;
+          const top = NODE_VERTICAL_OFFSET + index * NODE_SPACING - 40; // centre the node on the path point
+          const stars = categoryLessonIds[level.id]
+            ? getCategoryStars(categoryLessonIds[level.id])
+            : null;
 
-            return (
-            <div key={level.id}>
-              <LevelNode
-                level={level}
-                index={index}
-                onClick={() => navigate(`/category/${level.id}`)}
-              />
-              {stars && (
-                <div className="flex justify-center gap-1 mt-2">
-                  {[1, 2, 3].map(i => (
-                    <span
-                      key={i}
-                      className={`text-lg ${i <= stars ? 'text-amber-400' : 'text-muted-foreground/30'}`}
-                    >
-                      ★
-                    </span>
-                  ))}
-                </div>
-              )}
-              {/* Milestone tree between levels */}
+          return (
+            <div
+              key={level.id}
+              className="absolute w-full px-3"
+              style={{ top }}
+            >
+              <div className={`flex flex-col ${isLeft ? 'items-start' : 'items-end'}`}>
+                <LevelNode
+                  level={level}
+                  index={index}
+                  align={isLeft ? 'left' : 'right'}
+                  onClick={() => navigate(`/category/${level.id}`)}
+                />
+                {stars && (
+                  <div className={`flex gap-1 mt-2 ${isLeft ? 'ml-4' : 'mr-4'}`}>
+                    {[1, 2, 3].map(i => (
+                      <span
+                        key={i}
+                        className={`text-lg ${i <= stars ? 'text-amber-400' : 'text-muted-foreground/30'}`}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Decorative emoji between nodes */}
               {index < levels.length - 1 && (
-                <div className="flex justify-center my-4">
-                  <motion.span
-                    className="text-xl select-none"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.5 + index * 0.08, type: 'spring', stiffness: 300 }}
-                  >
-                    {index < completedCount ? '🌳' : index === completedCount ? '🌱' : '·'}
-                  </motion.span>
-                </div>
+                <motion.span
+                  className="absolute text-xl select-none"
+                  style={{
+                    top: NODE_SPACING - 30,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                  }}
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.5 + index * 0.08, type: 'spring', stiffness: 300 }}
+                >
+                  {index < completedCount ? '🌳' : index === completedCount ? '🌱' : '·'}
+                </motion.span>
               )}
             </div>
-            );
-          })}
-        </div>
+          );
+        })}
 
         {/* End flag */}
-        <div className="flex justify-center mt-10 mb-6">
+        <div
+          className="absolute left-1/2 -translate-x-1/2"
+          style={{ top: NODE_VERTICAL_OFFSET + (levels.length - 1) * NODE_SPACING + 40 }}
+        >
           <motion.span
             className="text-4xl"
             initial={{ scale: 0 }}

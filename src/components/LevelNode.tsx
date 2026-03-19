@@ -7,6 +7,7 @@ interface LevelNodeProps {
   level: Level;
   index: number;
   onClick: () => void;
+  align?: 'left' | 'right';
 }
 
 const colorMap: Record<string, string> = {
@@ -33,16 +34,18 @@ const shadowMap: Record<string, string> = {
   immobilien: '0 10px 25px -5px hsla(15,70%,55%,0.35)',
 };
 
-const LevelNode = ({ level, index, onClick }: LevelNodeProps) => {
+const LevelNode = ({ level, index, onClick, align = 'left' }: LevelNodeProps) => {
   const isCompleted = level.status === 'completed';
   const isCurrent = level.status === 'current';
   const isLocked = level.status === 'locked';
-  const offset = index % 2 === 0 ? 'ml-4' : 'ml-auto mr-4';
+  const isRight = align === 'right';
 
   return (
     <motion.button
       onClick={onClick}
-      className={`relative flex items-center gap-4 ${offset} max-w-[280px] w-full`}
+      className={`relative flex items-center gap-4 max-w-[280px] w-full
+        ${isRight ? 'flex-row-reverse self-end' : 'flex-row self-start'}
+      `}
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
       initial={{ opacity: 0, y: 30 }}
@@ -69,7 +72,7 @@ const LevelNode = ({ level, index, onClick }: LevelNodeProps) => {
       </div>
 
       {/* Text */}
-      <div className="text-left flex-1 min-w-0">
+      <div className={`flex-1 min-w-0 ${isRight ? 'text-right' : 'text-left'}`}>
         <h3 className={`font-display text-lg font-bold leading-tight ${isLocked ? 'text-muted-foreground' : 'text-foreground'}`}>
           {level.title}
         </h3>
