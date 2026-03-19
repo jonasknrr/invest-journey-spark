@@ -447,8 +447,76 @@ const Cash_F2_Inflation = () => {
           </motion.div>
         )}
 
-        {/* STEP 4 — Completion */}
+        {/* STEP 4 — Quiz 3 */}
         {currentStep === 4 && (
+          <motion.div
+            key="s4"
+            className="flex-1 flex flex-col px-6 py-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 self-start mb-4">
+              <span className="font-body text-xs font-semibold text-primary">{quiz3.label}</span>
+            </div>
+            <h2 className="font-display text-xl font-bold text-foreground mb-5 leading-snug">
+              {quiz3.question}
+            </h2>
+            <div className="flex flex-col gap-3 flex-1">
+              {quiz3.answers.map(a => {
+                let cls = 'border-border bg-card';
+                let suffix = '';
+                if (q3Answer) {
+                  if (a.id === quiz3.correctId) {
+                    cls = 'border-green-500 bg-green-500/10';
+                    suffix = ' ✅';
+                  } else if (a.id === q3Answer) {
+                    cls = 'border-red-500 bg-red-500/10';
+                    suffix = ' ✗';
+                  }
+                }
+                return (
+                  <motion.button
+                    key={a.id}
+                    onClick={() => handleQuizAnswer(quiz3, a.id, q3Answer, setQ3Answer)}
+                    disabled={!!q3Answer}
+                    whileTap={!q3Answer ? { scale: 0.97 } : undefined}
+                    className={`w-full text-left p-4 rounded-2xl border-2 transition-colors ${cls}`}
+                  >
+                    <span className="font-body text-[15px] text-foreground">{a.text}{suffix}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+            <AnimatePresence>
+              {q3Answer && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-4 p-4 rounded-2xl ${
+                    q3Answer === quiz3.correctId
+                      ? 'bg-green-500/10 border border-green-500/30'
+                      : 'bg-amber-500/10 border border-amber-500/30'
+                  }`}
+                >
+                  <p
+                    className={`font-body text-sm leading-relaxed ${
+                      q3Answer === quiz3.correctId
+                        ? 'text-green-700 dark:text-green-300'
+                        : 'text-amber-700 dark:text-amber-300'
+                    }`}
+                  >
+                    {q3Answer === quiz3.correctId ? quiz3.correctFeedback : quiz3.wrongFeedback}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* STEP 5 — Completion */}
+        {currentStep === 5 && (
           <motion.div
             key="s4"
             className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
