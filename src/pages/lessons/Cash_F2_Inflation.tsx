@@ -316,9 +316,28 @@ const Cash_F2_Inflation = () => {
                 min={2004}
                 max={2024}
                 value={sliderYear}
-                onChange={e => setSliderYear(Number(e.target.value))}
+                onChange={e => { stopAutoPlay(); setSliderYear(Number(e.target.value)); }}
                 className="w-full h-2 rounded-full appearance-none cursor-pointer accent-primary bg-muted"
               />
+              <div className="flex justify-center mt-3">
+                <motion.button
+                  onClick={isAutoPlaying ? stopAutoPlay : startAutoPlay}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-display text-sm font-bold transition-colors hover:bg-primary/20"
+                >
+                  {isAutoPlaying ? (
+                    <>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><rect x="2" y="1" width="4" height="12" rx="1" /><rect x="8" y="1" width="4" height="12" rx="1" /></svg>
+                      Pause
+                    </>
+                  ) : (
+                    <>
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M3 1.5v11l9-5.5z" /></svg>
+                      {sliderYear >= 2024 ? 'Replay' : 'Auto-play'}
+                    </>
+                  )}
+                </motion.button>
+              </div>
             </div>
 
             {/* Orange banner at 2024 */}
