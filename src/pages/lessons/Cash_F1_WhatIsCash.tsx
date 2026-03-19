@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Heart } from 'lucide-react';
 import { Star } from '@phosphor-icons/react';
 import CashSortGame from '@/components/lessons/CashSortGame';
+import { useProgressStore } from '@/hooks/useProgressStore';
+import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
+import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
+const TOTAL_STEPS = 5;
+const LESSON_ID = 'festgeld-f1';
 
 /* ── Quiz data ── */
 const QUIZ_1 = {
@@ -48,12 +53,22 @@ const QUIZ_2 = {
 const QuizSlide = ({
   quiz,
   onComplete,
+  onWrongAnswer,
 }: {
   quiz: typeof QUIZ_1;
   onComplete: () => void;
+  onWrongAnswer: () => void;
 }) => {
   const [chosen, setChosen] = useState<string | null>(null);
   const isCorrect = chosen === quiz.correctId;
+
+  const handleChoose = (id: string) => {
+    if (chosen) return;
+    setChosen(id);
+    if (id !== quiz.correctId) {
+      onWrongAnswer();
+    }
+  };
 
   return (
     <motion.div
@@ -80,7 +95,7 @@ const QuizSlide = ({
             <button
               key={a.id}
               disabled={!!chosen}
-              onClick={() => setChosen(a.id)}
+              onClick={() => handleChoose(a.id)}
               className={`
                 w-full text-left px-4 py-3.5 rounded-xl border-2 font-body text-sm transition-all
                 ${
@@ -145,13 +160,46 @@ const QuizSlide = ({
 /* ── Main lesson ── */
 const Cash_F1_WhatIsCash = () => {
   const navigate = useNavigate();
+  const { updateLessonProgress, completeLesson } = useProgressStore();
   const [currentStep, setCurrentStep] = useState(0);
-  const [hearts] = useState(3);
-  const totalSteps = 5;
-  const progress = (currentStep / (totalSteps - 1)) * 100;
+  const [hearts, setHearts] = useState(3);
+  const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
+  const [completionResult, setCompletionResult] = useState<{
+    xpEarned: number;
+    streakBonus: number;
+    isFirstCompletion: boolean;
+    newStreak: number;
+  } | null>(null);
+
+  const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
+
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress(LESSON_ID, Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
+
+  // No hearts
+  useEffect(() => {
+    if (hearts === 0) {
+      setNoHeartsScreen('showing');
+      try { navigator.vibrate?.([300, 100, 300]); } catch {}
+    }
+  }, [hearts]);
+
+  // Completion
+  useEffect(() => {
+    if (currentStep === TOTAL_STEPS - 1 && !completionResult) {
+      const r = completeLesson(LESSON_ID, hearts);
+      setCompletionResult(r);
+    }
+  }, [currentStep]);
+
+  const handleWrongAnswer = () => {
+    setHearts((h) => Math.max(0, h - 1));
+  };
 
   const handleNext = () => {
-    if (currentStep >= totalSteps - 1) {
+    if (currentStep >= TOTAL_STEPS - 1) {
       navigate('/category/festgeld');
       return;
     }
@@ -160,6 +208,25 @@ const Cash_F1_WhatIsCash = () => {
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
+      {/* No hearts overlay */}
+      {noHeartsScreen === 'showing' && (
+        <NoHeartsOverlay
+          onRestart={() => {
+            setHearts(3);
+            setCurrentStep(0);
+            setNoHeartsScreen('none');
+          }}
+          onQuizOnly={() => {
+            setHearts(3);
+            setCurrentStep(2);
+            setNoHeartsScreen('none');
+          }}
+          onContinue={() => {
+            setNoHeartsScreen('none');
+          }}
+        />
+      )}
+
       {/* Top bar */}
       <div className="px-4 pt-4 flex items-center gap-3">
         <button
@@ -251,12 +318,12 @@ const Cash_F1_WhatIsCash = () => {
 
         {/* ── Slide 3: Quiz 1 ── */}
         {currentStep === 2 && (
-          <QuizSlide key="s2" quiz={QUIZ_1} onComplete={handleNext} />
+          <QuizSlide key="s2" quiz={QUIZ_1} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
         )}
 
         {/* ── Slide 4: Quiz 2 ── */}
         {currentStep === 3 && (
-          <QuizSlide key="s3" quiz={QUIZ_2} onComplete={handleNext} />
+          <QuizSlide key="s3" quiz={QUIZ_2} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
         )}
 
         {/* ── Slide 5: Completion ── */}
@@ -296,7 +363,7 @@ const Cash_F1_WhatIsCash = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="text-center"
+              className="text-center flex flex-col items-center"
             >
               <h2 className="font-display text-2xl font-bold text-foreground mb-2">
                 Lektion abgeschlossen! 🎉
@@ -305,17 +372,7 @@ const Cash_F1_WhatIsCash = () => {
                 Du weisst jetzt was Cash und Cash Equivalents sind — und warum
                 der Unterschied zu Aktien oder Immobilien im Alltag wichtig ist.
               </p>
-              <motion.p
-                className="font-display text-4xl font-bold text-primary"
-                style={{
-                  textShadow: '0 0 20px hsl(142 71% 45% / 0.3)',
-                }}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 1.3, type: 'spring', stiffness: 300 }}
-              >
-                +50 XP
-              </motion.p>
+              <CompletionXP result={completionResult} hearts={hearts} />
             </motion.div>
 
             <motion.div
