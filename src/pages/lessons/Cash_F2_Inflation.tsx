@@ -92,7 +92,7 @@ const Cash_F2_Inflation = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const rafRef = useRef<number | null>(null);
   const startTimeRef = useRef<number | null>(null);
-  const DURATION_MS = 4000; // 4 seconds for full sweep
+  const DURATION_MS = 6000; // 6 seconds for full sweep
 
   const stopAutoPlay = useCallback(() => {
     if (rafRef.current) {
