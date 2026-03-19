@@ -626,7 +626,7 @@ const PortfolioSimulation = () => {
               <div className="text-right">
                 <p className="text-[10px] text-muted-foreground font-body">Ende (Feb 2011)</p>
                 <p className={`font-display text-sm font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
-                  {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
+                  {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} {currency}
                 </p>
               </div>
             </motion.div>
