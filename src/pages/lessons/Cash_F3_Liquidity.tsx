@@ -112,6 +112,9 @@ const Cash_F3_Liquidity = () => {
   // Step 3 — quiz 2
   const [q2Answer, setQ2Answer] = useState<string | null>(null);
 
+  // Step 4 — quiz 3
+  const [q3Answer, setQ3Answer] = useState<string | null>(null);
+
   // Step 4 — completion stars
   const [starsShown, setStarsShown] = useState(0);
 
