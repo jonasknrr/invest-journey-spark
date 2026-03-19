@@ -999,10 +999,10 @@ const PortfolioSimulation = () => {
               // Build weakness bullets
               const weaknesses: { icon: string; text: string }[] = [];
 
-              if (aktienPct > 0 && divScore < 7) {
+              if (aktienPct > 0 && !divResult.riskPassed) {
                 weaknesses.push({
                   icon: '⚠️',
-                  text: 'Klumpenrisiko: Dein Kapital ist auf zu wenige Anlageklassen oder Positionen verteilt.',
+                  text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}).`,
                 });
               }
               if (Math.abs(maxDrawdown) * 100 > 25) {
