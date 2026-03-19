@@ -27,7 +27,7 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question: 'Why does a fixed deposit pay more interest than a regular checking account?',
   answers: [
     { id: 'a', text: 'Because fixed deposits are riskier than a checking account' },
