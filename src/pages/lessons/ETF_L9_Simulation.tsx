@@ -522,18 +522,18 @@ const ETF_L9_Simulation = () => {
               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 }}>
               {gradeCount.A >= 6 ? (
                 <>
-                  <p className="font-display text-xl font-bold text-white mb-2">🏆 Ausgezeichnet!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">Du denkst bereits wie ein erfahrener ETF-Investor. Dein Portfolio zeigte starke Diversifikation und kluge Sektor-Aufteilung.</p>
+                  <p className="font-display text-xl font-bold text-white mb-2">🏆 Outstanding!</p>
+                  <p className="font-body text-sm text-white/80 leading-relaxed">You already think like an experienced ETF investor. Your portfolio showed strong diversification and smart sector allocation.</p>
                 </>
               ) : gradeCount.A >= 4 ? (
                 <>
-                  <p className="font-display text-xl font-bold text-white mb-2">🎯 Sehr gut!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">Solide Grundlage mit kleinen Verbesserungspotentialen. Ein paar mehr Länder und Sektoren hätten die Schocks abgefedert.</p>
+                  <p className="font-display text-xl font-bold text-white mb-2">🎯 Very good!</p>
+                  <p className="font-body text-sm text-white/80 leading-relaxed">Solid foundation with small room for improvement. A few more countries and sectors would have cushioned the shocks better.</p>
                 </>
               ) : (
                 <>
-                  <p className="font-display text-xl font-bold text-white mb-2">💪 Guter Anfang!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">Das Wichtigste: du hast es durchgespielt und weisst jetzt was du beim nächsten Mal anders machen würdest.</p>
+                  <p className="font-display text-xl font-bold text-white mb-2">💪 Good start!</p>
+                  <p className="font-body text-sm text-white/80 leading-relaxed">The most important thing: you played through it and now know what you'd do differently next time.</p>
                 </>
               )}
             </motion.div>
