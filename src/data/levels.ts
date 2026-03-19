@@ -109,7 +109,7 @@ export const levels: Level[] = [
     progress: 0,
     subLevels: [
       { id: 'w1', title: 'What are Exchange Rates?', description: 'Why the dollar is sometimes worth more, sometimes less', status: 'locked', duration: '3 Min' },
-      { id: 'w2', title: 'Understanding Inflation', description: 'Why your money loses value', status: 'locked', duration: '3 Min' },
+      { id: 'w2', title: 'Why do Exchange Rates Change?', description: 'Interest rates, economies & politics explained', status: 'locked', duration: '4 Min' },
     ],
   },
   {
