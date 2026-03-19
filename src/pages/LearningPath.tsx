@@ -96,28 +96,33 @@ const LearningPath = () => {
       <div className="sticky top-0 z-50 bg-background border-b border-border px-6 pt-5 pb-4">
         <div className="flex items-center justify-between max-w-sm mx-auto mb-3">
           <div className="flex items-center gap-2.5">
-            <div className="w-11 h-11 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden border-2 border-blue-200 shrink-0">
-              <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <circle cx="50" cy="50" r="50" fill="#DBEAFE"/>
-                <ellipse cx="50" cy="85" rx="28" ry="20" fill="#3B82F6"/>
-                <circle cx="50" cy="38" r="18" fill="#FCD34D"/>
-                <ellipse cx="50" cy="24" rx="18" ry="8" fill="#1E3A5F"/>
-                <ellipse cx="34" cy="32" rx="6" ry="12" fill="#1E3A5F"/>
-                <ellipse cx="66" cy="32" rx="6" ry="12" fill="#1E3A5F"/>
-                <circle cx="43" cy="38" r="2.5" fill="#1E293B"/>
-                <circle cx="57" cy="38" r="2.5" fill="#1E293B"/>
-                <path d="M 43 46 Q 50 52 57 46" stroke="#1E293B" strokeWidth="2" fill="none" strokeLinecap="round"/>
-              </svg>
-            </div>
-            <div>
-              {(() => {
-                const userName = localStorage.getItem('investify_name')?.trim();
-                return userName ? (
-                  <p className="text-base font-bold text-foreground leading-tight">{userName}'s</p>
-                ) : null;
-              })()}
-              <p className="text-sm font-normal text-muted-foreground leading-tight">Investify</p>
-            </div>
+            {(() => {
+              const userName = localStorage.getItem('investify_name')?.trim();
+              const initial = userName ? userName.charAt(0).toUpperCase() : '?';
+              return (
+                <>
+                  <div
+                    className="shrink-0 rounded-full flex items-center justify-center"
+                    style={{
+                      width: 44,
+                      height: 44,
+                      backgroundColor: '#1A56DB',
+                      boxShadow: '0 0 0 2px white, 0 0 0 3px #1A56DB',
+                    }}
+                  >
+                    <span style={{ fontSize: 18, fontWeight: 700, color: 'white', lineHeight: 1 }}>
+                      {initial}
+                    </span>
+                  </div>
+                  <div>
+                    {userName && (
+                      <p className="text-base font-bold text-foreground leading-tight">{userName}'s</p>
+                    )}
+                    <p className="text-sm font-normal text-muted-foreground leading-tight">Investify</p>
+                  </div>
+                </>
+              );
+            })()}
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1 bg-orange-50 border border-orange-200 rounded-full px-3 py-1">
