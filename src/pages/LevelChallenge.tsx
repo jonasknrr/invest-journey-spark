@@ -127,27 +127,8 @@ const LevelChallenge = () => {
   const remaining = getRemaining();
   const allocated = getAllocatedTotal();
   const pctUsed = totalBudget > 0 ? Math.round((allocated / totalBudget) * 100) : 0;
-  const currency = scenario?.currency ?? 'CHF';
 
-  // ── Real-time diversification indicator ──
-  const aktienAllocs = allocations['aktien'] ?? {};
-  const etfAllocs = allocations['etfs'] ?? {};
 
-  const divResult = useMemo(() => {
-    const positions: { amount: number; name: string }[] = [];
-    // Individual stocks
-    for (const [ticker, amount] of Object.entries(aktienAllocs)) {
-      if (amount > 0) positions.push({ amount, name: ticker });
-    }
-    // ETFs with constituent mapping
-    for (const [ticker, amount] of Object.entries(etfAllocs)) {
-      if (amount > 0) positions.push({ amount, name: resolveEtfName(ticker) });
-    }
-    const investedCapital = positions.reduce((s, p) => s + p.amount, 0);
-    return calcDiversificationWithETFs(positions, investedCapital);
-  }, [JSON.stringify(aktienAllocs), JSON.stringify(etfAllocs)]);
-
-  const hasRiskyAssets = divResult.numPositions > 0;
 
   return (
     <div className="min-h-screen bg-background pb-10">
