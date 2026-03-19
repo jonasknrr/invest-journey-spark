@@ -66,7 +66,7 @@ const AktienOverview = () => {
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-aktien)/0.08)] border border-[hsl(var(--level-aktien)/0.15)] shadow-card p-4">
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">
-              Bereits investiert (Aktien)
+              Already invested (Stocks)
             </p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-aktien))] tabular-nums">
               {aktienTotal.toLocaleString('de-CH')} CHF
