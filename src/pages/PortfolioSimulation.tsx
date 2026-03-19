@@ -1110,35 +1110,76 @@ const PortfolioSimulation = () => {
               // Build weakness bullets
               const weaknesses: { icon: string; text: string }[] = [];
 
-              if (aktienPct > 0 && !divResult.riskPassed) {
-                weaknesses.push({
-                  icon: '⚠️',
-                  text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}).`,
-                });
-              }
-              if (Math.abs(maxDrawdown) * 100 > 25) {
-                weaknesses.push({
-                  icon: '📉',
-                  text: `Hohe Schwankung: Dein Portfolio hat in Krisenzeiten starke Verluste erlitten (Max. Drawdown: ${(maxDrawdown * 100).toFixed(1)}%).`,
-                });
-              }
-              if (safePct > 40) {
-                weaknesses.push({
-                  icon: '💸',
-                  text: `Rendite verschenkt: ${Math.round(safePct)}% deines Budgets liegen in risikoarmen Anlagen. Du verzichtest auf Renditepotenzial (Opportunitätskosten).`,
-                });
-              }
-              if (!liquidityPassed) {
-                weaknesses.push({
-                  icon: '🔓',
-                  text: 'Keine Liquiditätsreserve: Du hast keine 1.000 CHF kurzfristig verfügbar geparkt.',
-                });
-              }
-              if (sharpeApprox < 0.5 && profitPct > 0 && aktienPct > 20) {
-                weaknesses.push({
-                  icon: '⚖️',
-                  text: 'Ineffizientes Risiko: Deine Rendite steht in keinem guten Verhältnis zum eingegangenen Risiko.',
-                });
+              // ── Chapter 3 specific feedback ──
+              if (isChapter3) {
+                if (!ch3_notgroschenOk) {
+                  weaknesses.push({
+                    icon: '🚨',
+                    text: `Kein ausreichender Notgroschen: Du hast nur ${tagesgeldAmount.toLocaleString('de-CH')} ${currency} auf dem Tagesgeld, brauchst aber mindestens 10.000 ${currency} als sofort verfügbare Reserve.`,
+                  });
+                }
+                if (!ch3_immobilieOk) {
+                  weaknesses.push({
+                    icon: '🏠',
+                    text: `Immobilien-Anzahlung gefährdet: Nur ${ch3_safeShortMedium.toLocaleString('de-CH')} ${currency} sind in maximal 3 Jahren sicher verfügbar — du brauchst aber 40.000 ${currency} (inkl. Notgroschen).`,
+                  });
+                }
+                if (fiveYearFestgeld > 0 && !ch3_immobilieOk) {
+                  weaknesses.push({
+                    icon: '⏰',
+                    text: `Falsche Laufzeit: Du hast ${fiveYearFestgeld.toLocaleString('de-CH')} ${currency} für 5 Jahre gebunden, obwohl du in 3 Jahren 30.000 ${currency} brauchst.`,
+                  });
+                }
+                if (ch3_riskyTotal >= 50000 && etfInvested === 0) {
+                  weaknesses.push({
+                    icon: '📊',
+                    text: `Tipp zur Streuung: Bei einer Summe von ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} in Aktien solltest du dringend Welt-ETFs als Basis-Investment nutzen, anstatt nur auf wenige Einzelwerte zu wetten.`,
+                  });
+                }
+                if (ch3_riskyTotal > 0 && !ch3_divGood) {
+                  weaknesses.push({
+                    icon: '⚠️',
+                    text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}). Streue breiter!`,
+                  });
+                }
+                if (ch3_riskyTotal < 50000 && ch3_notgroschenOk && ch3_immobilieOk) {
+                  weaknesses.push({
+                    icon: '💸',
+                    text: `Rendite verschenkt: Nur ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} arbeiten langfristig für dich. Du könntest ca. 60.000 ${currency} renditeorientiert anlegen.`,
+                  });
+                }
+              } else {
+                // Default weaknesses for other chapters
+                if (aktienPct > 0 && !divResult.riskPassed) {
+                  weaknesses.push({
+                    icon: '⚠️',
+                    text: `Klumpenrisiko (${divResult.rating}): Dein Kapital ist auf zu wenige Positionen verteilt (HHI: ${divResult.hhi.toLocaleString('de-CH')}).`,
+                  });
+                }
+                if (Math.abs(maxDrawdown) * 100 > 25) {
+                  weaknesses.push({
+                    icon: '📉',
+                    text: `Hohe Schwankung: Dein Portfolio hat in Krisenzeiten starke Verluste erlitten (Max. Drawdown: ${(maxDrawdown * 100).toFixed(1)}%).`,
+                  });
+                }
+                if (safePct > 40) {
+                  weaknesses.push({
+                    icon: '💸',
+                    text: `Rendite verschenkt: ${Math.round(safePct)}% deines Budgets liegen in risikoarmen Anlagen. Du verzichtest auf Renditepotenzial (Opportunitätskosten).`,
+                  });
+                }
+                if (!liquidityPassed) {
+                  weaknesses.push({
+                    icon: '🔓',
+                    text: 'Keine Liquiditätsreserve: Du hast keine 1.000 CHF kurzfristig verfügbar geparkt.',
+                  });
+                }
+                if (sharpeApprox < 0.5 && profitPct > 0 && aktienPct > 20) {
+                  weaknesses.push({
+                    icon: '⚖️',
+                    text: 'Ineffizientes Risiko: Deine Rendite steht in keinem guten Verhältnis zum eingegangenen Risiko.',
+                  });
+                }
               }
 
               const isPerfect = weaknesses.length === 0;
