@@ -491,6 +491,16 @@ const Cash_F2_Inflation = () => {
         )}
       </AnimatePresence>
     </div>
+
+    {/* No Hearts Overlay */}
+    {noHeartsScreen === 'showing' && (
+      <NoHeartsOverlay
+        onRestart={() => { setCurrentStep(0); setHearts(3); setSliderYear(2004); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+        onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+        onContinue={() => setNoHeartsScreen('none')}
+      />
+    }
+    </div>
   );
 };
 
