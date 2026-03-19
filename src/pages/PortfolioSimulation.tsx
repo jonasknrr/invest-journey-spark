@@ -235,10 +235,53 @@ function analyzePortfolio(
   aktienPct: number,
   sharpeApprox: number,
   safePct: number,
+  levelId?: string,
 ): CoachAnalysis {
   const praise: string[] = [];
   const critique: string[] = [];
   let suggestion = '';
+
+  /* ── Chapter 1: Only Tagesgeld / Festgeld available ── */
+  if (levelId === 'chapter-1') {
+    // Praise
+    if (rendite > 2) {
+      praise.push(
+        'Gut gemacht! Du holst eine ordentliche Rendite aus deinen sicheren Anlagen heraus.',
+      );
+    }
+
+    // Critique: too much sitting in Tagesgeld (low yield)
+    if (safePct > 0 && aktienPct === 0) {
+      // In ch1 safePct is always 100%, so check Tagesgeld vs Festgeld split
+      // We check if tagesgeld dominates — caller passes safePct as overall safe%
+      // For ch1, "too much Tagesgeld" = opportunity cost
+      // We use a heuristic: if safePct is high AND rendite is low
+      if (rendite < 2) {
+        critique.push(
+          '📉 Zinsverlust: Du hast viel Geld unverzinst oder niedrig verzinst auf dem Tagesgeld liegen lassen, das du eigentlich für längere Zeit ins Festgeld hättest stecken können.',
+        );
+      }
+    }
+
+    // Critique: liquidity trap (too much locked in Festgeld, not enough accessible)
+    // This is handled by the star evaluation already, but we add a coach bullet
+    if (mdd === 0 && rendite < 1) {
+      // very low return means barely any festgeld used
+    }
+
+    // Suggestion for ch1
+    if (rendite < 2) {
+      suggestion =
+        'Überlege, Geld das du langfristig nicht brauchst in Festgeld mit höherer Laufzeit anzulegen — so sicherst du dir bessere Zinsen.';
+    } else {
+      suggestion =
+        'Gute Aufteilung! Achte immer darauf, dass dein Notgroschen flexibel bleibt und nur der Rest langfristig gebunden wird.';
+    }
+
+    return { praise, critique, suggestion };
+  }
+
+  /* ── Chapter 2+: Aktien available ── */
 
   // Praise
   if (rendite > 10) {
@@ -257,45 +300,60 @@ function analyzePortfolio(
     );
   }
 
-  // Critique — Klumpenrisiko only for risky assets
+  // Critique — Klumpenrisiko (only for risky assets, only when they exist)
   if (aktienPct > 0 && divScore < 5) {
+    if (levelId === 'chapter-3') {
+      critique.push(
+        '⚠️ Tipp zur Streuung: Du hast ein hohes Klumpenrisiko bei deinen Einzelaktien. Nutze die neu freigeschalteten Welt-ETFs, um dein Risiko sofort über hunderte Unternehmen zu streuen!',
+      );
+    } else {
+      critique.push(
+        '⚠️ Klumpenrisiko: Dein Geld ist auf zu wenige Aktien verteilt. Bei einem Absturz einer einzelnen Firma verlierst du zu viel.',
+      );
+    }
+  }
+
+  // Too conservative — has access to Aktien but doesn't use them
+  if (aktienPct === 0 && (levelId === 'chapter-2' || levelId === 'chapter-3')) {
     critique.push(
-      'Achtung, Klumpenrisiko! Deine risikobehafteten Anlagen (Aktien, ETFs) sind auf zu wenige Positionen konzentriert. Wenn eine davon fällt, reißt sie dein ganzes Portfolio mit.',
+      '📉 Zu konservativ: Du hast Aktien freigeschaltet, nutzt sie aber nicht. Um langfristig hohe Renditen zu erzielen, solltest du einen Teil deines Geldes am Aktienmarkt investieren.',
     );
   }
+
   if (Math.abs(mdd) > 40) {
     critique.push(
-      'Das war eine harte Fahrt. Dein Portfolio hat in der Krise massiv an Wert verloren. Das zeigt, dass dein Risikomanagement lückenhaft war.',
+      '📉 Das war eine harte Fahrt. Dein Portfolio hat in der Krise massiv an Wert verloren. Das zeigt, dass dein Risikomanagement lückenhaft war.',
     );
   }
 
   // Opportunity cost — too much in safe assets
   if (safePct > 60) {
     critique.push(
-      'Über ' + Math.round(safePct) + '% deines Budgets liegen in risikoarmen Anlagen (Tagesgeld/Festgeld). Das ist zwar sicher, aber du verzichtest auf erhebliches Renditepotenzial — das nennt man Opportunitätskosten.',
+      '⚠️ Über ' + Math.round(safePct) + '% deines Budgets liegen in risikoarmen Anlagen (Tagesgeld/Festgeld). Das ist zwar sicher, aber du verzichtest auf erhebliches Renditepotenzial — das nennt man Opportunitätskosten.',
     );
   } else if (safePct > 40 && rendite < 5) {
     critique.push(
-      'Ein grosser Teil deines Portfolios steckt in risikoarmen Anlagen. Das schützt dein Kapital, kostet aber Rendite. Prüfe, ob du nicht etwas mehr in Aktien oder ETFs investieren könntest.',
+      '⚠️ Ein grosser Teil deines Portfolios steckt in risikoarmen Anlagen. Das schützt dein Kapital, kostet aber Rendite.',
     );
   }
 
   if (sharpeApprox < 0.5 && rendite > 0 && aktienPct > 20) {
     critique.push(
-      'Deine Rendite ist zwar okay, aber du hast dafür ein unverhältnismäßig hohes Risiko auf dich genommen. Ein effizienteres Portfolio hätte die gleiche Rendite mit weniger Schwankung erreicht.',
+      '⚠️ Deine Rendite ist zwar okay, aber du hast dafür ein unverhältnismäßig hohes Risiko auf dich genommen. Ein effizienteres Portfolio hätte die gleiche Rendite mit weniger Schwankung erreicht.',
     );
   }
 
   // Suggestion
   if (aktienPct > 0 && divScore < 5) {
-    suggestion =
-      'Um dein Portfolio krisenfester zu machen, solltest du dein Kapital auf mindestens 5–10 verschiedene Aktien aus unterschiedlichen Branchen oder Regionen verteilen. Ein Welt-ETF wäre ein guter Start.';
+    suggestion = levelId === 'chapter-3'
+      ? 'Nutze Welt-ETFs wie den MSCI World, um dein Kapital sofort über hunderte Unternehmen weltweit zu streuen — das senkt dein Risiko bei gleichbleibender Renditeerwartung.'
+      : 'Um dein Portfolio krisenfester zu machen, solltest du dein Kapital auf mindestens 5–10 verschiedene Aktien aus unterschiedlichen Branchen oder Regionen verteilen.';
   } else if (safePct > 60) {
     suggestion =
-      'Überlege, einen Teil deiner sicheren Anlagen in breit diversifizierte ETFs umzuschichten. So kannst du langfristig deutlich mehr Rendite erzielen, ohne ein übermässiges Risiko einzugehen.';
+      'Überlege, einen Teil deiner sicheren Anlagen in breit diversifizierte Aktien oder ETFs umzuschichten. So kannst du langfristig deutlich mehr Rendite erzielen.';
   } else if (Math.abs(mdd) > 25) {
     suggestion =
-      'Mische defensive Werte wie Festgeld oder Anleihen bei, um die extremen Schwankungen in Krisenzeiten abzufedern — auch wenn das etwas Rendite kostet.';
+      'Mische defensive Werte wie Festgeld bei, um die extremen Schwankungen in Krisenzeiten abzufedern — auch wenn das etwas Rendite kostet.';
   } else {
     suggestion =
       'Dein Portfolio ist solide aufgestellt. Um weiter zu optimieren, achte darauf, regelmässig zu rebalancen und neue Positionen nur mit klarer Strategie hinzuzufügen.';
