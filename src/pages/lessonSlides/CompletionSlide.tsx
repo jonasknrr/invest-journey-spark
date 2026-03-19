@@ -14,20 +14,14 @@ const CompletionSlide = ({
     exit={{ opacity: 0 }}
     transition={{ duration: 0.4 }}
   >
-    <div className="flex items-center gap-3 mb-6">
-      {[0, 1, 2].map((i) => (
-        <motion.span
-          key={i}
-          className="text-5xl"
-          initial={{ scale: 0, rotate: -30 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ delay: 0.3 + i * 0.3, type: 'spring', stiffness: 300, damping: 15 }}
-          style={{ filter: 'drop-shadow(0 0 8px hsl(45, 100%, 50%, 0.5))' }}
-        >
-          ⭐
-        </motion.span>
-      ))}
-    </div>
+    <motion.div
+      className="text-6xl mb-6"
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.3, type: 'spring', stiffness: 300, damping: 15 }}
+    >
+      🎉
+    </motion.div>
 
     <motion.h2
       className="font-display text-2xl font-bold text-foreground mb-2"
