@@ -24,7 +24,7 @@ import Cash_F3_Liquidity from "./pages/lessons/Cash_F3_Liquidity";
 import Cash_F4_Festgeld from "./pages/lessons/Cash_F4_Festgeld";
 import Cash_F5_Tagesgeld from "./pages/lessons/Cash_F5_Tagesgeld";
 import LevelChallenge from "./pages/LevelChallenge";
-import StockPickerPage from "./pages/StockPickerPage";
+
 import FestgeldOverview from "./pages/FestgeldOverview";
 import FestgeldDetail from "./pages/FestgeldDetail";
 import TagesgeldOverview from "./pages/TagesgeldOverview";
