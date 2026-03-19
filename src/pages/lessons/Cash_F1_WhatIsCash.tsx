@@ -101,13 +101,14 @@ const Cash_F1_WhatIsCash = () => {
               </h2>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full mb-6">
-              <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center gap-2">
+            <div className="flex items-center justify-center gap-2 max-w-sm mx-auto w-full mb-6">
+              <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center gap-2 flex-1">
                 <span className="text-3xl">🫗</span>
                 <p className="font-body text-sm font-medium text-foreground">Eine Wasserflasche</p>
                 <p className="font-body text-xs text-muted-foreground">= sofort trinkbar</p>
               </div>
-              <div className="rounded-2xl p-4 flex flex-col items-center text-center gap-2" style={{ backgroundColor: '#EFF6FF' }}>
+              <span className="text-xl text-muted-foreground">➜</span>
+              <div className="rounded-2xl p-4 flex flex-col items-center text-center gap-2 flex-1" style={{ backgroundColor: '#EFF6FF' }}>
                 <span className="text-3xl">💶</span>
                 <p className="font-body text-sm font-medium text-foreground">Cash auf dem Konto</p>
                 <p className="font-body text-xs" style={{ color: BLUE }}>= sofort verfügbar</p>
