@@ -57,7 +57,7 @@ const EtfOverview = () => {
               Verfügbares Kapital
             </p>
             <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-              {remaining.toLocaleString('de-CH')} $
+              {remaining.toLocaleString('de-CH')} CHF
             </p>
           </div>
           <div className="flex-1 rounded-3xl bg-[hsl(var(--level-etfs)/0.08)] border border-[hsl(var(--level-etfs)/0.15)] shadow-card p-4">
