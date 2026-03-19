@@ -298,7 +298,7 @@ const ETF_L6_Risk = () => {
                     </div>
                   </div>
                   <div className="w-full rounded-xl bg-amber-500/10 border border-amber-500/20 p-3 mb-2">
-                    <p className="font-body text-xs text-amber-700 text-center">💡 More ETFs ≠ more safety. It\'s about correlation.</p>
+                    <p className="font-body text-xs text-amber-700 text-center">💡 More ETFs ≠ more safety. It's about correlation.</p>
                   </div>
                 </motion.div>
               )}
