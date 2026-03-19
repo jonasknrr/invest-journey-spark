@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -21,7 +21,7 @@ import { levelIntros } from '@/data/levelIntros';
 import LessonFlow from '@/components/lessons/LessonFlow';
 import { getTopic } from '@/data/topicConfig';
 import { useBudget } from '@/contexts/BudgetContext';
-import { getUnlockedSlugs, chapterConfigs } from '@/data/challengeConfig';
+import { getUnlockedSlugs, chapterConfigs, getChapterConfig } from '@/data/challengeConfig';
 import {
   Tooltip,
   TooltipContent,
@@ -60,7 +60,18 @@ const LevelChallenge = () => {
   const location = useLocation();
   const fromSubPage = (location.state as { fromSubPage?: boolean })?.fromSubPage === true;
   const [showIntro, setShowIntro] = useState(!fromSubPage);
-  const { totalBudget, getRemaining, getAllocatedTotal, getAssetTotal } = useBudget();
+  const { totalBudget, getRemaining, getAllocatedTotal, getAssetTotal, setTotalBudget, resetAllocations } = useBudget();
+
+  // Get chapter config and set budget
+  const chapterConfig = levelId ? getChapterConfig(levelId) : undefined;
+  const scenario = chapterConfig?.scenario;
+
+  useEffect(() => {
+    if (scenario && totalBudget !== scenario.budget) {
+      setTotalBudget(scenario.budget);
+      resetAllocations();
+    }
+  }, [scenario?.budget]);
 
   // Render interactive lesson if a topic slug is provided and config exists
   if (levelId && topicSlug) {
@@ -74,13 +85,13 @@ const LevelChallenge = () => {
 
   // Determine which asset classes are unlocked for this chapter
   const unlockedSlugs = levelId ? getUnlockedSlugs(levelId) : new Set<string>();
-  const chapterConfig = chapterConfigs.find(c => c.id === levelId);
   const chapterLabel = chapterConfig?.label ?? 'Challenge';
   const unlockedCount = assetClasses.filter(a => unlockedSlugs.has(a.slug)).length;
 
   const remaining = getRemaining();
   const allocated = getAllocatedTotal();
   const pctUsed = totalBudget > 0 ? Math.round((allocated / totalBudget) * 100) : 0;
+  const currency = scenario?.currency ?? '$';
 
   return (
     <div className="min-h-screen bg-background pb-10">
@@ -103,20 +114,30 @@ const LevelChallenge = () => {
               </div>
             </div>
             <h1 className="font-display text-xl font-bold leading-snug mb-3">
-              Verteile dein Budget und erziele maximale Rendite!
+              {scenario ? scenario.title : 'Verteile dein Budget und erziele maximale Rendite!'}
             </h1>
             <p className="text-sm leading-relaxed opacity-90 font-body">
-              Du hast <span className="font-bold">{totalBudget.toLocaleString('de-CH')} €</span> und brauchst in einem Jahr <span className="font-bold">1.000 €</span>. Versuche so viel Rendite zu erzielen wie möglich.
+              {scenario
+                ? scenario.description
+                : <>Du hast <span className="font-bold">{totalBudget.toLocaleString('de-CH')} {currency}</span> und brauchst in einem Jahr <span className="font-bold">1.000 {currency}</span>. Versuche so viel Rendite zu erzielen wie möglich.</>
+              }
             </p>
             <div className="mt-5 flex items-center gap-3">
               <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3 flex-1">
                 <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Dein Budget</p>
-                <p className="font-display text-2xl font-bold tabular-nums">{totalBudget.toLocaleString('de-CH')} €</p>
+                <p className="font-display text-2xl font-bold tabular-nums">{totalBudget.toLocaleString('de-CH')} {currency}</p>
               </div>
-              <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
-                <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Ziel</p>
-                <p className="font-display text-2xl font-bold tabular-nums">1.000 €</p>
-              </div>
+              {scenario ? (
+                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
+                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Notgroschen</p>
+                  <p className="font-display text-2xl font-bold tabular-nums">2.000 {currency}</p>
+                </div>
+              ) : (
+                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
+                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Ziel</p>
+                  <p className="font-display text-2xl font-bold tabular-nums">1.000 {currency}</p>
+                </div>
+              )}
             </div>
           </div>
         </motion.div>
@@ -130,7 +151,7 @@ const LevelChallenge = () => {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground font-body font-medium">Verfügbares Budget</p>
-                <p className="font-display text-xl font-bold text-foreground tabular-nums">{remaining.toLocaleString('de-CH')} €</p>
+                <p className="font-display text-xl font-bold text-foreground tabular-nums">{remaining.toLocaleString('de-CH')} {currency}</p>
               </div>
             </div>
             <div className="bg-primary/10 text-primary text-xs font-display font-bold px-3 py-1.5 rounded-full">
@@ -207,7 +228,7 @@ const LevelChallenge = () => {
                 </div>
                 <div className="text-right flex-shrink-0">
                   <p className={`font-display font-bold tabular-nums text-[15px] ${assetTotal > 0 ? 'text-foreground' : 'text-muted-foreground'}`}>
-                    {assetTotal > 0 ? `${assetTotal.toLocaleString('de-CH')} €` : '0 €'}
+                    {assetTotal > 0 ? `${assetTotal.toLocaleString('de-CH')} ${currency}` : `0 ${currency}`}
                   </p>
                   <p className="text-xs text-muted-foreground font-body tabular-nums mt-0.5">{assetPct} %</p>
                 </div>
