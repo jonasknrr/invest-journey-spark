@@ -76,7 +76,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
       style={{ transitionDelay: `${index * 0.08}s` }}
     >
       {/* Icon circle with progress ring */}
-      <div className="relative flex-shrink-0" style={{ width: RING_SIZE, height: RING_SIZE }}>
+      <div className="relative flex-shrink-0 z-10" style={{ width: RING_SIZE, height: RING_SIZE }}>
         {/* SVG progress ring */}
         <svg
           className="absolute inset-0"
@@ -115,9 +115,9 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
         {/* Inner icon circle */}
         <div
           className={`absolute rounded-full flex items-center justify-center text-3xl
-            ${isLocked ? 'opacity-50 grayscale' : ''}
+            ${isLocked ? 'opacity-50 grayscale bg-muted' : ''}
             ${isCurrent ? 'animate-pulse-soft' : ''}
-            ${colorMap[level.colorKey]}
+            ${!isLocked ? colorMap[level.colorKey] : ''}
           `}
           style={{
             top: RING_STROKE + 1,
