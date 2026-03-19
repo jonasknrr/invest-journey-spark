@@ -241,7 +241,7 @@ const LevelChallenge = () => {
             onClick={() => navigate(`/challenge/${levelId}/simulation`, { state: { fromSubPage: true } })}
           >
             <Lightning size={20} weight="fill" />
-            Simulation starten
+            Start simulation
           </Button>
         </motion.div>
       </motion.div>
