@@ -496,15 +496,15 @@ const PortfolioSimulation = () => {
     if (ch3_notgroschenOk && ch3_carOk && ch3_renditeOk) {
       challengeStars = 3;
       challengeLabel = 'Master of Diversification!';
-      challengeFeedback = 'Masterful! Your emergency fund is ready, the 20,000 for the car is safely parked, and your remaining wealth is working broadly diversified for long-term growth. This is how wealth building works!';
+      challengeFeedback = 'Outstanding! Your short-term goals are safely funded, and you\'ve used the power of ETFs to perfectly diversify your long-term wealth.';
     } else if (ch3_notgroschenOk && ch3_carOk) {
       challengeStars = 2;
       challengeLabel = 'Safe, but inefficient or risky!';
-      challengeFeedback = 'Your short-term goals are secured. But your long-term capital is either poorly diversified (too few positions) or too much money was left in low-yield cash. Use ETFs for instant diversification!';
+      challengeFeedback = 'Your short-term goals are safe, but your long-term strategy needs work. You are either taking on a cluster risk by picking single stocks, or losing money to inflation by keeping too much in cash.';
     } else {
       challengeStars = 1;
       challengeLabel = 'Financial Planning Failed!';
-      challengeFeedback = 'Dangerous! You failed to secure your emergency fund (10,000 in cash) or the car fund (20,000 in safe assets available within 3 years). If your car breaks down or the payment is due, you may have to sell investments at a loss.';
+      challengeFeedback = 'Warning! You ignored your timeline. If you need 2,000 in 3 years, you cannot lock it in a 5-year deposit or risk it in the volatile stock market.';
     }
   } else if (isChapter1) {
     if (ch1_notgroschenOk && ch1_weiterbildungAvailable && ch1_restInLongTerm) {
