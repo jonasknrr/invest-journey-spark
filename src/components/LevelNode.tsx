@@ -72,7 +72,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
       initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={{ opacity: isLocked ? 0.7 : 1, y: 0 }}
       style={{ transitionDelay: `${index * 0.08}s` }}
     >
       {/* Icon circle with progress ring */}
@@ -115,7 +115,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
         {/* Inner icon circle */}
         <div
           className={`absolute rounded-full flex items-center justify-center text-3xl
-            ${isLocked ? 'opacity-50 grayscale bg-muted' : ''}
+            ${isLocked ? 'grayscale' : ''}
             ${isCurrent ? 'animate-pulse-soft' : ''}
             ${!isLocked ? colorMap[level.colorKey] : ''}
           `}
@@ -125,6 +125,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
             width: RING_SIZE - (RING_STROKE + 1) * 2,
             height: RING_SIZE - (RING_STROKE + 1) * 2,
             boxShadow: isLocked ? 'none' : shadowMap[level.colorKey],
+            ...(isLocked ? { backgroundColor: '#D1D5DB', color: '#F9FAFB' } : {}),
           }}
         >
           {isCompleted && (
