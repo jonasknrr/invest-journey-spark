@@ -42,9 +42,16 @@ export const chapterConfigs: ChapterConfig[] = [
   },
   {
     id: 'chapter-3',
-    label: 'Kapitel 3 – ETFs & Indexe',
+    label: 'Kapitel 3 – Vermögensaufbau',
     categoryId: 'etfs',
     unlockedSlugs: ['tagesgeld', 'festgeld', 'aktien', 'etfs'],
+    scenario: {
+      budget: 100000,
+      currency: 'CHF',
+      title: 'Vermögensaufbau',
+      description:
+        'Du hast 100.000 CHF zur Verfügung. Deine Ziele:\n1. Du brauchst zwingend einen Notgroschen von 10.000 CHF, der jederzeit abrufbar ist.\n2. In genau 3 Jahren möchtest du eine Immobilie anzahlen, dafür brauchst du sicher 30.000 CHF.\n3. Den Rest deines Geldes (60.000 CHF) möchtest du für deinen Ruhestand anlegen und dabei die Rendite maximieren, ohne ein Klumpenrisiko einzugehen.\nVerteile dein Budget klug!',
+    },
   },
 ];
 
