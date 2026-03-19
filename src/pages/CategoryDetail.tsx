@@ -96,7 +96,7 @@ const CategoryDetail = () => {
       </motion.div>
 
       {/* Sub levels */}
-      <div className="max-w-sm mx-auto px-5 -mt-5 pb-20 space-y-3">
+      <div className="max-w-sm mx-auto px-5 mt-4 pb-20 space-y-3">
         {level.subLevels.map((sub, i) => {
           if (!isEtf) {
             return (
