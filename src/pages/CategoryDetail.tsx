@@ -85,7 +85,7 @@ const CategoryDetail = () => {
                   {Math.round(averageProgress * 100)}%
                 </span>
                 <span className="text-primary-foreground/70 text-sm">
-                  · {completedSubs}/{level.subLevels.length} Lektionen
+                  · {completedSubs}/{level.subLevels.length} Lessons
                 </span>
               </div>
             );
