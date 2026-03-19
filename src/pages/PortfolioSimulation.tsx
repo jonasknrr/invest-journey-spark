@@ -424,7 +424,10 @@ const PortfolioSimulation = () => {
   const safeAmount = tagesgeldAmount + shortTermFestgeld;
   const liquidityPassed = safeAmount >= 1000;
   const riskPassed = divScore >= 7;
-  const challengeStars = liquidityPassed ? (riskPassed ? 3 : 2) : 1;
+  const opportunityCostPenalty = safePct > 60;
+  const challengeStars = liquidityPassed
+    ? (riskPassed && !opportunityCostPenalty ? 3 : 2)
+    : 1;
 
   const assetAmounts = ASSET_CLASSES.map(ac => ({
     ...ac,
@@ -635,7 +638,7 @@ const PortfolioSimulation = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1.0 }}
                 >
-                  {challengeStars === 3 ? 'Perfekt gemeistert!' : challengeStars === 2 ? 'Ziel erreicht, aber riskant!' : 'Ziel verfehlt!'}
+                  {challengeStars === 3 ? 'Perfekt gemeistert!' : challengeStars === 2 ? (opportunityCostPenalty ? 'Rendite verschenkt!' : 'Ziel erreicht, aber riskant!') : 'Ziel verfehlt!'}
                 </motion.p>
 
                 {/* Feedback */}
@@ -648,7 +651,9 @@ const PortfolioSimulation = () => {
                   {challengeStars === 3
                     ? 'Perfekt! Du hast die benötigten 1.000 $ für das nächste Jahr sicher geparkt und den Rest deines Kapitals intelligent und breit gestreut investiert.'
                     : challengeStars === 2
-                    ? 'Du hast zwar die 1.000 $ sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.'
+                    ? (opportunityCostPenalty
+                        ? 'Du hast zwar die 1.000 $ sicher, aber zu viel Kapital liegt in risikoarmen Anlagen. Durch die Inflation verlierst du real an Kaufkraft — das sind Opportunitätskosten.'
+                        : 'Du hast zwar die 1.000 $ sicher, aber der Rest deines Portfolios weist ein hohes Klumpenrisiko auf. Bei einem Crash hättest du starke Verluste erlitten.')
                     : 'Du hast das wichtigste Ziel ignoriert: Du hast keine 1.000 $ sicher für das nächste Jahr zurückgelegt. Aktien schwanken und langfristiges Festgeld ist blockiert — wenn du das Geld jetzt brauchst, hast du ein Problem.'}
                 </motion.p>
 
