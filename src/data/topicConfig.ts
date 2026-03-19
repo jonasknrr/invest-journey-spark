@@ -46,7 +46,7 @@ const aktienTopics: TopicConfig[] = [
         'Die Bewertung der AlphaFirma AG steigt dieses Jahr. Was passiert mit deiner Aktie?',
       answers: [
         { id: 'a', text: 'Nichts — das betrifft mich nicht' },
-        { id: 'b', text: 'Sie wird wahrscheinlich mehr wert' },
+        { id: 'b', text: 'Sie wird mehr wert' },
         { id: 'c', text: 'Ich muss mehr dafür bezahlen' },
         { id: 'd', text: 'Die Aktie verschwindet' },
       ],
