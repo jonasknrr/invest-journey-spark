@@ -43,7 +43,7 @@ const quiz1: QuizConfig = {
 };
 
 const quiz2: QuizConfig = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question:
     "You know you'll need CHF 5'000 for a trip in 6 months. Is a 2-year fixed deposit a good idea?",
   answers: [
