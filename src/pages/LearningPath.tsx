@@ -18,7 +18,7 @@ const chapterColors: Record<string, string> = {
   anleihen: '#D1D5DB',
   currencies: '#D1D5DB',
   crypto: '#D1D5DB',
-  gold: '#D1D5DB',
+  metals: '#D1D5DB',
   immobilien: '#D1D5DB',
 };
 
