@@ -13,6 +13,7 @@ import {
   ArrowRight,
   DiamondsFour,
   CurrencyBtc,
+  Lock,
 } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import LevelIntroOverlay from '@/components/LevelIntroOverlay';
@@ -20,6 +21,12 @@ import { levelIntros } from '@/data/levelIntros';
 import LessonFlow from '@/components/lessons/LessonFlow';
 import { getTopic } from '@/data/topicConfig';
 import { useBudget } from '@/contexts/BudgetContext';
+import { getUnlockedSlugs, chapterConfigs } from '@/data/challengeConfig';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 interface AssetClass {
   name: string;
@@ -65,8 +72,12 @@ const LevelChallenge = () => {
 
   const intro = levelId ? levelIntros[levelId] : undefined;
 
+  // Determine which asset classes are unlocked for this chapter
+  const unlockedSlugs = levelId ? getUnlockedSlugs(levelId) : new Set<string>();
+  const chapterConfig = chapterConfigs.find(c => c.id === levelId);
+  const chapterLabel = chapterConfig?.label ?? 'Challenge';
+  const unlockedCount = assetClasses.filter(a => unlockedSlugs.has(a.slug)).length;
 
-  /* ── Default Challenge (existing) ── */
   const remaining = getRemaining();
   const allocated = getAllocatedTotal();
   const pctUsed = totalBudget > 0 ? Math.round((allocated / totalBudget) * 100) : 0;
@@ -88,7 +99,7 @@ const LevelChallenge = () => {
             <div className="flex items-center gap-2 mb-3">
               <div className="flex items-center gap-1.5 bg-primary-foreground/20 rounded-full px-3 py-1">
                 <Trophy size={16} weight="fill" />
-                <span className="text-xs font-display font-semibold">Level 1 – Challenge</span>
+                <span className="text-xs font-display font-semibold">{chapterLabel}</span>
               </div>
             </div>
             <h1 className="font-display text-xl font-bold leading-snug mb-3">
@@ -139,14 +150,43 @@ const LevelChallenge = () => {
         {/* Asset Classes */}
         <motion.div variants={itemVariants} className="flex items-center justify-between pt-1">
           <h2 className="font-display text-lg font-bold text-foreground">Anlageklassen</h2>
-          <span className="text-xs text-muted-foreground font-body">{assetClasses.length} verfügbar</span>
+          <span className="text-xs text-muted-foreground font-body">{unlockedCount} von {assetClasses.length} verfügbar</span>
         </motion.div>
 
         <motion.div variants={containerVariants} className="space-y-3">
           {assetClasses.map((asset) => {
             const Icon = asset.icon;
+            const isUnlocked = unlockedSlugs.has(asset.slug);
             const assetTotal = getAssetTotal(asset.slug);
             const assetPct = totalBudget > 0 ? Math.round((assetTotal / totalBudget) * 100) : 0;
+
+            if (!isUnlocked) {
+              return (
+                <Tooltip key={asset.name}>
+                  <TooltipTrigger asChild>
+                    <motion.div
+                      variants={itemVariants}
+                      className="rounded-3xl bg-card border border-border shadow-card p-4 flex items-center gap-4 opacity-50 grayscale cursor-not-allowed select-none"
+                    >
+                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 bg-muted">
+                        <Icon size={26} weight="fill" className="text-muted-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-display font-bold text-muted-foreground text-[15px]">{asset.name}</p>
+                        <p className="text-xs text-muted-foreground/60 font-body mt-0.5 flex items-center gap-1">
+                          <Lock size={12} weight="bold" />
+                          Wird in einem späteren Kapitel freigeschaltet
+                        </p>
+                      </div>
+                      <Lock size={18} className="text-muted-foreground/40 flex-shrink-0" />
+                    </motion.div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Diese Anlageklasse wird in einem späteren Kapitel freigeschaltet.</p>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            }
 
             return (
               <motion.div
