@@ -86,7 +86,7 @@ const AktienOverview = () => {
                   : 'bg-muted text-muted-foreground'
               }`}
             >
-              {m === 'all' ? 'Alle' : m}
+              {m === 'all' ? 'All' : m}
             </button>
           ))}
         </motion.div>
