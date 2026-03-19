@@ -87,6 +87,11 @@ const ETF_L7_AccVsDist = () => {
 
   const progress = (currentStep / (TOTAL_STEPS - 1)) * 100;
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e7', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
+
   // No hearts effect
   useEffect(() => {
     if (hearts === 0) {

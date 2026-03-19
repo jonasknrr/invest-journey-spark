@@ -65,6 +65,7 @@ const quiz2: QuizConfig = {
 /* ── Component ── */
 const Cash_F2_Inflation = () => {
   const navigate = useNavigate();
+  const { updateLessonProgress } = useProgressStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts, setHearts] = useState(3);
 
@@ -81,6 +82,11 @@ const Cash_F2_Inflation = () => {
   const [starsShown, setStarsShown] = useState(0);
 
   const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
+
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('festgeld-f2', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
 
   const showCTA = () => {
     if (currentStep === 0) return true;

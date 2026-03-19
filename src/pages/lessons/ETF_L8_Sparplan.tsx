@@ -67,6 +67,11 @@ const ETF_L8_Sparplan = () => {
 
   const progress = (currentStep / (TOTAL_STEPS - 1)) * 100;
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e8', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
+
   // No hearts effect
   useEffect(() => {
     if (hearts === 0) {

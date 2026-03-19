@@ -108,6 +108,11 @@ const ETF_L6_Risk = () => {
 
   const progress = (currentStep / (TOTAL_STEPS - 1)) * 100;
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e6', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
+
   // No hearts effect
   useEffect(() => {
     if (hearts === 0) {

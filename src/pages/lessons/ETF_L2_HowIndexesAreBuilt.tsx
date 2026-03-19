@@ -78,6 +78,10 @@ const ETF_L2_HowIndexesAreBuilt = () => {
   const [showDeepDive, setShowDeepDive] = useState(false);
 
   // Matching game correct answers: marktKap→C, preis→B, gleich→A
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e2', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
   const correctMap: Record<string, string> = { marktKap: 'C', preis: 'B', gleich: 'A' };
 
   const handleMatchTap = (cardId: string, method: 'marktKap' | 'preis' | 'gleich') => {

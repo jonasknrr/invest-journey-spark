@@ -32,10 +32,16 @@ const InfoCard = ({ icon, title, subtext, badge, badgeColor = 'bg-green-100 text
 
 const Cash_F1_WhatIsCash = () => {
   const navigate = useNavigate();
+  const { updateLessonProgress } = useProgressStore();
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts] = useState(3);
   const totalSteps = 3;
   const progress = ((currentStep) / (totalSteps - 1)) * 100;
+
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('festgeld-f1', Math.min(currentStep / (totalSteps - 1), 1));
+  }, [currentStep]);
 
   const handleNext = () => {
     if (currentStep >= totalSteps - 1) {

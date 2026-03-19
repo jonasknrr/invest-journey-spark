@@ -84,6 +84,11 @@ const ETF_L5_Costs = () => {
 
   const progress = (currentStep / (TOTAL_STEPS - 1)) * 100;
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e5', Math.min(currentStep / (TOTAL_STEPS - 1), 1));
+  }, [currentStep]);
+
   // No hearts effect
   useEffect(() => {
     if (hearts === 0) {
