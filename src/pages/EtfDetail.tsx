@@ -127,7 +127,7 @@ const EtfDetail = () => {
           inputMode="numeric"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Betrag eingeben"
+          placeholder="Enter amount"
           className="mt-6 w-full max-w-xs h-14 rounded-2xl border-2 border-border bg-card text-center font-display text-lg font-bold text-foreground focus:border-[hsl(var(--level-etfs))] focus:outline-none transition-colors tabular-nums"
         />
       </div>
