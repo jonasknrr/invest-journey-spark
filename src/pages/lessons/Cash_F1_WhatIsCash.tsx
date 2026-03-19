@@ -108,7 +108,7 @@ const Cash_F1_WhatIsCash = () => {
                 <p className="font-body text-xs text-muted-foreground">= sofort trinkbar</p>
               </div>
               <div className="rounded-2xl p-4 flex flex-col items-center text-center gap-2" style={{ backgroundColor: '#EFF6FF' }}>
-                <span className="text-3xl">🏦</span>
+                <span className="text-3xl">💶</span>
                 <p className="font-body text-sm font-medium text-foreground">Cash auf dem Konto</p>
                 <p className="font-body text-xs" style={{ color: BLUE }}>= sofort verfügbar</p>
               </div>
