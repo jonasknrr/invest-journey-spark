@@ -462,14 +462,14 @@ const PortfolioSimulation = () => {
     .filter(fp => fp.durationYears === 5)
     .reduce((s, fp) => s + getProductAmount('festgeld', fp.slug), 0);
 
-  // ── Chapter 3: New conditions (emergency 10k, car 20k in 3y, 70k long-term with ETFs) ──
-  const ch3_notgroschenOk = tagesgeldAmount >= 10000;
-  // Car fund: 20k in cash + fixed deposits ≤ 3 years
+  // ── Chapter 3: New conditions (emergency 1k, purchase 2k in 3y, 7k long-term with ETFs) ──
+  const ch3_notgroschenOk = tagesgeldAmount >= 1000;
+  // Purchase fund: 2k in cash + fixed deposits ≤ 3 years
   const ch3_carFundAvailable = tagesgeldAmount + within3YearsFestgeld;
-  // Must have emergency (10k in cash) AND car fund (20k in cash or FD ≤ 3y, separate from emergency)
-  const ch3_carOk = (ch3_carFundAvailable - 10000) >= 20000; // after setting aside 10k emergency
+  // Must have emergency (1k in cash) AND purchase fund (2k in cash or FD ≤ 3y, separate from emergency)
+  const ch3_carOk = (ch3_carFundAvailable - 1000) >= 2000; // after setting aside 1k emergency
   const ch3_riskyTotal = riskyInvested;
-  const ch3_riskyEnough = ch3_riskyTotal >= 60000; // at least ~60k in risky assets
+  const ch3_riskyEnough = ch3_riskyTotal >= 6000; // at least ~6k in risky assets
   const ch3_divGood = divResult.rating === 'Very Good' || divResult.rating === 'Good';
   const ch3_renditeOk = ch3_riskyEnough && ch3_divGood;
 
@@ -496,15 +496,15 @@ const PortfolioSimulation = () => {
     if (ch3_notgroschenOk && ch3_carOk && ch3_renditeOk) {
       challengeStars = 3;
       challengeLabel = 'Master of Diversification!';
-      challengeFeedback = 'Masterful! Your emergency fund is ready, the 20,000 for the car is safely parked, and your remaining wealth is working broadly diversified for long-term growth. This is how wealth building works!';
+      challengeFeedback = 'Outstanding! Your short-term goals are safely funded, and you\'ve used the power of ETFs to perfectly diversify your long-term wealth.';
     } else if (ch3_notgroschenOk && ch3_carOk) {
       challengeStars = 2;
       challengeLabel = 'Safe, but inefficient or risky!';
-      challengeFeedback = 'Your short-term goals are secured. But your long-term capital is either poorly diversified (too few positions) or too much money was left in low-yield cash. Use ETFs for instant diversification!';
+      challengeFeedback = 'Your short-term goals are safe, but your long-term strategy needs work. You are either taking on a cluster risk by picking single stocks, or losing money to inflation by keeping too much in cash.';
     } else {
       challengeStars = 1;
       challengeLabel = 'Financial Planning Failed!';
-      challengeFeedback = 'Dangerous! You failed to secure your emergency fund (10,000 in cash) or the car fund (20,000 in safe assets available within 3 years). If your car breaks down or the payment is due, you may have to sell investments at a loss.';
+      challengeFeedback = 'Warning! You ignored your timeline. If you need 2,000 in 3 years, you cannot lock it in a 5-year deposit or risk it in the volatile stock market.';
     }
   } else if (isChapter1) {
     if (ch1_notgroschenOk && ch1_weiterbildungAvailable && ch1_restInLongTerm) {
@@ -783,12 +783,12 @@ const PortfolioSimulation = () => {
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         ch3_notgroschenOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
                       }`}>
-                        {ch3_notgroschenOk ? '✓' : '✗'} Emergency: {tagesgeldAmount.toLocaleString('de-CH')} / 10,000 {currency}
+                        {ch3_notgroschenOk ? '✓' : '✗'} Emergency: {tagesgeldAmount.toLocaleString('de-CH')} / 1,000 {currency}
                       </span>
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         ch3_carOk ? 'bg-primary/10 text-primary' : 'bg-destructive/10 text-destructive'
                       }`}>
-                        {ch3_carOk ? '✓' : '✗'} Car fund: {Math.max(0, ch3_carFundAvailable - 10000).toLocaleString('de-CH')} / 20,000 {currency}
+                        {ch3_carOk ? '✓' : '✗'} Purchase fund: {Math.max(0, ch3_carFundAvailable - 1000).toLocaleString('de-CH')} / 2,000 {currency}
                       </span>
                       <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold ${
                         ch3_renditeOk ? 'bg-primary/10 text-primary' : 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400'
@@ -1076,25 +1076,31 @@ const PortfolioSimulation = () => {
                 if (!ch3_notgroschenOk) {
                   weaknesses.push({
                     icon: '🚨',
-                    text: `Insufficient emergency fund: You only have ${tagesgeldAmount.toLocaleString('de-CH')} ${currency} in call money, but need at least 10,000 ${currency} as an immediately available reserve.`,
+                    text: `Insufficient emergency fund: You only have ${tagesgeldAmount.toLocaleString('de-CH')} ${currency} in call money, but need at least 1,000 ${currency} as an immediately available reserve.`,
                   });
                 }
                 if (!ch3_carOk) {
                   weaknesses.push({
-                    icon: '🚗',
-                    text: `Car fund at risk: Only ${Math.max(0, ch3_carFundAvailable - 10000).toLocaleString('de-CH')} ${currency} is safely available within 3 years for the car — you need 20,000 ${currency}.`,
+                    icon: '🛒',
+                    text: `Purchase fund at risk: Only ${Math.max(0, ch3_carFundAvailable - 1000).toLocaleString('de-CH')} ${currency} is safely available within 3 years for the purchase — you need 2,000 ${currency}.`,
                   });
                 }
                 if (fiveYearFestgeld > 0 && !ch3_carOk) {
                   weaknesses.push({
                     icon: '⏰',
-                    text: `Wrong term: You locked ${fiveYearFestgeld.toLocaleString('de-CH')} ${currency} for 5 years, even though you need 20,000 ${currency} in 3 years.`,
+                    text: `Wrong term: You locked ${fiveYearFestgeld.toLocaleString('de-CH')} ${currency} for 5 years, even though you need 2,000 ${currency} in 3 years.`,
                   });
                 }
-                if (ch3_riskyTotal >= 50000 && etfInvested === 0) {
+                if (fiveYearFestgeld >= 3000) {
+                  weaknesses.push({
+                    icon: '🔒',
+                    text: `Liquidity Trap: You locked too much money away for 5 years. Remember you need 2,000 in exactly 3 years!`,
+                  });
+                }
+                if (ch3_riskyTotal >= 5000 && etfInvested === 0) {
                   weaknesses.push({
                     icon: '📊',
-                    text: `Missed ETF Opportunity: Picking single stocks with your long-term capital is risky. Use index funds (ETFs) to instantly spread your risk across dozens of companies.`,
+                    text: `Missed ETF Opportunity: Picking single stocks with your 7,000 long-term capital is highly risky. Use index funds (ETFs) to instantly spread your risk across dozens of companies.`,
                   });
                 }
                 if (ch3_riskyTotal > 0 && !ch3_divGood) {
@@ -1103,17 +1109,17 @@ const PortfolioSimulation = () => {
                     text: `Concentration risk (${divResult.rating}): Your capital is spread across too few positions (HHI: ${divResult.hhi.toLocaleString('de-CH')}). Diversify more broadly!`,
                   });
                 }
-                if (ch3_riskyTotal < 60000 && ch3_notgroschenOk && ch3_carOk) {
+                if (ch3_riskyTotal < 6000 && ch3_notgroschenOk && ch3_carOk) {
                   weaknesses.push({
                     icon: '💸',
-                    text: `Returns wasted: Only ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} is working long-term for you. You could invest approximately 70,000 ${currency} for growth.`,
+                    text: `Returns wasted: Only ${ch3_riskyTotal.toLocaleString('de-CH')} ${currency} is working long-term for you. You could invest approximately 7,000 ${currency} for growth.`,
                   });
                 }
                 // Praise for great ETF usage
                 if (ch3_riskyTotal > 0 && ch3_divGood && etfInvested > 0) {
                   weaknesses.push({
                     icon: '🌍',
-                    text: `Excellent Diversification: By utilizing ETFs, you've instantly minimized your exposure to single-company failures and secured a robust portfolio.`,
+                    text: `Excellent Diversification: By utilizing ETFs, you've instantly minimized your exposure to single-company failures and secured a robust, professional-grade portfolio.`,
                   });
                 }
               } else {

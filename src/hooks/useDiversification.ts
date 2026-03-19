@@ -111,16 +111,14 @@ export function calcDiversificationWithETFs(
 
   if (numPositions === 0) {
     rating = 'Very Good';
-  } else if (hhi === 10_000 || fulfillmentRatio < 0.25) {
+  } else if (hhi >= 5_000) {
     rating = 'Bad';
-  } else if (hhi >= 5_000 || fulfillmentRatio < 0.5) {
+  } else if (hhi >= 2_500) {
     rating = 'Poor';
-  } else if (hhi < 1_500 && fulfillmentRatio >= 1) {
+  } else if (hhi < 1_500 && fulfillmentRatio >= 0.75) {
     rating = 'Very Good';
-  } else if (hhi < 2_500 && fulfillmentRatio >= 0.75) {
+  } else if (hhi < 2_500 && fulfillmentRatio >= 0.5) {
     rating = 'Good';
-  } else if (hhi < 5_000 && fulfillmentRatio >= 0.5) {
-    rating = 'Fair';
   } else {
     rating = 'Fair';
   }
