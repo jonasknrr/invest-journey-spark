@@ -114,7 +114,7 @@ const QuizStep = ({ question, answers, correctId, correctFeedback, wrongFeedback
               whileTap={{ scale: 0.96 }}
               className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft"
             >
-              Complete lesson
+              {isLastQuiz ? 'Complete lesson' : 'Next question →'}
             </motion.button>
           </motion.div>
         )}
