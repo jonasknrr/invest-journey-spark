@@ -5,39 +5,6 @@ import { X, Heart } from "lucide-react";
 
 const BLUE = "#1A56DB";
 
-interface CardProps {
-  icon: string;
-  title: string;
-  subtext: string;
-  badge?: string;
-  badgeColor?: string;
-  borderColor?: string;
-}
-
-const InfoCard = ({
-  icon,
-  title,
-  subtext,
-  badge,
-  badgeColor = "bg-green-100 text-green-700",
-  borderColor = "border-l-blue-500",
-}: CardProps) => (
-  <div className={`rounded-xl border border-border bg-card p-3 flex gap-3 items-start border-l-4 ${borderColor}`}>
-    <span className="text-2xl mt-0.5">{icon}</span>
-    <div className="flex-1">
-      <p className="font-display text-sm font-bold text-foreground">{title}</p>
-      <p className="font-body text-xs text-muted-foreground">{subtext}</p>
-      {badge && (
-        <span
-          className={`inline-block mt-1.5 font-body text-[10px] font-semibold px-2 py-0.5 rounded-full ${badgeColor}`}
-        >
-          {badge}
-        </span>
-      )}
-    </div>
-  </div>
-);
-
 const Cash_F1_WhatIsCash = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
@@ -96,32 +63,25 @@ const Cash_F1_WhatIsCash = () => {
             exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col items-center text-center mb-6">
-              <h2 className="font-display text-2xl font-bold text-foreground leading-tight">
-                Stell dir ein Glas voll mit Wasser vor...
-              </h2>
-            </div>
+            <h2 className="font-display text-2xl font-bold text-foreground text-center mb-6 leading-tight">
+              Du kennst ein Wasserglas?
+            </h2>
 
             <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full mb-6">
-              <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center gap-2">
-                <span className="text-3xl">💧</span>
-                <p className="font-body text-sm font-medium text-foreground">Eine Wasserglas</p>
-                <p className="font-body text-xs text-muted-foreground">= sofort trinkbar</p>
+              <div className="bg-gray-100 rounded-2xl p-6 flex flex-col items-center gap-2">
+                <span className="text-5xl">💧</span>
+                <p className="font-semibold text-gray-800">Ein Wasserglas</p>
+                <p className="text-sm text-gray-500 text-center">= sofort trinkbar</p>
               </div>
-              <div
-                className="rounded-2xl p-4 flex flex-col items-center text-center gap-2"
-                style={{ backgroundColor: "#EFF6FF" }}
-              >
-                <span className="text-3xl">🏦</span>
-                <p className="font-body text-sm font-medium text-foreground">Geld auf dem Konto</p>
-                <p className="font-body text-xs" style={{ color: BLUE }}>
-                  = sofort verfügbar
-                </p>
+              <div className="bg-blue-50 rounded-2xl p-6 flex flex-col items-center gap-2 border border-blue-100">
+                <span className="text-5xl">🏦</span>
+                <p className="font-semibold text-gray-800">Geld auf dem Konto</p>
+                <p className="text-sm text-blue-500 text-center font-medium">= sofort verfügbar</p>
               </div>
             </div>
 
             <p className="font-body text-sm text-muted-foreground text-center max-w-xs mx-auto mb-6">
-              Geld auf dem Konto ist wie Wasser in einer Flasche — immer sofort nutzbar.
+              Geld auf dem Konto ist wie Wasser in einem Glas — immer sofort nutzbar.
             </p>
 
             <div className="flex justify-end mt-auto">
@@ -135,7 +95,7 @@ const Cash_F1_WhatIsCash = () => {
           </motion.div>
         )}
 
-        {/* ── Slide 2: Was gehört dazu? ── */}
+        {/* ── Slide 2: Was gehört zu Cash? ── */}
         {currentStep === 1 && (
           <motion.div
             key="slide1"
@@ -150,42 +110,45 @@ const Cash_F1_WhatIsCash = () => {
             </h2>
 
             <div className="flex flex-col gap-3 max-w-sm mx-auto w-full mb-5">
-              <InfoCard
-                icon="💵"
-                title="Bargeld"
-                subtext="Scheine und Münzen in deiner Tasche"
-                badge="Sofort verfügbar"
-                badgeColor="bg-green-100 text-green-700"
-                borderColor="border-l-blue-500"
-              />
-              <InfoCard
-                icon="🏦"
-                title="Girokonto"
-                subtext="Dein alltägliches Bankkonto"
-                badge="Sofort verfügbar"
-                badgeColor="bg-green-100 text-green-700"
-                borderColor="border-l-blue-500"
-              />
-              <InfoCard
-                icon="💰"
-                title="Tagesgeldkonto"
-                subtext="Sparkonto mit täglicher Verfügbarkeit"
-                badge="Cash Equivalent"
-                badgeColor="bg-blue-100 text-blue-700"
-                borderColor="border-l-blue-500"
-              />
-              <InfoCard
-                icon="📗"
-                title="Sparbuch"
-                subtext="Klassische Sparform mit kleinen Zinsen"
-                badge="Cash Equivalent"
-                badgeColor="bg-blue-100 text-blue-700"
-                borderColor="border-l-blue-500"
-              />
+              <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border-l-4 border-l-green-500 shadow-sm">
+                <span className="text-3xl">💵</span>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900">Bargeld</p>
+                  <p className="text-sm text-gray-500">Scheine und Münzen in deiner Tasche</p>
+                </div>
+                <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">Sofort verfügbar</span>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border-l-4 border-l-green-500 shadow-sm">
+                <span className="text-3xl">🏦</span>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900">Girokonto</p>
+                  <p className="text-sm text-gray-500">Dein alltägliches Bankkonto</p>
+                </div>
+                <span className="text-xs font-bold text-green-700 bg-green-100 px-2 py-1 rounded-full">Sofort verfügbar</span>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border-l-4 border-l-blue-400 shadow-sm">
+                <span className="text-3xl">💰</span>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900">Tagesgeldkonto</p>
+                  <p className="text-sm text-gray-500">Sparkonto mit täglicher Verfügbarkeit</p>
+                </div>
+                <span className="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-1 rounded-full">Cash Equivalent</span>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border-l-4 border-l-blue-400 shadow-sm">
+                <span className="text-3xl">📗</span>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900">Sparbuch</p>
+                  <p className="text-sm text-gray-500">Klassische Sparform mit kleinen Zinsen</p>
+                </div>
+                <span className="text-xs font-bold text-blue-700 bg-blue-100 px-2 py-1 rounded-full">Cash Equivalent</span>
+              </div>
             </div>
 
-            <div className="rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 max-w-sm mx-auto w-full mb-5">
-              <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+            <div className="bg-yellow-50 border-l-4 border-l-yellow-400 rounded-xl p-4 max-w-sm mx-auto w-full mb-5">
+              <p className="text-sm text-yellow-800">
                 💡 Cash Equivalents sind fast so gut wie Cash — nur mit etwas mehr Zinsen.
               </p>
             </div>
@@ -195,7 +158,7 @@ const Cash_F1_WhatIsCash = () => {
                 onClick={handleNext}
                 className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors"
               >
-                Weiter →
+                Nächste →
               </button>
             </div>
           </motion.div>
@@ -211,37 +174,41 @@ const Cash_F1_WhatIsCash = () => {
             exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.3 }}
           >
-            <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">Das hier ist kein Cash.</h2>
+            <h2 className="font-display text-xl font-bold text-foreground text-center mb-5">
+              Das hier ist kein Cash.
+            </h2>
 
             <div className="flex flex-col gap-3 max-w-sm mx-auto w-full mb-5">
-              <InfoCard
-                icon="📈"
-                title="Aktien"
-                subtext="Wert schwankt täglich — nicht sofort sicher verfügbar"
-                badge="Kein Cash"
-                badgeColor="bg-red-100 text-red-700"
-                borderColor="border-l-red-400"
-              />
-              <InfoCard
-                icon="🏠"
-                title="Immobilie"
-                subtext="Verkauf dauert Monate"
-                badge="Kein Cash"
-                badgeColor="bg-red-100 text-red-700"
-                borderColor="border-l-red-400"
-              />
-              <InfoCard
-                icon="🔒"
-                title="Festgeld"
-                subtext="Gesperrt bis Laufzeitende"
-                badge="Eingeschränkt"
-                badgeColor="bg-orange-100 text-orange-700"
-                borderColor="border-l-red-400"
-              />
+              <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border-l-4 border-l-red-400 shadow-sm">
+                <span className="text-3xl">📈</span>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900">Aktien</p>
+                  <p className="text-sm text-gray-500">Wert schwankt täglich — nicht sofort sicher verfügbar</p>
+                </div>
+                <span className="text-xs font-bold text-red-700 bg-red-100 px-2 py-1 rounded-full">Kein Cash</span>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border-l-4 border-l-red-400 shadow-sm">
+                <span className="text-3xl">🏠</span>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900">Immobilie</p>
+                  <p className="text-sm text-gray-500">Verkauf dauert Monate</p>
+                </div>
+                <span className="text-xs font-bold text-red-700 bg-red-100 px-2 py-1 rounded-full">Kein Cash</span>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-white rounded-2xl border-l-4 border-l-orange-400 shadow-sm">
+                <span className="text-3xl">🔒</span>
+                <div className="flex-1">
+                  <p className="font-bold text-gray-900">Festgeld</p>
+                  <p className="text-sm text-gray-500">Gesperrt bis Laufzeitende</p>
+                </div>
+                <span className="text-xs font-bold text-orange-700 bg-orange-100 px-2 py-1 rounded-full">Eingeschränkt</span>
+              </div>
             </div>
 
-            <div className="rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 max-w-sm mx-auto w-full mb-5">
-              <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+            <div className="bg-yellow-50 border-l-4 border-l-yellow-400 rounded-xl p-4 max-w-sm mx-auto w-full mb-5">
+              <p className="text-sm text-yellow-800">
                 💡 Je schneller du an dein Geld kommst, desto liquider ist die Anlage — das lernst du im nächsten Level.
               </p>
             </div>
@@ -251,7 +218,7 @@ const Cash_F1_WhatIsCash = () => {
                 onClick={handleNext}
                 className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors"
               >
-                Abschliessen ✓
+                Nächste →
               </button>
             </div>
           </motion.div>
