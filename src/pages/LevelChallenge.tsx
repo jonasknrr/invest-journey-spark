@@ -250,9 +250,6 @@ const LevelChallenge = () => {
         </motion.div>
       </motion.div>
 
-      {intro && (
-        <LevelIntroOverlay intro={intro} open={showIntro} onClose={() => setShowIntro(false)} />
-      )}
     </div>
   );
 };
