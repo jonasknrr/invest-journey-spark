@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -14,6 +14,7 @@ import {
   DiamondsFour,
   CurrencyBtc,
   Lock,
+  Scales,
 } from '@phosphor-icons/react';
 import { Button } from '@/components/ui/button';
 import LevelIntroOverlay from '@/components/LevelIntroOverlay';
@@ -22,6 +23,7 @@ import LessonFlow from '@/components/lessons/LessonFlow';
 import { getTopic } from '@/data/topicConfig';
 import { useBudget } from '@/contexts/BudgetContext';
 import { getUnlockedSlugs, chapterConfigs, getChapterConfig } from '@/data/challengeConfig';
+import { calcDiversificationWithETFs, ETF_CONSTITUENTS } from '@/hooks/useDiversification';
 import {
   Tooltip,
   TooltipContent,
@@ -54,17 +56,52 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 300, damping: 24 } },
 };
 
+/** Resolve ETF name from ticker for constituent lookup */
+function resolveEtfName(ticker: string): string {
+  const nameMap: Record<string, string> = {
+    '^GDAXI': 'DAX',
+    '^N225': 'Nikkei 225',
+    '^DJI': 'DJIA',
+    '^STOXX50E': 'EuroStoxx 50',
+    '^SSMI': 'SMI',
+    'DAX': 'DAX',
+    'Nikkei 225': 'Nikkei 225',
+    'DJIA': 'DJIA',
+    'EuroStoxx 50': 'EuroStoxx 50',
+    'SMI': 'SMI',
+  };
+  return nameMap[ticker] ?? ticker;
+}
+
 const LevelChallenge = () => {
   const { levelId, topicSlug } = useParams<{ levelId: string; topicSlug?: string }>();
   const navigate = useNavigate();
   const location = useLocation();
   const fromSubPage = (location.state as { fromSubPage?: boolean })?.fromSubPage === true;
   const [showIntro, setShowIntro] = useState(!fromSubPage);
-  const { totalBudget, getRemaining, getAllocatedTotal, getAssetTotal, setTotalBudget, resetAllocations } = useBudget();
+  const { totalBudget, getRemaining, getAllocatedTotal, getAssetTotal, setTotalBudget, resetAllocations, allocations } = useBudget();
 
   // Get chapter config and set budget
   const chapterConfig = levelId ? getChapterConfig(levelId) : undefined;
   const scenario = chapterConfig?.scenario;
+
+  // ── Real-time diversification indicator ──
+  const aktienAllocs = allocations['aktien'] ?? {};
+  const etfAllocs = allocations['etfs'] ?? {};
+
+  const divResult = useMemo(() => {
+    const positions: { amount: number; name: string }[] = [];
+    for (const [ticker, amount] of Object.entries(aktienAllocs)) {
+      if (amount > 0) positions.push({ amount, name: ticker });
+    }
+    for (const [ticker, amount] of Object.entries(etfAllocs)) {
+      if (amount > 0) positions.push({ amount, name: resolveEtfName(ticker) });
+    }
+    const investedCapital = positions.reduce((s, p) => s + p.amount, 0);
+    return calcDiversificationWithETFs(positions, investedCapital);
+  }, [JSON.stringify(aktienAllocs), JSON.stringify(etfAllocs)]);
+
+  const hasRiskyAssets = divResult.numPositions > 0;
 
   useEffect(() => {
     if (scenario && totalBudget !== scenario.budget) {
@@ -92,6 +129,7 @@ const LevelChallenge = () => {
   const pctUsed = totalBudget > 0 ? Math.round((allocated / totalBudget) * 100) : 0;
   const currency = scenario?.currency ?? 'CHF';
 
+
   return (
     <div className="min-h-screen bg-background pb-10">
       <div className="px-5 pt-6 pb-2">
@@ -115,7 +153,7 @@ const LevelChallenge = () => {
             <h1 className="font-display text-xl font-bold leading-snug mb-3">
               {scenario ? scenario.title : 'Distribute your budget and maximise your return!'}
             </h1>
-            <p className="text-sm leading-relaxed opacity-90 font-body">
+            <p className="text-sm leading-relaxed opacity-90 font-body whitespace-pre-line">
               {scenario
                 ? scenario.description
                 : <>You have <span className="font-bold">{totalBudget.toLocaleString('de-CH')} {currency}</span> and need <span className="font-bold">1,000 {currency}</span> in one year. Try to earn as much return as possible.</>
@@ -166,6 +204,40 @@ const LevelChallenge = () => {
             />
           </div>
         </motion.div>
+
+        {/* ── Real-time Diversification Indicator ── */}
+        {hasRiskyAssets && (
+          <motion.div
+            variants={itemVariants}
+            className="rounded-3xl bg-card border border-border shadow-card p-4 flex items-center gap-4"
+          >
+            <div className="w-10 h-10 rounded-2xl flex items-center justify-center" style={{ backgroundColor: `${divResult.color}20` }}>
+              <Scales size={22} weight="fill" style={{ color: divResult.color }} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 mb-1">
+                <p className="font-display font-bold text-foreground text-[15px]">Diversification</p>
+                <span
+                  className="text-xs font-display font-bold px-2 py-0.5 rounded-full"
+                  style={{
+                    backgroundColor: `${divResult.color}15`,
+                    color: divResult.color,
+                  }}
+                >
+                  {divResult.rating}
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <p className="text-xs text-muted-foreground font-body">
+                  <span className="font-bold text-foreground">{divResult.truePositionCount}</span> underlying positions
+                </p>
+                <p className="text-xs text-muted-foreground font-body">
+                  HHI: <span className="font-bold text-foreground tabular-nums">{divResult.hhi.toLocaleString('de-CH')}</span>
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
 
         {/* Asset Classes */}
         <motion.div variants={itemVariants} className="flex items-center justify-between pt-1">
