@@ -164,20 +164,23 @@ export function useProgressStore() {
       // Don't overwrite a completed lesson's progress
       if (existing?.completed) return;
 
+      const entry: LessonResult = existing
+        ? { ...existing, progress: clamped }
+        : {
+            lessonId,
+            completed: false,
+            heartsRemaining: 3,
+            xpEarned: 0,
+            perfect: false,
+            completedAt: 0,
+            progress: clamped,
+          };
+
       const next: ProgressStore = {
         ...store,
         lessonResults: {
           ...store.lessonResults,
-          [lessonId]: {
-            lessonId,
-            completed: false,
-            heartsRemaining: existing?.heartsRemaining ?? 3,
-            xpEarned: existing?.xpEarned ?? 0,
-            perfect: false,
-            completedAt: existing?.completedAt ?? 0,
-            ...(existing ?? {}),
-            progress: clamped,
-          },
+          [lessonId]: entry,
         },
       };
       persist(next);
