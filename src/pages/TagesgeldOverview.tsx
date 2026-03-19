@@ -35,8 +35,8 @@ const TagesgeldOverview = () => {
             <PiggyBank size={30} className="text-[hsl(var(--level-tagesgeld))]" />
           </div>
           <div>
-            <h1 className="font-display text-2xl font-bold text-foreground">Tagesgeld</h1>
-            <p className="text-muted-foreground text-sm font-body">Flexibel & jederzeit verfügbar</p>
+            <h1 className="font-display text-2xl font-bold text-foreground">Call Money</h1>
+            <p className="text-muted-foreground text-sm font-body">Flexible & available anytime</p>
           </div>
         </motion.div>
 
