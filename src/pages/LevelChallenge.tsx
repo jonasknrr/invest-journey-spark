@@ -85,6 +85,24 @@ const LevelChallenge = () => {
   const chapterConfig = levelId ? getChapterConfig(levelId) : undefined;
   const scenario = chapterConfig?.scenario;
 
+  // ── Real-time diversification indicator ──
+  const aktienAllocs = allocations['aktien'] ?? {};
+  const etfAllocs = allocations['etfs'] ?? {};
+
+  const divResult = useMemo(() => {
+    const positions: { amount: number; name: string }[] = [];
+    for (const [ticker, amount] of Object.entries(aktienAllocs)) {
+      if (amount > 0) positions.push({ amount, name: ticker });
+    }
+    for (const [ticker, amount] of Object.entries(etfAllocs)) {
+      if (amount > 0) positions.push({ amount, name: resolveEtfName(ticker) });
+    }
+    const investedCapital = positions.reduce((s, p) => s + p.amount, 0);
+    return calcDiversificationWithETFs(positions, investedCapital);
+  }, [JSON.stringify(aktienAllocs), JSON.stringify(etfAllocs)]);
+
+  const hasRiskyAssets = divResult.numPositions > 0;
+
   useEffect(() => {
     if (scenario && totalBudget !== scenario.budget) {
       setTotalBudget(scenario.budget);
