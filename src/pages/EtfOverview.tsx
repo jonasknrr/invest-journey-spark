@@ -65,7 +65,7 @@ const EtfOverview = () => {
               Bereits investiert (ETFs)
             </p>
             <p className="font-display text-2xl font-bold text-[hsl(var(--level-etfs))] tabular-nums">
-              {etfTotal.toLocaleString('de-CH')} $
+              {etfTotal.toLocaleString('de-CH')} CHF
             </p>
           </div>
         </motion.div>
