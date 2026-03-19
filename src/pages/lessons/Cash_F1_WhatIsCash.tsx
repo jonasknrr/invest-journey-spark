@@ -351,64 +351,35 @@ const Cash_F1_WhatIsCash = () => {
         {/* ── Slide 6: Completion ── */}
         {currentStep === 5 && (
           <motion.div
-            key="s4"
-            className="flex-1 flex flex-col items-center justify-center px-6"
+            key="s5"
+            className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
           >
-            <div className="flex items-center gap-4 mb-6">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0, rotate: -30 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{
-                    delay: 0.2 + i * 0.25,
-                    type: 'spring',
-                    stiffness: 300,
-                    damping: 15,
-                  }}
-                >
-                  <Star
-                    size={i === 1 ? 64 : 48}
-                    weight="fill"
-                    className="text-[hsl(45,100%,50%)]"
-                    style={{
-                      filter: 'drop-shadow(0 0 12px hsl(45 100% 50% / 0.5))',
-                    }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="text-center flex flex-col items-center"
-            >
-              <h2 className="font-display text-2xl font-bold text-foreground mb-2">
-                Lesson complete! 🎉
-              </h2>
-              <p className="font-body text-sm text-muted-foreground max-w-xs mx-auto mb-4 leading-relaxed">
-                You now know what cash and cash equivalents are — and why
-                the difference to stocks or real estate matters in everyday life.
-              </p>
-              <CompletionXP result={completionResult} hearts={hearts} />
-            </motion.div>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">
+              Lesson complete! 🎉
+            </h2>
+            <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">
+              You now know what cash and cash equivalents are — and why
+              the difference to stocks or real estate matters in everyday life.
+            </p>
+            <CompletionXP result={completionResult} hearts={hearts} />
 
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2 }}
-              className="mt-10"
+              transition={{ delay: 1 }}
+              className="mt-8"
             >
               <motion.button
                 onClick={handleNext}
                 whileTap={{ scale: 0.96 }}
-                className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm"
+                className="h-14 w-full max-w-xs rounded-full font-display text-lg font-bold text-white shadow-sm"
+                style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}
               >
-                Continue learning
+                Next lesson →
               </motion.button>
             </motion.div>
           </motion.div>
