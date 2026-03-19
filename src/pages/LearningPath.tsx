@@ -130,7 +130,8 @@ const LearningPath = () => {
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* End flag */}
