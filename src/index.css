@@ -37,15 +37,15 @@
     --radius: 1.5rem;
 
     /* Level colors */
-    --level-festgeld: 150 60% 45%;
+    --level-festgeld: 158 55% 40%;
     --level-tagesgeld: 140 70% 75%;
-    --level-aktien: 215 90% 60%;
-    --level-etfs: 225 85% 55%;
-    --level-anleihen: 185 80% 45%;
-    --level-currencies: 35 95% 55%;
-    --level-crypto: 265 85% 65%;
-    --level-metals: 45 100% 50%;
-    --level-realestate: 15 70% 55%;
+    --level-aktien: 217 91% 60%;
+    --level-etfs: 239 84% 67%;
+    --level-anleihen: 199 89% 48%;
+    --level-currencies: 38 92% 50%;
+    --level-crypto: 258 84% 65%;
+    --level-metals: 45 93% 47%;
+    --level-realestate: 25 95% 53%;
 
     /* Shadows */
     --shadow-soft: 0 8px 24px -8px hsl(142 71% 45% / 0.15);
