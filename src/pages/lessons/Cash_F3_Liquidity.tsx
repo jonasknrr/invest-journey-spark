@@ -60,7 +60,7 @@ const quiz1: QuizConfig = {
 };
 
 const quiz2: QuizConfig = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question: 'Why should you always keep part of your money in liquid investments?',
   answers: [
     { id: 'a', text: 'Because liquid investments always offer the highest returns' },
