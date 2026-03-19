@@ -29,8 +29,6 @@ import FestgeldOverview from "./pages/FestgeldOverview";
 import FestgeldDetail from "./pages/FestgeldDetail";
 import TagesgeldOverview from "./pages/TagesgeldOverview";
 import TagesgeldDetail from "./pages/TagesgeldDetail";
-import AktienOverview from "./pages/AktienOverview";
-import AktienDetail from "./pages/AktienDetail";
 import EtfOverview from "./pages/EtfOverview";
 import EtfDetail from "./pages/EtfDetail";
 import PortfolioSimulation from "./pages/PortfolioSimulation";
@@ -66,8 +64,6 @@ const App = () => (
             <Route path="/lesson/etfs/e9" element={<ETF_L9_Simulation />} />
             <Route path="/lesson-flow/:categoryId/:lessonId" element={<LessonFlowPage />} />
             <Route path="/challenge/:levelId/stock-picker" element={<StockPickerPage />} />
-            <Route path="/challenge/:levelId/aktien/:ticker" element={<AktienDetail />} />
-            <Route path="/challenge/:levelId/aktien" element={<AktienOverview />} />
             <Route path="/challenge/:levelId/festgeld/:productSlug" element={<FestgeldDetail />} />
             <Route path="/challenge/:levelId/festgeld" element={<FestgeldOverview />} />
             <Route path="/challenge/:levelId/tagesgeld/:productSlug" element={<TagesgeldDetail />} />
