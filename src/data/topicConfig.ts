@@ -323,6 +323,70 @@ const aktienTopics: TopicConfig[] = [
         'That\'s the most expensive mistake investors make — panic selling locks in the loss. With a 15-year horizon, the market has almost always had time to recover.',
     },
   },
+  {
+    slug: 'a7',
+    levelId: 'aktien',
+    title: 'Common Beginner Mistakes',
+    subtitle: 'Learn from others\' mistakes',
+    iconName: 'Warning',
+    iconColor: 'hsl(35, 95%, 50%)',
+    iconBgColor: 'hsl(35, 95%, 55% / 0.12)',
+    explanation: {
+      mainText: 'Most investing mistakes come from emotions, not logic. Panic-selling when markets drop, chasing stocks that already went up, or putting everything into one "sure thing" — these patterns cost beginners dearly.',
+      secondaryText: 'The good news: knowing the mistakes in advance is half the battle. The best investors aren\'t the smartest — they\'re the most disciplined.',
+    },
+    visualKey: 'riskCharts',
+    quiz: {
+      question: 'The market drops 25% in a week. Your portfolio is down €800. What is the classic beginner mistake?',
+      answers: [
+        { id: 'a', text: 'Staying invested and waiting for recovery' },
+        { id: 'b', text: 'Panic selling everything to stop further losses' },
+        { id: 'c', text: 'Investing a little more at the lower price' },
+        { id: 'd', text: 'Checking the portfolio less often' },
+      ],
+      correctId: 'b',
+      correctFeedback: 'Panic selling is the classic mistake. You lock in the loss permanently and then often miss the recovery. Markets have recovered from every crash in history.',
+      wrongFeedback: 'Panic selling turns a temporary paper loss into a real permanent one — and you often miss the recovery. It feels right emotionally but almost always costs money.',
+    },
+    quizzes: [
+      {
+        question: 'CryptoMoon AG went up 400% last month. Everyone is talking about it. Tom puts his entire savings in it. What mistake is Tom making?',
+        answers: [
+          { id: 'a', text: 'None — past gains predict future gains' },
+          { id: 'b', text: 'Chasing performance — buying after a huge run-up often means buying at the top' },
+          { id: 'c', text: 'Being too cautious — he should have invested sooner' },
+          { id: 'd', text: 'Diversifying too much by buying one stock' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Classic FOMO mistake! By the time everyone is talking about a stock, the big gains are often already gone. Buying at the peak means you\'re the last one in — and often the first to lose.',
+        wrongFeedback: 'This is called "chasing performance." Past gains don\'t guarantee future ones. When everyone is already excited about a stock, the price often already reflects that excitement — leaving little room for more gains.',
+      },
+      {
+        question: 'Anna checks her portfolio every hour and sells whenever a stock drops more than 2%. What is likely happening to her returns?',
+        answers: [
+          { id: 'a', text: 'They improve — she\'s protecting herself from losses' },
+          { id: 'b', text: 'They suffer — frequent trading racks up fees and causes emotional decisions' },
+          { id: 'c', text: 'They stay the same — checking more often has no effect' },
+          { id: 'd', text: 'They improve — she\'s always in the best stocks' },
+        ],
+        correctId: 'b',
+        correctFeedback: 'Over-trading is a very common beginner mistake. Every trade costs fees, and emotional decisions based on short-term moves almost always hurt long-term returns. Less is usually more.',
+        wrongFeedback: 'Checking your portfolio constantly leads to emotional decisions. Short-term drops are normal noise — reacting to them racks up transaction costs and causes selling at exactly the wrong moments.',
+      },
+      {
+        question: 'Which of these is NOT a common beginner mistake?',
+        answers: [
+          { id: 'a', text: 'Investing all savings in one "hot" stock tip from a friend' },
+          { id: 'b', text: 'Selling everything in a panic during a market crash' },
+          { id: 'c', text: 'Spreading investments across different sectors and holding long-term' },
+          { id: 'd', text: 'Waiting for the "perfect moment" to invest and never starting' },
+        ],
+        correctId: 'c',
+        correctFeedback: 'Exactly! Diversifying and holding long-term is the opposite of a mistake — it\'s the foundation of sensible investing. The other three are all classic errors.',
+        wrongFeedback: 'Spreading across sectors and holding long-term is actually the right approach. The mistakes are: concentrating in one tip, panic selling, and waiting forever for the perfect moment that never comes.',
+      },
+    ],
+  },
 ];
 
 export const topicsByLevel: Record<string, TopicConfig[]> = {
