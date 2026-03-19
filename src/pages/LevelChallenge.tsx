@@ -222,9 +222,6 @@ const LevelChallenge = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="font-display font-bold text-foreground text-[15px]">{asset.name}</p>
-                  <p className="text-xs text-muted-foreground font-body mt-0.5">
-                    {assetTotal > 0 ? 'Investiert' : 'Noch nicht investiert'}
-                  </p>
                 </div>
                 <div className="text-right flex-shrink-0">
                   <p className={`font-display font-bold tabular-nums text-[15px] ${assetTotal > 0 ? 'text-foreground' : 'text-muted-foreground'}`}>
