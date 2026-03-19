@@ -44,254 +44,254 @@ const lessonConfigs: Record<string, LessonConfig> = {
   f1: {
     story: {
       emoji: '💵',
-      title: 'Cash ist König — aber was genau ist Cash?',
-      mainText: 'Cash ist alles was du sofort ausgeben kannst — Bargeld in deiner Tasche, Geld auf deinem Konto, oder auf einem Sparbuch. Es ist die liquideste Form von Geld: immer verfügbar, immer sicher.',
-      secondaryText: 'Cash Equivalents sind fast genauso sicher — kurzfristige Anlagen die du schnell in Cash umwandeln kannst, wie ein Tagesgeldkonto.',
+      title: 'Cash is king — but what exactly is cash?',
+      mainText: 'Cash is everything you can spend immediately — banknotes in your pocket, money in your account, or in a savings book. It\'s the most liquid form of money: always available, always safe.',
+      secondaryText: 'Cash equivalents are nearly as safe — short-term investments you can quickly convert to cash, like a call money account.',
     },
     interactionType: 'cashSort',
     quiz1: {
-      label: 'Frage 1 von 2',
-      question: 'Du brauchst morgen früh CHF 500 für eine dringende Reparatur. Welche Option hilft dir am schnellsten?',
+      label: 'Question 1 of 2',
+      question: 'You need CHF 500 tomorrow morning for an urgent repair. Which option helps you fastest?',
       answers: [
-        { id: 'a', text: 'Deine Aktien verkaufen' },
-        { id: 'b', text: 'Deine Immobilie verkaufen' },
-        { id: 'c', text: 'Geld vom Girokonto abheben' },
-        { id: 'd', text: 'Festgeld vorzeitig auflösen' },
+        { id: 'a', text: 'Sell your stocks' },
+        { id: 'b', text: 'Sell your property' },
+        { id: 'c', text: 'Withdraw money from your checking account' },
+        { id: 'd', text: 'Break your fixed deposit early' },
       ],
       correctId: 'c',
-      correctFeedback: 'Richtig! Das Girokonto ist sofort verfügbar — kein Warten, keine Gebühren, kein Risiko.',
-      wrongFeedback: 'Fast! Aktien, Immobilien und Festgeld brauchen Zeit oder haben Kosten. Cash auf dem Konto ist sofort da.',
+      correctFeedback: 'Correct! The checking account is instantly available — no waiting, no fees, no risk.',
+      wrongFeedback: 'Close! Stocks, property and fixed deposits require time or come with costs. Cash in your account is available right away.',
     },
     quiz2: {
-      label: 'Frage 2 von 2',
-      question: 'Was unterscheidet Cash von einer Aktie?',
+      label: 'Question 2 of 2',
+      question: 'What distinguishes cash from a stock?',
       answers: [
-        { id: 'a', text: 'Cash bringt mehr Rendite als Aktien' },
-        { id: 'b', text: 'Cash ist immer sofort verfügbar und verliert nicht plötzlich stark an Wert' },
-        { id: 'c', text: 'Aktien sind sicherer als Cash' },
-        { id: 'd', text: 'Es gibt keinen wesentlichen Unterschied' },
+        { id: 'a', text: 'Cash generates more return than stocks' },
+        { id: 'b', text: 'Cash is always instantly available and doesn\'t suddenly lose significant value' },
+        { id: 'c', text: 'Stocks are safer than cash' },
+        { id: 'd', text: 'There is no significant difference' },
       ],
       correctId: 'b',
-      correctFeedback: 'Genau! Cash ist stabil und sofort verfügbar — Aktien können stark schwanken und brauchen Zeit zum Verkaufen.',
-      wrongFeedback: 'Nicht ganz — Cash glänzt nicht durch Rendite, sondern durch Sicherheit und sofortige Verfügbarkeit. Das ist sein grösster Vorteil.',
+      correctFeedback: 'Exactly! Cash is stable and instantly available — stocks can fluctuate significantly and take time to sell.',
+      wrongFeedback: 'Not quite — cash doesn\'t shine through returns, but through safety and instant availability. That\'s its greatest advantage.',
     },
-    completionSubtitle: 'Du weisst jetzt was Cash und Cash Equivalents sind — und warum der Unterschied zu Aktien oder Immobilien im Alltag wichtig ist.',
+    completionSubtitle: 'You now know what cash and cash equivalents are — and why the difference to stocks or real estate matters in everyday life.',
   },
   a1: {
     story: {
       emoji: '🏢',
-      title: 'Stell dir vor, du kaufst ein Stück deiner Lieblingsfirma',
-      mainText: 'Wenn du eine Aktie kaufst, gehört dir ein kleines Stück eines Unternehmens. Steigt der Wert des Unternehmens, steigt auch deine Aktie — du profitierst direkt von seinem Erfolg.',
-      secondaryText: 'Unternehmen verkaufen Aktien um Geld für Wachstum zu sammeln — statt einen Kredit aufzunehmen.',
+      title: 'Imagine buying a piece of your favourite company',
+      mainText: 'When you buy a stock, you own a small piece of a company. If the company grows in value, so does your stock — you directly benefit from its success.',
+      secondaryText: 'Companies sell stocks to raise money for growth — instead of taking out a loan.',
     },
     interactionType: 'pizza',
     quiz1: {
-      label: 'Frage 1 von 2',
-      question: 'Was passiert wenn du eine Aktie kaufst?',
+      label: 'Question 1 of 2',
+      question: 'What happens when you buy a stock?',
       answers: [
-        { id: 'a', text: 'Du leihst der Firma Geld' },
-        { id: 'b', text: 'Du wirst Miteigentümer der Firma' },
-        { id: 'c', text: 'Du bekommst jeden Monat einen festen Betrag' },
-        { id: 'd', text: 'Die Firma gehört dir komplett' },
+        { id: 'a', text: 'You lend the company money' },
+        { id: 'b', text: 'You become a co-owner of the company' },
+        { id: 'c', text: 'You receive a fixed monthly payment' },
+        { id: 'd', text: 'The company belongs entirely to you' },
       ],
       correctId: 'b',
-      correctFeedback: 'Richtig! Als Aktionär bist du Miteigentümer — der Erfolg der Firma ist auch dein Erfolg.',
-      wrongFeedback: 'Fast! Eine Aktie macht dich zum Miteigentümer — nicht zum Gläubiger oder Alleinbesitzer.',
+      correctFeedback: 'Correct! As a shareholder you\'re a co-owner — the company\'s success is also your success.',
+      wrongFeedback: 'Close! A stock makes you a co-owner — not a creditor or sole owner.',
     },
     quiz2: {
-      label: 'Frage 2 von 2',
-      question: 'Die Bewertung der AlphaFirma AG steigt dieses Jahr. Was passiert mit deiner Aktie?',
+      label: 'Question 2 of 2',
+      question: 'AlphaFirma AG\'s valuation rises this year. What happens to your stock?',
       answers: [
-        { id: 'a', text: 'Nichts — das betrifft mich nicht' },
-        { id: 'b', text: 'Sie wird mehr wert' },
-        { id: 'c', text: 'Ich muss mehr dafür bezahlen' },
-        { id: 'd', text: 'Die Aktie verschwindet' },
+        { id: 'a', text: 'Nothing — that doesn\'t affect me' },
+        { id: 'b', text: 'It becomes more valuable' },
+        { id: 'c', text: 'I have to pay more for it' },
+        { id: 'd', text: 'The stock disappears' },
       ],
       correctId: 'b',
-      correctFeedback: 'Genau! Die Bewertung der Firma steigt, dadurch steigt auch dein Anteil — du profitierst direkt als Miteigentümer.',
-      wrongFeedback: 'Fast! Du bist Miteigentümer — ihr Gewinn ist auch dein Gewinn. Der Kurs steigt wenn die Firma gut läuft.',
+      correctFeedback: 'Exactly! The company\'s valuation rises, and so does your share — you directly benefit as a co-owner.',
+      wrongFeedback: 'Close! You\'re a co-owner — their gain is also your gain. The price rises when the company does well.',
     },
-    completionSubtitle: 'Du weisst jetzt was eine Aktie ist und warum du damit Miteigentümer einer Firma wirst.',
+    completionSubtitle: 'You now know what a stock is and why it makes you a co-owner of a company.',
   },
   a2: {
     story: {
       emoji: '📈',
-      title: 'Dein Geld arbeitet für dich',
-      mainText: 'Eine Rendite ist der Gewinn den du mit deiner Investition machst. Bei Aktien entsteht sie auf zwei Wegen: der Kurs der Aktie steigt — oder die Firma zahlt dir regelmässig einen Teil ihres Gewinns aus, genannt Dividende.',
-      secondaryText: 'Langfristig haben Aktien historisch fast immer an Wert gewonnen — weil Unternehmen wachsen.',
+      title: 'Your money works for you',
+      mainText: 'A return is the profit you make on your investment. With stocks, it comes in two ways: the stock price rises — or the company regularly pays you part of its profits, called a dividend.',
+      secondaryText: 'Historically, stocks have almost always gained value over the long term — because companies grow.',
     },
     interactionType: 'scale',
     quiz1: {
-      label: 'Frage 1 von 2',
-      question: 'Wie entsteht der Preis einer Aktie?',
+      label: 'Question 1 of 2',
+      question: 'How is the price of a stock determined?',
       answers: [
-        { id: 'a', text: 'Die Firma legt ihn fest' },
-        { id: 'b', text: 'Die Regierung bestimmt ihn' },
-        { id: 'c', text: 'Angebot und Nachfrage von Käufern und Verkäufern' },
-        { id: 'd', text: 'Er bleibt immer gleich' },
+        { id: 'a', text: 'The company sets it' },
+        { id: 'b', text: 'The government determines it' },
+        { id: 'c', text: 'Supply and demand from buyers and sellers' },
+        { id: 'd', text: 'It always stays the same' },
       ],
       correctId: 'c',
-      correctFeedback: 'Richtig! Millionen von Transaktionen jede Sekunde bestimmen den Kurs — niemand legt ihn alleine fest.',
-      wrongFeedback: 'Nicht ganz — kein Einzelner bestimmt den Preis. Er entsteht durch das Zusammenspiel von Käufern und Verkäufern.',
+      correctFeedback: 'Correct! Millions of transactions every second determine the price — nobody sets it alone.',
+      wrongFeedback: 'Not quite — no single entity determines the price. It\'s created by the interplay of buyers and sellers.',
     },
     quiz2: {
-      label: 'Frage 2 von 2',
-      question: 'Eine bekannte Firma kündigt ein revolutionäres neues Produkt an. Was passiert wohl mit dem Aktienkurs?',
+      label: 'Question 2 of 2',
+      question: 'A well-known company announces a revolutionary new product. What likely happens to the stock price?',
       answers: [
-        { id: 'a', text: 'Er fällt — die Firma hat Geld ausgegeben' },
-        { id: 'b', text: 'Er bleibt gleich' },
-        { id: 'c', text: 'Er steigt — mehr Leute wollen die Aktie kaufen' },
-        { id: 'd', text: 'Die Börse schliesst' },
+        { id: 'a', text: 'It drops — the company spent money' },
+        { id: 'b', text: 'It stays the same' },
+        { id: 'c', text: 'It rises — more people want to buy the stock' },
+        { id: 'd', text: 'The exchange closes' },
       ],
       correctId: 'c',
-      correctFeedback: 'Genau! Gute Nachrichten erzeugen mehr Nachfrage — und mehr Nachfrage treibt den Preis hoch.',
-      wrongFeedback: 'Fast! Gute Nachrichten bedeuten mehr Käufer. Mehr Käufer = höherer Preis. So reagiert die Börse täglich.',
+      correctFeedback: 'Exactly! Good news creates more demand — and more demand drives the price up.',
+      wrongFeedback: 'Close! Good news means more buyers. More buyers = higher price. That\'s how the market reacts every day.',
     },
-    completionSubtitle: 'Du verstehst jetzt wie Renditen entstehen und warum der Preis einer Aktie ständig schwankt.',
+    completionSubtitle: 'You now understand how returns are generated and why a stock\'s price constantly fluctuates.',
   },
   a3: {
     story: {
       emoji: '⚠️',
-      title: 'Höhere Chance — aber auch höheres Risiko',
-      mainText: 'Aktien können im Wert steigen — aber auch fallen. Diese Schwankungen nennt man Volatilität. Je grösser die mögliche Rendite, desto grösser ist meist auch das Risiko.',
-      secondaryText: 'Eine junge Startup-Aktie kann sich verdoppeln oder auf null fallen. Eine grosse etablierte Firma schwankt viel ruhiger.',
+      title: 'Higher potential — but also higher risk',
+      mainText: 'Stocks can rise in value — but also fall. These fluctuations are called volatility. The greater the potential return, the greater the risk usually is.',
+      secondaryText: 'A young startup stock can double or go to zero. A large established company fluctuates much more steadily.',
     },
     interactionType: 'riskChart',
     quiz1: {
-      label: 'Frage 1 von 2',
-      question: 'Was bedeutet hohe Volatilität bei einer Aktie?',
+      label: 'Question 1 of 2',
+      question: 'What does high volatility mean for a stock?',
       answers: [
-        { id: 'a', text: 'Die Aktie steigt immer' },
-        { id: 'b', text: 'Der Kurs schwankt stark — nach oben und unten' },
-        { id: 'c', text: 'Die Aktie ist sehr sicher' },
-        { id: 'd', text: 'Die Firma zahlt hohe Dividenden' },
+        { id: 'a', text: 'The stock always rises' },
+        { id: 'b', text: 'The price fluctuates strongly — up and down' },
+        { id: 'c', text: 'The stock is very safe' },
+        { id: 'd', text: 'The company pays high dividends' },
       ],
       correctId: 'b',
-      correctFeedback: 'Richtig! Volatilität bedeutet starke Schwankungen — das kann Chance oder Risiko sein, je nach Zeitpunkt.',
-      wrongFeedback: 'Nicht ganz — Volatilität beschreibt wie stark ein Kurs schwankt, nicht ob er steigt oder fällt.',
+      correctFeedback: 'Correct! Volatility means strong fluctuations — it can be an opportunity or a risk, depending on timing.',
+      wrongFeedback: 'Not quite — volatility describes how strongly a price fluctuates, not whether it rises or falls.',
     },
     quiz2: {
-      label: 'Frage 2 von 2',
-      question: 'Du brauchst dein Geld in genau 1 Jahr sicher zurück. Welche Aktie wählst du?',
+      label: 'Question 2 of 2',
+      question: 'You need your money back in exactly 1 year. Which stock do you choose?',
       answers: [
-        { id: 'a', text: 'RocketStartup AG — könnte sich verdoppeln' },
-        { id: 'b', text: 'StableBank AG — ruhiger Verlauf' },
-        { id: 'c', text: 'Beide je zur Hälfte' },
-        { id: 'd', text: 'Lieber gar nichts investieren' },
+        { id: 'a', text: 'RocketStartup AG — could double' },
+        { id: 'b', text: 'StableBank AG — steady trajectory' },
+        { id: 'c', text: 'Both, half and half' },
+        { id: 'd', text: 'Better not to invest at all' },
       ],
       correctId: 'b',
-      correctFeedback: 'Perfekt! Wenn du das Geld bald brauchst, ist Stabilität wichtiger als maximale Chance.',
-      wrongFeedback: 'Vorsicht — RocketStartup könnte in einem Jahr bei -60% liegen. Hohes Risiko bedeutet auch hohes Verlustpotenzial.',
+      correctFeedback: 'Perfect! When you need the money soon, stability matters more than maximum upside.',
+      wrongFeedback: 'Careful — RocketStartup could be at -60% in a year. High risk also means high potential for loss.',
     },
-    completionSubtitle: 'Du verstehst jetzt den Unterschied zwischen risikoreichen und stabilen Aktien.',
+    completionSubtitle: 'You now understand the difference between high-risk and stable stocks.',
   },
   a4: {
     story: {
       emoji: '💰',
-      title: 'Geld verdienen, nur durch Halten',
-      mainText: 'Manche Unternehmen schütten einen Teil ihres Gewinns regelmässig an ihre Aktionäre aus — das nennt man Dividende. Du musst nichts verkaufen, nichts tun — einfach nur die Aktie halten und du bekommst automatisch Geld ausgezahlt.',
-      secondaryText: 'Nicht alle Firmen zahlen Dividenden — grosse, etablierte Unternehmen tun es häufiger als junge Wachstumsfirmen.',
+      title: 'Earn money just by holding',
+      mainText: 'Some companies regularly distribute part of their profits to shareholders — that\'s called a dividend. You don\'t need to sell anything, do nothing — just hold the stock and you automatically receive payouts.',
+      secondaryText: 'Not all companies pay dividends — large, established companies do it more often than young growth companies.',
     },
     interactionType: 'dividend',
     quiz1: {
-      label: 'Frage 1 von 2',
-      question: 'Was ist eine Dividende?',
+      label: 'Question 1 of 2',
+      question: 'What is a dividend?',
       answers: [
-        { id: 'a', text: 'Ein Kredit den die Firma dir gibt' },
-        { id: 'b', text: 'Ein Teil des Firmengewinns der an Aktionäre ausgezahlt wird' },
-        { id: 'c', text: 'Der Preis den du für eine Aktie zahlst' },
-        { id: 'd', text: 'Eine Strafe wenn der Kurs fällt' },
+        { id: 'a', text: 'A loan the company gives you' },
+        { id: 'b', text: 'A portion of the company\'s profit paid to shareholders' },
+        { id: 'c', text: 'The price you pay for a stock' },
+        { id: 'd', text: 'A penalty when the price drops' },
       ],
       correctId: 'b',
-      correctFeedback: 'Richtig! Dividenden sind dein Anteil am Gewinn der Firma — einfach weil du Aktionär bist.',
-      wrongFeedback: 'Fast! Eine Dividende ist keine Schuld und kein Preis — es ist dein Anteil am Gewinn der Firma, ausgezahlt nur weil du die Aktie hältst.',
+      correctFeedback: 'Correct! Dividends are your share of the company\'s profit — simply because you\'re a shareholder.',
+      wrongFeedback: 'Close! A dividend is not a debt or a price — it\'s your share of the company\'s profit, paid simply because you hold the stock.',
     },
     quiz2: {
-      label: 'Frage 2 von 2',
-      question: 'Du hältst eine Aktie die 4% Dividende pro Jahr zahlt. Was musst du tun um die Dividende zu bekommen?',
+      label: 'Question 2 of 2',
+      question: 'You hold a stock that pays 4% dividend per year. What do you need to do to receive the dividend?',
       answers: [
-        { id: 'a', text: 'Die Aktie zum richtigen Zeitpunkt verkaufen' },
-        { id: 'b', text: 'Jeden Monat neu kaufen' },
-        { id: 'c', text: 'Nichts — einfach die Aktie halten' },
-        { id: 'd', text: 'Die Firma um Auszahlung bitten' },
+        { id: 'a', text: 'Sell the stock at the right time' },
+        { id: 'b', text: 'Buy more every month' },
+        { id: 'c', text: 'Nothing — just hold the stock' },
+        { id: 'd', text: 'Ask the company for a payout' },
       ],
       correctId: 'c',
-      correctFeedback: 'Genau! Dividenden werden automatisch ausgezahlt — du musst nur Aktionär sein und die Aktie halten.',
-      wrongFeedback: 'Fast! Du musst gar nichts tun — Dividenden werden automatisch an alle Aktionäre ausgezahlt, einfach durch das Halten der Aktie.',
+      correctFeedback: 'Exactly! Dividends are paid automatically — you just need to be a shareholder and hold the stock.',
+      wrongFeedback: 'Close! You don\'t need to do anything — dividends are automatically paid to all shareholders, simply by holding the stock.',
     },
-    completionSubtitle: 'Du weisst jetzt was Dividenden sind und wie passives Einkommen durch das einfache Halten von Aktien entsteht.',
+    completionSubtitle: 'You now know what dividends are and how passive income is generated simply by holding stocks.',
   },
   a6: {
     story: {
       emoji: '⏳',
-      title: 'Zeit ist dein grösster Vorteil',
-      mainText: 'Aktien schwanken täglich — manchmal stark. Aber je länger du investiert bleibst, desto mehr gleichen sich diese Schwankungen aus. Historisch gesehen haben breit diversifizierte Portfolios über lange Zeiträume fast immer positive Renditen erzielt.',
-      secondaryText: 'Zeit im Markt schlägt fast immer das Timing des Marktes.',
+      title: 'Time is your greatest advantage',
+      mainText: 'Stocks fluctuate daily — sometimes strongly. But the longer you stay invested, the more these fluctuations even out. Historically, broadly diversified portfolios have almost always achieved positive returns over long periods.',
+      secondaryText: 'Time in the market almost always beats timing the market.',
     },
     interactionType: 'timeChart',
     quiz1: {
-      label: 'Frage 1 von 2',
-      question: 'Was zeigt der AlphaIndex Chart über einen Zeitraum von 20 Jahren?',
+      label: 'Question 1 of 2',
+      question: 'What does the AlphaIndex chart show over a period of 20 years?',
       answers: [
-        { id: 'a', text: 'Der Kurs ist immer gefallen' },
-        { id: 'b', text: 'Der Kurs war immer stabil ohne Schwankungen' },
-        { id: 'c', text: 'Trotz Crashes zeigt sich langfristig ein Aufwärtstrend' },
-        { id: 'd', text: 'Es gab keine Veränderung' },
+        { id: 'a', text: 'The price always fell' },
+        { id: 'b', text: 'The price was always stable without fluctuations' },
+        { id: 'c', text: 'Despite crashes, a long-term upward trend is visible' },
+        { id: 'd', text: 'There was no change' },
       ],
       correctId: 'c',
-      correctFeedback: 'Genau! Kurzfristig ist die Börse unberechenbar — langfristig tendiert sie nach oben.',
-      wrongFeedback: 'Schau nochmal auf den 20-Jahres-Chart — trotz starker Crashes zeigt sich ein klarer Aufwärtstrend.',
+      correctFeedback: 'Exactly! In the short term the market is unpredictable — in the long term it tends upward.',
+      wrongFeedback: 'Look at the 20-year chart again — despite significant crashes, a clear upward trend is visible.',
     },
     quiz2: {
-      label: 'Frage 2 von 2',
-      question: 'Der Markt crasht gerade um 30%. Du brauchst das Geld erst in 15 Jahren. Was machst du?',
+      label: 'Question 2 of 2',
+      question: 'The market just crashed 30%. You don\'t need the money for 15 years. What do you do?',
       answers: [
-        { id: 'a', text: 'Sofort alles verkaufen — bevor es schlimmer wird' },
-        { id: 'b', text: 'Investiert bleiben und ruhig abwarten' },
-        { id: 'c', text: 'Noch mehr kaufen auf Kredit' },
-        { id: 'd', text: 'Alles in Gold umtauschen' },
+        { id: 'a', text: 'Sell everything immediately — before it gets worse' },
+        { id: 'b', text: 'Stay invested and wait patiently' },
+        { id: 'c', text: 'Buy even more on credit' },
+        { id: 'd', text: 'Convert everything to gold' },
       ],
       correctId: 'b',
-      correctFeedback: 'Perfekt! Verluste werden erst real wenn du verkaufst. Mit 15 Jahren Horizont hat der Markt fast immer Zeit sich zu erholen.',
-      wrongFeedback: 'Das ist der teuerste Fehler — Panikverkäufe realisieren den Verlust. Zeit ist dein grösster Vorteil als Anleger.',
+      correctFeedback: 'Perfect! Losses only become real when you sell. With a 15-year horizon, the market almost always has time to recover.',
+      wrongFeedback: 'That\'s the most expensive mistake — panic selling realises the loss. Time is your greatest advantage as an investor.',
     },
-    completionSubtitle: 'Du weisst jetzt warum Geduld eine der wichtigsten Eigenschaften eines guten Investors ist.',
+    completionSubtitle: 'You now know why patience is one of the most important qualities of a good investor.',
   },
   a5: {
     story: {
       emoji: '🥚',
-      title: 'Nicht alles auf eine Karte setzen',
-      mainText: 'Wenn du alles in eine einzige Aktie investierst, hängst du komplett von dieser einen Firma ab. Verteilst du dein Geld auf viele verschiedene Aktien aus verschiedenen Branchen, sinkt dein Risiko deutlich — weil sie nicht alle gleichzeitig fallen.',
-      secondaryText: 'Diversifikation ist die einzige kostenlose Risikoreduzierung die es gibt.',
+      title: 'Don\'t put all your eggs in one basket',
+      mainText: 'If you invest everything in a single stock, you depend entirely on that one company. If you spread your money across many different stocks from different sectors, your risk decreases significantly — because they don\'t all fall at the same time.',
+      secondaryText: 'Diversification is the only free risk reduction that exists.',
     },
     interactionType: 'crash',
     quiz1: {
-      label: 'Frage 1 von 2',
-      question: 'Warum schützt Diversifikation dein Portfolio?',
+      label: 'Question 1 of 2',
+      question: 'Why does diversification protect your portfolio?',
       answers: [
-        { id: 'a', text: 'Weil du mehr Geld hast' },
-        { id: 'b', text: 'Weil verschiedene Branchen nicht alle gleichzeitig fallen' },
-        { id: 'c', text: 'Weil du mehr Dividenden bekommst' },
-        { id: 'd', text: 'Weil der Markt dann stabiler wird' },
+        { id: 'a', text: 'Because you have more money' },
+        { id: 'b', text: 'Because different sectors don\'t all fall at the same time' },
+        { id: 'c', text: 'Because you receive more dividends' },
+        { id: 'd', text: 'Because the market then becomes more stable' },
       ],
       correctId: 'b',
-      correctFeedback: 'Richtig! Verschiedene Branchen reagieren unterschiedlich auf Krisen — das reduziert dein Gesamtrisiko.',
-      wrongFeedback: 'Fast! Der Schlüssel ist dass verschiedene Branchen unabhängig voneinander reagieren — fällt eine, können andere stabil bleiben.',
+      correctFeedback: 'Correct! Different sectors react differently to crises — that reduces your overall risk.',
+      wrongFeedback: 'Close! The key is that different sectors react independently — if one falls, others can remain stable.',
     },
     quiz2: {
-      label: 'Frage 2 von 2',
-      question: 'Welches Portfolio übersteht einen Crash in der Technologiebranche am besten?',
+      label: 'Question 2 of 2',
+      question: 'Which portfolio survives a crash in the technology sector best?',
       answers: [
-        { id: 'a', text: '100% Apple-Aktien' },
+        { id: 'a', text: '100% Apple shares' },
         { id: 'b', text: '50% Apple, 50% Microsoft' },
-        { id: 'c', text: 'Je 20% in Tech, Gesundheit, Energie, Konsum und Finanzen' },
-        { id: 'd', text: 'Alle Aktien verkaufen und warten' },
+        { id: 'c', text: '20% each in Tech, Healthcare, Energy, Consumer and Finance' },
+        { id: 'd', text: 'Sell all stocks and wait' },
       ],
       correctId: 'c',
-      correctFeedback: 'Genau! Apple und Microsoft fallen gemeinsam wenn Tech crasht — echte Diversifikation bedeutet verschiedene Branchen.',
-      wrongFeedback: 'Aufgepasst! Apple und Microsoft sind beide Tech-Aktien — sie fallen meist zusammen. Verschiedene Branchen sind der Schlüssel.',
+      correctFeedback: 'Exactly! Apple and Microsoft fall together when tech crashes — true diversification means different sectors.',
+      wrongFeedback: 'Watch out! Apple and Microsoft are both tech stocks — they usually fall together. Different sectors are the key.',
     },
-    completionSubtitle: 'Du weisst jetzt wie du dein Risiko durch Diversifikation deutlich reduzieren kannst — ohne auf Rendite verzichten zu müssen.',
+    completionSubtitle: 'You now know how to significantly reduce your risk through diversification — without sacrificing returns.',
   },
 };
 
@@ -308,19 +308,16 @@ const LessonFlow = () => {
   const config = lessonConfigs[lessonId ?? 'a1'] ?? lessonConfigs.a1;
   const lessonStoreId = `${categoryId}-${lessonId}`;
 
-  // Story and Completion slides allow immediate advance
   useEffect(() => {
     if (currentStep === 0 || currentStep === 4) {
       setCanAdvance(true);
     }
   }, [currentStep]);
 
-  // Track progress
   useEffect(() => {
     updateLessonProgress(lessonStoreId, Math.min(currentStep / 4, 1));
   }, [currentStep]);
 
-  // No hearts effect
   useEffect(() => {
     if (hearts === 0) {
       setNoHeartsScreen('showing');
@@ -328,7 +325,6 @@ const LessonFlow = () => {
     }
   }, [hearts]);
 
-  // Completion effect
   useEffect(() => {
     if (currentStep === 4 && !completionResult) {
       const r = completeLesson(lessonStoreId, hearts);
@@ -446,7 +442,7 @@ const LessonFlow = () => {
           <motion.div key="completion" className="flex-1 flex flex-col items-center justify-center px-6 text-center"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
             <span className="text-5xl mb-4">🎉</span>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lektion abgeschlossen!</h2>
+            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
             <p className="font-body text-sm text-muted-foreground mb-5 max-w-xs">{config.completionSubtitle}</p>
             <CompletionXP result={completionResult} hearts={hearts} />
           </motion.div>
@@ -466,7 +462,7 @@ const LessonFlow = () => {
                 : 'bg-muted text-muted-foreground cursor-not-allowed'
             }`}
           >
-            {currentStep < TOTAL_STEPS - 1 ? 'Weiter' : 'Abschließen'}
+            {currentStep < TOTAL_STEPS - 1 ? 'Continue' : 'Finish'}
           </motion.button>
         )}
       </div>
