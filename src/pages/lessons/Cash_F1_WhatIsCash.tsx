@@ -343,8 +343,13 @@ const Cash_F1_WhatIsCash = () => {
           <QuizSlide key="s3" quiz={QUIZ_2} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
         )}
 
-        {/* ── Slide 5: Completion ── */}
+        {/* ── Slide 5: Quiz 3 ── */}
         {currentStep === 4 && (
+          <QuizSlide key="s4" quiz={QUIZ_3} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
+        )}
+
+        {/* ── Slide 6: Completion ── */}
+        {currentStep === 5 && (
           <motion.div
             key="s4"
             className="flex-1 flex flex-col items-center justify-center px-6"
