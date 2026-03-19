@@ -99,12 +99,12 @@ export const levels: Level[] = [
     ],
   },
   {
-    id: 'waehrungen',
+    id: 'currencies',
     title: 'Currencies',
     subtitle: 'The world of money',
     iconName: 'Compass',
-    colorKey: 'waehrungen',
-    colorVar: '--level-waehrungen',
+    colorKey: 'currencies',
+    colorVar: '--level-currencies',
     status: 'locked',
     progress: 0,
     subLevels: [

@@ -59,7 +59,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Percent,
         label: 'Return',
         text: 'The remaining money should be invested at the highest possible interest rate.',
-        color: 'hsl(var(--level-waehrungen))',
+        color: 'hsl(var(--level-currencies))',
       },
       {
         icon: Clock,
@@ -95,7 +95,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Percent,
         label: 'Return',
         text: 'The interest rate is fixed, but usually lower than for riskier investments.',
-        color: 'hsl(var(--level-waehrungen))',
+        color: 'hsl(var(--level-currencies))',
       },
       {
         icon: Clock,
@@ -131,7 +131,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Percent,
         label: 'Interest',
         text: 'The interest rate is variable and can change at any time.',
-        color: 'hsl(var(--level-waehrungen))',
+        color: 'hsl(var(--level-currencies))',
       },
       {
         icon: Lightbulb,
@@ -197,7 +197,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Percent,
         label: 'Fixed interest',
         text: 'You know in advance how much interest you\'ll receive.',
-        color: 'hsl(var(--level-waehrungen))',
+        color: 'hsl(var(--level-currencies))',
       },
       {
         icon: Warning,
@@ -215,19 +215,19 @@ export const levelIntros: Record<string, LevelIntro> = {
     introTip:
       'Bonds are like a calm anchor in your portfolio — less return, but fewer surprises.',
   },
-  waehrungen: {
+  currencies: {
     introTitle: 'What are Currencies?',
     introSubtitle: 'Understanding the world of money',
     introText:
       'Currencies like Euro, Dollar or Yen constantly change in value relative to each other. This affects your investments — even without actively trading currencies.',
     heroIcon: ChartBar,
-    accentColor: 'var(--level-waehrungen)',
+    accentColor: 'var(--level-currencies)',
     introFacts: [
       {
         icon: Scales,
         label: 'Exchange rates',
         text: 'The rate determines how much one currency is worth in another.',
-        color: 'hsl(var(--level-waehrungen))',
+        color: 'hsl(var(--level-currencies))',
       },
       {
         icon: Warning,
@@ -281,7 +281,7 @@ export const levelIntros: Record<string, LevelIntro> = {
         icon: Lightbulb,
         label: 'For whom?',
         text: 'Only for money whose total loss you can completely handle.',
-        color: 'hsl(var(--level-waehrungen))',
+        color: 'hsl(var(--level-currencies))',
       },
     ],
     introTip:
