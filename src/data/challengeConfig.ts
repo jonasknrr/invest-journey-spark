@@ -42,15 +42,15 @@ export const chapterConfigs: ChapterConfig[] = [
   },
   {
     id: 'chapter-3',
-    label: 'Chapter 3 – Wealth Building',
+    label: 'Chapter 3 – ETF Diversification',
     categoryId: 'etfs',
     unlockedSlugs: ['tagesgeld', 'festgeld', 'aktien', 'etfs'],
     scenario: {
       budget: 100000,
       currency: 'CHF',
-      title: 'Wealth Building',
+      title: 'ETF Diversification',
       description:
-        'You have 100,000 CHF at your disposal. Your goals: 1. You absolutely need an emergency fund of 10,000 CHF that is available at any time. 2. In exactly 3 years you want to make a down payment on a property, for which you need 30,000 CHF for certain. 3. You want to invest the rest of your money (60,000 CHF) for your retirement.',
+        'You have a budget of 100,000 CHF.\n1. You need a liquid emergency fund of 10,000 CHF (available immediately).\n2. You plan to buy a car in exactly 3 years, requiring a safe 20,000 CHF.\n3. The remaining 70,000 CHF is for your long-term wealth building. Maximize returns but ensure your portfolio is highly diversified using the newly unlocked ETFs!',
     },
   },
 ];
