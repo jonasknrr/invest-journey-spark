@@ -52,6 +52,7 @@ const PizzaSlide = ({ onComplete }: Props) => {
       </h2>
 
       <div className="flex-1 flex flex-col items-center justify-center relative">
+        <p className="font-display text-sm font-bold text-foreground mb-3">AlphaFirma AG</p>
         <svg width="240" height="240" viewBox="0 0 240 240" className="overflow-visible">
           {!split ? (
             <motion.circle
@@ -82,12 +83,6 @@ const PizzaSlide = ({ onComplete }: Props) => {
               })}
             </>
           )}
-          <text x={CX} y={CY - 6} textAnchor="middle" className="font-display font-bold" fill="white" fontSize="13">
-            AlphaFirma
-          </text>
-          <text x={CX} y={CY + 10} textAnchor="middle" className="font-display font-semibold" fill="white" fontSize="11" opacity={0.8}>
-            AG
-          </text>
         </svg>
 
         <AnimatePresence>
