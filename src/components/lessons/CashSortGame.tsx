@@ -11,18 +11,18 @@ interface CardItem {
 }
 
 const CARDS: CardItem[] = [
-  { id: 'bargeld', emoji: '💵', label: 'Bargeld', correctBucket: 'cash' },
-  { id: 'girokonto', emoji: '🏦', label: 'Girokonto', correctBucket: 'cash' },
-  { id: 'sparbuch', emoji: '📗', label: 'Sparbuch', correctBucket: 'equivalent' },
-  { id: 'tagesgeld', emoji: '💰', label: 'Tagesgeldkonto', correctBucket: 'equivalent' },
-  { id: 'immobilie', emoji: '🏠', label: 'Immobilie', correctBucket: 'nein' },
-  { id: 'aktien', emoji: '📈', label: 'Aktien', correctBucket: 'nein' },
+  { id: 'bargeld', emoji: '💵', label: 'Cash', correctBucket: 'cash' },
+  { id: 'girokonto', emoji: '🏦', label: 'Checking account', correctBucket: 'cash' },
+  { id: 'sparbuch', emoji: '📗', label: 'Savings book', correctBucket: 'equivalent' },
+  { id: 'tagesgeld', emoji: '💰', label: 'Call money account', correctBucket: 'equivalent' },
+  { id: 'immobilie', emoji: '🏠', label: 'Real estate', correctBucket: 'nein' },
+  { id: 'aktien', emoji: '📈', label: 'Stocks', correctBucket: 'nein' },
 ];
 
 const BUCKETS: { id: Bucket; label: string; emoji: string }[] = [
   { id: 'cash', label: 'Cash', emoji: '💵' },
   { id: 'equivalent', label: 'Cash Equivalent', emoji: '🏦' },
-  { id: 'nein', label: 'Kein Cash', emoji: '❌' },
+  { id: 'nein', label: 'No Cash', emoji: '❌' },
 ];
 
 interface Props {
