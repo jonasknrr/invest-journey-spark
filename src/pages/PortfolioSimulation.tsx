@@ -921,30 +921,22 @@ const PortfolioSimulation = () => {
                                 </button>
                               </PopoverTrigger>
                               <PopoverContent side="top" className="max-w-[260px] text-xs font-body leading-relaxed p-3">
-                                Misst, wie gut dein Kapital verteilt ist.
+                                Bewertet nach dem Herfindahl-Hirschman-Index (HHI) und deinem Kapital. Je mehr Geld du investierst, desto mehr verschiedene Wertpapiere solltest du halten, um das Risiko zu streuen.
                               </PopoverContent>
                             </Popover>
                           )}
                         </div>
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="flex-1 h-3 rounded-full bg-muted overflow-hidden">
-                            {!isChapter1 && (
-                              <motion.div
-                                className="h-full rounded-full"
-                                style={{ backgroundColor: divScore >= 7 ? 'hsl(var(--primary))' : divScore >= 4 ? 'hsl(30,90%,55%)' : 'hsl(var(--destructive))' }}
-                                initial={{ width: 0 }}
-                                animate={{ width: `${divScore * 10}%` }}
-                                transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
-                              />
-                            )}
-                          </div>
-                          <span className="font-display text-lg font-bold text-foreground tabular-nums w-12 text-right">
-                            {isChapter1 ? '—' : divScore.toFixed(1)}
+                        <div className="flex items-baseline gap-2 mb-1">
+                          <span
+                            className="font-display text-xl font-bold"
+                            style={{ color: isChapter1 ? 'hsl(var(--muted-foreground))' : divResult.color }}
+                          >
+                            {isChapter1 ? '—' : divResult.rating}
                           </span>
                         </div>
                         {!isChapter1 && (
                           <p className="font-body text-[11px] text-muted-foreground">
-                            {numRiskyPositions} risikobehaftete Position{numRiskyPositions !== 1 ? 'en' : ''} · {invested.toLocaleString('de-CH')} {currency}
+                            HHI: {divResult.hhi.toLocaleString('de-CH')} | {divResult.numPositions} Position{divResult.numPositions !== 1 ? 'en' : ''} bei {riskyInvested.toLocaleString('de-CH')} {currency}
                           </p>
                         )}
                       </div>
