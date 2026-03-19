@@ -123,18 +123,18 @@ const LevelChallenge = () => {
             </p>
             <div className="mt-5 flex items-center gap-3">
               <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3 flex-1">
-                <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Dein Budget</p>
+                <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Your Budget</p>
                 <p className="font-display text-2xl font-bold tabular-nums">{totalBudget.toLocaleString('de-CH')} {currency}</p>
               </div>
               {scenario ? (
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
-                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Notgroschen</p>
-                  <p className="font-display text-2xl font-bold tabular-nums">{levelId === 'chapter-3' ? '10.000' : '2.000'} {currency}</p>
+                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Emergency Fund</p>
+                  <p className="font-display text-2xl font-bold tabular-nums">{levelId === 'chapter-3' ? '10,000' : '2,000'} {currency}</p>
                 </div>
               ) : (
                 <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
-                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Ziel</p>
-                  <p className="font-display text-2xl font-bold tabular-nums">1.000 {currency}</p>
+                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Goal</p>
+                  <p className="font-display text-2xl font-bold tabular-nums">1,000 {currency}</p>
                 </div>
               )}
             </div>
