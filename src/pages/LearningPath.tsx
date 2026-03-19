@@ -106,8 +106,8 @@ const LearningPath = () => {
                     style={{
                       width: 44,
                       height: 44,
-                      backgroundColor: '#1A56DB',
-                      boxShadow: '0 0 0 2px white, 0 0 0 3px #1A56DB',
+                      backgroundColor: '#059669',
+                      boxShadow: '0 0 0 2px white, 0 0 0 3px #059669',
                     }}
                   >
                     <span style={{ fontSize: 18, fontWeight: 700, color: 'white', lineHeight: 1 }}>
