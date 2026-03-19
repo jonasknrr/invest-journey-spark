@@ -59,7 +59,7 @@ const scenarios: Scenario[] = [
     options: [
       { emoji: '🌍', label: 'MSCI All Country World', correct: false },
       { emoji: '💡', label: 'Cybersecurity ETF', correct: true },
-      { emoji: '🏭', label: 'Healthcare Sektor ETF', correct: false },
+      { emoji: '🏭', label: 'Healthcare Sector ETF', correct: false },
     ],
     wrongExplanation: 'A thematic ETF focuses exactly on a trend topic — but with higher risk.',
   },
