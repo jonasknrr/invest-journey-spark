@@ -174,22 +174,6 @@ const LearningPath = () => {
                 )}
               </div>
 
-              {/* Decorative emoji between nodes */}
-              {index < levels.length - 1 && (
-                <motion.span
-                  className="absolute text-xl select-none"
-                  style={{
-                    top: NODE_SPACING - 30,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                  }}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.5 + index * 0.08, type: 'spring', stiffness: 300 }}
-                >
-                  {index < completedCount ? '🌳' : index === completedCount ? '🌱' : '·'}
-                </motion.span>
-              )}
             </div>
           );
         })}
