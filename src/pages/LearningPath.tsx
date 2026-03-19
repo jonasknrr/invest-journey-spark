@@ -154,7 +154,7 @@ const LearningPath = () => {
       {/* Zigzag Path */}
       <div className="relative max-w-sm mx-auto" style={{ height: pathHeight }}>
         <svg
-          className="absolute inset-0 w-full pointer-events-none"
+          className="absolute inset-0 w-full pointer-events-none z-[1]"
           viewBox={`0 0 ${svgWidth} ${pathHeight}`}
           preserveAspectRatio="xMidYMid meet"
           style={{ height: pathHeight }}
