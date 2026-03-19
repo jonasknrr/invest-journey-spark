@@ -42,7 +42,7 @@ const FestgeldDetail = () => {
       {/* Header */}
       <div className="px-5 pt-6 pb-2">
         <button onClick={() => navigate(`/challenge/${levelId}/festgeld`)} className="text-muted-foreground text-sm font-body flex items-center gap-1">
-          <ArrowLeft size={16} /> Zurück
+          <ArrowLeft size={16} /> Back
         </button>
       </div>
 
