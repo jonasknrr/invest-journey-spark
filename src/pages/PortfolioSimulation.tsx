@@ -240,7 +240,7 @@ function analyzePortfolio(
   /* ── Chapter 1 ── */
   if (levelId === 'chapter-1') {
     if (rendite > 2) {
-      praise.push('✅ Well done! You're getting a solid return from your safe investments.');
+      praise.push('✅ Well done! You\'re getting a solid return from your safe investments.');
     }
     if (ch1Context && ch1Context.tagesgeldPct > 50) {
       critique.push('📉 Interest lost: You left a lot of money in low-interest call money that could have been placed in fixed deposits for a higher return.');
