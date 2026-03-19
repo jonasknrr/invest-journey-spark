@@ -79,7 +79,7 @@ const EtfDetail = () => {
       <div className="flex-1 flex flex-col items-center justify-center px-6">
         <div className="bg-muted/50 rounded-2xl px-5 py-2.5 mb-6">
           <p className="text-xs text-muted-foreground font-body text-center">
-            Verfügbar: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} $</span>
+            Verfügbar: <span className="font-bold text-foreground">{maxAmount.toLocaleString('de-CH')} CHF</span>
           </p>
         </div>
 
