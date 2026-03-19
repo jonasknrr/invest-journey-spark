@@ -45,7 +45,7 @@ const SubLevelCard = ({ subLevel, index, accentColor, onClick }: SubLevelCardPro
         <div className="flex-shrink-0 mt-1">
           {isCompleted && (
             <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-              <Check className="w-5 h-5 text-primary-foreground" strokeWidth={3} />
+              <FiCheck className="w-5 h-5 text-primary-foreground" strokeWidth={3} />
             </div>
           )}
           {isCurrent && (
