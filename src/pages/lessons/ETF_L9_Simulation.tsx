@@ -80,6 +80,11 @@ const ETF_L9_Simulation = () => {
   const [showImpactBtn, setShowImpactBtn] = useState(false);
   const [animatedValue, setAnimatedValue] = useState(10000);
 
+  // Track progress
+  useEffect(() => {
+    updateLessonProgress('etfs-e9', Math.min(phase / 4, 1));
+  }, [phase]);
+
   const remainingBudget = 100 - Object.values(portfolio).reduce((s, v) => s + v, 0);
 
   // Scores
