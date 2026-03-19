@@ -20,7 +20,7 @@ const colorMap: Record<string, string> = {
   currencies: 'bg-level-currencies',
   crypto: 'bg-level-crypto',
   metals: 'bg-level-metals',
-  immobilien: 'bg-level-immobilien',
+  realestate: 'bg-level-realestate',
 };
 
 const shadowMap: Record<string, string> = {
