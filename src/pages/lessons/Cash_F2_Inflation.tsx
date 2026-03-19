@@ -465,27 +465,7 @@ const Cash_F2_Inflation = () => {
               Du verstehst jetzt was Inflation ist und warum Geld das einfach nur liegt jedes Jahr an Wert verliert.
             </p>
 
-            <motion.div
-              className="inline-flex flex-col items-center gap-0.5 px-6 py-3 rounded-2xl bg-green-500/10 border border-green-500/20"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, type: 'spring', stiffness: 200 }}
-            >
-              <motion.span
-                className="font-display text-xl font-bold text-green-600 dark:text-green-400"
-                animate={{
-                  textShadow: [
-                    '0 0 0px hsl(142,71%,45%)',
-                    '0 0 16px hsl(142,71%,45%)',
-                    '0 0 0px hsl(142,71%,45%)',
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                +50 XP
-              </motion.span>
-              <span className="font-body text-xs text-green-600/70 dark:text-green-400/70">verdient</span>
-            </motion.div>
+            <CompletionXP result={completionResult} hearts={hearts} />
           </motion.div>
         )}
       </AnimatePresence>
