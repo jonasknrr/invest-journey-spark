@@ -279,10 +279,10 @@ const ETF_L8_Sparplan = () => {
             <div className="max-w-sm mx-auto w-full mb-3">
               <div className="flex rounded-xl overflow-hidden h-8 mb-1">
                 <motion.div className="bg-blue-500 flex items-center justify-center" animate={{ width: `${depPct}%` }} transition={{ duration: 0.5 }}>
-                  {depPct > 20 && <span className="font-body text-[9px] text-white font-semibold truncate px-1">💙 Eingezahlt</span>}
+                  {depPct > 20 && <span className="font-body text-[9px] text-white font-semibold truncate px-1">💙 Deposited</span>}
                 </motion.div>
                 <motion.div className="bg-green-500 flex items-center justify-center" animate={{ width: `${100 - depPct}%` }} transition={{ duration: 0.5 }}>
-                  {(100 - depPct) > 20 && <span className="font-body text-[9px] text-white font-semibold truncate px-1">💚 Zinseszins</span>}
+                  {(100 - depPct) > 20 && <span className="font-body text-[9px] text-white font-semibold truncate px-1">💚 Compound Interest</span>}
                 </motion.div>
               </div>
             </div>
