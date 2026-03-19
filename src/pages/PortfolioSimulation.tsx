@@ -423,7 +423,7 @@ const PortfolioSimulation = () => {
   );
 
   // Backward compat: divScore 0-10 scale for coach analysis
-  const divScore = divResult.riskPassed ? 8 : divResult.rating === 'Ausreichend' ? 5 : 2;
+  const divScore = divResult.riskPassed ? 8 : divResult.rating === 'Fair' ? 5 : 2;
 
   // Safe asset percentage (Tagesgeld + Festgeld)
   const safeTotal = tagesgeldAmount + festgeldPositions.reduce((s, f) => s + f.amount, 0);
