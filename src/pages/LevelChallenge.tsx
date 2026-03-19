@@ -169,8 +169,8 @@ const LevelChallenge = () => {
 
         {/* Asset Classes */}
         <motion.div variants={itemVariants} className="flex items-center justify-between pt-1">
-          <h2 className="font-display text-lg font-bold text-foreground">Anlageklassen</h2>
-          <span className="text-xs text-muted-foreground font-body">{unlockedCount} von {assetClasses.length} verfügbar</span>
+          <h2 className="font-display text-lg font-bold text-foreground">Asset classes</h2>
+          <span className="text-xs text-muted-foreground font-body">{unlockedCount} of {assetClasses.length} available</span>
         </motion.div>
 
         <motion.div variants={containerVariants} className="space-y-3">
