@@ -96,7 +96,7 @@ const FestgeldOverview = () => {
                   </p>
                   {allocated > 0 && (
                     <p className="text-xs text-muted-foreground font-body tabular-nums mt-0.5">
-                      +{(allocated * product.interestRate / 100 * product.durationYears).toFixed(0)} CHF Zinsen
+                      +{(allocated * product.interestRate / 100 * product.durationYears).toFixed(0)} CHF interest
                     </p>
                   )}
                 </div>
