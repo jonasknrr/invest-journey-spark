@@ -265,7 +265,7 @@ const ETF_L7_AccVsDist = () => {
                           />
                         ))}
                       </div>
-                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">Gives off snow...</span>
+                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-700 font-body text-[10px] font-semibold">Loses snow...</span>
                     </div>
                   </div>
                   <p className="font-body text-sm text-muted-foreground text-center mb-4">Same start. Same slope. 30 years later: huge difference.</p>
