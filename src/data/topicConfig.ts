@@ -102,6 +102,7 @@ const aktienTopics: TopicConfig[] = [
       },
     ],
   },
+  {
     slug: 'a2',
     levelId: 'aktien',
     title: 'How do Returns Arise?',
