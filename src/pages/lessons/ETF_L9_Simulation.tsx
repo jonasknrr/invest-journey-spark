@@ -246,7 +246,7 @@ const ETF_L9_Simulation = () => {
               <div className="flex items-center justify-between mb-2">
                 <h2 className="font-display text-lg font-bold text-foreground">Build your portfolio</h2>
                 <span className={`px-3 py-1 rounded-full font-display text-xs font-bold ${remainingBudget > 20 ? 'bg-primary/10 text-primary' : remainingBudget > 10 ? 'bg-amber-500/10 text-amber-600' : 'bg-destructive/10 text-destructive'}`}>
-                  {remainingBudget}% übrig
+                  {remainingBudget}% remaining
                 </span>
               </div>
               <div className="h-2 rounded-full bg-muted overflow-hidden">
