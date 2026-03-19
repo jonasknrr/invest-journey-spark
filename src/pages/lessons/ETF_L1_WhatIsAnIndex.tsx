@@ -31,29 +31,29 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  question: 'Was beschreibt einen Aktienindex am besten?',
+  question: 'What best describes a stock index?',
   answers: [
-    { id: 'a', text: 'Ein Fonds in den man direkt investieren kann' },
-    { id: 'b', text: 'Eine Messung die eine Gruppe von Aktien als eine Zahl verfolgt' },
-    { id: 'c', text: 'Eine Liste der besten Aktien des Jahres' },
-    { id: 'd', text: 'Ein Staatsbericht über die Wirtschaft' },
+    { id: 'a', text: 'A fund you can invest in directly' },
+    { id: 'b', text: 'A measurement that tracks a group of stocks as a single number' },
+    { id: 'c', text: 'A list of the best stocks of the year' },
+    { id: 'd', text: 'A government report on the economy' },
   ],
   correctId: 'b',
-  correctFeedback: 'Genau! Ein Index ist ein reines Messinstrument — wie ein Thermometer. Du kannst nicht den S&P 500 direkt kaufen.',
-  wrongFeedback: 'Not quite. Ein Index ist nur eine Zahl die einen Aktienkorb misst. Dafür gibt es ETFs — kommt in Lektion 3!',
+  correctFeedback: 'Exactly! An index is purely a measurement tool — like a thermometer. You can\'t buy the S&P 500 directly.',
+  wrongFeedback: 'Not quite. An index is just a number that measures a basket of stocks. That\'s what ETFs are for — coming in Lesson 3!',
 };
 
 const quiz2: QuizConfig = {
-  question: 'Der MSCI World fällt heute um 3%. Was bedeutet das?',
+  question: 'The MSCI World falls 3% today. What does that mean?',
   answers: [
-    { id: 'a', text: 'Jede einzelne Aktie fiel genau um 3%' },
-    { id: 'b', text: 'Das Index-Komitee hat die Zahl manuell gesenkt' },
-    { id: 'c', text: 'Grosse Unternehmen in 23 Ländern verloren im Schnitt ~3% ihres Wertes' },
-    { id: 'd', text: 'Die US-Wirtschaft schrumpfte um 3%' },
+    { id: 'a', text: 'Every single stock fell exactly 3%' },
+    { id: 'b', text: 'The index committee manually lowered the number' },
+    { id: 'c', text: 'Large companies across 23 countries lost on average ~3% of their value' },
+    { id: 'd', text: 'The US economy shrank by 3%' },
   ],
   correctId: 'c',
-  correctFeedback: 'Korrekt! Ein Index ist ein gewichteter Durchschnitt. Einzelne Aktien bewegen sich unterschiedlich — der Nettoeffekt war -3%.',
-  wrongFeedback: 'Ein Index ist ein gewichteter Durchschnitt. Die -3% zeigen den Gesamtkorb, nicht jede einzelne Aktie.',
+  correctFeedback: 'Correct! An index is a weighted average. Individual stocks move differently — the net effect was -3%.',
+  wrongFeedback: 'An index is a weighted average. The -3% shows the overall basket, not every single stock.',
 };
 
 const ETF_L1_WhatIsAnIndex = () => {
@@ -168,29 +168,29 @@ const ETF_L1_WhatIsAnIndex = () => {
                 <motion.div key="s0" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }} className="flex flex-col flex-1">
                   <div className="flex flex-col items-center text-center mb-5">
                     <span style={{ fontSize: 64 }} className="mb-3">🎵</span>
-                    <h2 className="font-display text-2xl font-bold text-foreground leading-tight">Du kennst Spotify's Top 50?</h2>
+                    <h2 className="font-display text-2xl font-bold text-foreground leading-tight">You know Spotify's Top 50?</h2>
                   </div>
                   <div className="grid grid-cols-2 gap-3 max-w-sm mx-auto w-full mb-5">
                     <div className="rounded-2xl bg-muted p-4 flex flex-col items-center text-center gap-2">
                       <span className="text-2xl">🎵</span>
-                      <p className="font-body text-sm font-medium text-foreground">Ein Song von Ed Sheeran</p>
-                      <p className="font-body text-xs text-muted-foreground">= eine Aktie</p>
+                      <p className="font-body text-sm font-medium text-foreground">A song by Ed Sheeran</p>
+                      <p className="font-body text-xs text-muted-foreground">= one stock</p>
                     </div>
                     <div className="rounded-2xl p-4 flex flex-col items-center text-center gap-2" style={{ backgroundColor: '#EFF6FF' }}>
                       <span className="text-2xl">📋</span>
                       <p className="font-body text-sm font-medium text-foreground">Top 50 Global Playlist</p>
-                      <p className="font-body text-xs" style={{ color: BLUE }}>= ein Index</p>
+                      <p className="font-body text-xs" style={{ color: BLUE }}>= an index</p>
                     </div>
                   </div>
                   <div className="flex justify-end mt-auto">
-                    <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                    <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors">Next →</button>
                   </div>
                 </motion.div>
               )}
 
               {storySlide === 1 && (
                 <motion.div key="s1" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }} className="flex flex-col flex-1">
-                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Die Playlist gehört niemandem.</h2>
+                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Nobody owns the playlist.</h2>
                   <div className="max-w-sm mx-auto w-full mb-4 rounded-2xl overflow-hidden shadow-md">
                     <div className="px-4 py-3 text-white font-display font-bold text-sm" style={{ backgroundColor: '#1DB954' }}>🎵 Top 50 Global — Spotify</div>
                     <div className="bg-card px-4 py-3 flex flex-col gap-2">
@@ -199,27 +199,27 @@ const ETF_L1_WhatIsAnIndex = () => {
                       <p className="font-body text-sm text-foreground">🥉 Dance Monkey — Tones and I</p>
                     </div>
                     <div className="bg-card px-4 py-2 border-t border-border">
-                      <p className="font-body text-xs text-muted-foreground">Kuratiert von Spotify • täglich aktualisiert</p>
+                      <p className="font-body text-xs text-muted-foreground">Curated by Spotify • updated daily</p>
                     </div>
                   </div>
                   <div className="max-w-sm mx-auto w-full rounded-xl bg-destructive/10 border border-destructive/20 px-4 py-2.5 mb-4">
-                    <p className="font-body text-sm text-destructive font-medium">❌ Du kannst diese Playlist nicht kaufen — nur hören</p>
+                    <p className="font-body text-sm text-destructive font-medium">❌ You can\'t buy this playlist — only listen</p>
                   </div>
-                  <p className="font-body text-xs text-muted-foreground text-center max-w-xs mx-auto mb-4">Spotify wählt aus, berechnet, aktualisiert. Du schaust zu.</p>
+                  <p className="font-body text-xs text-muted-foreground text-center max-w-xs mx-auto mb-4">Spotify selects, calculates, updates. You just watch.</p>
                   <div className="flex justify-end mt-auto">
-                    <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors">Nächste →</button>
+                    <button onClick={() => setStorySlide(2)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors">Next →</button>
                   </div>
                 </motion.div>
               )}
 
               {storySlide === 2 && (
                 <motion.div key="s2" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }} className="flex flex-col flex-1">
-                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Der S&P 500 ist dasselbe — für Aktien.</h2>
+                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">The S&P 500 is the same thing — for stocks.</h2>
                   <div className="flex flex-col gap-3 max-w-sm mx-auto w-full mb-4">
                     {[
-                      { flag: '🇺🇸', name: 'S&P 500', desc: 'Top 500 US-Unternehmen nach Grösse', tag: 'Bekanntester Index weltweit' },
-                      { flag: '🇩🇪', name: 'DAX', desc: 'Top 40 deutsche Unternehmen', tag: 'Deutschlands Wirtschaftspuls' },
-                      { flag: '🌍', name: 'MSCI World', desc: '~1.500 Firmen aus 23 Ländern', tag: 'Die globale Playlist' },
+                      { flag: '🇺🇸', name: 'S&P 500', desc: 'Top 500 US companies by size', tag: 'Most well-known index worldwide' },
+                      { flag: '🇩🇪', name: 'DAX', desc: 'Top 40 German companies', tag: 'Germany\'s economic pulse' },
+                      { flag: '🌍', name: 'MSCI World', desc: '~1,500 companies from 23 countries', tag: 'The global playlist' },
                     ].map(item => (
                       <div key={item.name} className="rounded-xl border border-border bg-card p-3 flex gap-3 items-start" style={{ borderLeftWidth: 4, borderLeftColor: BLUE }}>
                         <span className="text-2xl mt-0.5">{item.flag}</span>
@@ -232,7 +232,7 @@ const ETF_L1_WhatIsAnIndex = () => {
                     ))}
                   </div>
                   <div className="rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 max-w-sm mx-auto w-full">
-                    <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">💡 Ein Index ist eine Messung — kein Produkt. Wie ein Thermometer: du kannst nicht 20°C kaufen.</p>
+                    <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">💡 An index is a measurement — not a product. Like a thermometer: you can\'t buy 20°C.</p>
                   </div>
                 </motion.div>
               )}
@@ -249,8 +249,8 @@ const ETF_L1_WhatIsAnIndex = () => {
                 <motion.div key="pick" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col flex-1">
                   <div className="flex items-start justify-between mb-4">
                     <div>
-                      <h2 className="font-display text-xl font-bold text-foreground">Bau deinen eigenen Index!</h2>
-                      <p className="font-body text-sm text-muted-foreground mt-1">Wähle 5 Unternehmen die du für die wichtigsten der Welt hältst</p>
+                      <h2 className="font-display text-xl font-bold text-foreground">Build your own index!</h2>
+                      <p className="font-body text-sm text-muted-foreground mt-1">Pick 5 companies you think are the most important in the world</p>
                     </div>
                     <span className={`font-body text-xs font-bold px-3 py-1 rounded-full flex-shrink-0 ${selectedStocks.length === 5 ? 'bg-green-500/15 text-green-700 dark:text-green-400' : 'bg-primary/10 text-primary'}`}>
                       {selectedStocks.length} / 5
@@ -262,11 +262,11 @@ const ETF_L1_WhatIsAnIndex = () => {
                       { flag: '🇺🇸', ticker: 'MSFT', name: 'Microsoft', sector: 'Tech', color: 'bg-blue-500/10 text-blue-700 dark:text-blue-400' },
                       { flag: '🇺🇸', ticker: 'TSLA', name: 'Tesla', sector: 'Auto', color: 'bg-orange-500/10 text-orange-700 dark:text-orange-400' },
                       { flag: '🇩🇪', ticker: 'SAP', name: 'SAP', sector: 'Tech', color: 'bg-blue-500/10 text-blue-700 dark:text-blue-400' },
-                      { flag: '🇨🇭', ticker: 'NESN', name: 'Nestlé', sector: 'Konsum', color: 'bg-green-500/10 text-green-700 dark:text-green-400' },
+                      { flag: '🇨🇭', ticker: 'NESN', name: 'Nestlé', sector: 'Consumer', color: 'bg-green-500/10 text-green-700 dark:text-green-400' },
                       { flag: '🇳🇱', ticker: 'ASML', name: 'ASML', sector: 'Tech', color: 'bg-blue-500/10 text-blue-700 dark:text-blue-400' },
-                      { flag: '🇺🇸', ticker: 'JPM', name: 'JPMorgan', sector: 'Finanzen', color: 'bg-amber-500/10 text-amber-700 dark:text-amber-400' },
-                      { flag: '🇫🇷', ticker: 'MC', name: 'LVMH', sector: 'Luxus', color: 'bg-pink-500/10 text-pink-700 dark:text-pink-400' },
-                      { flag: '🇺🇸', ticker: 'AMZN', name: 'Amazon', sector: 'Konsum', color: 'bg-green-500/10 text-green-700 dark:text-green-400' },
+                      { flag: '🇺🇸', ticker: 'JPM', name: 'JPMorgan', sector: 'Finance', color: 'bg-amber-500/10 text-amber-700 dark:text-amber-400' },
+                      { flag: '🇫🇷', ticker: 'MC', name: 'LVMH', sector: 'Luxury', color: 'bg-pink-500/10 text-pink-700 dark:text-pink-400' },
+                      { flag: '🇺🇸', ticker: 'AMZN', name: 'Amazon', sector: 'Consumer', color: 'bg-green-500/10 text-green-700 dark:text-green-400' },
                     ]).map(stock => {
                       const isSelected = selectedStocks.includes(stock.ticker);
                       const isFull = selectedStocks.length >= 5 && !isSelected;
@@ -316,11 +316,11 @@ const ETF_L1_WhatIsAnIndex = () => {
 
               {gamePhase === 'result' && (
                 <motion.div key="result" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="flex flex-col flex-1">
-                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Dein Index vs. der echte S&P 500</h2>
+                  <h2 className="font-display text-xl font-bold text-foreground text-center mb-4">Your Index vs. the real S&P 500</h2>
 
                   {/* User index */}
                   <div className="rounded-2xl p-4 mb-3 max-w-md mx-auto w-full" style={{ backgroundColor: '#EFF6FF' }}>
-                    <p className="font-body text-xs font-semibold text-muted-foreground mb-3">DEIN INDEX</p>
+                    <p className="font-body text-xs font-semibold text-muted-foreground mb-3">YOUR INDEX</p>
                     <div className="flex flex-col gap-2">
                       {selectedStocks.map(ticker => (
                         <div key={ticker} className="flex items-center gap-2">
@@ -338,7 +338,7 @@ const ETF_L1_WhatIsAnIndex = () => {
 
                   {/* S&P 500 */}
                   <div className="rounded-2xl bg-muted p-4 mb-4 max-w-md mx-auto w-full">
-                    <p className="font-body text-xs font-semibold text-muted-foreground mb-3">ECHTER S&P 500</p>
+                    <p className="font-body text-xs font-semibold text-muted-foreground mb-3">REAL S&P 500</p>
                     <div className="flex flex-col gap-2">
                       {[
                         { ticker: 'AAPL', weight: 7.1 },
@@ -356,29 +356,29 @@ const ETF_L1_WhatIsAnIndex = () => {
                         </div>
                       ))}
                     </div>
-                    <p className="font-body text-xs text-muted-foreground mt-2">+ 495 weitere Unternehmen...</p>
+                    <p className="font-body text-xs text-muted-foreground mt-2">+ 495 more companies...</p>
                   </div>
 
                   {/* Insights */}
                   <div className="flex flex-col gap-2 max-w-md mx-auto w-full mb-4">
                     {selectedStocks.includes('AAPL') && (
                       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="font-body text-sm text-foreground">
-                        ✓ Apple hast du richtig eingeschätzt — grösste Position im S&P 500 mit 7.1%
+                        ✓ You got Apple right — largest position in the S&P 500 at 7.1%
                       </motion.p>
                     )}
                     {selectedStocks.some(t => ['SAP', 'NESN', 'ASML', 'MC'].includes(t)) && (
                       <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7 }} className="font-body text-sm text-foreground">
-                        🌍 Du hast eine europäische Aktie gewählt — der S&P 500 enthält nur US-Unternehmen. Für globale Firmen gibt es den MSCI World.
+                        🌍 You picked a European stock — the S&P 500 only contains US companies. For global companies, there\'s the MSCI World.
                       </motion.p>
                     )}
                     <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }} className="font-body text-sm text-muted-foreground">
-                      💡 Der echte S&P 500 gewichtet nach Marktkapitalisierung, nicht gleichmässig. Apple hat 7.1% — nicht 0.2% wie in einem gleichgewichteten Index.
+                      💡 The real S&P 500 weights by market cap, not equally. Apple has 7.1% — not 0.2% as in an equal-weight index.
                     </motion.p>
                   </div>
 
                   <div className="rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 max-w-md mx-auto w-full mb-3">
                     <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
-                      Das ist der Unterschied zwischen einem Index den du dir ausdenkst und einem der nach klaren Regeln (Marktkapitalisierung, Liquidität, Grösse) funktioniert.
+                      That\'s the difference between an index you make up and one that works according to clear rules (market cap, liquidity, size).
                     </p>
                   </div>
 
@@ -417,12 +417,12 @@ const ETF_L1_WhatIsAnIndex = () => {
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
             <span className="text-5xl mb-4">🎉</span>
             <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
-            <p className="font-body text-sm text-muted-foreground mb-5">Du weisst jetzt was ein Index ist.</p>
+            <p className="font-body text-sm text-muted-foreground mb-5">You now know what an index is.</p>
 
             <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left">
-              <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ Ein Index ist eine Messung, kein Produkt</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ Beispiele: S&P 500, DAX, MSCI World</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Grosse Unternehmen haben mehr Einfluss</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ An index is a measurement, not a product</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ Examples: S&P 500, DAX, MSCI World</p>
+              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Larger companies have more influence</p>
             </div>
 
             <CompletionXP result={completionResult} hearts={hearts} />
@@ -473,9 +473,9 @@ const ETF_L1_WhatIsAnIndex = () => {
               onClick={e => e.stopPropagation()}
             >
               <div className="w-10 h-1 rounded-full bg-muted mx-auto mb-4" />
-              <h3 className="font-display text-lg font-bold text-foreground mb-3">Was ist ein Aktienindex? 📖</h3>
+              <h3 className="font-display text-lg font-bold text-foreground mb-3">What is a stock index? 📖</h3>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Ein Aktienindex ist ein statistisches Mass das die Performance einer definierten Gruppe von Wertpapieren verfolgt. Die Methodologie legt fest: (1) das Universum der Wertpapiere, (2) das Gewichtungsschema (Marktkapitalisierung, Preis, Gleichgewichtung), (3) den Rebalancing-Zeitplan. Der S&P 500 nutzt float-adjustierte Marktkapitalisierungsgewichtung — nur frei handelbare Aktien zählen.
+                A stock index is a statistical measure that tracks the performance of a defined group of securities. The methodology defines: (1) the universe of securities, (2) the weighting scheme (market cap, price, equal weight), (3) the rebalancing schedule. The S&P 500 uses float-adjusted market cap weighting — only freely tradable shares count.
               </p>
               <button
                 onClick={() => setShowDeepDive(false)}
