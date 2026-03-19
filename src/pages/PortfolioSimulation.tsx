@@ -760,7 +760,7 @@ const PortfolioSimulation = () => {
                         <div className="flex items-center justify-between mb-1">
                           <span className="font-body text-sm text-foreground font-medium">{ac.label}</span>
                           <span className="font-display text-xs font-bold text-foreground tabular-nums">
-                            {ac.amount.toLocaleString('de-CH')} $ ({pct.toFixed(0)}%)
+                            {ac.amount.toLocaleString('de-CH')} {currency} ({pct.toFixed(0)}%)
                           </span>
                         </div>
                         <div className="h-2 rounded-full bg-muted overflow-hidden">
