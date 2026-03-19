@@ -232,7 +232,7 @@ const ETF_L1_WhatIsAnIndex = () => {
                     ))}
                   </div>
                   <div className="rounded-xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-4 py-3 max-w-sm mx-auto w-full">
-                    <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">💡 An index is a measurement — not a product. Like a thermometer: you can't buy 20°C.</p>
+                    <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">💡 An index is a measurement — not a product. Its comparable to a thermometer: you cannot buy 20°C.</p>
                   </div>
                 </motion.div>
               )}
