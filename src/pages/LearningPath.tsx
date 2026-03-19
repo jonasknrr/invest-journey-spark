@@ -113,10 +113,10 @@ const LearningPath = () => {
               {(() => {
                 const userName = localStorage.getItem('investify_name')?.trim();
                 return userName ? (
-                  <p className="text-xs text-muted-foreground leading-tight">{userName}'s</p>
+                  <p className="text-base font-bold text-foreground leading-tight">{userName}'s</p>
                 ) : null;
               })()}
-              <p className="text-base font-bold text-primary leading-tight">Investify</p>
+              <p className="text-sm font-normal text-muted-foreground leading-tight">Investify</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
