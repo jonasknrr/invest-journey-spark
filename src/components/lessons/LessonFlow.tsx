@@ -15,9 +15,23 @@ interface Props {
 const LessonFlow = ({ config }: Props) => {
   const navigate = useNavigate();
   const [step, setStep] = useState(0);
+  const [quizIndex, setQuizIndex] = useState(0);
   const [showCompletion, setShowCompletion] = useState(false);
 
   const VisualComponent = visualRegistry[config.visualKey];
+
+  const quizList = config.quizzes ?? [config.quiz];
+  const currentQuiz = quizList[quizIndex];
+  const totalDots = 1 + 1 + quizList.length;
+  const currentDot = step === 2 ? 2 + quizIndex : step;
+
+  const handleQuizComplete = () => {
+    if (quizIndex < quizList.length - 1) {
+      setQuizIndex(quizIndex + 1);
+    } else {
+      setShowCompletion(true);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -30,7 +44,7 @@ const LessonFlow = ({ config }: Props) => {
           <ArrowLeft size={20} className="text-foreground" />
         </button>
         <div className="flex-1">
-          <StepDots current={step} total={3} />
+          <StepDots current={currentDot} total={totalDots} />
         </div>
         <div className="w-10" />
       </div>
@@ -53,16 +67,24 @@ const LessonFlow = ({ config }: Props) => {
         {step === 1 && VisualComponent && (
           <VisualComponent key="s2" onNext={() => setStep(2)} />
         )}
-        {step === 2 && (
-          <QuizStep
-            key="s3"
-            question={config.quiz.question}
-            answers={config.quiz.answers}
-            correctId={config.quiz.correctId}
-            correctFeedback={config.quiz.correctFeedback}
-            wrongFeedback={config.quiz.wrongFeedback}
-            onComplete={() => setShowCompletion(true)}
-          />
+        {step === 2 && currentQuiz && (
+          <>
+            {quizList.length > 1 && (
+              <p className="font-body text-xs text-muted-foreground text-center mt-2">
+                Question {quizIndex + 1} of {quizList.length}
+              </p>
+            )}
+            <QuizStep
+              key={"quiz-" + quizIndex}
+              question={currentQuiz.question}
+              answers={currentQuiz.answers}
+              correctId={currentQuiz.correctId}
+              correctFeedback={currentQuiz.correctFeedback}
+              wrongFeedback={currentQuiz.wrongFeedback}
+              onComplete={handleQuizComplete}
+              isLastQuiz={quizIndex === quizList.length - 1}
+            />
+          </>
         )}
       </AnimatePresence>
 
