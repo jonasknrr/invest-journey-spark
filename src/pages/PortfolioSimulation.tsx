@@ -712,55 +712,35 @@ const PortfolioSimulation = () => {
               </div>
             </div>
 
-            {/* ── 2. Ziel-Check & Performance ── */}
-            <div className={`rounded-3xl p-5 border shadow-card ${
-              goalMet
-                ? 'bg-primary/5 border-primary/20'
-                : 'bg-[hsl(30,90%,55%)]/5 border-[hsl(30,90%,55%)]/20'
-            }`}>
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`w-11 h-11 rounded-2xl flex items-center justify-center ${
-                  goalMet ? 'bg-primary/15' : 'bg-[hsl(30,90%,55%)]/15'
-                }`}>
-                  <Trophy size={24} weight="fill" className={goalMet ? 'text-primary' : 'text-[hsl(30,90%,55%)]'} />
-                </div>
+            {/* ── 2. Performance ── */}
+            <div className="rounded-3xl bg-card border border-border shadow-card p-5">
+              <p className="font-display font-bold text-foreground text-[15px] mb-4">Performance</p>
+
+              {/* Endwert + Investiert */}
+              <div className="flex items-center justify-between mb-3">
                 <div>
-                  <p className={`font-display font-bold text-base ${goalMet ? 'text-primary' : 'text-[hsl(30,90%,55%)]'}`}>
-                    {goalMet ? 'Ziel erreicht! 🎉' : 'Ziel nicht erreicht'}
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Endwert</p>
+                  <p className="font-display text-2xl font-bold text-foreground tabular-nums">
+                    {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
                   </p>
-                  <p className="font-body text-xs text-muted-foreground">
-                    Ziel: {GOAL.toLocaleString('de-CH')} $ Rendite in {SIM_YEARS} Jahren
+                </div>
+                <div className="text-right">
+                  <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Investiert</p>
+                  <p className="font-display text-lg text-muted-foreground tabular-nums">
+                    {invested.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
                   </p>
                 </div>
               </div>
 
-              {/* Endwert */}
-              <div className="bg-card rounded-2xl p-4 mb-3">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Endwert</p>
-                    <p className="font-display text-2xl font-bold text-foreground tabular-nums">
-                      {endValue.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold">Investiert</p>
-                    <p className="font-display text-lg text-muted-foreground tabular-nums">
-                      {invested.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Performance */}
+              {/* Rendite row */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="bg-card rounded-2xl p-3 text-center">
+                <div className="bg-muted/50 rounded-2xl p-3 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Rendite</p>
                   <p className={`font-display text-xl font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
                     {profit >= 0 ? '+' : ''}{profit.toLocaleString('de-CH', { maximumFractionDigits: 0 })} $
                   </p>
                 </div>
-                <div className="bg-card rounded-2xl p-3 text-center">
+                <div className="bg-muted/50 rounded-2xl p-3 text-center">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground font-body font-semibold mb-1">Rendite %</p>
                   <p className={`font-display text-xl font-bold tabular-nums ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
                     {profit >= 0 ? '+' : ''}{profitPct.toFixed(1)}%
