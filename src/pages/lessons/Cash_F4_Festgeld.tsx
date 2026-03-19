@@ -603,8 +603,8 @@ const Cash_F4_Festgeld = () => {
       {/* No Hearts Overlay */}
       {noHeartsScreen === 'showing' && (
         <NoHeartsOverlay
-          onRestart={() => { setCurrentStep(0); setHearts(3); setAmount(10000); setDurationIdx(1); setAmountTouched(false); setDurationTouched(false); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
-          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onRestart={() => { setCurrentStep(0); setHearts(3); setAmount(10000); setDurationIdx(1); setAmountTouched(false); setDurationTouched(false); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
           onContinue={() => setNoHeartsScreen('none')}
         />
       )}
