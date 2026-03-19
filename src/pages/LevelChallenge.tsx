@@ -113,12 +113,12 @@ const LevelChallenge = () => {
               </div>
             </div>
             <h1 className="font-display text-xl font-bold leading-snug mb-3">
-              {scenario ? scenario.title : 'Verteile dein Budget und erziele maximale Rendite!'}
+              {scenario ? scenario.title : 'Distribute your budget and maximise your return!'}
             </h1>
             <p className="text-sm leading-relaxed opacity-90 font-body">
               {scenario
                 ? scenario.description
-                : <>Du hast <span className="font-bold">{totalBudget.toLocaleString('de-CH')} {currency}</span> und brauchst in einem Jahr <span className="font-bold">1.000 {currency}</span>. Versuche so viel Rendite zu erzielen wie möglich.</>
+                : <>You have <span className="font-bold">{totalBudget.toLocaleString('de-CH')} {currency}</span> and need <span className="font-bold">1,000 {currency}</span> in one year. Try to earn as much return as possible.</>
               }
             </p>
             <div className="mt-5 flex items-center gap-3">
