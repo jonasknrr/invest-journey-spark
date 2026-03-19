@@ -42,7 +42,6 @@ const aktienTopics: TopicConfig[] = [
     },
     visualKey: 'pizza',
     quiz: {
-    ...
       question:
         'Die Bewertung der AlphaFirma AG steigt dieses Jahr. Was passiert mit deiner Aktie?',
       answers: [
