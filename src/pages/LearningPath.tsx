@@ -17,7 +17,7 @@ const chapterColors: Record<string, string> = {
   etfs: '#6366F1',
   anleihen: '#D1D5DB',
   currencies: '#D1D5DB',
-  krypto: '#D1D5DB',
+  crypto: '#D1D5DB',
   gold: '#D1D5DB',
   immobilien: '#D1D5DB',
 };
@@ -28,7 +28,7 @@ const chapterShortNames: Record<string, string> = {
   etfs: 'ETFs',
   anleihen: 'Bonds',
   currencies: 'Currencies',
-  krypto: 'Crypto',
+  crypto: 'Crypto',
   gold: 'Gold',
   immobilien: 'RE',
 };
