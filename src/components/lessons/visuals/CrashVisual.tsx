@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lightning } from '@phosphor-icons/react';
+import { FiZap } from 'react-icons/fi';
 import { pageVariants } from '../LessonShared';
 
 const sectors = [
