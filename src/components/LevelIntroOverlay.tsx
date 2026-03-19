@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Lightbulb } from '@phosphor-icons/react';
+import { FiX, FiSun } from 'react-icons/fi';
 import type { LevelIntro } from '@/data/levelIntros';
 
 interface LevelIntroOverlayProps {
@@ -80,7 +80,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
                 className="absolute top-4 right-4 w-9 h-9 rounded-full bg-background/80 backdrop-blur flex items-center justify-center shadow-sm active:scale-95 transition-transform"
                 aria-label="Close"
               >
-                <X size={18} weight="bold" className="text-muted-foreground" />
+                <FiX size={18} className="text-muted-foreground" />
               </button>
 
               {/* Hero icon */}
@@ -90,7 +90,6 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
               >
                 <HeroIcon
                   size={30}
-                  weight="fill"
                   style={{ color: `hsl(${intro.accentColor})` }}
                 />
               </div>
@@ -127,7 +126,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
                         className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5"
                         style={{ backgroundColor: `${fact.color}15` }}
                       >
-                        <FactIcon size={20} weight="fill" style={{ color: fact.color }} />
+                        <FactIcon size={20} style={{ color: fact.color }} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="font-display font-bold text-sm text-foreground">
@@ -145,7 +144,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
               {/* Tip card */}
               <div className="rounded-2xl bg-primary/8 border border-primary/15 p-4 flex items-start gap-3">
                 <div className="w-8 h-8 rounded-xl bg-primary/15 flex items-center justify-center flex-shrink-0">
-                  <Lightbulb size={18} weight="fill" className="text-primary" />
+                  <FiSun size={18} className="text-primary" />
                 </div>
                 <div className="flex-1">
                   <p className="font-display font-bold text-sm text-foreground mb-1">Remember</p>
