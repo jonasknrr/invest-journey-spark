@@ -530,9 +530,9 @@ const Cash_F5_Tagesgeld = () => {
               onClick={handleNext}
               whileTap={{ scale: 0.96 }}
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
-              style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
+              style={{ backgroundColor: currentStep === 5 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Back to overview →' : 'Continue →'}
+              {currentStep === 5 ? 'Back to overview →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}
