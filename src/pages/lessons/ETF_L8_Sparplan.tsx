@@ -382,7 +382,7 @@ const ETF_L8_Sparplan = () => {
                   <p className="font-display text-lg font-bold text-green-600 mt-1">Portfolio value: CHF {fmt(totalShares * 66.67)} (+{Math.round((totalShares * 66.67 / totalInvested - 1) * 100)}%!)</p>
                 </div>
                 <div className="rounded-xl bg-amber-500/10 border border-amber-500/20 p-3">
-                  <p className="font-body text-xs text-foreground text-center">Dein Durchschnittskurs (CHF {fmt2(avgPrice)}) ist tiefer als der aktuelle Kurs (CHF 66.67) — obwohl der Kurs zwischendurch stark fiel. Das ist Cost Averaging: tiefe Monate kaufen mehr Anteile und senken deinen Schnitt.</p>
+                  <p className="font-body text-xs text-foreground text-center">Your average price (CHF {fmt2(avgPrice)}) is lower than the current price (CHF 66.67) — even though the price dropped sharply in between. That's cost averaging: cheaper months buy more shares and lower your average.</p>
                 </div>
               </motion.div>
             )}
