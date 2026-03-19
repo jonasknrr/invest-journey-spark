@@ -19,7 +19,7 @@ const colorMap: Record<string, string> = {
   etfs: 'bg-level-etfs',
   currencies: 'bg-level-currencies',
   crypto: 'bg-level-crypto',
-  gold: 'bg-level-gold',
+  metals: 'bg-level-metals',
   immobilien: 'bg-level-immobilien',
 };
 
