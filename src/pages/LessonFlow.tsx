@@ -12,6 +12,9 @@ import DividendSlide from './lessonSlides/DividendSlide';
 import QuizSlide from './lessonSlides/QuizSlide';
 import CompletionSlide from './lessonSlides/CompletionSlide';
 import CashSortSlide from './lessonSlides/CashSortSlide';
+import { useProgressStore } from '@/hooks/useProgressStore';
+import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
+import CompletionXP from '@/components/lessons/CompletionXP';
 
 const TOTAL_STEPS = 5;
 
