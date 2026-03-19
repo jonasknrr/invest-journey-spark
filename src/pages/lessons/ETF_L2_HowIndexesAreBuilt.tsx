@@ -207,7 +207,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                   <div className="flex justify-end w-full">
                     <button onClick={() => setStorySlide(1)}
                       className="font-display text-sm font-semibold text-primary border border-primary/30 rounded-full px-4 py-2 hover:bg-primary/5 transition-colors">
-                      Nächste →
+                      Next →
                     </button>
                   </div>
                 </motion.div>
@@ -253,7 +253,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                   <div className="flex justify-end w-full">
                     <button onClick={() => setStorySlide(2)}
                       className="font-display text-sm font-semibold text-primary border border-primary/30 rounded-full px-4 py-2 hover:bg-primary/5 transition-colors">
-                      Nächste →
+                      Next →
                     </button>
                   </div>
                 </motion.div>
