@@ -36,7 +36,7 @@ const PizzaVisual = ({ onNext }: { onNext: () => void }) => {
   return (
     <motion.div key="pizza" variants={pageVariants} initial="enter" animate="center" exit="exit" className="flex-1 flex flex-col px-6 pb-8">
       <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-2">
-        Stell dir eine Firma wie eine Pizza vor
+        Think of a company like a pizza
       </h2>
 
       <div className="flex-1 flex flex-col items-center justify-center relative">
@@ -73,7 +73,7 @@ const PizzaVisual = ({ onNext }: { onNext: () => void }) => {
               </svg>
               <motion.span className="font-display font-bold text-primary text-base mt-1"
                 initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
-                +1 Aktie 🎉
+                +1 Share 🎉
               </motion.span>
             </motion.div>
           )}
@@ -84,8 +84,8 @@ const PizzaVisual = ({ onNext }: { onNext: () => void }) => {
         {sliceFlown && (
           <motion.p className="text-center text-foreground font-body text-[15px] leading-relaxed mb-4 max-w-xs mx-auto"
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-            Du besitzt jetzt <span className="font-bold">1 von 10 Stücken</span> — also{' '}
-            <span className="font-bold">10 %</span> der Firma
+            You now own <span className="font-bold">1 of 10 slices</span> — that's{' '}
+            <span className="font-bold">10 %</span> of the company
           </motion.p>
         )}
       </AnimatePresence>
@@ -93,7 +93,7 @@ const PizzaVisual = ({ onNext }: { onNext: () => void }) => {
       <div className="max-w-sm mx-auto w-full">
         <motion.button onClick={sliceFlown ? onNext : handleSplit} whileTap={{ scale: 0.96 }}
           className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft">
-          {sliceFlown ? 'Weiter' : 'Firma an die Börse bringen'}
+          {sliceFlown ? 'Continue' : 'Take the company public'}
         </motion.button>
       </div>
     </motion.div>

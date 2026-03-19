@@ -9,9 +9,9 @@ interface Props {
 
 const StorySlide = ({
   emoji = '🏢',
-  title = 'Stell dir vor, du kaufst ein Stück deiner Lieblingsfirma',
-  mainText = 'Wenn du eine Aktie kaufst, gehört dir ein kleines Stück eines Unternehmens. Steigt der Wert des Unternehmens, steigt auch deine Aktie — du profitierst direkt von seinem Erfolg.',
-  secondaryText = 'Unternehmen verkaufen Aktien um Geld für Wachstum zu sammeln — statt einen Kredit aufzunehmen.',
+  title = 'Imagine buying a piece of your favourite company',
+  mainText = 'When you buy a stock, you own a small piece of a company. If the company grows in value, so does your stock — you directly benefit from its success.',
+  secondaryText = 'Companies sell stocks to raise money for growth — instead of taking out a loan.',
 }: Props) => (
   <motion.div
     className="flex-1 flex flex-col items-center justify-center px-6 text-center"

@@ -23,12 +23,12 @@ const RiskChartsVisual = ({ onNext }: { onNext: () => void }) => {
 
   return (
     <motion.div key="riskCharts" variants={pageVariants} initial="enter" animate="center" exit="exit" className="flex-1 flex flex-col px-6 pb-8">
-      <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-6">Nicht alle Aktien sind gleich riskant</h2>
+      <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-6">Not all stocks carry the same risk</h2>
 
       <div className="flex-1 flex flex-col items-center justify-center max-w-sm mx-auto w-full">
         <div className="flex gap-3 w-full mb-6">
-          <MiniChart path={stablePath} label="StableBank AG" sublabel="Wenig Risiko · Solide Rendite" color="hsl(142, 71%, 45%)" played={played} />
-          <MiniChart path={rocketPath} label="RocketStartup AG" sublabel="Hohes Risiko · Hohe Chance" color="hsl(35, 95%, 50%)" played={played} />
+          <MiniChart path={stablePath} label="StableBank AG" sublabel="Low risk · Solid return" color="hsl(142, 71%, 45%)" played={played} />
+          <MiniChart path={rocketPath} label="RocketStartup AG" sublabel="High risk · High potential" color="hsl(35, 95%, 50%)" played={played} />
         </div>
 
         <div className="flex gap-3 w-full text-center mb-4">
@@ -49,7 +49,7 @@ const RiskChartsVisual = ({ onNext }: { onNext: () => void }) => {
         {!played && (
           <motion.button onClick={() => setPlayed(true)} whileTap={{ scale: 0.96 }}
             className="flex items-center gap-2 h-12 px-6 rounded-full bg-card border border-border shadow-card font-display font-bold text-foreground text-sm">
-            <Play size={18} weight="fill" className="text-primary" /> Animation starten
+            <Play size={18} weight="fill" className="text-primary" /> Play animation
           </motion.button>
         )}
 
@@ -57,7 +57,7 @@ const RiskChartsVisual = ({ onNext }: { onNext: () => void }) => {
           {played && (
             <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 3.2 }}
               className="text-foreground font-body text-[15px] leading-relaxed text-center mt-4 max-w-xs">
-              Beide können profitabel sein — aber der Weg dorthin ist sehr unterschiedlich. Deine Risikotoleranz bestimmt welche für dich passt.
+              Both can be profitable — but the path is very different. Your risk tolerance determines which suits you best.
             </motion.p>
           )}
         </AnimatePresence>
@@ -67,7 +67,7 @@ const RiskChartsVisual = ({ onNext }: { onNext: () => void }) => {
         {played && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 3.5 }} className="max-w-sm mx-auto w-full mt-4">
             <motion.button onClick={onNext} whileTap={{ scale: 0.96 }}
-              className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft">Weiter</motion.button>
+              className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-soft">Continue</motion.button>
           </motion.div>
         )}
       </AnimatePresence>

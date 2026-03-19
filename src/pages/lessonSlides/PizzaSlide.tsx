@@ -48,7 +48,7 @@ const PizzaSlide = ({ onComplete }: Props) => {
       transition={{ duration: 0.35 }}
     >
       <h2 className="font-display text-xl font-bold text-foreground text-center mt-2 mb-4">
-        Stell dir eine Firma wie eine Pizza vor
+        Think of a company like a pizza
       </h2>
 
       <div className="flex-1 flex flex-col items-center justify-center relative">
@@ -107,7 +107,7 @@ const PizzaSlide = ({ onComplete }: Props) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                +1 Aktie 🎉
+                +1 Share 🎉
               </motion.span>
             </motion.div>
           )}
@@ -122,8 +122,8 @@ const PizzaSlide = ({ onComplete }: Props) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            Du besitzt jetzt <span className="font-bold">1 von 10 Stücken</span> — also{' '}
-            <span className="font-bold">10 %</span> der Firma
+            You now own <span className="font-bold">1 of 10 slices</span> — that's{' '}
+            <span className="font-bold">10 %</span> of the company
           </motion.p>
         )}
       </AnimatePresence>
@@ -135,7 +135,7 @@ const PizzaSlide = ({ onComplete }: Props) => {
             whileTap={{ scale: 0.96 }}
             className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base shadow-sm"
           >
-            Firma an die Börse bringen 🚀
+            Take the company public 🚀
           </motion.button>
         </div>
       )}
