@@ -2,8 +2,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Check, Lock, Play } from 'lucide-react';
 import { levels } from '@/data/levels';
-import SubLevelCard from '@/components/SubLevelCard';
-import ProgressRing from '@/components/ProgressRing';
+import LevelIcon from '@/components/LevelIcon';
+import { useProgressStore } from '@/hooks/useProgressStore';
 import LevelIcon from '@/components/LevelIcon';
 import { useProgressStore } from '@/hooks/useProgressStore';
 
