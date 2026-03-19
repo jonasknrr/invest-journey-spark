@@ -4,6 +4,7 @@ import { BiDiamond } from 'react-icons/bi';
 
 const iconMap: Record<string, IconType> = {
   Vault: FiLock,
+  Banknote: FiDollarSign,
   PiggyBank: FiDollarSign,
   RocketLaunch: FiZap,
   Ticket: FiTag,
