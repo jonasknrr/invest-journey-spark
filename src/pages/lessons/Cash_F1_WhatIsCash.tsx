@@ -16,62 +16,62 @@ const QUIZ_1 = {
   label: "Question 1 of 3",
   question: "You need CHF 500 tomorrow morning for an urgent repair. Which option helps you the fastest?",
   answers: [
-    { id: "a", text: "Sell your stocks" },
-    { id: "b", text: "Sell your property" },
-    { id: "c", text: "Withdraw money from your checking account" },
-    { id: "d", text: "Break your fixed deposit early" },
-  ],
+  { id: "a", text: "Sell your stocks" },
+  { id: "b", text: "Sell your property" },
+  { id: "c", text: "Withdraw money from your checking account" },
+  { id: "d", text: "Break your fixed deposit early" }],
+
   correctId: "c",
   correctFeedback: "Correct! Your checking account is instantly available — no waiting, no fees, no risk.",
   wrongFeedback:
-    "Close! Stocks, property, and fixed deposits take time or incur costs. Cash in your account is available immediately.",
+  "Close! Stocks, property, and fixed deposits take time or incur costs. Cash in your account is available immediately."
 };
 
 const QUIZ_2 = {
   label: "Question 2 of 3",
   question: "What distinguishes cash from a stock?",
   answers: [
-    { id: "a", text: "Cash earns higher returns than stocks" },
-    {
-      id: "b",
-      text: "Cash is always instantly available and doesn't suddenly lose significant value",
-    },
-    { id: "c", text: "Stocks are safer than cash" },
-    { id: "d", text: "There is no significant difference" },
-  ],
+  { id: "a", text: "Cash earns higher returns than stocks" },
+  {
+    id: "b",
+    text: "Cash is always instantly available and doesn't suddenly lose significant value"
+  },
+  { id: "c", text: "Stocks are safer than cash" },
+  { id: "d", text: "There is no significant difference" }],
+
   correctId: "b",
   correctFeedback:
-    "Exactly! Cash is stable and instantly available, on the other side stocks can fluctuate and take some time to sell.",
+  "Exactly! Cash is stable and instantly available, on the other side stocks can fluctuate and take some time to sell.",
   wrongFeedback:
-    "Not quite — cash doesn't shine through returns, but through safety and instant availability. That's its greatest advantage.",
+  "Not quite — cash doesn't shine through returns, but through safety and instant availability. That's its greatest advantage."
 };
 
 const QUIZ_3 = {
   label: "Question 3 of 3",
   question:
-    "You want to buy something tomorrow and need your money available immediately. Which option works?",
+  "You want to buy something tomorrow and need your money available immediately. Which option works?",
   answers: [
-    { id: "a", text: "A fixed deposit locked for 12 months" },
-    { id: "b", text: "Money in your current bank account" },
-    { id: "c", text: "A stock you'd have to sell first" },
-    { id: "d", text: "A house you own" },
-  ],
+  { id: "a", text: "A fixed deposit locked for 12 months" },
+  { id: "b", text: "Money in your current bank account" },
+  { id: "c", text: "A stock you'd have to sell first" },
+  { id: "d", text: "A house you own" }],
+
   correctId: "b",
   correctFeedback: "Exactly! Money in your bank account is cash — available instantly, no waiting, no selling.",
   wrongFeedback:
-    "Cash means available right now. Stocks need to be sold, fixed deposits are locked, and a house takes months. Your bank account is the only true cash here.",
+  "Cash means available right now. Stocks need to be sold, fixed deposits are locked, and a house takes months. Your bank account is the only true cash here."
 };
 
 /* ── Quiz slide component ── */
 const QuizSlide = ({
   quiz,
   onComplete,
-  onWrongAnswer,
-}: {
-  quiz: typeof QUIZ_1;
-  onComplete: () => void;
-  onWrongAnswer: () => void;
-}) => {
+  onWrongAnswer
+
+
+
+
+}: {quiz: typeof QUIZ_1;onComplete: () => void;onWrongAnswer: () => void;}) => {
   const [chosen, setChosen] = useState<string | null>(null);
   const isCorrect = chosen === quiz.correctId;
 
@@ -89,8 +89,8 @@ const QuizSlide = ({
       initial={{ opacity: 0, x: 30 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -30 }}
-      transition={{ duration: 0.3 }}
-    >
+      transition={{ duration: 0.3 }}>
+      
       <span className="font-body text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
         {quiz.label}
       </span>
@@ -110,56 +110,56 @@ const QuizSlide = ({
               className={`
                 w-full text-left px-4 py-3.5 rounded-xl border-2 font-body text-sm transition-all
                 ${
-                  showResult && correct
-                    ? "border-green-500 bg-green-50 text-green-900"
-                    : showResult && wasChosen && !correct
-                      ? "border-red-400 bg-red-50 text-red-900"
-                      : showResult
-                        ? "border-border bg-muted/30 text-muted-foreground"
-                        : "border-border bg-card text-foreground hover:border-primary/40"
-                }
-              `}
-            >
+              showResult && correct ?
+              "border-green-500 bg-green-50 text-green-900" :
+              showResult && wasChosen && !correct ?
+              "border-red-400 bg-red-50 text-red-900" :
+              showResult ?
+              "border-border bg-muted/30 text-muted-foreground" :
+              "border-border bg-card text-foreground hover:border-primary/40"}
+              `
+              }>
+              
               {a.text}
               {showResult && correct && " ✅"}
               {showResult && wasChosen && !correct && " ❌"}
-            </button>
-          );
+            </button>);
+
         })}
       </div>
 
       {/* Feedback */}
       <AnimatePresence>
-        {chosen && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`rounded-xl border-l-4 px-4 py-3 max-w-sm mx-auto w-full mb-5 ${
-              isCorrect ? "border-l-green-500 bg-green-50" : "border-l-orange-400 bg-orange-50"
-            }`}
-          >
+        {chosen &&
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`rounded-xl border-l-4 px-4 py-3 max-w-sm mx-auto w-full mb-5 ${
+          isCorrect ? "border-l-green-500 bg-green-50" : "border-l-orange-400 bg-orange-50"}`
+          }>
+          
             <p className={`font-body text-sm leading-relaxed ${isCorrect ? "text-green-800" : "text-orange-800"}`}>
               {isCorrect ? quiz.correctFeedback : quiz.wrongFeedback}
             </p>
           </motion.div>
-        )}
+        }
       </AnimatePresence>
 
-      {chosen && (
-        <div className="flex justify-end mt-auto">
+      {chosen &&
+      <div className="flex justify-end mt-auto">
           <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            onClick={onComplete}
-            whileTap={{ scale: 0.96 }}
-            className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors"
-          >
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          onClick={onComplete}
+          whileTap={{ scale: 0.96 }}
+          className="font-body text-sm font-medium text-foreground border border-border rounded-full px-4 py-2 hover:bg-muted transition-colors">
+          
             Next →
           </motion.button>
         </div>
-      )}
-    </motion.div>
-  );
+      }
+    </motion.div>);
+
 };
 
 /* ── Main lesson ── */
@@ -176,7 +176,7 @@ const Cash_F1_WhatIsCash = () => {
     newStreak: number;
   } | null>(null);
 
-  const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
+  const progress = (currentStep + 1) / TOTAL_STEPS * 100;
 
   // Track progress
   useEffect(() => {
@@ -216,30 +216,30 @@ const Cash_F1_WhatIsCash = () => {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       {/* No hearts overlay */}
-      {noHeartsScreen === "showing" && (
-        <NoHeartsOverlay
-          onRestart={() => {
-            setHearts(3);
-            setCurrentStep(0);
-            setNoHeartsScreen("none");
-          }}
-          onQuizOnly={() => {
-            setHearts(3);
-            setCurrentStep(2);
-            setNoHeartsScreen("none");
-          }}
-          onContinue={() => {
-            setNoHeartsScreen("none");
-          }}
-        />
-      )}
+      {noHeartsScreen === "showing" &&
+      <NoHeartsOverlay
+        onRestart={() => {
+          setHearts(3);
+          setCurrentStep(0);
+          setNoHeartsScreen("none");
+        }}
+        onQuizOnly={() => {
+          setHearts(3);
+          setCurrentStep(2);
+          setNoHeartsScreen("none");
+        }}
+        onContinue={() => {
+          setNoHeartsScreen("none");
+        }} />
+
+      }
 
       {/* Top bar */}
       <div className="px-4 pt-4 flex items-center gap-3">
         <button
           onClick={() => navigate("/category/festgeld")}
-          className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0"
-        >
+          className="w-9 h-9 rounded-full bg-muted flex items-center justify-center flex-shrink-0">
+          
           <FiX className="w-5 h-5 text-foreground" />
         </button>
         <div className="flex-1 h-2.5 bg-muted rounded-full overflow-hidden">
@@ -248,33 +248,33 @@ const Cash_F1_WhatIsCash = () => {
             style={{ backgroundColor: BLUE }}
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          />
+            transition={{ duration: 0.4, ease: "easeOut" }} />
+          
         </div>
         <div className="flex items-center gap-0.5 flex-shrink-0">
-          {[0, 1, 2].map((i) => (
-            <FiHeart
-              key={i}
-              className={`w-5 h-5 transition-all ${
-                i < hearts ? "text-red-500 fill-red-500" : "text-muted-foreground/30"
-              }`}
-            />
-          ))}
+          {[0, 1, 2].map((i) =>
+          <FiHeart
+            key={i}
+            className={`w-5 h-5 transition-all ${
+            i < hearts ? "text-red-500 fill-red-500" : "text-muted-foreground/30"}`
+            } />
+
+          )}
         </div>
       </div>
 
       {/* Slides */}
       <AnimatePresence mode="wait">
         {/* ── Slide 1: Explanation ── */}
-        {currentStep === 0 && (
-          <motion.div
-            key="s0"
-            className="flex-1 flex flex-col px-6 py-6 overflow-y-auto"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.3 }}
-          >
+        {currentStep === 0 &&
+        <motion.div
+          key="s0"
+          className="flex-1 flex flex-col px-6 py-6 overflow-y-auto"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -30 }}
+          transition={{ duration: 0.3 }}>
+          
             <div className="flex flex-col items-center text-center mb-6">
               <span className="text-6xl mb-4">💵</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight max-w-xs">
@@ -295,84 +295,84 @@ const Cash_F1_WhatIsCash = () => {
 
             <div className="max-w-sm mx-auto w-full mt-6">
               <motion.button
-                onClick={handleNext}
-                whileTap={{ scale: 0.96 }}
-                className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base"
-              >
+              onClick={handleNext}
+              whileTap={{ scale: 0.96 }}
+              className="w-full h-14 rounded-full bg-primary text-primary-foreground font-display font-bold text-base">
+              
                 Continue
               </motion.button>
             </div>
           </motion.div>
-        )}
+        }
 
         {/* ── Slide 2: Drag & Drop Sort ── */}
-        {currentStep === 1 && (
-          <motion.div
-            key="s1"
-            className="flex-1 flex flex-col"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -30 }}
-            transition={{ duration: 0.3 }}
-          >
+        {currentStep === 1 &&
+        <motion.div
+          key="s1"
+          className="flex-1 flex flex-col"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -30 }}
+          transition={{ duration: 0.3 }}>
+          
             <CashSortGame onComplete={handleNext} />
           </motion.div>
-        )}
+        }
 
         {/* ── Slide 3: Quiz 1 ── */}
-        {currentStep === 2 && (
-          <QuizSlide key="s2" quiz={QUIZ_1} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
-        )}
+        {currentStep === 2 &&
+        <QuizSlide key="s2" quiz={QUIZ_1} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
+        }
 
         {/* ── Slide 4: Quiz 2 ── */}
-        {currentStep === 3 && (
-          <QuizSlide key="s3" quiz={QUIZ_2} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
-        )}
+        {currentStep === 3 &&
+        <QuizSlide key="s3" quiz={QUIZ_2} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
+        }
 
         {/* ── Slide 5: Quiz 3 ── */}
-        {currentStep === 4 && (
-          <QuizSlide key="s4" quiz={QUIZ_3} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
-        )}
+        {currentStep === 4 &&
+        <QuizSlide key="s4" quiz={QUIZ_3} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
+        }
 
         {/* ── Slide 6: Completion ── */}
-        {currentStep === 5 && (
-          <motion.div
-            key="s4"
-            className="flex-1 flex flex-col items-center justify-center px-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          >
+        {currentStep === 5 &&
+        <motion.div
+          key="s4"
+          className="flex-1 flex flex-col items-center justify-center px-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}>
+          
             <div className="flex items-center gap-4 mb-6">
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0, rotate: -30 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{
-                    delay: 0.2 + i * 0.25,
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 15,
-                  }}
-                >
-                  <FiStar
-                    size={i === 1 ? 64 : 48}
-                   
-                    className="text-[hsl(45,100%,50%)]"
-                    style={{
-                      filter: "drop-shadow(0 0 12px hsl(45 100% 50% / 0.5))",
-                    }}
-                  />
-                </motion.div>
-              ))}
+              {[0, 1, 2].map((i) => {}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            )}
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              className="text-center flex flex-col items-center"
-            >
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="text-center flex flex-col items-center">
+            
               <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
               <p className="font-body text-sm text-muted-foreground max-w-xs mx-auto mb-4 leading-relaxed">
                 You now know what cash and cash equivalents are — and why the difference to stocks or real estate
@@ -383,18 +383,18 @@ const Cash_F1_WhatIsCash = () => {
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="mt-10">
               <motion.button
-                onClick={handleNext}
-                whileTap={{ scale: 0.96 }}
-                className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm"
-              >
+              onClick={handleNext}
+              whileTap={{ scale: 0.96 }}
+              className="h-12 px-8 rounded-full bg-primary text-primary-foreground font-display font-bold text-sm">
+              
                 Continue learning
               </motion.button>
             </motion.div>
           </motion.div>
-        )}
+        }
       </AnimatePresence>
-    </div>
-  );
+    </div>);
+
 };
 
 export default Cash_F1_WhatIsCash;
