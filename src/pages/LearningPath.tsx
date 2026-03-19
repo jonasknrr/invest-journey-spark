@@ -30,7 +30,6 @@ const LearningPath = () => {
 
     return Math.ceil(totalHearts / completedLessons.length);
   };
-  const totalProgress = Math.round((completedCount / levels.length) * 100);
 
   return (
     <div className="min-h-screen bg-background pb-20">
