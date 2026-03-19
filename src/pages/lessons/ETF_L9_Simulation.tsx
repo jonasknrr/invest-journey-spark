@@ -191,12 +191,12 @@ const ETF_L9_Simulation = () => {
   const gradeFeedback = [
     { title: 'Was ist ein Index?', a: `✅ Du hast in ${uniqueFlags} Länder investiert — du denkst wie ein Index-Konstrukteur.`, b: '👍 Solide — ein bisschen mehr geografische Streuung wäre noch besser.', c: '💡 Dein Portfolio war sehr konzentriert — ein breiter Index hätte das automatisch gelöst.' },
     { title: 'Wie Indizes gebaut werden', a: '✅ Kein einzelner Stock dominiert — du hast Klumpenrisiko vermieden.', b: '👍 Fast ausgeglichen — achte auf Übergewichtung einzelner Positionen.', c: '💡 Eine Position war sehr dominant — genau wie Apple im S&P 500, aber ohne die anderen 499 zum Ausgleich.' },
-    { title: 'Was ist ein ETF?', a: `✅ Du hast gelernt dass 1 ETF-Kauf hunderte Unternehmen abdeckt — statt deiner ${numTransactions} Transaktionen für €${numTransactions} Gebühren.`, b: '', c: '' },
+    { title: 'Was ist ein ETF?', a: `✅ Du hast gelernt dass 1 ETF-Kauf hunderte Unternehmen abdeckt — statt deiner ${numTransactions} Transaktionen für CHF ${numTransactions} Gebühren.`, b: '', c: '' },
     { title: 'ETF-Universum', a: '✅ Starke Sektor-Streuung — du hast verschiedene Branchen kombiniert.', b: '👍 Guter Mix — noch ein oder zwei weitere Sektoren wären ideal.', c: '💡 Dein Portfolio war Sektor-konzentriert — ein thematischer ETF hätte dasselbe, aber mit mehr Titeln.' },
-    { title: 'Kosten & Kennzahlen', a: `✅ Der ETF-Vergleich zeigt: €${fees - etfFees} Gebühren gespart, 1 statt ${numTransactions} Transaktionen. Über 30 Jahre macht das einen grossen Unterschied.`, b: '', c: '' },
+    { title: 'Kosten & Kennzahlen', a: `✅ Der ETF-Vergleich zeigt: CHF ${fees - etfFees} Gebühren gespart, 1 statt ${numTransactions} Transaktionen. Über 30 Jahre macht das einen grossen Unterschied.`, b: '', c: '' },
     { title: 'Risiko & Diversifikation', a: '✅ Gute Kombination aus Ländern UND Sektoren — du hast echte Diversifikation gebaut.', b: '👍 Solide — aber beim Tech-Schock hättest du mit mehr Streuung weniger verloren.', c: '' },
     { title: 'Acc vs Dist', a: '✅ Für ein Portfolio wie deins empfehlen sich thesaurierende ETFs (Acc) — maximaler Zinseszins ohne Aufwand.', b: '', c: '' },
-    { title: 'ETF-Sparplan', a: '✅ Wenn du dieses Portfolio als monatlichen Sparplan von €200 aufgebaut hättest — in 30 Jahren bei 7%: €243.994. Der beste Zeitpunkt anzufangen: heute.', b: '', c: '' },
+    { title: 'ETF-Sparplan', a: '✅ Wenn du dieses Portfolio als monatlichen Sparplan von CHF 200 aufgebaut hättest — in 30 Jahren bei 7%: CHF 243.994. Der beste Zeitpunkt anzufangen: heute.', b: '', c: '' },
   ];
 
   // Confetti
@@ -271,7 +271,7 @@ const ETF_L9_Simulation = () => {
                       <p className="font-body text-[11px] text-muted-foreground">{s.name}</p>
                       {isOwned && (
                         <span className="mt-1.5 inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary font-body text-[10px] font-semibold">
-                          {alloc}% — €{fmt(alloc / 100 * 10000)}
+                          {alloc}% — CHF {fmt(alloc / 100 * 10000)}
                         </span>
                       )}
                     </motion.button>
@@ -303,7 +303,7 @@ const ETF_L9_Simulation = () => {
                 style={{ backgroundColor: BLUE }}>
                 Portfolio einfrieren 🔒
               </motion.button>
-              {remainingBudget > 0 && <p className="font-body text-[10px] text-muted-foreground text-center">Investiere alle €10'000 um fortzufahren</p>}
+              {remainingBudget > 0 && <p className="font-body text-[10px] text-muted-foreground text-center">Investiere alle CHF 10'000 um fortzufahren</p>}
             </div>
           </motion.div>
         )}
@@ -325,7 +325,7 @@ const ETF_L9_Simulation = () => {
                   <p className="font-body text-sm text-white/80 max-w-xs mb-5 leading-relaxed">{shocks[currentShock].description}</p>
                   <div className="border-t border-white/20 w-16 mx-auto my-3" />
                   <p className="font-body text-xs text-white/60 mb-1">Dein Portfolio aktuell:</p>
-                  <p className="font-display text-2xl font-bold text-white mb-6">€{fmt(portfolioValue)}</p>
+                  <p className="font-display text-2xl font-bold text-white mb-6">CHF {fmt(portfolioValue)}</p>
                   <AnimatePresence>
                     {showImpactBtn && (
                       <motion.button initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} whileTap={{ scale: 0.96 }}
@@ -348,12 +348,12 @@ const ETF_L9_Simulation = () => {
                   {/* Animated value */}
                   <div className="text-center mb-4">
                     <p className="font-body text-xs text-muted-foreground mb-1">Portfoliowert</p>
-                    <p className={`font-display text-3xl font-bold tabular-nums ${portfolioValue < 10000 ? 'text-destructive' : 'text-primary'}`}>€{fmt(animatedValue)}</p>
+                    <p className={`font-display text-3xl font-bold tabular-nums ${portfolioValue < 10000 ? 'text-destructive' : 'text-primary'}`}>CHF {fmt(animatedValue)}</p>
                     {(() => {
                       const last = shockHistory[shockHistory.length - 1];
                       if (!last) return null;
                       return <p className={`font-body text-sm font-semibold ${last.totalChange < 0 ? 'text-destructive' : 'text-primary'}`}>
-                        {last.totalChange >= 0 ? '+' : ''}€{fmt(last.totalChange)} ({((last.totalChange / (portfolioValue - last.totalChange)) * 100).toFixed(1)}%)
+                        {last.totalChange >= 0 ? '+' : ''}CHF {fmt(last.totalChange)} ({((last.totalChange / (portfolioValue - last.totalChange)) * 100).toFixed(1)}%)
                       </p>;
                     })()}
                   </div>
@@ -371,7 +371,7 @@ const ETF_L9_Simulation = () => {
                             {r.pct >= 0 ? '+' : ''}{(r.pct * 100).toFixed(1)}%
                           </span>
                           <span className={`font-body text-[10px] tabular-nums ${r.eur < 0 ? 'text-destructive' : 'text-primary'}`}>
-                            {r.eur >= 0 ? '+' : ''}€{fmt(r.eur)}
+                            {r.eur >= 0 ? '+' : ''}CHF {fmt(r.eur)}
                           </span>
                         </div>
                       );
@@ -423,14 +423,14 @@ const ETF_L9_Simulation = () => {
             {/* Your portfolio card */}
             <div className="rounded-2xl border border-border bg-card p-4 mb-3">
               <p className="font-display text-sm font-bold text-foreground mb-2">🎯 Dein Portfolio</p>
-              <p className={`font-display text-2xl font-bold tabular-nums ${portfolioValue >= 10000 ? 'text-primary' : 'text-destructive'}`}>€{fmt(portfolioValue)}</p>
+              <p className={`font-display text-2xl font-bold tabular-nums ${portfolioValue >= 10000 ? 'text-primary' : 'text-destructive'}`}>CHF {fmt(portfolioValue)}</p>
               <p className={`font-body text-xs font-semibold ${portfolioValue >= 10000 ? 'text-primary' : 'text-destructive'}`}>
                 {((portfolioValue / 10000 - 1) * 100).toFixed(1)}%
               </p>
               <div className="border-t border-border my-3" />
               <p className="font-body text-[11px] text-muted-foreground">Holdings: {numTransactions} Positionen</p>
               <p className="font-body text-[11px] text-muted-foreground">Transaktionen: {numTransactions}</p>
-              <p className="font-body text-[11px] text-muted-foreground">Geschätzte Broker-Gebühren: €{numTransactions}</p>
+              <p className="font-body text-[11px] text-muted-foreground">Geschätzte Broker-Gebühren: CHF {numTransactions}</p>
               <div className="border-t border-border my-3" />
               <p className="font-body text-[11px] text-muted-foreground">Geo {geoScore}/100 | Sektor {sectorScore}/100</p>
               {totalUSPct > 70 && <p className="font-body text-[11px] text-amber-600 mt-1">⚠️ Sehr US-lastig</p>}
@@ -444,7 +444,7 @@ const ETF_L9_Simulation = () => {
             <div className="rounded-2xl border-2 border-blue-500/30 p-4 mb-4" style={{ backgroundColor: '#EFF6FF' }}>
               <span className="inline-block px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-700 font-body text-[10px] font-semibold mb-2">💡 ETF-Alternative</span>
               <p className="font-display text-sm font-bold text-foreground mb-2">{etfMatch.name}</p>
-              <p className={`font-display text-2xl font-bold tabular-nums ${etfValueAfterShocks >= 10000 ? 'text-primary' : 'text-destructive'}`}>€{fmt(etfValueAfterShocks)}</p>
+              <p className={`font-display text-2xl font-bold tabular-nums ${etfValueAfterShocks >= 10000 ? 'text-primary' : 'text-destructive'}`}>CHF {fmt(etfValueAfterShocks)}</p>
               <p className={`font-body text-xs font-semibold ${etfValueAfterShocks >= 10000 ? 'text-primary' : 'text-destructive'}`}>
                 {(etfMatch.totalReturn * 100).toFixed(1)}%
               </p>
@@ -452,7 +452,7 @@ const ETF_L9_Simulation = () => {
               <p className="font-body text-[11px] text-foreground">Holdings: {fmt(etfMatch.holdings)} Unternehmen</p>
               <p className="font-body text-[11px] text-foreground">Transaktionen: 1</p>
               <p className="font-body text-[11px] text-foreground">TER: {etfMatch.ter}% p.a.</p>
-              <p className="font-body text-[11px] text-foreground">Broker-Gebühren: €1</p>
+              <p className="font-body text-[11px] text-foreground">Broker-Gebühren: CHF 1</p>
               <div className="border-t border-blue-500/20 my-3" />
               <div className="space-y-1">
                 <p className="font-body text-[11px] text-primary">✓ Breiter diversifiziert</p>
@@ -464,14 +464,14 @@ const ETF_L9_Simulation = () => {
             {/* Comparison rows */}
             <div className="space-y-2 mb-4">
               <div className="rounded-xl bg-primary/5 border border-primary/10 p-3">
-                <p className="font-body text-xs text-primary font-semibold">Gebühren gespart: €{fees - etfFees}</p>
+                <p className="font-body text-xs text-primary font-semibold">Gebühren gespart: CHF {fees - etfFees}</p>
               </div>
               <div className="rounded-xl bg-primary/5 border border-primary/10 p-3">
                 <p className="font-body text-xs text-primary font-semibold">Transaktionen gespart: {numTransactions - 1}</p>
               </div>
               <div className={`rounded-xl p-3 ${perfDiff > 0 ? 'bg-amber-500/5 border border-amber-500/10' : 'bg-primary/5 border border-primary/10'}`}>
                 <p className={`font-body text-xs font-semibold ${perfDiff > 0 ? 'text-amber-600' : 'text-primary'}`}>
-                  {perfDiff > 0 ? `Performance: Du +€${fmt(perfDiff)} besser 🎉` : `Performance: ETF +€${fmt(Math.abs(perfDiff))} besser`}
+                  {perfDiff > 0 ? `Performance: Du +CHF ${fmt(perfDiff)} besser 🎉` : `Performance: ETF +CHF ${fmt(Math.abs(perfDiff))} besser`}
                 </p>
               </div>
             </div>
@@ -583,7 +583,7 @@ const ETF_L9_Simulation = () => {
                     <div className="mb-4">
                       <div className="flex justify-between mb-1">
                         <span className="font-body text-xs text-muted-foreground">Anteil</span>
-                        <span className="font-display text-sm font-bold text-foreground">{tempAllocation}% = €{fmt(tempAllocation / 100 * 10000)}</span>
+                        <span className="font-display text-sm font-bold text-foreground">{tempAllocation}% = CHF {fmt(tempAllocation / 100 * 10000)}</span>
                       </div>
                       <input type="range" min={0} max={maxSliderVal} step={5} value={tempAllocation} onChange={e => setTempAllocation(+e.target.value)} className="w-full accent-blue-500" />
                       <p className="font-body text-[10px] text-muted-foreground mt-1">Danach noch: {remainingBudget - (tempAllocation - (portfolio[selectedStock] ?? 0))}% übrig</p>

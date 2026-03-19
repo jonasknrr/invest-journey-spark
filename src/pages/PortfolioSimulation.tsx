@@ -433,7 +433,7 @@ const PortfolioSimulation = () => {
   // Chapter 1 conditions
   const ch1_notgroschenOk = tagesgeldAmount >= 2000; // Bedingung A
   const ch1_weiterbildungAvailable = tagesgeldAmount + within2YearsFestgeld >= 5000; // 2000 Notgroschen + 3000 Weiterbildung
-  const ch1_restInLongTerm = longTermFestgeld >= 4500; // ~5000€ in 5-year (allow small rounding)
+  const ch1_restInLongTerm = longTermFestgeld >= 4500; // ~5000CHF  in 5-year (allow small rounding)
 
   // Default evaluation (for non-chapter-1)
   const safeAmount = tagesgeldAmount + shortTermFestgeld;

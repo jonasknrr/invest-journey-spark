@@ -215,7 +215,7 @@ const ETF_L8_Simulation = () => {
             <span className="text-5xl mb-4">🎮</span>
             <h2 className="font-display text-2xl font-bold text-foreground leading-tight max-w-xs mb-3">Die finale Simulation</h2>
             <p className="font-body text-[15px] leading-relaxed text-muted-foreground max-w-sm mb-8">
-              Du hast alles gelernt. Jetzt verwendest du es. Du hast €10.000 zu investieren. Wähle deine Aktien — dann zeigen wir dir welcher ETF das gleiche günstiger und breiter abgedeckt hätte.
+              Du hast alles gelernt. Jetzt verwendest du es. Du hast CHF 10.000 zu investieren. Wähle deine Aktien — dann zeigen wir dir welcher ETF das gleiche günstiger und breiter abgedeckt hätte.
             </p>
             <motion.button onClick={() => setCurrentPhase(1)} whileTap={{ scale: 0.96 }} className="h-14 px-8 rounded-full font-display text-lg font-bold text-white shadow-sm" style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}>
               Simulation starten →
@@ -287,7 +287,7 @@ const ETF_L8_Simulation = () => {
             <div className="text-center mb-4">
               <p className="font-body text-xs text-muted-foreground">Portfoliowert</p>
               <motion.p key={portfolioValue} className="font-display text-2xl font-bold text-foreground" initial={{ scale: 1.2 }} animate={{ scale: 1 }} transition={{ type: 'spring', stiffness: 300, damping: 15 }}>
-                €{fmt(portfolioValue)}
+                CHF {fmt(portfolioValue)}
               </motion.p>
             </div>
 
@@ -343,7 +343,7 @@ const ETF_L8_Simulation = () => {
                 <p className="font-display text-sm font-bold text-foreground">Dein Portfolio</p>
                 <div className="flex justify-between">
                   <span className="font-body text-xs text-muted-foreground">Endwert nach Schocks</span>
-                  <span className="font-display text-sm font-bold text-foreground">€{fmt(portfolioValue)}</span>
+                  <span className="font-display text-sm font-bold text-foreground">CHF {fmt(portfolioValue)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-body text-xs text-muted-foreground">Geo-Score</span>
@@ -359,7 +359,7 @@ const ETF_L8_Simulation = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="font-body text-xs text-muted-foreground">Broker-Gebühren</span>
-                  <span className="font-body text-xs text-foreground">~€{Object.keys(portfolio).filter(k => portfolio[k] > 0).length}</span>
+                  <span className="font-body text-xs text-foreground">~CHF {Object.keys(portfolio).filter(k => portfolio[k] > 0).length}</span>
                 </div>
               </div>
 
@@ -386,7 +386,7 @@ const ETF_L8_Simulation = () => {
                 </div>
                 <div className="flex justify-between">
                   <span className="font-body text-xs text-muted-foreground">Broker-Gebühren</span>
-                  <span className="font-body text-xs text-foreground font-semibold text-green-600">€1</span>
+                  <span className="font-body text-xs text-foreground font-semibold text-green-600">CHF 1</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-body text-xs text-muted-foreground">Diversifikations-Score</span>

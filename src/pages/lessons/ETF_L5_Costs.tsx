@@ -48,7 +48,7 @@ const Bucket = ({ label, ter, fill, value, color }: { label: string; ter: string
         />
         <div className={`absolute bottom-1 left-1/2 -translate-x-1/2 rounded-full bg-foreground/30 ${color === 'blue' ? 'w-1 h-1' : 'w-2.5 h-2.5'}`} />
       </div>
-      <p className="font-display text-sm font-bold text-foreground mt-2">€{fmt(value)}</p>
+      <p className="font-display text-sm font-bold text-foreground mt-2">CHF {fmt(value)}</p>
     </div>
   );
 };
@@ -211,7 +211,7 @@ const ETF_L5_Costs = () => {
                         <div className="absolute bottom-0 left-0 right-0 bg-blue-500/70" style={{ height: '99%' }} />
                         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-foreground/30" />
                       </div>
-                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Nach 30 Jahren: €96.000</span>
+                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-green-500/10 text-green-700 font-body text-[10px] font-semibold">Nach 30 Jahren: CHF 96.000</span>
                     </div>
                     <div className="flex flex-col items-center">
                       <p className="font-display text-xs font-bold text-foreground mb-1">ETF B — 0.50%</p>
@@ -219,10 +219,10 @@ const ETF_L5_Costs = () => {
                         <div className="absolute bottom-0 left-0 right-0 bg-red-500/70" style={{ height: '78%' }} />
                         <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-foreground/30" />
                       </div>
-                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-red-500/10 text-red-700 font-body text-[10px] font-semibold">Nach 30 Jahren: €82.000</span>
+                      <span className="mt-2 inline-block px-2 py-0.5 rounded-full bg-red-500/10 text-red-700 font-body text-[10px] font-semibold">Nach 30 Jahren: CHF 82.000</span>
                     </div>
                   </div>
-                  <p className="font-body text-sm text-muted-foreground text-center mb-4">Dasselbe Loch. 30 Jahre. €14.000 Unterschied.</p>
+                  <p className="font-body text-sm text-muted-foreground text-center mb-4">Dasselbe Loch. 30 Jahre. CHF 14.000 Unterschied.</p>
                   <button onClick={() => setStorySlide(1)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2 hover:bg-muted transition-colors">Nächste →</button>
                 </motion.div>
               )}
@@ -267,8 +267,8 @@ const ETF_L5_Costs = () => {
                       <span className="text-xl flex-shrink-0">🎟</span>
                       <div>
                         <p className="font-display text-sm font-bold text-foreground">Eintrittspreis (Spread)</p>
-                        <p className="font-body text-xs text-muted-foreground">Du zahlst €100.10, kriegst €99.90 zurück</p>
-                        <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-body text-[10px] font-semibold">€0.20 sofort weg</span>
+                        <p className="font-body text-xs text-muted-foreground">Du zahlst CHF 100.10, kriegst CHF 99.90 zurück</p>
+                        <span className="inline-block mt-1 px-2 py-0.5 rounded-full bg-muted text-muted-foreground font-body text-[10px] font-semibold">CHF 0.20 sofort weg</span>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -306,7 +306,7 @@ const ETF_L5_Costs = () => {
               <div>
                 <div className="flex justify-between mb-1">
                   <span className="font-body text-xs text-muted-foreground">Startinvestition</span>
-                  <span className="font-display text-xs font-bold text-foreground">€{fmt(investment)}</span>
+                  <span className="font-display text-xs font-bold text-foreground">CHF {fmt(investment)}</span>
                 </div>
                 <input type="range" min={1000} max={100000} step={1000} value={investment} onChange={e => setInvestment(+e.target.value)} className="w-full accent-blue-500" />
               </div>
@@ -333,7 +333,7 @@ const ETF_L5_Costs = () => {
 
             <div className="max-w-sm mx-auto w-full rounded-xl bg-blue-500/10 border border-blue-500/20 p-3 mb-3 text-center">
               <p className="font-body text-xs text-muted-foreground">Du sparst mit ETF A</p>
-              <p className="font-display text-xl font-bold text-amber-600">€{fmt(saved)}</p>
+              <p className="font-display text-xl font-bold text-amber-600">CHF {fmt(saved)}</p>
             </div>
             <p className="font-body text-[11px] text-muted-foreground text-center max-w-xs mx-auto">Die TER wird täglich vom Fondsvermögen abgezogen — du siehst sie nie direkt.</p>
           </motion.div>
@@ -383,11 +383,11 @@ const ETF_L5_Costs = () => {
                 </div>
                 <motion.div className="absolute top-3 flex items-center gap-1" animate={{ left: `${racePosA}%` }} transition={{ duration: 0.1 }}>
                   <span className="text-lg">🔵</span>
-                  <span className="font-body text-[9px] text-foreground font-bold whitespace-nowrap">€{fmt(raceValA)}</span>
+                  <span className="font-body text-[9px] text-foreground font-bold whitespace-nowrap">CHF {fmt(raceValA)}</span>
                 </motion.div>
                 <motion.div className="absolute top-12 flex items-center gap-1" animate={{ left: `${racePosB}%` }} transition={{ duration: 0.1 }}>
                   <span className="text-lg">🔴</span>
-                  <span className="font-body text-[9px] text-foreground font-bold whitespace-nowrap">€{fmt(raceValB)}</span>
+                  <span className="font-body text-[9px] text-foreground font-bold whitespace-nowrap">CHF {fmt(raceValB)}</span>
                 </motion.div>
               </div>
             </div>
@@ -397,8 +397,8 @@ const ETF_L5_Costs = () => {
                 <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="max-w-sm mx-auto w-full mb-3">
                   <div className={`rounded-2xl p-4 text-center ${raceDiff > 5000 ? 'bg-red-500/10 border border-red-500/20' : raceDiff >= 1000 ? 'bg-amber-500/10 border border-amber-500/20' : 'bg-green-500/10 border border-green-500/20'}`}>
                     <p className="font-display text-sm font-bold text-foreground">
-                      {raceDiff > 5000 && `😱 ETF B kostet dich €${fmt(raceDiff)} mehr über 30 Jahre!`}
-                      {raceDiff >= 1000 && raceDiff <= 5000 && `⚠️ €${fmt(raceDiff)} Unterschied — nicht zu unterschätzen.`}
+                      {raceDiff > 5000 && `😱 ETF B kostet dich CHF ${fmt(raceDiff)} mehr über 30 Jahre!`}
+                      {raceDiff >= 1000 && raceDiff <= 5000 && `⚠️ CHF ${fmt(raceDiff)} Unterschied — nicht zu unterschätzen.`}
                       {raceDiff < 1000 && `✅ Kleiner Unterschied — beide ETFs fast gleich.`}
                     </p>
                   </div>

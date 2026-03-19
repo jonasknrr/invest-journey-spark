@@ -39,20 +39,20 @@ export const levelIntros: Record<string, LevelIntro> = {
     introTitle: 'Liquiditätsplanung',
     introSubtitle: 'Deine erste Simulation',
     introText:
-      'Verteile 10.000 € auf Tagesgeld und Festgeld. Behalte deinen Notgroschen flexibel, sichere deine geplante Ausgabe und maximiere die Rendite für den Rest.',
+      'Verteile 10.000 CHF  auf Tagesgeld und Festgeld. Behalte deinen Notgroschen flexibel, sichere deine geplante Ausgabe und maximiere die Rendite für den Rest.',
     heroIcon: Vault,
     accentColor: 'var(--level-festgeld)',
     introFacts: [
       {
         icon: ShieldCheck,
         label: 'Notgroschen',
-        text: '2.000 € müssen jederzeit sofort verfügbar sein — auf dem Tagesgeld.',
+        text: '2.000 CHF  müssen jederzeit sofort verfügbar sein — auf dem Tagesgeld.',
         color: 'hsl(var(--level-tagesgeld))',
       },
       {
         icon: CalendarBlank,
         label: 'Weiterbildung',
-        text: 'In 2 Jahren brauchst du 3.000 € — das Geld muss rechtzeitig frei sein.',
+        text: 'In 2 Jahren brauchst du 3.000 CHF  — das Geld muss rechtzeitig frei sein.',
         color: 'hsl(var(--level-aktien))',
       },
       {
@@ -82,7 +82,7 @@ export const levelIntros: Record<string, LevelIntro> = {
       {
         icon: ShieldCheck,
         label: 'Sicherheit',
-        text: 'Dein Geld ist bis 100.000 € durch die Einlagensicherung geschützt.',
+        text: 'Dein Geld ist bis 100.000 CHF  durch die Einlagensicherung geschützt.',
         color: 'hsl(var(--level-festgeld))',
       },
       {
@@ -118,7 +118,7 @@ export const levelIntros: Record<string, LevelIntro> = {
       {
         icon: ShieldCheck,
         label: 'Sicherheit',
-        text: 'Ebenfalls durch die Einlagensicherung bis 100.000 € geschützt.',
+        text: 'Ebenfalls durch die Einlagensicherung bis 100.000 CHF  geschützt.',
         color: 'hsl(var(--level-festgeld))',
       },
       {

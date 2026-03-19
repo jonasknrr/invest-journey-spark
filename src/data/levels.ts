@@ -75,7 +75,7 @@ export const levels: Level[] = [
       { id: 'e5', title: 'Costs & key numbers', description: 'The silent fee', status: 'current', duration: '6 Min' },
       { id: 'e6', title: 'Risk & diversification', description: 'What an ETF can\'t protect', status: 'current', duration: '6 Min' },
       { id: 'e7', title: 'Acc vs Dist & tax', description: 'Snowball or paycheck?', status: 'current', duration: '5 Min' },
-      { id: 'e8', title: 'Der ETF-Sparplan', description: 'Wie €100/Monat zu einem Vermögen werden', status: 'current', duration: '5 Min' },
+      { id: 'e8', title: 'Der ETF-Sparplan', description: 'Wie CHF 100/Monat zu einem Vermögen werden', status: 'current', duration: '5 Min' },
       { id: 'e9', title: 'Finale Simulation', description: 'Wende alles an', status: 'current', duration: '10 Min' },
     ],
   },
