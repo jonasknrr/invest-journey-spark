@@ -147,7 +147,8 @@ const Cash_F3_Liquidity = () => {
     if (currentStep === 1) return allPlaced;
     if (currentStep === 2) return !!q1Answer;
     if (currentStep === 3) return !!q2Answer;
-    if (currentStep === 4) return true;
+    if (currentStep === 4) return !!q3Answer;
+    if (currentStep === 5) return true;
     return false;
   };
 
