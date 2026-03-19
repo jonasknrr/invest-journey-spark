@@ -1,9 +1,10 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Check, Lock, Play } from 'lucide-react';
+import { ArrowLeft, Check, Lock, Play, Rocket } from 'lucide-react';
 import { levels } from '@/data/levels';
 import LevelIcon from '@/components/LevelIcon';
 import { useProgressStore } from '@/hooks/useProgressStore';
+import { categoryToChapter } from '@/data/challengeConfig';
 
 const bgMap: Record<string, string> = {
   festgeld: 'bg-level-festgeld',
@@ -15,18 +16,6 @@ const bgMap: Record<string, string> = {
   krypto: 'bg-level-krypto',
   gold: 'bg-level-gold',
   immobilien: 'bg-level-immobilien',
-};
-
-const hslMap: Record<string, string> = {
-  festgeld: 'hsl(150,60%,45%)',
-  tagesgeld: 'hsl(140,70%,75%)',
-  aktien: 'hsl(215,90%,60%)',
-  etfs: 'hsl(225,85%,55%)',
-  anleihen: 'hsl(185,80%,45%)',
-  waehrungen: 'hsl(35,95%,55%)',
-  krypto: 'hsl(265,85%,65%)',
-  gold: 'hsl(45,100%,50%)',
-  immobilien: 'hsl(15,70%,55%)',
 };
 
 const CategoryDetail = () => {
@@ -50,6 +39,7 @@ const CategoryDetail = () => {
     return r?.completed;
   }).length;
   const isEtf = level.id === 'etfs';
+  const chapterId = categoryToChapter[level.id];
 
   return (
     <div className="min-h-screen bg-background">
@@ -239,6 +229,33 @@ const CategoryDetail = () => {
             </motion.button>
           );
         })}
+
+        {/* Simulation button — only for main chapters with a challenge */}
+        {chapterId && (
+          <motion.button
+            onClick={() => navigate(`/challenge/${chapterId}`)}
+            className="w-full mt-6 p-5 rounded-3xl bg-gradient-to-r from-primary to-primary/80 shadow-soft transition-all hover:shadow-lg"
+            whileTap={{ scale: 0.97 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, type: 'spring', stiffness: 400, damping: 17 }}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-primary-foreground/20 flex items-center justify-center flex-shrink-0">
+                <Rocket className="w-6 h-6 text-primary-foreground" />
+              </div>
+              <div className="flex-1 min-w-0 text-left">
+                <h4 className="font-display text-base font-bold text-primary-foreground">
+                  Simulationsaufgabe
+                </h4>
+                <p className="text-sm text-primary-foreground/80 mt-0.5">
+                  Wende dein Wissen an und investiere dein Budget
+                </p>
+              </div>
+              <div className="text-primary-foreground/60">→</div>
+            </div>
+          </motion.button>
+        )}
       </div>
     </div>
   );
