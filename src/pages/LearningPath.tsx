@@ -209,19 +209,42 @@ const LearningPath = () => {
         })}
 
         {/* End flag */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2"
+        <motion.div
+          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
           style={{ top: NODE_VERTICAL_OFFSET + (levels.length - 1) * NODE_SPACING + 40 }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 1.2, type: 'spring', stiffness: 300 }}
         >
-          <motion.span
-            className="text-4xl"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 1.2, type: 'spring', stiffness: 300 }}
-          >
-            🏁
-          </motion.span>
-        </div>
+          <svg width="80" height="100" viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="18" y="10" width="4" height="85" rx="2" fill="#9CA3AF"/>
+            <g>
+              <animateTransform
+                attributeName="transform"
+                type="rotate"
+                values="0 20 20;2 20 20;0 20 20;-1 20 20;0 20 20"
+                dur="2s"
+                repeatCount="indefinite"
+                calcMode="spline"
+                keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"
+              />
+              <rect x="22" y="10" width="44" height="28" rx="3" fill="#1E293B"/>
+              <rect x="22" y="10" width="11" height="9" fill="white"/>
+              <rect x="44" y="10" width="11" height="9" fill="white"/>
+              <rect x="33" y="19" width="11" height="9" fill="white"/>
+              <rect x="55" y="19" width="11" height="9" fill="white"/>
+              <rect x="22" y="28" width="11" height="10" fill="white"/>
+              <rect x="44" y="28" width="11" height="10" fill="white"/>
+            </g>
+            <circle cx="20" cy="96" r="5" fill="#D1D5DB"/>
+          </svg>
+          <div style={{ marginTop: '8px', fontSize: '13px', fontWeight: 700, color: '#6B7280', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+            Finish
+          </div>
+          <div style={{ fontSize: '11px', color: '#9CA3AF', marginTop: '2px' }}>
+            Complete all chapters
+          </div>
+        </motion.div>
       </div>
     </div>
   );
