@@ -72,7 +72,7 @@ const LevelNode = ({ level, index, onClick, align = 'left', progress = 0 }: Leve
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 17 }}
       initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={{ opacity: isLocked ? 0.7 : 1, y: 0 }}
       style={{ transitionDelay: `${index * 0.08}s` }}
     >
       {/* Icon circle with progress ring */}
