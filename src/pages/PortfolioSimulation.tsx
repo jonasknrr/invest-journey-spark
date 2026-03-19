@@ -354,26 +354,22 @@ const PortfolioSimulation = () => {
   const profitPct = invested > 0 ? Math.round((profit / invested) * 10000) / 100 : 0;
   const goalMet = profit >= GOAL;
 
-  // ── Risk metrics ──
-  // Only count risky positions for diversification (Aktien, ETFs) — Festgeld/Tagesgeld are safe and don't cause Klumpenrisiko
-  const numRiskyPositions = Object.values(aktienAllocs).filter(v => v > 0).length
-    + Object.values(etfAllocs).filter(v => v > 0).length;
+  // ── Risk metrics (HHI-based diversification) ──
+  const riskyPositionAmounts = [
+    ...Object.values(aktienAllocs).filter(v => v > 0),
+    ...Object.values(etfAllocs).filter(v => v > 0),
+  ];
+  const riskyInvested = riskyPositionAmounts.reduce((s, v) => s + v, 0);
+  const numRiskyPositions = riskyPositionAmounts.length;
 
-  const riskyInvested = Object.values(aktienAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0)
-    + Object.values(etfAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0);
+  const divResult = useMemo(
+    () => calcDiversification(riskyPositionAmounts, riskyInvested),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [JSON.stringify(riskyPositionAmounts), riskyInvested],
+  );
 
-  // Concentration penalty: only for risky positions — if any single risky position > 30% of risky total
-  const riskyPositionPcts = riskyInvested > 0 ? [
-    ...Object.values(aktienAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
-    ...Object.values(etfAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
-  ] : [];
-  const maxRiskyPositionPct = riskyPositionPcts.length > 0 ? Math.max(...riskyPositionPcts) : 0;
-  const concentrationPenalty = maxRiskyPositionPct > 30 ? (maxRiskyPositionPct - 30) / 10 : 0;
-
-  const divScoreRaw = riskyInvested > 0
-    ? Math.min(10, (numRiskyPositions / (riskyInvested / 500)) * 5)
-    : 10; // If no risky assets, diversification is not an issue
-  const divScore = Math.max(0, Math.round((divScoreRaw - concentrationPenalty) * 10) / 10);
+  // Backward compat: divScore 0-10 scale for coach analysis
+  const divScore = divResult.riskPassed ? 8 : divResult.rating === 'Ausreichend' ? 5 : 2;
 
   // Safe asset percentage (Tagesgeld + Festgeld)
   const safeTotal = tagesgeldAmount + festgeldPositions.reduce((s, f) => s + f.amount, 0);
