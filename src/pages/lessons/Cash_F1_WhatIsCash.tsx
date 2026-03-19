@@ -9,12 +9,12 @@ import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
 import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 const LESSON_ID = 'festgeld-f1';
 
 /* ── Quiz data ── */
 const QUIZ_1 = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question:
     'You need CHF 500 tomorrow morning for an urgent repair. Which option helps you the fastest?',
   answers: [
@@ -31,7 +31,7 @@ const QUIZ_1 = {
 };
 
 const QUIZ_2 = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question: 'What distinguishes cash from a stock?',
   answers: [
     { id: 'a', text: 'Cash earns higher returns than stocks' },
@@ -47,6 +47,23 @@ const QUIZ_2 = {
     'Exactly! Cash is stable and instantly available — stocks can fluctuate heavily and take time to sell.',
   wrongFeedback:
     'Not quite — cash doesn\'t shine through returns, but through safety and instant availability. That\'s its greatest advantage.',
+};
+
+const QUIZ_3 = {
+  label: 'Question 3 of 3',
+  question:
+    'Besides physical banknotes and coins, which of the following is also considered a highly liquid \'cash equivalent\'?',
+  answers: [
+    { id: 'a', text: 'A long-term real estate investment' },
+    { id: 'b', text: 'A volatile cryptocurrency' },
+    { id: 'c', text: 'A call money account (savings account)' },
+    { id: 'd', text: 'A 10-year government bond' },
+  ],
+  correctId: 'c',
+  correctFeedback:
+    'Correct! A call money account is highly liquid and safe — making it a classic cash equivalent.',
+  wrongFeedback:
+    'Not quite — real estate, crypto, and long-term bonds are not easily or quickly convertible to cash without risk. A call money account is the closest to cash.',
 };
 
 /* ── Quiz slide component ── */
@@ -326,8 +343,13 @@ const Cash_F1_WhatIsCash = () => {
           <QuizSlide key="s3" quiz={QUIZ_2} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
         )}
 
-        {/* ── Slide 5: Completion ── */}
+        {/* ── Slide 5: Quiz 3 ── */}
         {currentStep === 4 && (
+          <QuizSlide key="s4" quiz={QUIZ_3} onComplete={handleNext} onWrongAnswer={handleWrongAnswer} />
+        )}
+
+        {/* ── Slide 6: Completion ── */}
+        {currentStep === 5 && (
           <motion.div
             key="s4"
             className="flex-1 flex flex-col items-center justify-center px-6"
