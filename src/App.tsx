@@ -24,7 +24,7 @@ import Cash_F3_Liquidity from "./pages/lessons/Cash_F3_Liquidity";
 import Cash_F4_Festgeld from "./pages/lessons/Cash_F4_Festgeld";
 import Cash_F5_Tagesgeld from "./pages/lessons/Cash_F5_Tagesgeld";
 import LevelChallenge from "./pages/LevelChallenge";
-import StockPickerPage from "./pages/StockPickerPage";
+
 import FestgeldOverview from "./pages/FestgeldOverview";
 import FestgeldDetail from "./pages/FestgeldDetail";
 import TagesgeldOverview from "./pages/TagesgeldOverview";
@@ -63,7 +63,7 @@ const App = () => (
             <Route path="/lesson/etfs/e8" element={<ETF_L8_Sparplan />} />
             <Route path="/lesson/etfs/e9" element={<ETF_L9_Simulation />} />
             <Route path="/lesson-flow/:categoryId/:lessonId" element={<LessonFlowPage />} />
-            <Route path="/challenge/:levelId/stock-picker" element={<StockPickerPage />} />
+            
             <Route path="/challenge/:levelId/festgeld/:productSlug" element={<FestgeldDetail />} />
             <Route path="/challenge/:levelId/festgeld" element={<FestgeldOverview />} />
             <Route path="/challenge/:levelId/tagesgeld/:productSlug" element={<TagesgeldDetail />} />

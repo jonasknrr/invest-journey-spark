@@ -64,78 +64,7 @@ const LevelChallenge = () => {
   }
 
   const intro = levelId ? levelIntros[levelId] : undefined;
-  const isAktienChallenge = levelId === 'aktien';
 
-  /* ── Aktien Challenge ── */
-  if (isAktienChallenge) {
-    return (
-      <div className="min-h-screen bg-background pb-10">
-        <div className="px-5 pt-6 pb-2">
-          <button onClick={() => navigate('/learn')} className="text-muted-foreground text-sm font-body mb-2 flex items-center gap-1">
-            ← Zurück
-          </button>
-        </div>
-
-        <motion.div className="px-5 space-y-6" variants={containerVariants} initial="hidden" animate="visible">
-          {/* Challenge Card — Aktien themed */}
-          <motion.div variants={itemVariants} className="relative overflow-hidden rounded-4xl bg-gradient-to-br from-primary/90 to-primary p-6 text-primary-foreground shadow-soft">
-            <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-primary-foreground/10" />
-            <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-primary-foreground/5" />
-            <div className="relative z-10">
-              <div className="flex items-center gap-2 mb-3">
-                <div className="flex items-center gap-1.5 bg-primary-foreground/20 rounded-full px-3 py-1">
-                  <Trophy size={16} weight="fill" />
-                  <span className="text-xs font-display font-semibold">Aktien – Challenge</span>
-                </div>
-              </div>
-              <h1 className="font-display text-xl font-bold leading-snug mb-3">
-                Wähle die richtige Aktie!
-              </h1>
-              <p className="text-sm leading-relaxed opacity-90 font-body">
-                Du hast <span className="font-bold">CHF 5'000</span> und möchtest in 10 Jahren mindestens <span className="font-bold">CHF 7'500</span> erreichen — also +50% Rendite. Wähle eine Aktie aus dem SMI oder DJIA.
-              </p>
-              <div className="mt-5 flex items-center gap-3">
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3 flex-1">
-                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Dein Budget</p>
-                  <p className="font-display text-2xl font-bold tabular-nums">CHF 5'000</p>
-                </div>
-                <div className="bg-primary-foreground/20 backdrop-blur-sm rounded-2xl px-4 py-3">
-                  <p className="text-[11px] uppercase tracking-wider opacity-70 font-body font-semibold mb-0.5">Ziel</p>
-                  <p className="font-display text-2xl font-bold tabular-nums">+50%</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Single entry: Aktien */}
-          <motion.div variants={itemVariants} className="flex items-center justify-between pt-1">
-            <h2 className="font-display text-lg font-bold text-foreground">Anlageklassen</h2>
-            <span className="text-xs text-muted-foreground font-body">1 verfügbar</span>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => navigate(`/challenge/${levelId}/stock-picker`)}
-            className="rounded-3xl bg-card border border-border shadow-card p-4 flex items-center gap-4 cursor-pointer active:bg-muted/50 transition-colors"
-          >
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: 'hsl(var(--level-aktien) / 0.12)' }}>
-              <TrendUp size={26} weight="fill" style={{ color: 'hsl(var(--level-aktien))' }} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="font-display font-bold text-foreground text-[15px]">Aktien</p>
-              <p className="text-xs text-muted-foreground font-body mt-0.5">Wähle eine Aktie aus dem SMI oder DJIA</p>
-            </div>
-            <ArrowRight size={18} className="text-muted-foreground/50 flex-shrink-0" />
-          </motion.div>
-        </motion.div>
-
-        {intro && (
-          <LevelIntroOverlay intro={intro} open={showIntro} onClose={() => setShowIntro(false)} />
-        )}
-      </div>
-    );
-  }
 
   /* ── Default Challenge (existing) ── */
   const remaining = getRemaining();
