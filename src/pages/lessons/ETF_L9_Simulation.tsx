@@ -189,14 +189,14 @@ const ETF_L9_Simulation = () => {
   const perfDiff = portfolioValue - etfValueAfterShocks;
 
   const gradeFeedback = [
-    { title: 'Was ist ein Index?', a: `✅ You invested in ${uniqueFlags} countries — you think like an index constructor.`, b: '👍 Solid — a bit more geographic diversification would be even better.', c: '💡 Your portfolio was very concentrated — a broad index would have solved that automatically.' },
-    { title: 'Wie Indizes gebaut werden', a: '✅ No single stock dominates — you avoided concentration risk.', b: '👍 Fast ausgeglichen — achte auf Übergewichtung einzelner positions.', c: '💡 One position was very dominant — just like Apple in the S&P 500, but without the other 499 to balance it.' },
-    { title: 'Was ist ein ETF?', a: `✅ Du hast gelernt dass 1 ETF-Kauf hunderte companies abdeckt — statt deiner ${numTransactions} Transaktionen für CHF ${numTransactions} Gebühren.`, b: '', c: '' },
-    { title: 'ETF-Universum', a: '✅ Strong sector diversification — you combined different industries.', b: '👍 Good mix — one or two more sectors would be ideal.', c: '💡 Your portfolio was sector-concentrated — a thematic ETF would do the same, but with more holdings.' },
-    { title: 'Kosten & Kennzahlen', a: `✅ The ETF comparison shows: CHF ${fees - etfFees} in fees saved, 1 instead of ${numTransactions} transactions. Over 30 years that makes a big difference.`, b: '', c: '' },
-    { title: 'Risiko & Diversifikation', a: '✅ Good combination of countries AND sectors — you built real diversification.', b: '👍 Solid — but with more diversification you would have lost less in the tech shock.', c: '' },
+    { title: 'What is an Index?', a: `✅ You invested in ${uniqueFlags} countries — you think like an index constructor.`, b: '👍 Solid — a bit more geographic diversification would be even better.', c: '💡 Your portfolio was very concentrated — a broad index would have solved that automatically.' },
+    { title: 'How Indices are Built', a: '✅ No single stock dominates — you avoided concentration risk.', b: '👍 Almost balanced — watch out for overweighting individual positions.', c: '💡 One position was very dominant — just like Apple in the S&P 500, but without the other 499 to balance it.' },
+    { title: 'What is an ETF?', a: `✅ You learned that 1 ETF purchase covers hundreds of companies — instead of your ${numTransactions} transactions for CHF ${numTransactions} in fees.`, b: '', c: '' },
+    { title: 'ETF Universe', a: '✅ Strong sector diversification — you combined different industries.', b: '👍 Good mix — one or two more sectors would be ideal.', c: '💡 Your portfolio was sector-concentrated — a thematic ETF would do the same, but with more holdings.' },
+    { title: 'Costs & Metrics', a: `✅ The ETF comparison shows: CHF ${fees - etfFees} in fees saved, 1 instead of ${numTransactions} transactions. Over 30 years that makes a big difference.`, b: '', c: '' },
+    { title: 'Risk & Diversification', a: '✅ Good combination of countries AND sectors — you built real diversification.', b: '👍 Solid — but with more diversification you would have lost less in the tech shock.', c: '' },
     { title: 'Acc vs Dist', a: '✅ For a portfolio like yours, accumulating ETFs (Acc) are recommended — maximum compound interest with no effort.', b: '', c: '' },
-    { title: 'ETF-Sparplan', a: '✅ If you had built this portfolio as a monthly savings plan of CHF 200 — in 30 years at 7%: CHF 243,994. The best time to start: today.', b: '', c: '' },
+    { title: 'ETF Savings Plan', a: '✅ If you had built this portfolio as a monthly savings plan of CHF 200 — in 30 years at 7%: CHF 243,994. The best time to start: today.', b: '', c: '' },
   ];
 
   // Confetti
@@ -522,18 +522,18 @@ const ETF_L9_Simulation = () => {
               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 }}>
               {gradeCount.A >= 6 ? (
                 <>
-                  <p className="font-display text-xl font-bold text-white mb-2">🏆 Ausgezeichnet!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">Du denkst bereits wie ein erfahrener ETF-Investor. Dein Portfolio zeigte starke Diversifikation und kluge Sektor-Aufteilung.</p>
+                  <p className="font-display text-xl font-bold text-white mb-2">🏆 Outstanding!</p>
+                  <p className="font-body text-sm text-white/80 leading-relaxed">You already think like an experienced ETF investor. Your portfolio showed strong diversification and smart sector allocation.</p>
                 </>
               ) : gradeCount.A >= 4 ? (
                 <>
-                  <p className="font-display text-xl font-bold text-white mb-2">🎯 Sehr gut!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">Solide Grundlage mit kleinen Verbesserungspotentialen. Ein paar mehr Länder und Sektoren hätten die Schocks abgefedert.</p>
+                  <p className="font-display text-xl font-bold text-white mb-2">🎯 Very good!</p>
+                  <p className="font-body text-sm text-white/80 leading-relaxed">Solid foundation with small room for improvement. A few more countries and sectors would have cushioned the shocks better.</p>
                 </>
               ) : (
                 <>
-                  <p className="font-display text-xl font-bold text-white mb-2">💪 Guter Anfang!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">Das Wichtigste: du hast es durchgespielt und weisst jetzt was du beim nächsten Mal anders machen würdest.</p>
+                  <p className="font-display text-xl font-bold text-white mb-2">💪 Good start!</p>
+                  <p className="font-body text-sm text-white/80 leading-relaxed">The most important thing: you played through it and now know what you'd do differently next time.</p>
                 </>
               )}
             </motion.div>
