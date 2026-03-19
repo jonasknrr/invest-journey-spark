@@ -34,8 +34,8 @@ const FestgeldOverview = () => {
             <Vault size={30} weight="fill" className="text-[hsl(var(--level-festgeld))]" />
           </div>
           <div>
-            <h1 className="font-display text-2xl font-bold text-foreground">Festgeld</h1>
-            <p className="text-muted-foreground text-sm font-body">Sichere Zinsen, feste Laufzeit</p>
+             <h1 className="font-display text-2xl font-bold text-foreground">Fixed Deposit</h1>
+            <p className="text-muted-foreground text-sm font-body">Secure interest, fixed term</p>
           </div>
         </motion.div>
 
