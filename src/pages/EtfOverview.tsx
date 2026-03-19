@@ -122,7 +122,7 @@ const EtfOverview = () => {
         {etfTotal > 0 && (
           <motion.div variants={itemVariants} className="rounded-3xl bg-primary/8 border border-primary/15 p-4">
             <p className="font-body text-sm text-primary leading-relaxed">
-              💡 Du hast insgesamt {etfTotal.toLocaleString('de-CH')} $ in ETFs investiert.
+              💡 Du hast insgesamt {etfTotal.toLocaleString('de-CH')} CHF in ETFs investiert.
             </p>
           </motion.div>
         )}
