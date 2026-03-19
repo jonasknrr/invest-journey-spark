@@ -99,7 +99,7 @@ const CategoryDetail = () => {
               transition={{ delay: 0.3 }}
             >
               <span className="text-xs font-semibold text-amber-200">
-                🔥 {store.currentStreak} Lektion Streak
+                🔥 {store.currentStreak} Lesson Streak
               </span>
             </motion.div>
           )}
