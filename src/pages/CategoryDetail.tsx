@@ -37,8 +37,19 @@ const CategoryDetail = () => {
 
   if (!level) return null;
 
+  const lessonProgressValues = level.subLevels.map(sub => {
+    const r = getLessonResult(`${level.id}-${sub.id}`);
+    return r?.completed ? 1 : (r?.progress ?? 0);
+  });
+  const averageProgress =
+    lessonProgressValues.length > 0
+      ? lessonProgressValues.reduce((a, b) => a + b, 0) / lessonProgressValues.length
+      : 0;
+  const completedSubs = level.subLevels.filter(sub => {
+    const r = getLessonResult(`${level.id}-${sub.id}`);
+    return r?.completed;
+  }).length;
   const isEtf = level.id === 'etfs';
-  const completedSubs = level.subLevels.filter(s => s.status === 'completed').length;
 
   return (
     <div className="min-h-screen bg-background">
