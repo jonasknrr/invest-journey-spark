@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Trophy, TrendUp, Vault, ChartPie, Lightning, CoinVertical, ShieldWarning, Scales, Warning, Info, Brain, Star } from '@phosphor-icons/react';
+import { ArrowLeft, Trophy, TrendUp, Vault, ChartPie, Lightning, CoinVertical, ShieldWarning, Scales, Warning, Info, Brain, Star, Lock } from '@phosphor-icons/react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { useBudget } from '@/contexts/BudgetContext';
 import { festgeldProducts } from '@/data/festgeldProducts';
 import { getStockReturns, getStockTimeSeries, CHF_TO_USD, type StockReturn, type StockTimeSeries } from '@/services/stockReturns';
 import { getEtfTimeSeries, type EtfTimeSeries } from '@/services/etfList';
+import { getChapterConfig } from '@/data/challengeConfig';
 
 /* ── Constants ── */
 const GOAL = 1000;
