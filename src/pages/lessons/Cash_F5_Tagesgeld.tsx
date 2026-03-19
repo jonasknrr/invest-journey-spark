@@ -7,7 +7,7 @@ import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
 import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 const pillars = [
   { emoji: '🏦', label: 'Checking account', rate: 0.0001, tagColor: 'text-red-600 dark:text-red-400 bg-red-500/10', tag: 'Barely grows' },
