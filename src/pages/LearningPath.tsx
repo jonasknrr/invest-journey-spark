@@ -3,10 +3,33 @@ import { motion } from 'framer-motion';
 import { levels } from '@/data/levels';
 import LevelNode from '@/components/LevelNode';
 import { Sparkles } from 'lucide-react';
+import { useProgressStore } from '@/hooks/useProgressStore';
+
+const categoryLessonIds: Record<string, string[]> = {
+  festgeld: ['festgeld-f1', 'festgeld-f2', 'festgeld-f3', 'festgeld-f4', 'festgeld-f5'],
+  aktien: ['aktien-a1', 'aktien-a2', 'aktien-a3', 'aktien-a4', 'aktien-a5', 'aktien-a6', 'aktien-a7'],
+  etfs: ['etfs-e1', 'etfs-e2', 'etfs-e3', 'etfs-e4', 'etfs-e5', 'etfs-e6', 'etfs-e7', 'etfs-e8', 'etfs-e9'],
+};
 
 const LearningPath = () => {
   const navigate = useNavigate();
+  const { store } = useProgressStore();
   const completedCount = levels.filter(l => l.status === 'completed').length;
+  const totalProgress = Math.round((completedCount / levels.length) * 100);
+
+  const getCategoryStars = (lessonIds: string[]): number | null => {
+    const completedLessons = lessonIds
+      .map(id => store.lessonResults[id])
+      .filter((l): l is NonNullable<typeof l> => !!l && l.completed);
+
+    if (completedLessons.length === 0) return null;
+
+    const totalHearts = completedLessons.reduce(
+      (sum, l) => sum + l.heartsRemaining, 0
+    );
+
+    return Math.ceil(totalHearts / completedLessons.length);
+  };
   const totalProgress = Math.round((completedCount / levels.length) * 100);
 
   return (
