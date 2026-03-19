@@ -287,9 +287,9 @@ const ETF_L6_Risk = () => {
                       <div className="flex flex-wrap gap-1 justify-center mb-2">
                         {[
                           { t: 'MSCI World 🌍', c: 'bg-blue-500/10 text-blue-700' },
-                          { t: 'Anleihen 📊', c: 'bg-green-500/10 text-green-700' },
+                          { t: 'Bonds 📊', c: 'bg-green-500/10 text-green-700' },
                           { t: 'Gold 🥇', c: 'bg-amber-500/10 text-amber-700' },
-                          { t: 'Immobilien 🏠', c: 'bg-purple-500/10 text-purple-700' },
+                          { t: 'Real Estate 🏠', c: 'bg-purple-500/10 text-purple-700' },
                         ].map(b => (
                           <span key={b.t} className={`inline-block px-1.5 py-0.5 rounded-full ${b.c} font-body text-[9px]`}>{b.t}</span>
                         ))}
