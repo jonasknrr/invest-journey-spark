@@ -350,25 +350,29 @@ const PortfolioSimulation = () => {
   const goalMet = profit >= GOAL;
 
   // ── Risk metrics ──
-  const numPositions = Object.values(aktienAllocs).filter(v => v > 0).length
-    + Object.values(etfAllocs).filter(v => v > 0).length
-    + festgeldPositions.length
-    + (tagesgeldAmount > 0 ? 1 : 0);
+  // Only count risky positions for diversification (Aktien, ETFs) — Festgeld/Tagesgeld are safe and don't cause Klumpenrisiko
+  const numRiskyPositions = Object.values(aktienAllocs).filter(v => v > 0).length
+    + Object.values(etfAllocs).filter(v => v > 0).length;
 
-  // Concentration penalty: if any single position > 30%, reduce score
-  const allPositionPcts = [
-    ...Object.values(aktienAllocs).filter(v => v > 0).map(v => (v / invested) * 100),
-    ...Object.values(etfAllocs).filter(v => v > 0).map(v => (v / invested) * 100),
-    ...festgeldPositions.map(f => (f.amount / invested) * 100),
-    ...(tagesgeldAmount > 0 ? [(tagesgeldAmount / invested) * 100] : []),
-  ];
-  const maxPositionPct = allPositionPcts.length > 0 ? Math.max(...allPositionPcts) : 0;
-  const concentrationPenalty = maxPositionPct > 30 ? (maxPositionPct - 30) / 10 : 0;
+  const riskyInvested = Object.values(aktienAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0)
+    + Object.values(etfAllocs).filter(v => v > 0).reduce((s, v) => s + v, 0);
 
-  const divScoreRaw = invested > 0
-    ? Math.min(10, (numPositions / (invested / 500)) * 5)
-    : 0;
+  // Concentration penalty: only for risky positions — if any single risky position > 30% of risky total
+  const riskyPositionPcts = riskyInvested > 0 ? [
+    ...Object.values(aktienAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
+    ...Object.values(etfAllocs).filter(v => v > 0).map(v => (v / riskyInvested) * 100),
+  ] : [];
+  const maxRiskyPositionPct = riskyPositionPcts.length > 0 ? Math.max(...riskyPositionPcts) : 0;
+  const concentrationPenalty = maxRiskyPositionPct > 30 ? (maxRiskyPositionPct - 30) / 10 : 0;
+
+  const divScoreRaw = riskyInvested > 0
+    ? Math.min(10, (numRiskyPositions / (riskyInvested / 500)) * 5)
+    : 10; // If no risky assets, diversification is not an issue
   const divScore = Math.max(0, Math.round((divScoreRaw - concentrationPenalty) * 10) / 10);
+
+  // Safe asset percentage (Tagesgeld + Festgeld)
+  const safeTotal = tagesgeldAmount + festgeldPositions.reduce((s, f) => s + f.amount, 0);
+  const safePct = invested > 0 ? (safeTotal / invested) * 100 : 0;
 
   const maxDrawdown = useMemo(() => {
     if (values.length < 2) return 0;
@@ -409,8 +413,8 @@ const PortfolioSimulation = () => {
 
   // Coach analysis
   const coachAnalysis = useMemo(
-    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox),
-    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox],
+    () => analyzePortfolio(profitPct, divScore, Math.abs(maxDrawdown) * 100, aktienPct, sharpeApprox, safePct),
+    [profitPct, divScore, maxDrawdown, aktienPct, sharpeApprox, safePct],
   );
 
   // ── Challenge evaluation (Liquidity + Risk) ──
