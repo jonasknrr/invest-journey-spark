@@ -251,6 +251,29 @@ const LearningPath = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Floating Leaderboard Button */}
+      <motion.button
+        onClick={() => navigate('/leaderboard')}
+        className="fixed z-40 flex items-center justify-center"
+        style={{
+          bottom: 24,
+          right: 24,
+          width: 56,
+          height: 56,
+          borderRadius: '50%',
+          backgroundColor: '#059669',
+          boxShadow: '0 4px 12px rgba(5, 150, 105, 0.4)',
+        }}
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.5, type: 'spring', stiffness: 300, damping: 15 }}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        aria-label="Leaderboard"
+      >
+        <span style={{ fontSize: 24 }}>🏆</span>
+      </motion.button>
     </div>
   );
 };
