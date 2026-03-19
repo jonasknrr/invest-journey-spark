@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { FiCheck } from 'react-icons/fi';
 import type { Level } from '@/data/levels';
 import LevelIcon from './LevelIcon';
 
