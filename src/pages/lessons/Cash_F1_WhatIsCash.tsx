@@ -50,17 +50,17 @@ const QUIZ_2 = {
 const QUIZ_3 = {
   label: "Question 3 of 3",
   question:
-    "Besides physical banknotes and coins, which of the following is also considered a highly liquid 'cash equivalent'?",
+    "You want to buy something tomorrow and need your money available immediately. Which option works?",
   answers: [
-    { id: "a", text: "A long-term real estate investment" },
-    { id: "b", text: "A volatile cryptocurrency" },
-    { id: "c", text: "A call money account (savings account)" },
-    { id: "d", text: "A 10-year government bond" },
+    { id: "a", text: "A fixed deposit locked for 12 months" },
+    { id: "b", text: "Money in your current bank account" },
+    { id: "c", text: "A stock you'd have to sell first" },
+    { id: "d", text: "A house you own" },
   ],
-  correctId: "c",
-  correctFeedback: "Correct! A call money account is highly liquid and safe — making it a classic cash equivalent.",
+  correctId: "b",
+  correctFeedback: "Exactly! Money in your bank account is cash — available instantly, no waiting, no selling.",
   wrongFeedback:
-    "Not quite — real estate, crypto, and long-term bonds are not easily or quickly convertible to cash without risk. A call money account is the closest to cash.",
+    "Cash means available right now. Stocks need to be sold, fixed deposits are locked, and a house takes months. Your bank account is the only true cash here.",
 };
 
 /* ── Quiz slide component ── */
