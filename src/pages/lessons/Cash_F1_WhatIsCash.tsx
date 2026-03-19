@@ -355,7 +355,6 @@ const Cash_F1_WhatIsCash = () => {
                   </span>
                 </motion.div>
               ))}
-            )}
             </div>
 
             <motion.div
