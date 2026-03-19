@@ -7,6 +7,7 @@ export interface LessonResult {
   xpEarned: number;
   perfect: boolean;
   completedAt: number;
+  progress: number; // 0–1
 }
 
 export interface ProgressStore {
@@ -128,6 +129,7 @@ export function useProgressStore() {
             xpEarned,
             perfect,
             completedAt: Date.now(),
+            progress: 1,
           },
         },
         totalXP: store.totalXP + xpEarned,
@@ -155,6 +157,34 @@ export function useProgressStore() {
     [store, persist],
   );
 
+  const updateLessonProgress = useCallback(
+    (lessonId: string, progress: number) => {
+      const clamped = Math.max(0, Math.min(1, progress));
+      const existing = store.lessonResults[lessonId];
+      // Don't overwrite a completed lesson's progress
+      if (existing?.completed) return;
+
+      const next: ProgressStore = {
+        ...store,
+        lessonResults: {
+          ...store.lessonResults,
+          [lessonId]: {
+            lessonId,
+            completed: false,
+            heartsRemaining: existing?.heartsRemaining ?? 3,
+            xpEarned: existing?.xpEarned ?? 0,
+            perfect: false,
+            completedAt: existing?.completedAt ?? 0,
+            ...(existing ?? {}),
+            progress: clamped,
+          },
+        },
+      };
+      persist(next);
+    },
+    [store, persist],
+  );
+
   return {
     store,
     getLessonResult,
@@ -162,5 +192,6 @@ export function useProgressStore() {
     resetLesson,
     isCompleted,
     isPerfect,
+    updateLessonProgress,
   };
 }

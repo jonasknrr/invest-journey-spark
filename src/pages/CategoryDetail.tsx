@@ -2,8 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Check, Lock, Play } from 'lucide-react';
 import { levels } from '@/data/levels';
-import SubLevelCard from '@/components/SubLevelCard';
-import ProgressRing from '@/components/ProgressRing';
 import LevelIcon from '@/components/LevelIcon';
 import { useProgressStore } from '@/hooks/useProgressStore';
 
@@ -70,15 +68,27 @@ const CategoryDetail = () => {
           <h1 className="font-display text-3xl font-bold text-primary-foreground">{level.title}</h1>
           <p className="text-primary-foreground/80 mt-1 text-base">{level.subtitle}</p>
 
-          <div className="flex items-center justify-center gap-3 mt-5">
-            <ProgressRing progress={level.progress} size={44} strokeWidth={4} color="white" />
-            <span className="text-primary-foreground font-display font-bold text-lg tabular-nums">
-              {level.progress}%
-            </span>
-            <span className="text-primary-foreground/70 text-sm">
-              · {completedSubs}/{level.subLevels.length} Lektionen
-            </span>
-          </div>
+          {(() => {
+            const r = 18;
+            const c = 2 * Math.PI * r;
+            return (
+              <div className="flex items-center justify-center gap-3 mt-5">
+                <svg width="44" height="44">
+                  <circle cx="22" cy="22" r={r} stroke="rgba(255,255,255,0.25)" strokeWidth="4" fill="none" />
+                  <circle cx="22" cy="22" r={r} stroke="white" strokeWidth="4" fill="none"
+                    strokeDasharray={c} strokeDashoffset={c * (1 - level.progress / 100)}
+                    strokeLinecap="round" transform="rotate(-90 22 22)"
+                    style={{ transition: 'stroke-dashoffset 0.4s ease' }} />
+                </svg>
+                <span className="text-primary-foreground font-display font-bold text-lg tabular-nums">
+                  {level.progress}%
+                </span>
+                <span className="text-primary-foreground/70 text-sm">
+                  · {completedSubs}/{level.subLevels.length} Lektionen
+                </span>
+              </div>
+            );
+          })()}
 
           {isEtf && store.currentStreak >= 2 && (
             <motion.div
@@ -95,37 +105,33 @@ const CategoryDetail = () => {
         </div>
       </motion.div>
 
-      {/* Sub levels */}
       <div className="max-w-sm mx-auto px-5 mt-4 pb-20 space-y-3">
         {level.subLevels.map((sub, i) => {
-          if (!isEtf) {
-            return (
-              <SubLevelCard
-                key={sub.id}
-                subLevel={sub}
-                index={i}
-                accentColor={hslMap[level.colorKey]}
-                onClick={() => {
-                  if (level.id === 'festgeld' && ['f1', 'f2', 'f3', 'f4', 'f5'].includes(sub.id)) {
-                    navigate(`/lesson/${level.id}/${sub.id}`, { state: { fromSubPage: true } });
-                  } else {
-                    navigate(`/lesson-flow/${level.id}/${sub.id}`);
-                  }
-                }}
-              />
-            );
-          }
-
-          // ETF-specific card with progress info
-          const result = getLessonResult('etfs-' + sub.id);
+          const lessonId = `${level.id}-${sub.id}`;
+          const result = getLessonResult(lessonId);
           const isCompleted = result?.completed === true;
+          const progress = isCompleted ? 1 : (result?.progress ?? 0);
           const isCurrent = sub.status === 'current';
           const isLocked = sub.status === 'locked';
+
+          const radius = 16;
+          const circumference = 2 * Math.PI * radius;
+
+          const handleClick = () => {
+            if (isLocked) return;
+            if (level.id === 'festgeld' && ['f1', 'f2', 'f3', 'f4', 'f5'].includes(sub.id)) {
+              navigate(`/lesson/${level.id}/${sub.id}`, { state: { fromSubPage: true } });
+            } else if (level.id === 'etfs') {
+              navigate(`/lesson/etfs/${sub.id}`);
+            } else {
+              navigate(`/lesson-flow/${level.id}/${sub.id}`);
+            }
+          };
 
           return (
             <motion.button
               key={sub.id}
-              onClick={() => !isLocked && navigate(`/lesson/etfs/${sub.id}`)}
+              onClick={handleClick}
               disabled={isLocked}
               className={`w-full text-left p-5 rounded-3xl bg-card shadow-card transition-all
                 ${isLocked ? 'opacity-60' : 'hover:shadow-lg'}
@@ -144,6 +150,11 @@ const CategoryDetail = () => {
                   <p className={`text-sm mt-1 ${isLocked ? 'text-muted-foreground/50' : 'text-muted-foreground'}`}>
                     {sub.description}
                   </p>
+                  {progress > 0 && !isCompleted && (
+                    <span className="text-xs text-muted-foreground mt-1 block">
+                      {Math.round(progress * 100)}% abgeschlossen
+                    </span>
+                  )}
                   <span className={`inline-block mt-2 text-xs font-medium px-2.5 py-1 rounded-full
                     ${isCompleted ? 'bg-primary/10 text-primary' : isLocked ? 'bg-muted text-muted-foreground/50' : 'bg-muted text-muted-foreground'}`}>
                     ⏱ {sub.duration}
@@ -156,33 +167,55 @@ const CategoryDetail = () => {
                       <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                         <Check className="w-5 h-5 text-primary-foreground" strokeWidth={3} />
                       </div>
-                      {/* Hearts dots */}
-                      <div className="flex gap-0.5">
-                        {[0, 1, 2].map(h => (
-                          <div
-                            key={h}
-                            className={`w-2 h-2 rounded-full ${
-                              h < (result.heartsRemaining ?? 0) ? 'bg-destructive' : 'bg-muted-foreground/30'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      {/* XP earned */}
-                      <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">
-                        +{result.xpEarned} XP
-                      </span>
-                      {/* Perfect badge */}
-                      {result.perfect && (
-                        <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">⭐</span>
+                      {result && (
+                        <>
+                          <div className="flex gap-0.5">
+                            {[0, 1, 2].map(h => (
+                              <div
+                                key={h}
+                                className={`w-2 h-2 rounded-full ${
+                                  h < (result.heartsRemaining ?? 0) ? 'bg-destructive' : 'bg-muted-foreground/30'
+                                }`}
+                              />
+                            ))}
+                          </div>
+                          <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400">
+                            +{result.xpEarned} XP
+                          </span>
+                          {result.perfect && (
+                            <span className="text-[10px] font-semibold text-blue-600 dark:text-blue-400">⭐</span>
+                          )}
+                        </>
                       )}
                     </>
                   )}
-                  {isCurrent && !isCompleted && (
+                  {isCurrent && !isCompleted && progress > 0 && (
+                    <svg width="40" height="40">
+                      <circle
+                        cx="20" cy="20" r={radius}
+                        stroke="hsl(var(--muted))"
+                        strokeWidth="4"
+                        fill="none"
+                      />
+                      <circle
+                        cx="20" cy="20" r={radius}
+                        stroke="hsl(var(--primary))"
+                        strokeWidth="4"
+                        fill="none"
+                        strokeDasharray={circumference}
+                        strokeDashoffset={circumference * (1 - progress)}
+                        strokeLinecap="round"
+                        transform="rotate(-90 20 20)"
+                        style={{ transition: 'stroke-dashoffset 0.4s ease' }}
+                      />
+                    </svg>
+                  )}
+                  {isCurrent && !isCompleted && progress === 0 && (
                     <>
                       <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                         <Play className="w-5 h-5 text-primary-foreground" fill="currentColor" />
                       </div>
-                      <span className="text-[10px] font-medium text-muted-foreground">In Arbeit</span>
+                      <span className="text-[10px] font-medium text-muted-foreground">Starten</span>
                     </>
                   )}
                   {isLocked && (
