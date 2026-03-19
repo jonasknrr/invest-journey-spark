@@ -258,7 +258,7 @@ function analyzePortfolio(
   }
 
   // Critique — Klumpenrisiko only for risky assets
-  if (aktienPct > 0 && divScore < 3) {
+  if (aktienPct > 0 && divScore < 5) {
     critique.push(
       'Achtung, Klumpenrisiko! Deine risikobehafteten Anlagen (Aktien, ETFs) sind auf zu wenige Positionen konzentriert. Wenn eine davon fällt, reißt sie dein ganzes Portfolio mit.',
     );
