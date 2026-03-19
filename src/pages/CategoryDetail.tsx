@@ -37,8 +37,19 @@ const CategoryDetail = () => {
 
   if (!level) return null;
 
+  const lessonProgressValues = level.subLevels.map(sub => {
+    const r = getLessonResult(`${level.id}-${sub.id}`);
+    return r?.completed ? 1 : (r?.progress ?? 0);
+  });
+  const averageProgress =
+    lessonProgressValues.length > 0
+      ? lessonProgressValues.reduce((a, b) => a + b, 0) / lessonProgressValues.length
+      : 0;
+  const completedSubs = level.subLevels.filter(sub => {
+    const r = getLessonResult(`${level.id}-${sub.id}`);
+    return r?.completed;
+  }).length;
   const isEtf = level.id === 'etfs';
-  const completedSubs = level.subLevels.filter(s => s.status === 'completed').length;
 
   return (
     <div className="min-h-screen bg-background">
@@ -76,12 +87,12 @@ const CategoryDetail = () => {
                 <svg width="44" height="44">
                   <circle cx="22" cy="22" r={r} stroke="rgba(255,255,255,0.25)" strokeWidth="4" fill="none" />
                   <circle cx="22" cy="22" r={r} stroke="white" strokeWidth="4" fill="none"
-                    strokeDasharray={c} strokeDashoffset={c * (1 - level.progress / 100)}
+                    strokeDasharray={c} strokeDashoffset={c * (1 - averageProgress)}
                     strokeLinecap="round" transform="rotate(-90 22 22)"
                     style={{ transition: 'stroke-dashoffset 0.4s ease' }} />
                 </svg>
                 <span className="text-primary-foreground font-display font-bold text-lg tabular-nums">
-                  {level.progress}%
+                  {Math.round(averageProgress * 100)}%
                 </span>
                 <span className="text-primary-foreground/70 text-sm">
                   · {completedSubs}/{level.subLevels.length} Lektionen
