@@ -95,7 +95,7 @@ const PizzaSlide = ({ onComplete }: Props) => {
             <motion.div
               className="absolute flex flex-col items-center"
               initial={{ top: '35%', left: '55%', scale: 1, opacity: 1 }}
-              animate={{ top: '80%', left: '50%', scale: 1.3, opacity: 1 }}
+              animate={{ top: '65%', left: '50%', scale: 1.3, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 120, damping: 14 }}
             >
               <svg width="60" height="60" viewBox="0 0 240 240">
