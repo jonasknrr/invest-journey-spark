@@ -456,7 +456,7 @@ const PortfolioSimulation = () => {
     return Math.sqrt(variance) * 100;
   }, [values]);
 
-  const volLabel = volatility < 2 ? 'Niedrig' : volatility < 5 ? 'Mittel' : 'Hoch';
+  const volLabel = volatility < 2 ? 'Low' : volatility < 5 ? 'Medium' : 'High';
   const volColor = volatility < 2 ? 'text-primary' : volatility < 5 ? 'text-[hsl(30,90%,55%)]' : 'text-destructive';
 
   // Sharpe approximation (annualized return / volatility)
