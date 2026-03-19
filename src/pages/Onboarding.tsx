@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import onboardingHero from '@/assets/onboarding-hero.png';
 
 const Onboarding = () => {
   const navigate = useNavigate();
+  const [name, setName] = useState(() => localStorage.getItem('investify_name') || '');
+
+  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
+    setName(val);
+    localStorage.setItem('investify_name', val);
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-6 py-12">
@@ -25,11 +33,11 @@ const Onboarding = () => {
 
         {/* Welcome text */}
         <h1 className="font-display text-4xl font-bold text-foreground text-balance leading-tight">
-          Dein Geld kann wachsen. Wir zeigen dir wie.
+          Willkommen bei Investify.
         </h1>
 
         <p className="mt-4 text-muted-foreground text-lg leading-relaxed">
-          In 5 Minuten verstehst du mehr über Investieren als 90% der Welt. Versprochen. ✨
+          Lerne in 5 Minuten mehr über Investieren als 90% der Menschen. Versprochen. ✨
         </p>
 
         {/* Features */}
@@ -52,10 +60,23 @@ const Onboarding = () => {
           ))}
         </div>
 
+        {/* Name input */}
+        <div className="flex flex-col gap-2 mt-8 w-full text-left">
+          <label className="text-sm text-muted-foreground font-medium">Wie heisst du?</label>
+          <input
+            type="text"
+            placeholder="Dein Name"
+            maxLength={20}
+            className="border border-border rounded-xl px-4 py-3 text-foreground bg-card font-semibold focus:outline-none focus:border-primary transition-colors"
+            onChange={handleNameChange}
+            value={name}
+          />
+        </div>
+
         {/* CTA */}
         <motion.button
           onClick={() => navigate('/learn')}
-          className="mt-10 w-full h-16 bg-primary text-primary-foreground font-display text-xl font-bold rounded-full shadow-soft"
+          className="mt-6 w-full h-16 bg-primary text-primary-foreground font-display text-xl font-bold rounded-full shadow-soft"
           whileTap={{ scale: 0.95 }}
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           initial={{ opacity: 0, y: 20 }}
