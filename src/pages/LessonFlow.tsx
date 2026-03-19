@@ -470,6 +470,15 @@ const LessonFlow = () => {
           </motion.button>
         )}
       </div>
+
+      {/* No Hearts Overlay */}
+      {noHeartsScreen === 'showing' && (
+        <NoHeartsOverlay
+          onRestart={() => { setCurrentStep(0); setHearts(3); setCanAdvance(false); setNoHeartsScreen('none'); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setCanAdvance(false); setNoHeartsScreen('none'); }}
+          onContinue={() => setNoHeartsScreen('none')}
+        />
+      )}
     </div>
   );
 };
