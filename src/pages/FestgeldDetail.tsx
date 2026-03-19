@@ -98,7 +98,7 @@ const FestgeldDetail = () => {
             className="bg-primary/8 border border-primary/15 rounded-2xl px-5 py-3 mt-4 text-center"
           >
             <p className="text-xs text-muted-foreground font-body">
-              Erwartete Zinsen nach {product.durationYears} {product.durationYears === 1 ? 'Jahr' : 'Jahren'}
+              Expected interest after {product.durationYears} {product.durationYears === 1 ? 'year' : 'years'}
             </p>
             <p className="font-display text-xl font-bold text-primary tabular-nums mt-0.5">
               +{projectedReturn.toFixed(0)} CHF
