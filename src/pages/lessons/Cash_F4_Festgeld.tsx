@@ -191,7 +191,7 @@ const Cash_F4_Festgeld = () => {
         </div>
         <div className="flex items-center gap-0.5 flex-shrink-0">
           {[0, 1, 2].map(i => (
-            <Heart
+            <FiHeart
               key={i}
               className={`w-5 h-5 transition-all ${
                 i < hearts ? 'text-red-500 fill-red-500' : 'text-muted-foreground/30'

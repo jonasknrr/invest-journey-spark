@@ -17,11 +17,11 @@ const YEAR_LABELS = ['2006', '2007', '2008', '2009', '2010', '2011'];
 
 /* ── Asset class definitions ── */
 const ASSET_CLASSES = [
-  { key: 'aktien', label: 'Stocks', color: 'hsl(var(--level-aktien))', icon: TrendUp },
-  { key: 'etfs', label: 'ETFs', color: 'hsl(var(--level-etfs))', icon: ChartPie },
-  { key: 'festgeld', label: 'Fixed Deposit', color: 'hsl(var(--level-festgeld))', icon: Vault },
-  { key: 'crypto', label: 'Crypto', color: 'hsl(var(--level-crypto))', icon: Lightning },
-  { key: 'tagesgeld', label: 'Cash', color: 'hsl(var(--level-tagesgeld))', icon: CoinVertical },
+  { key: 'aktien', label: 'Stocks', color: 'hsl(var(--level-aktien))', icon: FiTrendingUp },
+  { key: 'etfs', label: 'ETFs', color: 'hsl(var(--level-etfs))', icon: FiPieChart },
+  { key: 'festgeld', label: 'Fixed Deposit', color: 'hsl(var(--level-festgeld))', icon: FiLock },
+  { key: 'crypto', label: 'Crypto', color: 'hsl(var(--level-crypto))', icon: FiZap },
+  { key: 'tagesgeld', label: 'Cash', color: 'hsl(var(--level-tagesgeld))', icon: FiDollarSign },
 ] as const;
 
 /* ── Chart helpers ── */
@@ -719,7 +719,7 @@ const PortfolioSimulation = () => {
                       animate={{ opacity: 1, scale: 1, rotate: 0 }}
                       transition={{ delay: 0.3 + s * 0.2, type: 'spring', stiffness: 300, damping: 15 }}
                     >
-                      <Star
+                      <FiStar
                         size={40}
                        
                         className={s <= challengeStars
