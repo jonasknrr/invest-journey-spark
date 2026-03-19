@@ -126,7 +126,7 @@ const LearningPath = () => {
           </div>
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1 bg-orange-50 border border-orange-200 rounded-full px-3 py-1">
-              <span className="text-orange-500 text-lg">🔥</span>
+              <FiZap className="w-4 h-4 text-orange-500" fill="currentColor" />
               <span className="font-bold text-orange-600 text-sm">7</span>
               <span className="text-orange-400 text-xs">Days</span>
             </div>
