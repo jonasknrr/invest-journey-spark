@@ -276,7 +276,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
                     </div>
                     <p className="font-body text-xs text-white/60 mb-4">Contribution to the S&P 500</p>
                     <div className="border-t border-white/20 pt-4">
-                      <p className="font-body text-sm text-white/70 mb-3">Wenn Small Company +100% steigt:</p>
+                      <p className="font-body text-sm text-white/70 mb-3">When a small company rises by +100%:</p>
                       <div className="flex items-center gap-3 mb-1">
                         <span className="text-green-400 text-base">↑</span>
                         <span className="font-display text-lg font-bold text-white/80">+0.001%</span>
