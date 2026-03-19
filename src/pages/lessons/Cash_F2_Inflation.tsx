@@ -7,7 +7,7 @@ import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
 import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
-const TOTAL_STEPS = 5;
+const TOTAL_STEPS = 6;
 
 /* ── Price data for the basket slide ── */
 const products = [
@@ -32,7 +32,7 @@ interface QuizConfig {
 }
 
 const quiz1: QuizConfig = {
-  label: 'Question 1 of 2',
+  label: 'Question 1 of 3',
   question:
     'You have CHF 10\'000 in an account with no interest. Inflation is 2% per year. What happens after 10 years?',
   answers: [
@@ -49,7 +49,7 @@ const quiz1: QuizConfig = {
 };
 
 const quiz2: QuizConfig = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question: 'What is the best strategy to fight loss of purchasing power?',
   answers: [
     { id: 'a', text: 'Put money under the mattress — it\'s safe there' },
@@ -62,6 +62,20 @@ const quiz2: QuizConfig = {
     'Exactly! Those who invest wisely and earn returns higher than the inflation rate keep their purchasing power — or even increase it.',
   wrongFeedback:
     'Close! Spending or hiding doesn\'t solve the problem. The only real solution is a return that\'s higher than inflation.',
+};
+
+const quiz3: QuizConfig = {
+  label: 'Question 3 of 3',
+  question: 'In simple terms, what does an inflation rate of 2% mean for your everyday life?',
+  answers: [
+    { id: 'a', text: 'Your salary will automatically increase by exactly 2% every year.' },
+    { id: 'b', text: 'A typical basket of groceries costing 100 today will cost about 102 next year.' },
+    { id: 'c', text: 'The bank will charge a 2% penalty fee on your savings account.' },
+    { id: 'd', text: 'The value of your stock portfolio will drop by 2%.' },
+  ],
+  correctId: 'b',
+  correctFeedback: 'Exactly! A 2% inflation rate means prices rise on average by 2% per year — so what costs CHF 100 today will cost about CHF 102 next year.',
+  wrongFeedback: 'Not quite. Inflation means prices rise — a 2% rate means a CHF 100 basket of goods will cost about CHF 102 a year later.',
 };
 
 /* ── Component ── */
@@ -82,7 +96,10 @@ const Cash_F2_Inflation = () => {
   // Step 3 — quiz 2
   const [q2Answer, setQ2Answer] = useState<string | null>(null);
 
-  // Step 4 — completion star anim
+  // Step 4 — quiz 3
+  const [q3Answer, setQ3Answer] = useState<string | null>(null);
+
+  // Step 5 — completion star anim
   const [starsShown, setStarsShown] = useState(0);
 
   const progress = ((currentStep + 1) / TOTAL_STEPS) * 100;
@@ -113,7 +130,8 @@ const Cash_F2_Inflation = () => {
     if (currentStep === 1) return sliderYear >= 2020;
     if (currentStep === 2) return !!q1Answer;
     if (currentStep === 3) return !!q2Answer;
-    if (currentStep === 4) return true;
+    if (currentStep === 4) return !!q3Answer;
+    if (currentStep === 5) return true;
     return false;
   };
 
@@ -124,7 +142,7 @@ const Cash_F2_Inflation = () => {
     }
     setCurrentStep(s => s + 1);
     // Trigger star animation on completion slide
-    if (currentStep === 3) {
+    if (currentStep === 4) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
@@ -429,10 +447,78 @@ const Cash_F2_Inflation = () => {
           </motion.div>
         )}
 
-        {/* STEP 4 — Completion */}
+        {/* STEP 4 — Quiz 3 */}
         {currentStep === 4 && (
           <motion.div
             key="s4"
+            className="flex-1 flex flex-col px-6 py-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 self-start mb-4">
+              <span className="font-body text-xs font-semibold text-primary">{quiz3.label}</span>
+            </div>
+            <h2 className="font-display text-xl font-bold text-foreground mb-5 leading-snug">
+              {quiz3.question}
+            </h2>
+            <div className="flex flex-col gap-3 flex-1">
+              {quiz3.answers.map(a => {
+                let cls = 'border-border bg-card';
+                let suffix = '';
+                if (q3Answer) {
+                  if (a.id === quiz3.correctId) {
+                    cls = 'border-green-500 bg-green-500/10';
+                    suffix = ' ✅';
+                  } else if (a.id === q3Answer) {
+                    cls = 'border-red-500 bg-red-500/10';
+                    suffix = ' ✗';
+                  }
+                }
+                return (
+                  <motion.button
+                    key={a.id}
+                    onClick={() => handleQuizAnswer(quiz3, a.id, q3Answer, setQ3Answer)}
+                    disabled={!!q3Answer}
+                    whileTap={!q3Answer ? { scale: 0.97 } : undefined}
+                    className={`w-full text-left p-4 rounded-2xl border-2 transition-colors ${cls}`}
+                  >
+                    <span className="font-body text-[15px] text-foreground">{a.text}{suffix}</span>
+                  </motion.button>
+                );
+              })}
+            </div>
+            <AnimatePresence>
+              {q3Answer && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-4 p-4 rounded-2xl ${
+                    q3Answer === quiz3.correctId
+                      ? 'bg-green-500/10 border border-green-500/30'
+                      : 'bg-amber-500/10 border border-amber-500/30'
+                  }`}
+                >
+                  <p
+                    className={`font-body text-sm leading-relaxed ${
+                      q3Answer === quiz3.correctId
+                        ? 'text-green-700 dark:text-green-300'
+                        : 'text-amber-700 dark:text-amber-300'
+                    }`}
+                  >
+                    {q3Answer === quiz3.correctId ? quiz3.correctFeedback : quiz3.wrongFeedback}
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {/* STEP 5 — Completion */}
+        {currentStep === 5 && (
+          <motion.div
+            key="s5"
             className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -483,9 +569,9 @@ const Cash_F2_Inflation = () => {
               onClick={handleNext}
               whileTap={{ scale: 0.96 }}
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
-              style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
+              style={{ backgroundColor: currentStep === 5 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
+              {currentStep === 5 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         )}
@@ -494,8 +580,8 @@ const Cash_F2_Inflation = () => {
       {/* No Hearts Overlay */}
       {noHeartsScreen === 'showing' && (
         <NoHeartsOverlay
-          onRestart={() => { setCurrentStep(0); setHearts(3); setSliderYear(2004); setQ1Answer(null); setQ2Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
-          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onRestart={() => { setCurrentStep(0); setHearts(3); setSliderYear(2004); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setStarsShown(0); setNoHeartsScreen('none'); setCompletionResult(null); }}
+          onQuizOnly={() => { setCurrentStep(2); setHearts(3); setQ1Answer(null); setQ2Answer(null); setQ3Answer(null); setNoHeartsScreen('none'); setCompletionResult(null); }}
           onContinue={() => setNoHeartsScreen('none')}
         />
       )}
