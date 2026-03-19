@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { FiStar } from 'react-icons/fi';
 
 /* ─── Shared page transition variants ─── */
 export const pageVariants = {
@@ -37,22 +36,14 @@ export const CompletionOverlay = ({ onDone }: { onDone: () => void }) => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
   >
-    <div className="flex items-center gap-4 mb-6">
-      {[0, 1, 2].map((i) => (
-        <motion.div
-          key={i}
-          initial={{ scale: 0, rotate: -30 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ delay: 0.2 + i * 0.25, type: 'spring', stiffness: 300, damping: 15 }}
-        >
-          <FiStar
-            size={i === 1 ? 64 : 48}
-            className="text-[hsl(45,100%,50%)]"
-            style={{ filter: 'drop-shadow(0 0 12px hsl(45 100% 50% / 0.5))' }}
-          />
-        </motion.div>
-      ))}
-    </div>
+    <motion.div
+      initial={{ scale: 0 }}
+      animate={{ scale: 1 }}
+      transition={{ delay: 0.2, type: 'spring', stiffness: 300, damping: 15 }}
+      className="mb-6"
+    >
+      <span style={{ fontSize: 80 }}>🎉</span>
+    </motion.div>
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
