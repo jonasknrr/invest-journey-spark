@@ -68,15 +68,27 @@ const CategoryDetail = () => {
           <h1 className="font-display text-3xl font-bold text-primary-foreground">{level.title}</h1>
           <p className="text-primary-foreground/80 mt-1 text-base">{level.subtitle}</p>
 
-          <div className="flex items-center justify-center gap-3 mt-5">
-            <ProgressRing progress={level.progress} size={44} strokeWidth={4} color="white" />
-            <span className="text-primary-foreground font-display font-bold text-lg tabular-nums">
-              {level.progress}%
-            </span>
-            <span className="text-primary-foreground/70 text-sm">
-              · {completedSubs}/{level.subLevels.length} Lektionen
-            </span>
-          </div>
+          {(() => {
+            const r = 18;
+            const c = 2 * Math.PI * r;
+            return (
+              <div className="flex items-center justify-center gap-3 mt-5">
+                <svg width="44" height="44">
+                  <circle cx="22" cy="22" r={r} stroke="rgba(255,255,255,0.25)" strokeWidth="4" fill="none" />
+                  <circle cx="22" cy="22" r={r} stroke="white" strokeWidth="4" fill="none"
+                    strokeDasharray={c} strokeDashoffset={c * (1 - level.progress / 100)}
+                    strokeLinecap="round" transform="rotate(-90 22 22)"
+                    style={{ transition: 'stroke-dashoffset 0.4s ease' }} />
+                </svg>
+                <span className="text-primary-foreground font-display font-bold text-lg tabular-nums">
+                  {level.progress}%
+                </span>
+                <span className="text-primary-foreground/70 text-sm">
+                  · {completedSubs}/{level.subLevels.length} Lektionen
+                </span>
+              </div>
+            );
+          })()}
 
           {isEtf && store.currentStreak >= 2 && (
             <motion.div
