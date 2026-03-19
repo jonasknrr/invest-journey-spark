@@ -188,7 +188,7 @@ const LearningPath = () => {
           return (
             <div
               key={level.id}
-              className="absolute w-full px-3"
+              className="absolute w-full px-3 z-10"
               style={{ top }}
             >
               <div className={`flex flex-col ${isLeft ? 'items-start' : 'items-end'}`}>
