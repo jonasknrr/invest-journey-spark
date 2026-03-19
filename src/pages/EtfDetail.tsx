@@ -93,7 +93,7 @@ const EtfDetail = () => {
             >
               {inputValue || '0'}
             </motion.span>
-            <span className="font-display text-2xl font-bold text-muted-foreground">$</span>
+            <span className="font-display text-2xl font-bold text-muted-foreground">CHF</span>
           </div>
           {isOverBudget && (
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-destructive text-sm font-body mt-2">
