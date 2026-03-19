@@ -175,7 +175,7 @@ const LearningPath = () => {
             strokeDasharray="12 8"
             strokeLinecap="round"
           />
-        </svg>
+        </motion.svg>
 
         {levels.map((level, index) => {
           const isLeft = index % 2 === 0;
