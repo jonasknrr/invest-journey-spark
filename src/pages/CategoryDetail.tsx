@@ -216,7 +216,7 @@ const CategoryDetail = () => {
                       <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
                         <Play className="w-5 h-5 text-primary-foreground" fill="currentColor" />
                       </div>
-                      <span className="text-[10px] font-medium text-muted-foreground">Starten</span>
+                      <span className="text-[10px] font-medium text-muted-foreground">Start</span>
                     </>
                   )}
                   {isLocked && (
