@@ -232,6 +232,7 @@ function analyzePortfolio(
   mdd: number,
   aktienPct: number,
   sharpeApprox: number,
+  safePct: number,
 ): CoachAnalysis {
   const praise: string[] = [];
   const critique: string[] = [];
@@ -245,7 +246,7 @@ function analyzePortfolio(
   }
   if (divScore > 7) {
     praise.push(
-      'Hervorragende Arbeit bei der Risikostreuung. Dein Portfolio ist breit aufgestellt und nicht von einer einzelnen Position abhängig.',
+      'Hervorragende Arbeit bei der Risikostreuung. Deine risikobehafteten Anlagen sind breit aufgestellt und nicht von einer einzelnen Position abhängig.',
     );
   }
   if (Math.abs(mdd) < 15 && aktienPct > 30) {
@@ -254,27 +255,42 @@ function analyzePortfolio(
     );
   }
 
-  // Critique
-  if (divScore < 3) {
+  // Critique — Klumpenrisiko only for risky assets
+  if (aktienPct > 0 && divScore < 3) {
     critique.push(
-      'Achtung, Klumpenrisiko! Du verlässt dich auf zu wenige Positionen. Wenn eine davon fällt, reißt sie dein ganzes Portfolio mit.',
+      'Achtung, Klumpenrisiko! Deine risikobehafteten Anlagen (Aktien, ETFs) sind auf zu wenige Positionen konzentriert. Wenn eine davon fällt, reißt sie dein ganzes Portfolio mit.',
     );
   }
-  if (Math.abs(mdd) > 40 || divScore < 3) {
+  if (Math.abs(mdd) > 40) {
     critique.push(
       'Das war eine harte Fahrt. Dein Portfolio hat in der Krise massiv an Wert verloren. Das zeigt, dass dein Risikomanagement lückenhaft war.',
     );
   }
-  if (sharpeApprox < 0.5 && rendite > 0) {
+
+  // Opportunity cost — too much in safe assets
+  if (safePct > 60) {
+    critique.push(
+      'Über ' + Math.round(safePct) + '% deines Budgets liegen in risikoarmen Anlagen (Tagesgeld/Festgeld). Das ist zwar sicher, aber du verzichtest auf erhebliches Renditepotenzial — das nennt man Opportunitätskosten.',
+    );
+  } else if (safePct > 40 && rendite < 5) {
+    critique.push(
+      'Ein grosser Teil deines Portfolios steckt in risikoarmen Anlagen. Das schützt dein Kapital, kostet aber Rendite. Prüfe, ob du nicht etwas mehr in Aktien oder ETFs investieren könntest.',
+    );
+  }
+
+  if (sharpeApprox < 0.5 && rendite > 0 && aktienPct > 20) {
     critique.push(
       'Deine Rendite ist zwar okay, aber du hast dafür ein unverhältnismäßig hohes Risiko auf dich genommen. Ein effizienteres Portfolio hätte die gleiche Rendite mit weniger Schwankung erreicht.',
     );
   }
 
   // Suggestion
-  if (divScore < 5) {
+  if (aktienPct > 0 && divScore < 5) {
     suggestion =
       'Um dein Portfolio krisenfester zu machen, solltest du dein Kapital auf mindestens 5–10 verschiedene Aktien aus unterschiedlichen Branchen oder Regionen verteilen. Ein Welt-ETF wäre ein guter Start.';
+  } else if (safePct > 60) {
+    suggestion =
+      'Überlege, einen Teil deiner sicheren Anlagen in breit diversifizierte ETFs umzuschichten. So kannst du langfristig deutlich mehr Rendite erzielen, ohne ein übermässiges Risiko einzugehen.';
   } else if (Math.abs(mdd) > 25) {
     suggestion =
       'Mische defensive Werte wie Festgeld oder Anleihen bei, um die extremen Schwankungen in Krisenzeiten abzufedern — auch wenn das etwas Rendite kostet.';
