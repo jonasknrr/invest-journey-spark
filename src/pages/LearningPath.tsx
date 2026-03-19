@@ -11,63 +11,83 @@ const categoryLessonIds: Record<string, string[]> = {
   etfs: ['etfs-e1', 'etfs-e2', 'etfs-e3', 'etfs-e4', 'etfs-e5', 'etfs-e6', 'etfs-e7', 'etfs-e8', 'etfs-e9'],
 };
 
-/** Vertical spacing per node in the zigzag path (px) */
-const NODE_SPACING = 160;
-const NODE_VERTICAL_OFFSET = 60; // where first node sits from SVG top
+const chapterColors: Record<string, string> = {
+  festgeld: '#22C55E',
+  aktien: '#3B82F6',
+  etfs: '#6366F1',
+  anleihen: '#D1D5DB',
+  waehrungen: '#D1D5DB',
+  krypto: '#D1D5DB',
+  gold: '#D1D5DB',
+  immobilien: '#D1D5DB',
+};
 
-/**
- * Build a smooth cubic-bezier SVG path that zigzags between left and right,
- * passing through each node's icon centre.
- */
+const chapterShortNames: Record<string, string> = {
+  festgeld: 'Cash',
+  aktien: 'Aktien',
+  etfs: 'ETFs',
+  anleihen: 'Anleihen',
+  waehrungen: 'Währungen',
+  krypto: 'Krypto',
+  gold: 'Gold',
+  immobilien: 'Immo',
+};
+
+/** Vertical spacing per node in the zigzag path (px) */
+const NODE_SPACING = 180;
+const NODE_VERTICAL_OFFSET = 60;
+
 function buildZigzagPath(count: number, width: number): string {
   if (count === 0) return '';
-
-  const leftX = width * 0.18;   // icon centre when aligned left
-  const rightX = width * 0.82;  // icon centre when aligned right
-
+  const leftX = width * 0.18;
+  const rightX = width * 0.82;
   const points: { x: number; y: number }[] = [];
   for (let i = 0; i < count; i++) {
     const x = i % 2 === 0 ? leftX : rightX;
     const y = NODE_VERTICAL_OFFSET + i * NODE_SPACING;
     points.push({ x, y });
   }
-
   let d = `M ${points[0].x} ${points[0].y}`;
-
   for (let i = 0; i < points.length - 1; i++) {
     const curr = points[i];
     const next = points[i + 1];
     const midY = (curr.y + next.y) / 2;
-    // control points keep the horizontal of the current node until midway, then swing to the next
     d += ` C ${curr.x} ${midY}, ${next.x} ${midY}, ${next.x} ${next.y}`;
   }
-
   return d;
 }
 
 const LearningPath = () => {
   const navigate = useNavigate();
   const { store } = useProgressStore();
-  const completedCount = levels.filter(l => l.status === 'completed').length;
-  const totalProgress = Math.round((completedCount / levels.length) * 100);
+
+  // Compute per-chapter progress
+  const getChapterProgress = (levelId: string) => {
+    const lessonIds = categoryLessonIds[levelId];
+    if (!lessonIds) return { completed: 0, total: 0, percent: 0 };
+    const total = lessonIds.length;
+    const completed = lessonIds.filter(id => store.lessonResults[id]?.completed).length;
+    const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+    return { completed, total, percent };
+  };
+
+  // Total progress across all chapters with lessons
+  const allLessonIds = Object.values(categoryLessonIds).flat();
+  const totalLessons = allLessonIds.length;
+  const completedTotal = allLessonIds.filter(id => store.lessonResults[id]?.completed).length;
+  const totalPercent = totalLessons > 0 ? Math.round((completedTotal / totalLessons) * 100) : 0;
 
   const getCategoryStars = (lessonIds: string[]): number | null => {
     const completedLessons = lessonIds
       .map(id => store.lessonResults[id])
       .filter((l): l is NonNullable<typeof l> => !!l && l.completed);
-
     if (completedLessons.length === 0) return null;
-
-    const totalHearts = completedLessons.reduce(
-      (sum, l) => sum + l.heartsRemaining, 0
-    );
-
+    const totalHearts = completedLessons.reduce((sum, l) => sum + l.heartsRemaining, 0);
     return Math.ceil(totalHearts / completedLessons.length);
   };
 
-  // Total SVG / container height
   const pathHeight = NODE_VERTICAL_OFFSET + (levels.length - 1) * NODE_SPACING + 80;
-  const svgWidth = 390; // matches mobile viewport
+  const svgWidth = 390;
   const pathD = buildZigzagPath(levels.length, svgWidth);
 
   return (
@@ -102,27 +122,59 @@ const LearningPath = () => {
             </div>
             <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full">
               <Sparkles className="w-4 h-4 text-primary" fill="currentColor" />
-              <span className="text-sm font-bold text-primary tabular-nums">{completedCount}/{levels.length}</span>
+              <span className="text-sm font-bold text-primary tabular-nums">{store.totalXP} XP</span>
             </div>
           </div>
         </div>
+
+        {/* Improved overall progress */}
         <div className="max-w-sm mx-auto">
-          <h1 className="font-display text-2xl font-bold text-foreground">Investify</h1>
-          <p className="text-sm text-muted-foreground mt-0.5 tabular-nums">{totalProgress}% geschafft</p>
-        </div>
-        <div className="mt-3 h-2.5 rounded-full bg-muted overflow-hidden max-w-sm mx-auto">
-          <motion.div
-            className="h-full rounded-full bg-primary"
-            initial={{ width: 0 }}
-            animate={{ width: `${totalProgress}%` }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          />
+          <div className="flex justify-between items-center mb-2">
+            <div>
+              <p className="text-xs text-muted-foreground">Gesamtfortschritt</p>
+              <p className="text-xl font-bold text-foreground tabular-nums">{totalPercent}% geschafft</p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs text-muted-foreground">Lektionen</p>
+              <p className="text-base font-bold text-foreground tabular-nums">{completedTotal}/{totalLessons}</p>
+            </div>
+          </div>
+          <div className="h-3 rounded-full bg-muted overflow-hidden">
+            <motion.div
+              className="h-full rounded-full bg-green-500"
+              initial={{ width: 0 }}
+              animate={{ width: `${totalPercent}%` }}
+              transition={{ duration: 0.8, ease: 'easeOut' }}
+            />
+          </div>
+          {/* Mini chapter bars */}
+          <div className="flex gap-2 mt-3">
+            {levels.filter(l => categoryLessonIds[l.id]).map(level => {
+              const { percent } = getChapterProgress(level.id);
+              const color = chapterColors[level.id] || '#D1D5DB';
+              return (
+                <div key={level.id} className="flex-1 min-w-0">
+                  <div className="w-full bg-muted rounded-full h-1.5 overflow-hidden">
+                    <motion.div
+                      className="h-1.5 rounded-full"
+                      style={{ backgroundColor: color }}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${percent}%` }}
+                      transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-muted-foreground text-center mt-1 truncate">
+                    {chapterShortNames[level.id] || level.title}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 
       {/* Zigzag Path */}
       <div className="relative max-w-sm mx-auto" style={{ height: pathHeight }}>
-        {/* Curved SVG path in background */}
         <svg
           className="absolute inset-0 w-full pointer-events-none"
           viewBox={`0 0 ${svgWidth} ${pathHeight}`}
@@ -139,13 +191,15 @@ const LearningPath = () => {
           />
         </svg>
 
-        {/* Nodes positioned along the path */}
         {levels.map((level, index) => {
           const isLeft = index % 2 === 0;
-          const top = NODE_VERTICAL_OFFSET + index * NODE_SPACING - 40; // centre the node on the path point
+          const top = NODE_VERTICAL_OFFSET + index * NODE_SPACING - 40;
           const stars = categoryLessonIds[level.id]
             ? getCategoryStars(categoryLessonIds[level.id])
             : null;
+          const { completed, total, percent } = getChapterProgress(level.id);
+          const color = chapterColors[level.id] || '#D1D5DB';
+          const isLocked = level.status === 'locked';
 
           return (
             <div
@@ -161,7 +215,7 @@ const LearningPath = () => {
                   onClick={() => navigate(`/category/${level.id}`)}
                 />
                 {stars && (
-                  <div className={`flex gap-1 mt-2 ${isLeft ? 'ml-4' : 'mr-4'}`}>
+                  <div className={`flex gap-1 mt-1.5 ${isLeft ? 'ml-4' : 'mr-4'}`}>
                     {[1, 2, 3].map(i => (
                       <span
                         key={i}
@@ -172,8 +226,32 @@ const LearningPath = () => {
                     ))}
                   </div>
                 )}
+                {/* Per-chapter progress bar */}
+                {total > 0 && (
+                  <div className={`mt-2 w-28 ${isLeft ? 'ml-4' : 'mr-4'}`}>
+                    <div className="flex justify-between mb-0.5">
+                      <span className="text-[10px] text-muted-foreground tabular-nums">
+                        {completed}/{total}
+                      </span>
+                      <span
+                        className="text-[10px] font-bold tabular-nums"
+                        style={{ color: isLocked ? 'hsl(var(--muted-foreground))' : color }}
+                      >
+                        {percent}%
+                      </span>
+                    </div>
+                    <div className="w-full h-1.5 rounded-full bg-muted overflow-hidden">
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: isLocked ? '#D1D5DB' : color }}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${percent}%` }}
+                        transition={{ delay: 0.3 + index * 0.08, duration: 0.6, ease: 'easeOut' }}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
-
             </div>
           );
         })}
