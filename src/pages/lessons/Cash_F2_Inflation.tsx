@@ -49,7 +49,7 @@ const quiz1: QuizConfig = {
 };
 
 const quiz2: QuizConfig = {
-  label: 'Question 2 of 2',
+  label: 'Question 2 of 3',
   question: 'What is the best strategy to fight loss of purchasing power?',
   answers: [
     { id: 'a', text: 'Put money under the mattress — it\'s safe there' },
