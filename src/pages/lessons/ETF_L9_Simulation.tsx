@@ -85,6 +85,14 @@ const ETF_L9_Simulation = () => {
     updateLessonProgress('etfs-e9', Math.min(phase / 4, 1));
   }, [phase]);
 
+  // Mark lesson as completed when reaching the report card (phase 4)
+  useEffect(() => {
+    if (phase === 4 && !completionResult) {
+      const r = completeLesson('etfs-e9', hearts);
+      setCompletionResult(r);
+    }
+  }, [phase]);
+
   const remainingBudget = 100 - Object.values(portfolio).reduce((s, v) => s + v, 0);
 
   // Scores
