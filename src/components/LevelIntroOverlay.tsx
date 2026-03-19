@@ -78,7 +78,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
               <button
                 onClick={onClose}
                 className="absolute top-4 right-4 w-9 h-9 rounded-full bg-background/80 backdrop-blur flex items-center justify-center shadow-sm active:scale-95 transition-transform"
-                aria-label="Schließen"
+                aria-label="Close"
               >
                 <X size={18} weight="bold" className="text-muted-foreground" />
               </button>
