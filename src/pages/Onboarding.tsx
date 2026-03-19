@@ -25,7 +25,7 @@ const Onboarding = () => {
         <motion.img
           src={onboardingHero}
           alt="Person sitting on a coin looking optimistically into the future"
-          className="w-64 h-64 object-contain mb-8"
+          className="w-64 h-64 object-contain mb-8 mx-auto block"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
