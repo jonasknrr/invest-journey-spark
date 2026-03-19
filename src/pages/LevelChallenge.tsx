@@ -195,7 +195,7 @@ const LevelChallenge = () => {
                         <p className="font-display font-bold text-muted-foreground text-[15px]">{asset.name}</p>
                         <p className="text-xs text-muted-foreground/60 font-body mt-0.5 flex items-center gap-1">
                           <Lock size={12} weight="bold" />
-                          Wird in einem späteren Kapitel freigeschaltet
+                          Unlocks in a later chapter
                         </p>
                       </div>
                       <Lock size={18} className="text-muted-foreground/40 flex-shrink-0" />
