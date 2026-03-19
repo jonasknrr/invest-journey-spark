@@ -6,7 +6,7 @@
  * Combined with a capital-position check to produce a qualitative rating.
  */
 
-export type DivRating = 'Sehr gut' | 'Gut' | 'Ausreichend' | 'Mangelhaft' | 'Schlecht';
+export type DivRating = 'Very Good' | 'Good' | 'Fair' | 'Poor' | 'Bad';
 
 export interface DiversificationResult {
   hhi: number;
@@ -52,30 +52,30 @@ export function calcDiversification(
 
   if (numPositions === 0) {
     // No risky assets → neutral (not applicable)
-    rating = 'Sehr gut';
+    rating = 'Very Good';
   } else if (hhi === 10_000 || fulfillmentRatio < 0.25) {
-    rating = 'Schlecht';
+    rating = 'Bad';
   } else if (hhi >= 5_000 || fulfillmentRatio < 0.5) {
-    rating = 'Mangelhaft';
+    rating = 'Poor';
   } else if (hhi < 1_500 && fulfillmentRatio >= 1) {
-    rating = 'Sehr gut';
+    rating = 'Very Good';
   } else if (hhi < 2_500 && fulfillmentRatio >= 0.75) {
-    rating = 'Gut';
+    rating = 'Good';
   } else if (hhi < 5_000 && fulfillmentRatio >= 0.5) {
-    rating = 'Ausreichend';
+    rating = 'Fair';
   } else {
-    rating = 'Ausreichend';
+    rating = 'Fair';
   }
 
   const colorMap: Record<DivRating, string> = {
-    'Sehr gut': 'hsl(var(--primary))',
-    'Gut': 'hsl(142, 71%, 45%)',
-    'Ausreichend': 'hsl(30, 90%, 55%)',
-    'Mangelhaft': 'hsl(25, 95%, 53%)',
-    'Schlecht': 'hsl(var(--destructive))',
+    'Very Good': 'hsl(var(--primary))',
+    'Good': 'hsl(142, 71%, 45%)',
+    'Fair': 'hsl(30, 90%, 55%)',
+    'Poor': 'hsl(25, 95%, 53%)',
+    'Bad': 'hsl(var(--destructive))',
   };
 
-  const riskPassed = rating === 'Sehr gut' || rating === 'Gut';
+  const riskPassed = rating === 'Very Good' || rating === 'Good';
 
   return {
     hhi,

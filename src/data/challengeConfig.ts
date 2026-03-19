@@ -23,34 +23,34 @@ export interface ChapterConfig {
 export const chapterConfigs: ChapterConfig[] = [
   {
     id: 'chapter-1',
-    label: 'Kapitel 1 – Liquiditätsplanung',
+    label: 'Chapter 1 – Liquidity Planning',
     categoryId: 'festgeld',
     unlockedSlugs: ['tagesgeld', 'festgeld'],
     scenario: {
       budget: 10000,
       currency: 'CHF',
-      title: 'Liquiditätsplanung',
+      title: 'Liquidity Planning',
       description:
-        'Du hast 10.000 CHF gespart. Du brauchst einen Notgroschen von 2.000 CHF, an den du jederzeit sofort herankommst. Außerdem planst du in genau 2 Jahren eine Weiterbildung, die 3.000 CHF kosten wird. Den Rest deines Geldes brauchst du vorerst nicht.',
+        'You have 10,000 CHF saved. You need an emergency fund of 2,000 CHF that you can access at any time. You also plan a training course in exactly 2 years that will cost 3,000 CHF. You don\'t need the rest of your money for now.',
     },
   },
   {
     id: 'chapter-2',
-    label: 'Kapitel 2 – Aktien',
+    label: 'Chapter 2 – Stocks',
     categoryId: 'aktien',
     unlockedSlugs: ['tagesgeld', 'festgeld', 'aktien'],
   },
   {
     id: 'chapter-3',
-    label: 'Kapitel 3 – Vermögensaufbau',
+    label: 'Chapter 3 – Wealth Building',
     categoryId: 'etfs',
     unlockedSlugs: ['tagesgeld', 'festgeld', 'aktien', 'etfs'],
     scenario: {
       budget: 100000,
       currency: 'CHF',
-      title: 'Vermögensaufbau',
+      title: 'Wealth Building',
       description:
-        'Du hast 100.000 CHF zur Verfügung. Deine Ziele: 1. Du brauchst zwingend einen Notgroschen von 10.000 CHF, der jederzeit abrufbar ist. 2. In genau 3 Jahren möchtest du eine Immobilie anzahlen, dafür brauchst du sicher 30.000 CHF. 3. Den Rest deines Geldes (60.000 CHF) möchtest du für deinen Ruhestand anlegen.',
+        'You have 100,000 CHF at your disposal. Your goals: 1. You absolutely need an emergency fund of 10,000 CHF that is available at any time. 2. In exactly 3 years you want to make a down payment on a property, for which you need 30,000 CHF for certain. 3. You want to invest the rest of your money (60,000 CHF) for your retirement.',
     },
   },
 ];
