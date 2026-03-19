@@ -66,7 +66,7 @@ export const CompletionOverlay = ({ onDone }: { onDone: () => void }) => (
       >
         +50 XP
       </p>
-      <p className="font-body text-muted-foreground text-base">Lektion abgeschlossen!</p>
+      <p className="font-body text-muted-foreground text-base">Lesson complete!</p>
     </motion.div>
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }} className="mt-10">
       <motion.button
