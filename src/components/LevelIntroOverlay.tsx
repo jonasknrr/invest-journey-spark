@@ -148,7 +148,7 @@ const LevelIntroOverlay = ({ intro, open, onClose }: LevelIntroOverlayProps) => 
                   <Lightbulb size={18} weight="fill" className="text-primary" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-display font-bold text-sm text-foreground mb-1">Merke dir</p>
+                  <p className="font-display font-bold text-sm text-foreground mb-1">Remember</p>
                   <p className="text-[13px] text-muted-foreground font-body leading-relaxed">
                     {intro.introTip}
                   </p>
