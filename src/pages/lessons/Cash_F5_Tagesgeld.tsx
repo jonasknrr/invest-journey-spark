@@ -58,6 +58,20 @@ const quiz2: QuizConfig = {
   wrongFeedback: 'Careful! An emergency reserve must be instantly available. Fixed deposits are locked, stocks can be in the red at the wrong moment. Call money is the right choice.',
 };
 
+const quiz3: QuizConfig = {
+  label: 'Question 3 of 3',
+  question: 'What is a major advantage of the interest rate on a fixed deposit compared to a call money account?',
+  answers: [
+    { id: 'a', text: 'It automatically adjusts to beat inflation every single month.' },
+    { id: 'b', text: 'It is locked in and guaranteed for the entire duration of the term.' },
+    { id: 'c', text: 'It increases every time you make a withdrawal.' },
+    { id: 'd', text: 'It is determined by the stock market at the end of the year.' },
+  ],
+  correctId: 'b',
+  correctFeedback: 'Correct! A fixed deposit locks in the interest rate for the full term — unlike call money where the bank can change it anytime. That\'s the reward for giving up flexibility.',
+  wrongFeedback: 'Not quite. The key advantage of fixed deposits is rate certainty — the interest rate is guaranteed and doesn\'t change for the entire term, unlike call money.',
+};
+
 const Cash_F5_Tagesgeld = () => {
   const navigate = useNavigate();
   const { updateLessonProgress, completeLesson } = useProgressStore();
