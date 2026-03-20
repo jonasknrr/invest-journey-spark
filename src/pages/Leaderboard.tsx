@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiChevronLeft } from 'react-icons/fi';
+import { FiChevronLeft, FiZap } from 'react-icons/fi';
 import { FaMedal, FaCrown } from 'react-icons/fa';
 import { MdAccountCircle } from 'react-icons/md';
 import { useProgressStore } from '@/hooks/useProgressStore';
