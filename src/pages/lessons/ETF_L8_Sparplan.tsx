@@ -130,7 +130,13 @@ const ETF_L8_Sparplan = () => {
   };
 
   const handleNext = () => {
-    if (currentStep === TOTAL_STEPS - 1) { navigate('/category/etfs'); return; }
+    if (currentStep === TOTAL_STEPS - 1) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setStorySlide(0); setMonthsRevealed(0); setSelectedAnswer(null); setCompletionResult(null);
+        return;
+      }
+      navigate('/category/etfs'); return;
+    }
     setCurrentStep(s => s + 1);
   };
 
