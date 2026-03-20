@@ -188,6 +188,10 @@ const ETF_L4_ETFUniverse = () => {
 
   const handleNext = () => {
     if (currentStep === TOTAL_STEPS - 1) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setSelectedPlaylists([]); setGamePhase('pick'); setPortfolioValue(1000); setShockResults([]); setShowShockBtn(false); setDisplayValue(1000); setExpanded(new Set()); setScenarioIdx(0); setMatchAnswer(null); setMatchCompleted(0); setSelectedAnswer(null); setCompletionResult(null);
+        return;
+      }
       navigate('/category/etfs');
       return;
     }
