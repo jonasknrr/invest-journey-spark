@@ -103,9 +103,12 @@ const LevelChallenge = () => {
 
   const hasRiskyAssets = divResult.numPositions > 0;
 
-  // Reset allocations on mount (fresh start each time the page is opened)
+  // Reset allocations only when navigating from a category page (not from sub-pages)
   useEffect(() => {
-    resetAllocations();
+    const from = (location.state as { from?: string })?.from;
+    if (from && from.startsWith('/category/')) {
+      resetAllocations();
+    }
   }, []);
 
   useEffect(() => {
