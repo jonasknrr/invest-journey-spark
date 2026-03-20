@@ -225,7 +225,7 @@ const CategoryDetail = () => {
         {/* Simulation button — only for main chapters with a challenge */}
         {chapterId && (
           <motion.button
-            onClick={() => navigate(`/challenge/${chapterId}`)}
+            onClick={() => navigate(`/challenge/${chapterId}`, { state: { from: `/category/${level.id}` } })}
             className="w-full mt-6 p-5 rounded-3xl bg-gradient-to-r from-primary to-primary/80 shadow-soft transition-all hover:shadow-lg"
             whileTap={{ scale: 0.97 }}
             initial={{ opacity: 0, y: 20 }}
