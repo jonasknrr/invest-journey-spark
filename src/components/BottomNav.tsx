@@ -4,7 +4,7 @@ import { MdOutlineSchool, MdOutlineDashboard, MdOutlineEmojiEvents } from 'react
 const navItems = [
   { label: 'Learn', icon: MdOutlineSchool, path: '/learn' },
   { label: 'Invest', icon: MdOutlineDashboard, path: '/dashboard' },
-  { label: 'Leaderboard', icon: MdOutlineEmojiEvents, path: '/leaderboard' },
+  { label: 'Rank', icon: MdOutlineEmojiEvents, path: '/leaderboard' },
 ];
 
 const BottomNav = () => {
