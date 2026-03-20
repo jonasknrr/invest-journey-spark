@@ -104,6 +104,10 @@ const ETF_L1_WhatIsAnIndex = () => {
 
   const handleNext = () => {
     if (currentStep === 4) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setStorySlide(0); setSelectedAnswer(null); setSelectedStocks([]); setGamePhase('pick'); setCompletionResult(null);
+        return;
+      }
       navigate('/category/etfs');
       return;
     }
