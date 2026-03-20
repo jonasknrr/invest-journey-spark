@@ -157,6 +157,10 @@ const ETF_L3_WhatIsAnETF = () => {
 
   const handleNext = () => {
     if (currentStep === TOTAL_STEPS - 1) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setStorySlide(0); setBuyCount(0); setShowETFReveal(false); setChosenMethod(null); setSelectedAnswer(null); setCompletionResult(null);
+        return;
+      }
       navigate('/category/etfs');
       return;
     }
