@@ -426,26 +426,38 @@ const ETF_L8_Sparplan = () => {
         {/* ═══ STEP 4 — Completion ═══ */}
         {currentStep === 4 && (
           <motion.div key="s4" className="flex-1 flex flex-col items-center justify-center px-6 py-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }}>
-            <div className="flex items-center gap-3 mb-4">
-              {[0, 1, 2].map(i => (
-                <motion.span key={i} className="text-5xl" initial={{ scale: 0, rotate: -30 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.3 + i * 0.3, type: 'spring', stiffness: 300, damping: 15 }} style={{ filter: 'drop-shadow(0 0 8px hsl(45, 100%, 50%, 0.5))' }}>⭐</motion.span>
-              ))}
-            </div>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
-            <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">You now know how a savings plan builds wealth long-term.</p>
-
-            <div className="w-full max-w-sm rounded-2xl bg-green-500/10 border border-green-500/20 p-4 mb-4 space-y-2">
-              <p className="font-body text-xs text-foreground">✅ Savings plan = automatically invest in ETF monthly</p>
-              <p className="font-body text-xs text-foreground">✅ Compound interest overtakes your deposits after ~15 years</p>
-              <p className="font-body text-xs text-foreground">✅ Cost Averaging: low prices = more shares = advantage</p>
-              <p className="font-body text-xs text-foreground">✅ Start from CHF 1/month — what matters is starting</p>
-            </div>
-
-            <CompletionXP result={completionResult} hearts={hearts} />
-
-            <button onClick={() => setShowDeepDive(true)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-muted transition-colors">
-              Deeper Dive 📖
-            </button>
+            {completionResult?.unlocked === false ? (
+              <>
+                <span className="text-5xl mb-4">⚠️</span>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Nicht freigeschaltet</h2>
+                <div className="rounded-2xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-5 py-4 max-w-xs w-full mb-5">
+                  <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+                    ⚠️ Du brauchst mind. 1 Herz um die nächste Lektion freizuschalten. Versuch es nochmal!
+                  </p>
+                </div>
+                <CompletionXP result={completionResult} hearts={hearts} />
+              </>
+            ) : (
+              <>
+                <div className="flex items-center gap-3 mb-4">
+                  {[0, 1, 2].map(i => (
+                    <motion.span key={i} className="text-5xl" initial={{ scale: 0, rotate: -30 }} animate={{ scale: 1, rotate: 0 }} transition={{ delay: 0.3 + i * 0.3, type: 'spring', stiffness: 300, damping: 15 }} style={{ filter: 'drop-shadow(0 0 8px hsl(45, 100%, 50%, 0.5))' }}>⭐</motion.span>
+                  ))}
+                </div>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete! 🎉</h2>
+                <p className="font-body text-sm text-muted-foreground max-w-xs text-center mb-5">You now know how a savings plan builds wealth long-term.</p>
+                <div className="w-full max-w-sm rounded-2xl bg-green-500/10 border border-green-500/20 p-4 mb-4 space-y-2">
+                  <p className="font-body text-xs text-foreground">✅ Savings plan = automatically invest in ETF monthly</p>
+                  <p className="font-body text-xs text-foreground">✅ Compound interest overtakes your deposits after ~15 years</p>
+                  <p className="font-body text-xs text-foreground">✅ Cost Averaging: low prices = more shares = advantage</p>
+                  <p className="font-body text-xs text-foreground">✅ Start from CHF 1/month — what matters is starting</p>
+                </div>
+                <CompletionXP result={completionResult} hearts={hearts} />
+                <button onClick={() => setShowDeepDive(true)} className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-muted transition-colors">
+                  Deeper Dive 📖
+                </button>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
