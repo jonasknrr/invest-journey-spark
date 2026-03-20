@@ -103,10 +103,14 @@ const LevelChallenge = () => {
 
   const hasRiskyAssets = divResult.numPositions > 0;
 
+  // Reset allocations on mount (fresh start each time the page is opened)
+  useEffect(() => {
+    resetAllocations();
+  }, []);
+
   useEffect(() => {
     if (scenario && totalBudget !== scenario.budget) {
       setTotalBudget(scenario.budget);
-      resetAllocations();
     }
   }, [scenario?.budget]);
 
