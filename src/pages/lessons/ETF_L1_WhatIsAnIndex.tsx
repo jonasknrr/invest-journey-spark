@@ -61,7 +61,7 @@ const ETF_L1_WhatIsAnIndex = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
-  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number; unlocked: boolean } | null>(null);
   const { completeLesson, updateLessonProgress } = useProgressStore();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [selectedChip, setSelectedChip] = useState<string | null>(null);
@@ -104,6 +104,10 @@ const ETF_L1_WhatIsAnIndex = () => {
 
   const handleNext = () => {
     if (currentStep === 4) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setStorySlide(0); setSelectedAnswer(null); setSelectedStocks([]); setGamePhase('pick'); setCompletionResult(null);
+        return;
+      }
       navigate('/category/etfs');
       return;
     }
@@ -415,24 +419,36 @@ const ETF_L1_WhatIsAnIndex = () => {
         {currentStep === 4 && (
           <motion.div key="completion" className="flex-1 flex flex-col items-center justify-center px-6 text-center"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            <span className="text-5xl mb-4">🎉</span>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
-            <p className="font-body text-sm text-muted-foreground mb-5">You now know what an index is.</p>
-
-            <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left">
-              <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ An index is a measurement, not a product</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ Examples: S&P 500, DAX, MSCI World</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Larger companies have more influence</p>
-            </div>
-
-            <CompletionXP result={completionResult} hearts={hearts} />
-
-            <button
-              onClick={() => setShowDeepDive(true)}
-              className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-muted transition-colors"
-            >
-              Deeper Dive 📖
-            </button>
+            {completionResult?.unlocked === false ? (
+              <>
+                <span className="text-5xl mb-4">⚠️</span>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Nicht freigeschaltet</h2>
+                <div className="rounded-2xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-5 py-4 max-w-xs w-full mb-5">
+                  <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+                    ⚠️ Du brauchst mind. 1 Herz um die nächste Lektion freizuschalten. Versuch es nochmal!
+                  </p>
+                </div>
+                <CompletionXP result={completionResult} hearts={hearts} />
+              </>
+            ) : (
+              <>
+                <span className="text-5xl mb-4">🎉</span>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
+                <p className="font-body text-sm text-muted-foreground mb-5">You now know what an index is.</p>
+                <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left">
+                  <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ An index is a measurement, not a product</p>
+                  <p className="font-body text-sm text-green-700 dark:text-green-300 mb-1">✅ Examples: S&P 500, DAX, MSCI World</p>
+                  <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Larger companies have more influence</p>
+                </div>
+                <CompletionXP result={completionResult} hearts={hearts} />
+                <button
+                  onClick={() => setShowDeepDive(true)}
+                  className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-muted transition-colors"
+                >
+                  Deeper Dive 📖
+                </button>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -452,7 +468,7 @@ const ETF_L1_WhatIsAnIndex = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
+              {currentStep === 4 ? (completionResult?.unlocked === false ? 'Nochmal versuchen 🔄' : 'Next lesson →') : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

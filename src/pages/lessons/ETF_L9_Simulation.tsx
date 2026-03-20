@@ -75,7 +75,7 @@ const ETF_L9_Simulation = () => {
   const [shockHistory, setShockHistory] = useState<{ shockIdx: number; results: { ticker: string; pct: number; eur: number }[]; totalChange: number }[]>([]);
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
-  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number; unlocked: boolean } | null>(null);
   const { completeLesson, updateLessonProgress } = useProgressStore();
   const [showImpactBtn, setShowImpactBtn] = useState(false);
   const [animatedValue, setAnimatedValue] = useState(10000);
@@ -503,72 +503,93 @@ const ETF_L9_Simulation = () => {
                 initial={{ y: -20, opacity: 1 }} animate={{ y: 400, opacity: 0 }} transition={{ delay: c.delay, duration: 2 + Math.random(), ease: 'easeIn' }} />
             ))}
 
-            <h2 className="font-display text-2xl font-bold text-foreground text-center mb-1">🎓 Your Report Card</h2>
-            <p className="font-body text-sm text-muted-foreground text-center mb-5">Based on your decisions</p>
+            {completionResult?.unlocked === false ? (
+              <>
+                <span className="text-5xl mb-4 text-center block">⚠️</span>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2 text-center">Nicht freigeschaltet</h2>
+                <div className="rounded-2xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-5 py-4 max-w-xs w-full mb-5 mx-auto">
+                  <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+                    ⚠️ Du brauchst mind. 1 Herz um die nächste Lektion freizuschalten. Versuch es nochmal!
+                  </p>
+                </div>
+                <CompletionXP result={completionResult} hearts={hearts} />
+                <motion.button whileTap={{ scale: 0.96 }} onClick={() => {
+                  setPhase(0); setHearts(3); setPortfolio({}); setSelectedStock(null); setCurrentShock(0); setCurrentShockPhase('card'); setPortfolioValue(10000); setShockHistory([]); setAnimatedValue(10000); setCompletionResult(null);
+                }}
+                  className="w-full h-14 rounded-full font-display text-base font-bold text-white mb-4" style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}>
+                  Nochmal versuchen 🔄
+                </motion.button>
+              </>
+            ) : (
+              <>
+                <h2 className="font-display text-2xl font-bold text-foreground text-center mb-1">🎓 Your Report Card</h2>
+                <p className="font-body text-sm text-muted-foreground text-center mb-5">Based on your decisions</p>
 
-            {/* Grade cards */}
-            <div className="space-y-2.5 mb-5">
-              {grades.map((grade, i) => {
-                const fb = gradeFeedback[i];
-                const text = grade === 'A' ? fb.a : grade === 'B' ? fb.b : fb.c;
-                const gradeColor = grade === 'A' ? 'bg-primary text-primary-foreground' : grade === 'B' ? 'bg-amber-500 text-white' : 'bg-destructive text-white';
-                return (
-                  <motion.div key={i} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-3"
-                    initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08, duration: 0.3 }}>
-                    <div className={`w-9 h-9 rounded-full ${gradeColor} flex items-center justify-center flex-shrink-0 font-display text-sm font-bold`}>{grade}</div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-display text-xs font-bold text-foreground mb-0.5">{fb.title}</p>
-                      <p className="font-body text-[11px] text-muted-foreground leading-relaxed">{text}</p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+                {/* Grade cards */}
+                <div className="space-y-2.5 mb-5">
+                  {grades.map((grade, i) => {
+                    const fb = gradeFeedback[i];
+                    const text = grade === 'A' ? fb.a : grade === 'B' ? fb.b : fb.c;
+                    const gradeColor = grade === 'A' ? 'bg-primary text-primary-foreground' : grade === 'B' ? 'bg-amber-500 text-white' : 'bg-destructive text-white';
+                    return (
+                      <motion.div key={i} className="flex items-start gap-3 rounded-2xl border border-border bg-card p-3"
+                        initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08, duration: 0.3 }}>
+                        <div className={`w-9 h-9 rounded-full ${gradeColor} flex items-center justify-center flex-shrink-0 font-display text-sm font-bold`}>{grade}</div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-display text-xs font-bold text-foreground mb-0.5">{fb.title}</p>
+                          <p className="font-body text-[11px] text-muted-foreground leading-relaxed">{text}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
 
-            {/* Overall verdict */}
-            <motion.div className="rounded-2xl p-5 mb-5 text-center" style={{ backgroundColor: '#1E3A5F' }}
-              initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 }}>
-              {gradeCount.A >= 6 ? (
-                <>
-                  <p className="font-display text-xl font-bold text-white mb-2">🏆 Outstanding!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">You already think like an experienced ETF investor. Your portfolio showed strong diversification and smart sector allocation.</p>
-                </>
-              ) : gradeCount.A >= 4 ? (
-                <>
-                  <p className="font-display text-xl font-bold text-white mb-2">🎯 Very good!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">Solid foundation with small room for improvement. A few more countries and sectors would have cushioned the shocks better.</p>
-                </>
-              ) : (
-                <>
-                  <p className="font-display text-xl font-bold text-white mb-2">💪 Good start!</p>
-                  <p className="font-body text-sm text-white/80 leading-relaxed">The most important thing: you played through it and now know what you'd do differently next time.</p>
-                </>
-              )}
-            </motion.div>
+                {/* Overall verdict */}
+                <motion.div className="rounded-2xl p-5 mb-5 text-center" style={{ backgroundColor: '#1E3A5F' }}
+                  initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.7 }}>
+                  {gradeCount.A >= 6 ? (
+                    <>
+                      <p className="font-display text-xl font-bold text-white mb-2">🏆 Outstanding!</p>
+                      <p className="font-body text-sm text-white/80 leading-relaxed">You already think like an experienced ETF investor. Your portfolio showed strong diversification and smart sector allocation.</p>
+                    </>
+                  ) : gradeCount.A >= 4 ? (
+                    <>
+                      <p className="font-display text-xl font-bold text-white mb-2">🎯 Very good!</p>
+                      <p className="font-body text-sm text-white/80 leading-relaxed">Solid foundation with small room for improvement. A few more countries and sectors would have cushioned the shocks better.</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="font-display text-xl font-bold text-white mb-2">💪 Good start!</p>
+                      <p className="font-body text-sm text-white/80 leading-relaxed">The most important thing: you played through it and now know what you'd do differently next time.</p>
+                    </>
+                  )}
+                </motion.div>
 
-            {/* XP */}
-            <CompletionXP result={completionResult} hearts={hearts} />
+                {/* XP */}
+                <CompletionXP result={completionResult} hearts={hearts} />
 
-            {/* Checklist */}
-            <div className="rounded-2xl bg-primary/5 border border-primary/20 p-4 mb-6 space-y-1.5">
-              {[
-                'What is an index — understood',
-                'Market cap weighting — experienced',
-                'ETF as an investable wrapper — clear',
-                'ETF categories and risk — classified',
-                'Costs truly understood — simulated',
-                'Diversification felt — through shocks',
-                'Acc vs Dist — decided',
-                'Savings plan power — calculated',
-              ].map(t => (
-                <p key={t} className="font-body text-[11px] text-foreground">✅ {t}</p>
-              ))}
-            </div>
+                {/* Checklist */}
+                <div className="rounded-2xl bg-primary/5 border border-primary/20 p-4 mb-6 space-y-1.5">
+                  {[
+                    'What is an index — understood',
+                    'Market cap weighting — experienced',
+                    'ETF as an investable wrapper — clear',
+                    'ETF categories and risk — classified',
+                    'Costs truly understood — simulated',
+                    'Diversification felt — through shocks',
+                    'Acc vs Dist — decided',
+                    'Savings plan power — calculated',
+                  ].map(t => (
+                    <p key={t} className="font-body text-[11px] text-foreground">✅ {t}</p>
+                  ))}
+                </div>
 
-            <motion.button whileTap={{ scale: 0.96 }} onClick={() => navigate('/category/etfs')}
-              className="w-full h-14 rounded-full font-display text-base font-bold text-white mb-4" style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}>
-              Chapter complete! 🎉
-            </motion.button>
+                <motion.button whileTap={{ scale: 0.96 }} onClick={() => navigate('/category/etfs')}
+                  className="w-full h-14 rounded-full font-display text-base font-bold text-white mb-4" style={{ backgroundColor: 'hsl(142, 71%, 45%)' }}>
+                  Chapter complete! 🎉
+                </motion.button>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
