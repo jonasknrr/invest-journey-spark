@@ -193,7 +193,13 @@ const ETF_L7_AccVsDist = () => {
   };
 
   const handleNext = () => {
-    if (currentStep === TOTAL_STEPS - 1) { navigate('/category/etfs'); return; }
+    if (currentStep === TOTAL_STEPS - 1) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setStorySlide(0); setDecoderIndex(0); setDecoderScore(0); setDecoderDone(false); setDecoderFeedback(null); setSelectedAnswer(null); setCompletionResult(null);
+        return;
+      }
+      navigate('/category/etfs'); return;
+    }
     setCurrentStep(s => s + 1);
   };
 
