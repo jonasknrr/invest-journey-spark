@@ -87,18 +87,15 @@ const Leaderboard = () => {
           const isFirst = cfg.rank === 1;
           return (
             <div key={user.name} className="flex flex-col items-center">
-              {isFirst && <span style={{ fontSize: 18 }}>👑</span>}
+              {isFirst && <FaCrown size={20} color="#EF9F27" />}
               <div
-                className="rounded-full flex items-center justify-center mb-1"
+                className="rounded-full flex items-center justify-center mb-1 relative"
                 style={{
                   width: cfg.avatarSize,
                   height: cfg.avatarSize,
-                  backgroundColor: user.color,
                 }}
               >
-                <span className="text-white font-bold" style={{ fontSize: cfg.avatarSize * 0.38 }}>
-                  {user.name.charAt(0).toUpperCase()}
-                </span>
+                <MdAccountCircle size={cfg.avatarSize} style={{ color: user.color }} />
               </div>
               <span className="text-xs font-bold text-foreground">{user.name}</span>
               <span className="text-muted-foreground" style={{ fontSize: 11 }}>
