@@ -17,6 +17,16 @@ const Onboarding = () => {
 
   const handleStart = () => {
     if (canProceed) {
+      const trimmed = name.trim();
+      localStorage.setItem('investify_name', trimmed);
+
+      if (trimmed.toLowerCase() === 'demo') {
+        localStorage.setItem('investify_mode', 'demo');
+      } else {
+        localStorage.setItem('investify_mode', 'fresh');
+        localStorage.removeItem('finlearn_progress');
+      }
+
       navigate('/learn');
     }
   };
