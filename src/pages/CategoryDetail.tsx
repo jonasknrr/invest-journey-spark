@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiArrowLeft, FiCheck, FiLock, FiPlay, FiZap } from 'react-icons/fi';
-import { levels } from '@/data/levels';
+import { getLevels } from '@/data/levels';
 import LevelIcon from '@/components/LevelIcon';
 import { useProgressStore } from '@/hooks/useProgressStore';
 import { categoryToChapter } from '@/data/challengeConfig';

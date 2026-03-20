@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { levels } from '@/data/levels';
+import { getLevels } from '@/data/levels';
 import LevelNode from '@/components/LevelNode';
 import { FiStar, FiZap } from 'react-icons/fi';
 import { useProgressStore } from '@/hooks/useProgressStore';
