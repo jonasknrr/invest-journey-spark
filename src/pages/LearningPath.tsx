@@ -4,6 +4,7 @@ import { levels } from '@/data/levels';
 import LevelNode from '@/components/LevelNode';
 import { FiStar, FiZap } from 'react-icons/fi';
 import { useProgressStore } from '@/hooks/useProgressStore';
+import BottomNav from '@/components/BottomNav';
 
 const categoryLessonIds: Record<string, string[]> = {
   festgeld: ['festgeld-f1', 'festgeld-f2', 'festgeld-f3', 'festgeld-f4', 'festgeld-f5'],
@@ -252,29 +253,7 @@ const LearningPath = () => {
         </motion.div>
       </div>
 
-      {/* Floating Leaderboard Button */}
-      <motion.button
-        onClick={() => navigate('/leaderboard')}
-        className="fixed z-40 flex items-center justify-center"
-        style={{
-          bottom: 24,
-          right: 24,
-          width: 48,
-          height: 48,
-          borderRadius: '50%',
-          backgroundColor: 'white',
-          border: '1.5px solid #E2E8F0',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06)',
-        }}
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1, y: [0, -4, 0] }}
-        transition={{ delay: 0.5, type: 'spring', stiffness: 300, damping: 15, y: { duration: 2.5, repeat: Infinity, ease: 'easeInOut' } }}
-        whileHover={{ scale: 1.08, boxShadow: '0 4px 16px rgba(0,0,0,0.12), 0 12px 32px rgba(0,0,0,0.08)' }}
-        whileTap={{ scale: 0.95 }}
-        aria-label="Leaderboard"
-      >
-        <span style={{ fontSize: 20 }}>🏆</span>
-      </motion.button>
+      <BottomNav />
     </div>
   );
 };
