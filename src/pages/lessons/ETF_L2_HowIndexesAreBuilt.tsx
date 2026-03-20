@@ -113,7 +113,13 @@ const ETF_L2_HowIndexesAreBuilt = () => {
   };
 
   const handleNext = () => {
-    if (currentStep === 5) { navigate('/category/etfs'); return; }
+    if (currentStep === 5) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setStorySlide(0); setQuizAnswer(null); setMatchAnswers({marktKap:null,preis:null,gleich:null}); setCompletionResult(null);
+        return;
+      }
+      navigate('/category/etfs'); return;
+    }
     setQuizAnswer(null);
     setCurrentStep(s => s + 1);
   };
