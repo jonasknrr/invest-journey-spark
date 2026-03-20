@@ -165,7 +165,13 @@ const ETF_L6_Risk = () => {
   };
 
   const handleNext = () => {
-    if (currentStep === TOTAL_STEPS - 1) { navigate('/category/etfs'); return; }
+    if (currentStep === TOTAL_STEPS - 1) {
+      if (completionResult?.unlocked === false) {
+        setCurrentStep(0); setHearts(3); setStorySlide(0); setScandalRevealed(false); setSortIndex(0); setSortScore(0); setSortDone(false); setSortFeedback(null); setSelectedAnswer(null); setCompletionResult(null);
+        return;
+      }
+      navigate('/category/etfs'); return;
+    }
     setCurrentStep(s => s + 1);
   };
 
