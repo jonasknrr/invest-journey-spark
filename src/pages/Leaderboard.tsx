@@ -61,7 +61,7 @@ const Leaderboard = () => {
 
   return (
     <motion.div
-      className="min-h-screen pb-20"
+      className="min-h-screen pb-28"
       style={{ backgroundColor: '#FAF7F2' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
