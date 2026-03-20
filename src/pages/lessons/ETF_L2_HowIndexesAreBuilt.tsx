@@ -64,7 +64,7 @@ const ETF_L2_HowIndexesAreBuilt = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
-  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number; unlocked: boolean } | null>(null);
   const { completeLesson, updateLessonProgress } = useProgressStore();
   const [storySlide, setStorySlide] = useState(0);
   const [appleMove, setAppleMove] = useState([0]);
