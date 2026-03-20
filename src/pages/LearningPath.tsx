@@ -142,8 +142,8 @@ const LearningPath = () => {
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-1 bg-orange-50 border border-orange-200 rounded-full px-3 py-1">
               <FiZap className="w-4 h-4 text-orange-500" fill="currentColor" />
-              <span className="font-bold text-orange-600 text-sm">7</span>
-              <span className="text-orange-400 text-xs">Days</span>
+              <span className="font-bold text-orange-600 text-sm">1</span>
+              <span className="text-orange-400 text-xs">Day</span>
             </div>
             <div className="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full">
               <FiStar className="w-4 h-4 text-primary" fill="currentColor" />
