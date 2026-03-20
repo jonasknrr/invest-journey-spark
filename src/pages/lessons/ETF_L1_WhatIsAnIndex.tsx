@@ -468,7 +468,7 @@ const ETF_L1_WhatIsAnIndex = () => {
               className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
               style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}
             >
-              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
+              {currentStep === 4 ? (completionResult?.unlocked === false ? 'Nochmal versuchen 🔄' : 'Next lesson →') : 'Continue →'}
             </motion.button>
           </motion.div>
         )}

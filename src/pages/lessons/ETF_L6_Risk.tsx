@@ -510,7 +510,7 @@ const ETF_L6_Risk = () => {
         {showCTA() && (
           <motion.div className="px-6 pb-8 max-w-sm mx-auto w-full" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
             <motion.button onClick={handleNext} whileTap={{ scale: 0.96 }} className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm" style={{ backgroundColor: currentStep === 4 ? 'hsl(142, 71%, 45%)' : BLUE }}>
-              {currentStep === 4 ? 'Next lesson →' : 'Continue →'}
+              {currentStep === 4 ? (completionResult?.unlocked === false ? 'Nochmal versuchen 🔄' : 'Next lesson →') : 'Continue →'}
             </motion.button>
           </motion.div>
         )}
