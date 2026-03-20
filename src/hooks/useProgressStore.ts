@@ -87,14 +87,25 @@ export function useProgressStore() {
           streakBonus: 0,
           isFirstCompletion: false,
           newStreak: store.currentStreak,
+          unlocked: true,
+        };
+      }
+
+      // No hearts → minimal XP, NOT completed, next lesson NOT unlocked
+      if (heartsRemaining === 0) {
+        return {
+          xpEarned: 5,
+          streakBonus: 0,
+          isFirstCompletion: false,
+          newStreak: 0,
+          unlocked: false,
         };
       }
 
       // Base XP
       const baseXP =
         heartsRemaining === 3 ? 35 :
-        heartsRemaining === 2 ? 25 :
-        heartsRemaining === 1 ? 15 : 5;
+        heartsRemaining === 2 ? 25 : 15;
 
       const perfect = heartsRemaining === 3;
 
@@ -139,7 +150,7 @@ export function useProgressStore() {
 
       persist(next);
 
-      return { xpEarned, streakBonus, isFirstCompletion: true, newStreak };
+      return { xpEarned, streakBonus, isFirstCompletion: true, newStreak, unlocked: true };
     },
     [store, persist],
   );
