@@ -60,7 +60,19 @@ function buildZigzagPath(count: number, width: number): string {
 }
 
 const LearningPath = () => {
-  const levels = getLevels();
+  const [levels, setLevels] = useState(() => {
+    const stored = localStorage.getItem('investify_levels');
+    return stored ? JSON.parse(stored) : getLevels();
+  });
+
+  useEffect(() => {
+    const handler = () => {
+      const stored = localStorage.getItem('investify_levels');
+      if (stored) setLevels(JSON.parse(stored));
+    };
+    window.addEventListener('investify_levels_updated', handler);
+    return () => window.removeEventListener('investify_levels_updated', handler);
+  }, []);
   const navigate = useNavigate();
   const { store } = useProgressStore();
 

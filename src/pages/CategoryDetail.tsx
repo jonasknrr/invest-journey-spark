@@ -22,8 +22,21 @@ const bgMap: Record<string, string> = {
 const CategoryDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const levels = getLevels();
-  const level = levels.find(l => l.id === id);
+  const [levels, setLevels] = useState(() => {
+    const stored = localStorage.getItem('investify_levels');
+    return stored ? JSON.parse(stored) : getLevels();
+  });
+
+  useEffect(() => {
+    const handler = () => {
+      const stored = localStorage.getItem('investify_levels');
+      if (stored) setLevels(JSON.parse(stored));
+    };
+    window.addEventListener('investify_levels_updated', handler);
+    return () => window.removeEventListener('investify_levels_updated', handler);
+  }, []);
+
+  const level = levels.find((l: any) => l.id === id);
   const { getLessonResult, store } = useProgressStore();
 
   if (!level) return null;
