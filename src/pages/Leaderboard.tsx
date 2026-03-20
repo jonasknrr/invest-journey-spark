@@ -193,6 +193,8 @@ const Leaderboard = () => {
           )}
         </div>
       </div>
+
+      <BottomNav />
     </motion.div>
   );
 };
