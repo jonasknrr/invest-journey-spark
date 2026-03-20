@@ -61,7 +61,7 @@ const ETF_L1_WhatIsAnIndex = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [hearts, setHearts] = useState(3);
   const [noHeartsScreen, setNoHeartsScreen] = useState<'none' | 'showing'>('none');
-  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number } | null>(null);
+  const [completionResult, setCompletionResult] = useState<{ xpEarned: number; streakBonus: number; isFirstCompletion: boolean; newStreak: number; unlocked: boolean } | null>(null);
   const { completeLesson, updateLessonProgress } = useProgressStore();
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [selectedChip, setSelectedChip] = useState<string | null>(null);
