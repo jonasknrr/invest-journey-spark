@@ -24,9 +24,8 @@ const Onboarding = () => {
         localStorage.setItem('investify_mode', 'demo');
       } else {
         localStorage.setItem('investify_mode', 'fresh');
+        localStorage.removeItem('finlearn_progress');
       }
-      localStorage.removeItem('finlearn_progress');
-      localStorage.removeItem('investify_levels');
 
       navigate('/learn');
     }
