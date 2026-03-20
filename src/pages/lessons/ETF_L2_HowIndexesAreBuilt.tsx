@@ -597,20 +597,35 @@ const ETF_L2_HowIndexesAreBuilt = () => {
         {currentStep === 5 && (
           <motion.div key="s5" className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}>
-            <span className="text-5xl mb-4">🎉</span>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
-            <p className="font-body text-sm text-muted-foreground mb-5">You now understand how indexes are built.</p>
-            <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left space-y-1">
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Market cap = size of the company</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Larger companies have more index influence</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ There are 3 weighting methods: market cap, price, equal weight</p>
-              <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Top 10 S&P 500 Firmen = ~35% des Index</p>
-            </div>
-            <CompletionXP result={completionResult} hearts={hearts} />
-            <button onClick={() => setShowDeepDive(true)}
-              className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-muted transition-colors">
-              Deeper Dive 📖
-            </button>
+            {completionResult?.unlocked === false ? (
+              <>
+                <span className="text-5xl mb-4">⚠️</span>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Nicht freigeschaltet</h2>
+                <div className="rounded-2xl border-l-4 border-amber-400 bg-amber-50 dark:bg-amber-950/30 px-5 py-4 max-w-xs w-full mb-5">
+                  <p className="font-body text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+                    ⚠️ Du brauchst mind. 1 Herz um die nächste Lektion freizuschalten. Versuch es nochmal!
+                  </p>
+                </div>
+                <CompletionXP result={completionResult} hearts={hearts} />
+              </>
+            ) : (
+              <>
+                <span className="text-5xl mb-4">🎉</span>
+                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Lesson complete!</h2>
+                <p className="font-body text-sm text-muted-foreground mb-5">You now understand how indexes are built.</p>
+                <div className="bg-green-500/10 border border-green-500/20 rounded-2xl px-5 py-4 max-w-xs w-full mb-4 text-left space-y-1">
+                  <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Market cap = size of the company</p>
+                  <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Larger companies have more index influence</p>
+                  <p className="font-body text-sm text-green-700 dark:text-green-300">✅ There are 3 weighting methods: market cap, price, equal weight</p>
+                  <p className="font-body text-sm text-green-700 dark:text-green-300">✅ Top 10 S&P 500 Firmen = ~35% des Index</p>
+                </div>
+                <CompletionXP result={completionResult} hearts={hearts} />
+                <button onClick={() => setShowDeepDive(true)}
+                  className="font-body text-sm font-medium text-foreground border border-border rounded-full px-5 py-2.5 hover:bg-muted transition-colors">
+                  Deeper Dive 📖
+                </button>
+              </>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
