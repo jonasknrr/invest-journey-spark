@@ -134,13 +134,13 @@ const Leaderboard = () => {
               <span className="font-bold text-muted-foreground text-sm" style={{ minWidth: 20 }}>
                 {rank}
               </span>
-              <div
-                className="rounded-full flex items-center justify-center mx-2"
-                style={{ width: 36, height: 36, backgroundColor: user.color }}
-              >
-                <span className="text-white font-bold text-sm">
-                  {user.name.charAt(0).toUpperCase()}
-                </span>
+              {rank <= 3 ? (
+                <FaMedal size={20} className="mx-2" style={{ color: rank === 1 ? '#EAB308' : rank === 2 ? '#EF9F27' : '#B87333' }} />
+              ) : (
+                <FaMedal size={18} className="mx-2 text-muted-foreground/30" />
+              )}
+              <div className="flex items-center justify-center" style={{ width: 36, height: 36 }}>
+                <MdAccountCircle size={36} style={{ color: user.color }} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
