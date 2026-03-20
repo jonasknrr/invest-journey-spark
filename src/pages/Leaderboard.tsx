@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiChevronLeft } from 'react-icons/fi';
 import { useProgressStore } from '@/hooks/useProgressStore';
+import BottomNav from '@/components/BottomNav';
 
 const demoFriends = [
   { name: 'Lena', xp: 1840, streak: 5, color: '#6366F1' },
