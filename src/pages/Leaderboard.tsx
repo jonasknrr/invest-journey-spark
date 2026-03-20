@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiChevronLeft } from 'react-icons/fi';
+import { FaMedal, FaCrown } from 'react-icons/fa';
+import { MdAccountCircle } from 'react-icons/md';
 import { useProgressStore } from '@/hooks/useProgressStore';
 import BottomNav from '@/components/BottomNav';
 
@@ -85,18 +87,15 @@ const Leaderboard = () => {
           const isFirst = cfg.rank === 1;
           return (
             <div key={user.name} className="flex flex-col items-center">
-              {isFirst && <span style={{ fontSize: 18 }}>👑</span>}
+              {isFirst && <FaCrown size={20} color="#EF9F27" />}
               <div
-                className="rounded-full flex items-center justify-center mb-1"
+                className="rounded-full flex items-center justify-center mb-1 relative"
                 style={{
                   width: cfg.avatarSize,
                   height: cfg.avatarSize,
-                  backgroundColor: user.color,
                 }}
               >
-                <span className="text-white font-bold" style={{ fontSize: cfg.avatarSize * 0.38 }}>
-                  {user.name.charAt(0).toUpperCase()}
-                </span>
+                <MdAccountCircle size={cfg.avatarSize} style={{ color: user.color }} />
               </div>
               <span className="text-xs font-bold text-foreground">{user.name}</span>
               <span className="text-muted-foreground" style={{ fontSize: 11 }}>
@@ -135,13 +134,13 @@ const Leaderboard = () => {
               <span className="font-bold text-muted-foreground text-sm" style={{ minWidth: 20 }}>
                 {rank}
               </span>
-              <div
-                className="rounded-full flex items-center justify-center mx-2"
-                style={{ width: 36, height: 36, backgroundColor: user.color }}
-              >
-                <span className="text-white font-bold text-sm">
-                  {user.name.charAt(0).toUpperCase()}
-                </span>
+              {rank <= 3 ? (
+                <FaMedal size={20} className="mx-2" style={{ color: rank === 1 ? '#EAB308' : rank === 2 ? '#EF9F27' : '#B87333' }} />
+              ) : (
+                <FaMedal size={18} className="mx-2 text-muted-foreground/30" />
+              )}
+              <div className="flex items-center justify-center" style={{ width: 36, height: 36 }}>
+                <MdAccountCircle size={36} style={{ color: user.color }} />
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-1.5">
