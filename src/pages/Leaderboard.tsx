@@ -151,7 +151,7 @@ const Leaderboard = () => {
                     </span>
                   )}
                 </div>
-                <span className="text-xs text-orange-500">🔥 {user.streak} day streak</span>
+                <span className="text-xs text-orange-500 flex items-center gap-1"><FiZap className="w-3 h-3" fill="currentColor" /> {user.streak} day streak</span>
               </div>
               <div className="text-right">
                 <p className="text-sm font-bold text-foreground">{user.xp.toLocaleString()}</p>
