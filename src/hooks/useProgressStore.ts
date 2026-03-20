@@ -150,6 +150,60 @@ export function useProgressStore() {
 
       persist(next);
 
+      // Unlock next lesson in levels
+      if (heartsRemaining > 0) {
+        try {
+          const storedLevels = localStorage.getItem('investify_levels');
+          if (!storedLevels) return { xpEarned, streakBonus, isFirstCompletion: true, newStreak, unlocked: true };
+
+          const levels = JSON.parse(storedLevels);
+
+          // lessonId format examples:
+          // 'festgeld-f1', 'aktien-a2', 'etfs-e3'
+          // Split on LAST hyphen to get levelId and subId
+          const lastHyphen = lessonId.lastIndexOf('-');
+          if (lastHyphen === -1) return { xpEarned, streakBonus, isFirstCompletion: true, newStreak, unlocked: true };
+
+          const levelId = lessonId.substring(0, lastHyphen);
+          const subId = lessonId.substring(lastHyphen + 1);
+
+          const levelIndex = levels.findIndex((l: any) => l.id === levelId);
+          if (levelIndex === -1) return { xpEarned, streakBonus, isFirstCompletion: true, newStreak, unlocked: true };
+
+          const level = levels[levelIndex];
+          const subIndex = level.subLevels.findIndex((s: any) => s.id === subId);
+          if (subIndex === -1) return { xpEarned, streakBonus, isFirstCompletion: true, newStreak, unlocked: true };
+
+          // Mark current sublevel as completed
+          levels[levelIndex].subLevels[subIndex].status = 'completed';
+
+          // Unlock next sublevel in same level
+          if (subIndex + 1 < level.subLevels.length) {
+            levels[levelIndex].subLevels[subIndex + 1].status = 'current';
+          } else {
+            // Last lesson in level — mark level completed
+            levels[levelIndex].status = 'completed';
+            levels[levelIndex].progress = 100;
+
+            // Unlock first lesson of next level
+            if (levelIndex + 1 < levels.length) {
+              levels[levelIndex + 1].status = 'current';
+              if (levels[levelIndex + 1].subLevels.length > 0) {
+                levels[levelIndex + 1].subLevels[0].status = 'current';
+              }
+            }
+          }
+
+          localStorage.setItem('investify_levels', JSON.stringify(levels));
+
+          // Force re-render in components that read levels
+          window.dispatchEvent(new Event('investify_levels_updated'));
+
+        } catch (e) {
+          console.error('Failed to unlock next lesson', e);
+        }
+      }
+
       return { xpEarned, streakBonus, isFirstCompletion: true, newStreak, unlocked: true };
     },
     [store, persist],
