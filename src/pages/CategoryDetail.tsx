@@ -21,6 +21,7 @@ const bgMap: Record<string, string> = {
 const CategoryDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const levels = getLevels();
   const level = levels.find(l => l.id === id);
   const { getLessonResult, store } = useProgressStore();
 

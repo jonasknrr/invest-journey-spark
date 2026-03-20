@@ -59,6 +59,7 @@ function buildZigzagPath(count: number, width: number): string {
 }
 
 const LearningPath = () => {
+  const levels = getLevels();
   const navigate = useNavigate();
   const { store } = useProgressStore();
 
