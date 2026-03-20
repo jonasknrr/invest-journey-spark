@@ -4,6 +4,7 @@ import { levels } from '@/data/levels';
 import LevelNode from '@/components/LevelNode';
 import { FiStar, FiZap } from 'react-icons/fi';
 import { useProgressStore } from '@/hooks/useProgressStore';
+import BottomNav from '@/components/BottomNav';
 
 const categoryLessonIds: Record<string, string[]> = {
   festgeld: ['festgeld-f1', 'festgeld-f2', 'festgeld-f3', 'festgeld-f4', 'festgeld-f5'],
