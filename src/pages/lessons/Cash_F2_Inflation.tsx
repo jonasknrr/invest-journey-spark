@@ -7,7 +7,7 @@ import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
 import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 /* ── Price data for the basket slide ── */
 const products = [
@@ -167,11 +167,12 @@ const Cash_F2_Inflation = () => {
 
   const showCTA = () => {
     if (currentStep === 0) return true;
-    if (currentStep === 1) return sliderYear >= 2020;
-    if (currentStep === 2) return !!q1Answer;
-    if (currentStep === 3) return !!q2Answer;
-    if (currentStep === 4) return !!q3Answer;
-    if (currentStep === 5) return true;
+    if (currentStep === 1) return true;
+    if (currentStep === 2) return sliderYear >= 2020;
+    if (currentStep === 3) return !!q1Answer;
+    if (currentStep === 4) return !!q2Answer;
+    if (currentStep === 5) return !!q3Answer;
+    if (currentStep === 6) return true;
     return false;
   };
 
@@ -182,7 +183,7 @@ const Cash_F2_Inflation = () => {
     }
     setCurrentStep((s) => s + 1);
     // Trigger star animation on completion slide
-    if (currentStep === 4) {
+    if (currentStep === 5) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
