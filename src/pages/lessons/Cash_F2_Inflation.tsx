@@ -7,7 +7,7 @@ import NoHeartsOverlay from '@/components/lessons/NoHeartsOverlay';
 import CompletionXP from '@/components/lessons/CompletionXP';
 
 const BLUE = '#1A56DB';
-const TOTAL_STEPS = 6;
+const TOTAL_STEPS = 7;
 
 /* ── Price data for the basket slide ── */
 const products = [
@@ -167,11 +167,12 @@ const Cash_F2_Inflation = () => {
 
   const showCTA = () => {
     if (currentStep === 0) return true;
-    if (currentStep === 1) return sliderYear >= 2020;
-    if (currentStep === 2) return !!q1Answer;
-    if (currentStep === 3) return !!q2Answer;
-    if (currentStep === 4) return !!q3Answer;
-    if (currentStep === 5) return true;
+    if (currentStep === 1) return true;
+    if (currentStep === 2) return sliderYear >= 2020;
+    if (currentStep === 3) return !!q1Answer;
+    if (currentStep === 4) return !!q2Answer;
+    if (currentStep === 5) return !!q3Answer;
+    if (currentStep === 6) return true;
     return false;
   };
 
@@ -182,7 +183,7 @@ const Cash_F2_Inflation = () => {
     }
     setCurrentStep((s) => s + 1);
     // Trigger star animation on completion slide
-    if (currentStep === 4) {
+    if (currentStep === 6) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
@@ -244,7 +245,7 @@ const Cash_F2_Inflation = () => {
 
       {/* Content */}
       <AnimatePresence mode="wait">
-        {/* STEP 0 — Story */}
+        {/* STEP 0 — Story screen 1 */}
         {currentStep === 0 &&
         <motion.div
           key="s0"
@@ -257,20 +258,45 @@ const Cash_F2_Inflation = () => {
             <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
               <span className="mb-4" style={{ fontSize: 64 }}>📉</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
-                Your money loses value — without you even noticing
+                Money loses value quietly
               </h2>
               <p className="font-body text-base text-foreground leading-relaxed mb-4">
-                Imagine you put CHF 10'000 under your pillow. 10 years later you take it out — the number is still the same, but you can buy less with it. That's inflation.
+                Imagine putting CHF 10,000 under your mattress. Ten years later you take out the same note – but you can buy less with it than before. The amount hasn't changed. The purchasing power has.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Inflation means prices rise — and your money becomes worth a little less each year, even if you don't spend anything.
+                This effect is called inflation: the general price level rises, while the real value of your money falls – even if you never touched it.
               </p>
             </div>
           </motion.div>
         }
 
-        {/* STEP 1 — Basket slider */}
+        {/* STEP 1 — Story screen 2 */}
         {currentStep === 1 &&
+        <motion.div
+          key="s0b"
+          className="flex-1 flex flex-col px-6 py-6 overflow-y-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}>
+          
+            <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
+              <span className="mb-4" style={{ fontSize: 64 }}>🛒</span>
+              <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
+                How is inflation measured?
+              </h2>
+              <p className="font-body text-base text-foreground leading-relaxed mb-4">
+                Statistics offices calculate a so-called basket of goods – a representative selection of products and services that an average household buys: food, rent, energy, clothing, healthcare. When this basket gets more expensive, the inflation rate rises.
+              </p>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                In Switzerland this is the Swiss Consumer Price Index (CPI), in the EU the HICP. An inflation rate of 2% means: something that costs CHF 100 today will cost CHF 102 in a year. That sounds small – but over 10 years it adds up to roughly 22% more.
+              </p>
+            </div>
+          </motion.div>
+        }
+
+        {/* STEP 2 — Basket slider */}
+        {currentStep === 2 &&
         <motion.div
           key="s1"
           className="flex-1 flex flex-col px-6 py-4 overflow-y-auto"
@@ -371,7 +397,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 2 — Quiz 1 */}
-        {currentStep === 2 &&
+        {currentStep === 3 &&
         <motion.div
           key="s2"
           className="flex-1 flex flex-col px-6 py-4"
@@ -439,7 +465,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 3 — Quiz 2 */}
-        {currentStep === 3 &&
+        {currentStep === 4 &&
         <motion.div
           key="s3"
           className="flex-1 flex flex-col px-6 py-4"
@@ -507,7 +533,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 4 — Quiz 3 */}
-        {currentStep === 4 &&
+        {currentStep === 5 &&
         <motion.div
           key="s4"
           className="flex-1 flex flex-col px-6 py-4"
@@ -575,7 +601,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 5 — Completion */}
-        {currentStep === 5 &&
+        {currentStep === 6 &&
         <motion.div
           key="s5"
           className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
@@ -628,9 +654,9 @@ const Cash_F2_Inflation = () => {
             onClick={handleNext}
             whileTap={{ scale: 0.96 }}
             className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
-            style={{ backgroundColor: currentStep === 5 ? 'hsl(142, 71%, 45%)' : BLUE }}>
+            style={{ backgroundColor: currentStep === 6 ? 'hsl(142, 71%, 45%)' : BLUE }}>
             
-              {currentStep === 5 ? 'Next lesson →' : 'Continue →'}
+              {currentStep === 6 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         }
