@@ -167,11 +167,11 @@ const Cash_F2_Inflation = () => {
 
   const showCTA = () => {
     if (currentStep === 0) return true;
-    if (currentStep === 1) return true;
-    if (currentStep === 2) return sliderYear >= 2020;
-    if (currentStep === 3) return !!q1Answer;
-    if (currentStep === 4) return !!q2Answer;
-    if (currentStep === 5) return !!q3Answer;
+    if (currentStep === 2) return true;
+    if (currentStep === 3) return sliderYear >= 2020;
+    if (currentStep === 4) return !!q1Answer;
+    if (currentStep === 5) return !!q2Answer;
+    if (currentStep === 6) return !!q3Answer;
     if (currentStep === 6) return true;
     return false;
   };
@@ -183,7 +183,7 @@ const Cash_F2_Inflation = () => {
     }
     setCurrentStep((s) => s + 1);
     // Trigger star animation on completion slide
-    if (currentStep === 5) {
+    if (currentStep === 6) {
       setTimeout(() => setStarsShown(1), 300);
       setTimeout(() => setStarsShown(2), 600);
       setTimeout(() => setStarsShown(3), 900);
@@ -397,7 +397,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 2 — Quiz 1 */}
-        {currentStep === 2 &&
+        {currentStep === 3 &&
         <motion.div
           key="s2"
           className="flex-1 flex flex-col px-6 py-4"
@@ -465,7 +465,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 3 — Quiz 2 */}
-        {currentStep === 3 &&
+        {currentStep === 4 &&
         <motion.div
           key="s3"
           className="flex-1 flex flex-col px-6 py-4"
@@ -533,7 +533,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 4 — Quiz 3 */}
-        {currentStep === 4 &&
+        {currentStep === 5 &&
         <motion.div
           key="s4"
           className="flex-1 flex flex-col px-6 py-4"
@@ -601,7 +601,7 @@ const Cash_F2_Inflation = () => {
         }
 
         {/* STEP 5 — Completion */}
-        {currentStep === 5 &&
+        {currentStep === 6 &&
         <motion.div
           key="s5"
           className="flex-1 flex flex-col items-center justify-center px-6 text-center overflow-y-auto py-4"
@@ -654,9 +654,9 @@ const Cash_F2_Inflation = () => {
             onClick={handleNext}
             whileTap={{ scale: 0.96 }}
             className="w-full h-14 rounded-full font-display text-lg font-bold text-white shadow-sm"
-            style={{ backgroundColor: currentStep === 5 ? 'hsl(142, 71%, 45%)' : BLUE }}>
+            style={{ backgroundColor: currentStep === 6 ? 'hsl(142, 71%, 45%)' : BLUE }}>
             
-              {currentStep === 5 ? 'Next lesson →' : 'Continue →'}
+              {currentStep === 6 ? 'Next lesson →' : 'Continue →'}
             </motion.button>
           </motion.div>
         }
