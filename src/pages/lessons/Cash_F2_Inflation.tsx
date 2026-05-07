@@ -167,11 +167,11 @@ const Cash_F2_Inflation = () => {
 
   const showCTA = () => {
     if (currentStep === 0) return true;
-    if (currentStep === 2) return true;
-    if (currentStep === 3) return sliderYear >= 2020;
-    if (currentStep === 4) return !!q1Answer;
-    if (currentStep === 5) return !!q2Answer;
-    if (currentStep === 6) return !!q3Answer;
+    if (currentStep === 1) return true;
+    if (currentStep === 2) return sliderYear >= 2020;
+    if (currentStep === 3) return !!q1Answer;
+    if (currentStep === 4) return !!q2Answer;
+    if (currentStep === 5) return !!q3Answer;
     if (currentStep === 6) return true;
     return false;
   };
@@ -295,8 +295,8 @@ const Cash_F2_Inflation = () => {
           </motion.div>
         }
 
-        {/* STEP 1 — Basket slider */}
-        {currentStep === 1 &&
+        {/* STEP 2 — Basket slider */}
+        {currentStep === 2 &&
         <motion.div
           key="s1"
           className="flex-1 flex flex-col px-6 py-4 overflow-y-auto"
