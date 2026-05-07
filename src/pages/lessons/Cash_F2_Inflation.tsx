@@ -245,7 +245,7 @@ const Cash_F2_Inflation = () => {
 
       {/* Content */}
       <AnimatePresence mode="wait">
-        {/* STEP 0 — Story */}
+        {/* STEP 0 — Story screen 1 */}
         {currentStep === 0 &&
         <motion.div
           key="s0"
@@ -258,13 +258,38 @@ const Cash_F2_Inflation = () => {
             <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
               <span className="mb-4" style={{ fontSize: 64 }}>📉</span>
               <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
-                Your money loses value — without you even noticing
+                Money loses value quietly
               </h2>
               <p className="font-body text-base text-foreground leading-relaxed mb-4">
-                Imagine you put CHF 10'000 under your pillow. 10 years later you take it out — the number is still the same, but you can buy less with it. That's inflation.
+                Imagine putting CHF 10,000 under your mattress. Ten years later you take out the same note – but you can buy less with it than before. The amount hasn't changed. The purchasing power has.
               </p>
               <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                Inflation means prices rise — and your money becomes worth a little less each year, even if you don't spend anything.
+                This effect is called inflation: the general price level rises, while the real value of your money falls – even if you never touched it.
+              </p>
+            </div>
+          </motion.div>
+        }
+
+        {/* STEP 1 — Story screen 2 */}
+        {currentStep === 1 &&
+        <motion.div
+          key="s0b"
+          className="flex-1 flex flex-col px-6 py-6 overflow-y-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3 }}>
+          
+            <div className="max-w-sm mx-auto w-full flex flex-col items-center text-center">
+              <span className="mb-4" style={{ fontSize: 64 }}>🛒</span>
+              <h2 className="font-display text-2xl font-bold text-foreground leading-tight mb-5">
+                How is inflation measured?
+              </h2>
+              <p className="font-body text-base text-foreground leading-relaxed mb-4">
+                Statistics offices calculate a so-called basket of goods – a representative selection of products and services that an average household buys: food, rent, energy, clothing, healthcare. When this basket gets more expensive, the inflation rate rises.
+              </p>
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                In Switzerland this is the Swiss Consumer Price Index (CPI), in the EU the HICP. An inflation rate of 2% means: something that costs CHF 100 today will cost CHF 102 in a year. That sounds small – but over 10 years it adds up to roughly 22% more.
               </p>
             </div>
           </motion.div>
