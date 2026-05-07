@@ -3,7 +3,7 @@ import App from "./App.tsx";
 import "./index.css";
 
 // One-time progress reset
-const RESET_KEY = "investify_reset_v1";
+const RESET_KEY = "investify_reset_v2";
 if (!localStorage.getItem(RESET_KEY)) {
   localStorage.removeItem("finlearn_progress");
   localStorage.removeItem("investify_levels");
